@@ -38,6 +38,7 @@ import { PerfilPage } from './components/PerfilPage.jsx'
 import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
 import { ConquistasPage } from './components/ConquistasPage.jsx'
 import { LessonViewer } from './components/LessonViewer.jsx'
+import { PlanosLeituraPage } from './components/PlanosLeituraPage.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -45,6 +46,7 @@ import { hinos } from './data/hinario.js'
 import { estudos } from './data/estudos.js'
 import { estudosCompletos } from './data/estudos-completos.js'
 import { personagensBiblicos } from './data/personagens-biblicos.js'
+import { planosLeitura } from './data/planos-leitura.js'
 
 // Importar imagens
 import logo from './assets/logo-adventista-play.png'
@@ -125,15 +127,15 @@ function Navigation({ user, onLogout }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-3 group">
             <motion.div
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
             >
-              <img src={logo} alt="Adventista Play" className="h-10 w-auto" />
+              <img src={logo} alt="Adventista Play" className="h-14 md:h-16 w-auto" />
             </motion.div>
-            <span className="text-xl font-bold group-hover:text-accent transition-colors">
-              <span style={{ color: '#2E3192' }}>Adventista</span>{' '}
+            <span className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors">
+              <span className="text-white">Adventista</span>{' '}
               <span style={{ color: '#7CB342' }}>Play</span>
             </span>
           </Link>
@@ -145,6 +147,7 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/hinario" icon={<Music className="h-4 w-4" />}>Hinário</NavLink>
             <NavLink to="/biblia" icon={<BookText className="h-4 w-4" />}>Bíblia</NavLink>
             <NavLink to="/estudos" icon={<GraduationCap className="h-4 w-4" />}>Estudos</NavLink>
+            <NavLink to="/planos" icon={<Calendar className="h-4 w-4" />}>Planos</NavLink>
             <NavLink to="/projetos" icon={<Globe className="h-4 w-4" />}>Projetos</NavLink>
             {user && <NavLink to="/conquistas" icon={<Trophy className="h-4 w-4" />}>Conquistas</NavLink>}
             <NavLink to="/contato" icon={<MessageSquare className="h-4 w-4" />}>Contato</NavLink>
@@ -198,6 +201,7 @@ function Navigation({ user, onLogout }) {
               <Link to="/hinario" className="block py-2 hover:text-accent transition-colors">Hinário</Link>
               <Link to="/biblia" className="block py-2 hover:text-accent transition-colors">Bíblia</Link>
               <Link to="/estudos" className="block py-2 hover:text-accent transition-colors">Estudos</Link>
+              <Link to="/planos" className="block py-2 hover:text-accent transition-colors">Planos de Leitura</Link>
               <Link to="/projetos" className="block py-2 hover:text-accent transition-colors">Projetos</Link>
               <Link to="/contato" className="block py-2 hover:text-accent transition-colors">Contato</Link>
               {user ? (
@@ -1596,6 +1600,7 @@ function App() {
             <Route path="/hinario" element={<HinarioPage />} />
             <Route path="/biblia" element={<BibliaPageNova />} />
             <Route path="/estudos" element={<EstudosPage />} />
+            <Route path="/planos" element={<PlanosLeituraPage planos={planosLeitura} />} />
             <Route path="/projetos" element={<ProjetosPage />} />
             <Route path="/contato" element={<ContatoPage />} />
             <Route path="/perfil" element={<PerfilPage />} />

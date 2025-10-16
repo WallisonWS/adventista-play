@@ -28,13 +28,15 @@ import {
   Volume2,
   MessageSquare,
   Mail,
-  Phone
+  Phone,
+  Trophy
 } from 'lucide-react'
 import './App.css'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { BibliaPageNova } from './components/BibliaPageNova.jsx'
 import { PerfilPage } from './components/PerfilPage.jsx'
 import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
+import { ConquistasPage } from './components/ConquistasPage.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 
 // Importar dados
@@ -139,6 +141,7 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/biblia" icon={<BookText className="h-4 w-4" />}>Bíblia</NavLink>
             <NavLink to="/estudos" icon={<GraduationCap className="h-4 w-4" />}>Estudos</NavLink>
             <NavLink to="/projetos" icon={<Globe className="h-4 w-4" />}>Projetos</NavLink>
+            {user && <NavLink to="/conquistas" icon={<Trophy className="h-4 w-4" />}>Conquistas</NavLink>}
             <NavLink to="/contato" icon={<MessageSquare className="h-4 w-4" />}>Contato</NavLink>
             
             {user ? (
@@ -448,6 +451,7 @@ function LoginPage({ onLogin }) {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
+    idade: '',
     senha: '',
     confirmarSenha: ''
   })
@@ -478,7 +482,7 @@ function LoginPage({ onLogin }) {
       if (result.success) {
         alert(result.message)
         setIsLogin(true)
-        setFormData({ nome: '', email: '', senha: '', confirmarSenha: '' })
+        setFormData({ nome: '', email: '', idade: '', senha: '', confirmarSenha: '' })
       } else {
         alert(result.message)
       }
@@ -526,6 +530,29 @@ function LoginPage({ onLogin }) {
                       placeholder="Seu nome"
                       value={formData.nome}
                       onChange={(e) => setFormData({...formData, nome: e.target.value})}
+                      required
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence mode="wait">
+                {!isLogin && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="space-y-2"
+                  >
+                    <Label htmlFor="idade">Idade</Label>
+                    <Input 
+                      id="idade" 
+                      type="number" 
+                      placeholder="Sua idade"
+                      min="13"
+                      max="120"
+                      value={formData.idade}
+                      onChange={(e) => setFormData({...formData, idade: e.target.value})}
                       required
                     />
                   </motion.div>
@@ -1464,6 +1491,7 @@ function App() {
             <Route path="/projetos" element={<ProjetosPage />} />
             <Route path="/contato" element={<ContatoPage />} />
             <Route path="/perfil" element={<PerfilPage />} />
+            <Route path="/conquistas" element={<ConquistasPage />} />
           </Routes>
         </AnimatePresence>
         

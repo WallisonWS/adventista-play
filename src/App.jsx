@@ -25,9 +25,14 @@ import {
   Star,
   BookMarked,
   Play,
-  Volume2
+  Volume2,
+  MessageSquare,
+  Mail,
+  Phone
 } from 'lucide-react'
 import './App.css'
+import { ContatoPage } from './components/ContatoPage.jsx'
+import { BibliaPageNova } from './components/BibliaPageNova.jsx'
 
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -131,6 +136,7 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/biblia" icon={<BookText className="h-4 w-4" />}>Bíblia</NavLink>
             <NavLink to="/estudos" icon={<GraduationCap className="h-4 w-4" />}>Estudos</NavLink>
             <NavLink to="/projetos" icon={<Globe className="h-4 w-4" />}>Projetos</NavLink>
+            <NavLink to="/contato" icon={<MessageSquare className="h-4 w-4" />}>Contato</NavLink>
             
             {user ? (
               <div className="flex items-center space-x-4">
@@ -180,6 +186,7 @@ function Navigation({ user, onLogout }) {
               <Link to="/biblia" className="block py-2 hover:text-accent transition-colors">Bíblia</Link>
               <Link to="/estudos" className="block py-2 hover:text-accent transition-colors">Estudos</Link>
               <Link to="/projetos" className="block py-2 hover:text-accent transition-colors">Projetos</Link>
+              <Link to="/contato" className="block py-2 hover:text-accent transition-colors">Contato</Link>
               {user ? (
                 <>
                   <div className="py-2 text-accent">{user.nome}</div>
@@ -1409,35 +1416,75 @@ function App() {
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />
-            <Route path="/biblia" element={<BibliaPage />} />
+            <Route path="/biblia" element={<BibliaPageNova />} />
             <Route path="/estudos" element={<EstudosPage />} />
             <Route path="/projetos" element={<ProjetosPage />} />
+            <Route path="/contato" element={<ContatoPage />} />
           </Routes>
         </AnimatePresence>
         
         {/* Footer */}
         <motion.footer 
-          className="bg-primary text-primary-foreground py-8 mt-16"
+          className="bg-primary text-primary-foreground py-12 mt-16"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <div className="container mx-auto px-4 text-center">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <BookOpen className="h-6 w-6" />
-              </motion.div>
-              <span className="font-bold text-xl">Portal Adventista</span>
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              {/* Sobre */}
+              <div>
+                <div className="flex items-center space-x-2 mb-4">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    <BookOpen className="h-6 w-6" />
+                  </motion.div>
+                  <span className="font-bold text-xl">Portal Adventista</span>
+                </div>
+                <p className="text-sm opacity-80">
+                  Fortalecendo a fé e conectando corações com a Palavra de Deus
+                </p>
+              </div>
+
+              {/* Links Rápidos */}
+              <div>
+                <h3 className="font-bold text-lg mb-4">Links Rápidos</h3>
+                <div className="space-y-2 text-sm opacity-80">
+                  <Link to="/devocional" className="block hover:opacity-100 transition-opacity">Devocional</Link>
+                  <Link to="/hinario" className="block hover:opacity-100 transition-opacity">Hinário</Link>
+                  <Link to="/biblia" className="block hover:opacity-100 transition-opacity">Bíblia</Link>
+                  <Link to="/estudos" className="block hover:opacity-100 transition-opacity">Estudos</Link>
+                  <Link to="/projetos" className="block hover:opacity-100 transition-opacity">Projetos</Link>
+                </div>
+              </div>
+
+              {/* Contato */}
+              <div>
+                <h3 className="font-bold text-lg mb-4">Contato</h3>
+                <div className="space-y-2 text-sm opacity-80">
+                  <a href="mailto:wallisonpereiradev@gmail.com" className="block hover:opacity-100 transition-opacity flex items-center space-x-2">
+                    <Mail className="h-4 w-4" />
+                    <span>wallisonpereiradev@gmail.com</span>
+                  </a>
+                  <a href="tel:+5562994791745" className="block hover:opacity-100 transition-opacity flex items-center space-x-2">
+                    <Phone className="h-4 w-4" />
+                    <span>(62) 99479-1745</span>
+                  </a>
+                  <Link to="/contato" className="block hover:opacity-100 transition-opacity flex items-center space-x-2">
+                    <MessageSquare className="h-4 w-4" />
+                    <span>Formulário de Contato</span>
+                  </Link>
+                </div>
+              </div>
             </div>
-            <p className="text-sm opacity-80 mb-4">
-              Fortalecendo a fé e conectando corações com a Palavra de Deus
-            </p>
-            <p className="text-xs opacity-60">
-              © 2025 Portal Adventista. Todos os direitos reservados.
-            </p>
+
+            <div className="border-t border-primary-foreground/20 pt-6 text-center">
+              <p className="text-xs opacity-60">
+                © 2025 Portal Adventista. Todos os direitos reservados. | Desenvolvido por Wallison Pereira
+              </p>
+            </div>
           </div>
         </motion.footer>
       </div>

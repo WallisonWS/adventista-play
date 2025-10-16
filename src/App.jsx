@@ -34,7 +34,7 @@ import {
 } from 'lucide-react'
 import './App.css'
 import { ContatoPage } from './components/ContatoPage.jsx'
-import { BibliaPageNova } from './components/BibliaPageNova.jsx'
+import { BibliaPageMelhorada } from './components/BibliaPageMelhorada.jsx'
 import { PerfilPage } from './components/PerfilPage.jsx'
 import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
 import { ConquistasPage } from './components/ConquistasPage.jsx'
@@ -1600,7 +1600,7 @@ function App() {
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />
-            <Route path="/biblia" element={<BibliaPageNova />} />
+            <Route path="/biblia" element={<BibliaPageMelhorada />} />
             <Route path="/estudos" element={<EstudosPage />} />
             <Route path="/planos" element={<PlanosLeituraPage planos={planosLeitura} />} />
             <Route path="/projetos" element={<ProjetosPage />} />

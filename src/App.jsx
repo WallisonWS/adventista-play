@@ -45,6 +45,7 @@ import { EscolaSabatina } from './components/EscolaSabatina'
 import { EscolaSabatinaCompleta } from './components/EscolaSabatinaCompleta.jsx'
 import { LivrosEllenWhite } from './components/LivrosEllenWhite.jsx'
 import { DicionarioBiblico } from './components/DicionarioBiblico.jsx'
+import { DevocionaisEllenWhite } from './components/DevocionaisEllenWhite.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -1452,6 +1453,7 @@ function App() {
             <Route path="/escola-sabatina" element={<EscolaSabatinaCompleta />} />
             <Route path="/ellen-white" element={<LivrosEllenWhite />} />
             <Route path="/dicionario" element={<DicionarioBiblico />} />
+            <Route path="/devocionais-ellen" element={<DevocionaisEllenWhite />} />
             <Route path="/planos" element={<PlanosLeituraPage planos={planosLeitura} />} />
             <Route path="/quiz" element={<QuizBiblico />} />
             <Route path="/projetos" element={<ProjetosPage />} />

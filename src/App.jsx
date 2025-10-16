@@ -29,7 +29,8 @@ import {
   MessageSquare,
   Mail,
   Phone,
-  Trophy
+  Trophy,
+  Calendar
 } from 'lucide-react'
 import './App.css'
 import { ContatoPage } from './components/ContatoPage.jsx'

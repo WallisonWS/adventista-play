@@ -1,4 +1,22 @@
+import { licoesEscolaSabatina } from './escola-sabatina-licoes.js'
+
 export const estudos = [
+  ...licoesEscolaSabatina.map(licao => ({
+    id: licao.id,
+    titulo: licao.titulo,
+    trimestre: '4º Trimestre 2025',
+    tipo: licao.categoria,
+    descricao: licao.descricao,
+    capa: 'https://images.unsplash.com/photo-1505682634904-d7c8d95cdc50?w=400',
+    licoes: [{
+      numero: 1,
+      titulo: licao.titulo,
+      texto: licao.versiculo,
+      conteudo: licao.conteudo,
+      versiculoChave: licao.versiculo,
+      perguntas: licao.topicos.map(t => `Explique sobre: ${t}`)
+    }]
+  })),
   {
     id: 1,
     titulo: "Lições de Fé no Livro de Josué",

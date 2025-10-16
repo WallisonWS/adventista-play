@@ -389,6 +389,198 @@ const quizzes = [
         resposta: '31'
       }
     ]
+  },
+  {
+    id: 13,
+    categoria: 'Arca de Noé',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quantos anos Noé tinha quando o dilúvio começou?',
+        opcoes: ['500 anos', '600 anos', '700 anos', '800 anos'],
+        resposta: '600 anos'
+      },
+      {
+        pergunta: 'Quantos andares tinha a arca?',
+        opcoes: ['2 andares', '3 andares', '4 andares', '5 andares'],
+        resposta: '3 andares'
+      },
+      {
+        pergunta: 'Quantos dias e noites choveu durante o dilúvio?',
+        opcoes: ['30 dias', '40 dias', '50 dias', '60 dias'],
+        resposta: '40 dias'
+      },
+      {
+        pergunta: 'Qual ave Noé soltou primeiro para verificar se as águas tinham secado?',
+        opcoes: ['Pomba', 'Corvo', 'Águia', 'Andorinha'],
+        resposta: 'Corvo'
+      },
+      {
+        pergunta: 'Qual foi o sinal do pacto de Deus com Noé?',
+        opcoes: ['Uma estrela', 'Um arco-íris', 'Um relâmpago', 'Uma nuvem'],
+        resposta: 'Um arco-íris'
+      }
+    ]
+  },
+  {
+    id: 14,
+    categoria: 'Êxodo do Egito',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quantas pragas Deus enviou sobre o Egito?',
+        opcoes: ['7 pragas', '10 pragas', '12 pragas', '15 pragas'],
+        resposta: '10 pragas'
+      },
+      {
+        pergunta: 'Qual foi a primeira praga enviada ao Egito?',
+        opcoes: ['Água em sangue', 'Rãs', 'Piolhos', 'Moscas'],
+        resposta: 'Água em sangue'
+      },
+      {
+        pergunta: 'O que os israelitas deveriam passar nos umbrais das portas na noite da Páscoa?',
+        opcoes: ['Óleo', 'Sangue de cordeiro', 'Água', 'Vinho'],
+        resposta: 'Sangue de cordeiro'
+      },
+      {
+        pergunta: 'Onde Deus deu os Dez Mandamentos a Moisés?',
+        opcoes: ['Monte Sinai', 'Monte Nebo', 'Monte Carmelo', 'Monte das Oliveiras'],
+        resposta: 'Monte Sinai'
+      },
+      {
+        pergunta: 'O que Deus enviou do céu para alimentar os israelitas no deserto?',
+        opcoes: ['Pão', 'Maná', 'Carne', 'Frutas'],
+        resposta: 'Maná'
+      }
+    ]
+  },
+  {
+    id: 15,
+    categoria: 'Vida de Paulo',
+    dificuldade: 'Difícil',
+    perguntas: [
+      {
+        pergunta: 'Qual era o nome de Paulo antes de sua conversão?',
+        opcoes: ['Saulo', 'Simão', 'Silas', 'Silvano'],
+        resposta: 'Saulo'
+      },
+      {
+        pergunta: 'Em que cidade Paulo teve a visão de Jesus?',
+        opcoes: ['Jerusalém', 'Antioquia', 'Damasco', 'Tarso'],
+        resposta: 'Damasco'
+      },
+      {
+        pergunta: 'Quantas viagens missionárias Paulo fez?',
+        opcoes: ['2 viagens', '3 viagens', '4 viagens', '5 viagens'],
+        resposta: '3 viagens'
+      },
+      {
+        pergunta: 'Quem era o companheiro de Paulo em sua primeira viagem missionária?',
+        opcoes: ['Timóteo', 'Tito', 'Barnabé', 'Lucas'],
+        resposta: 'Barnabé'
+      },
+      {
+        pergunta: 'Quantas epístolas Paulo escreveu no Novo Testamento?',
+        opcoes: ['10 epístolas', '13 epístolas', '15 epístolas', '17 epístolas'],
+        resposta: '13 epístolas'
+      }
+    ]
+  },
+  {
+    id: 16,
+    categoria: 'Tabernáculo',
+    dificuldade: 'Difícil',
+    perguntas: [
+      {
+        pergunta: 'Quantos compartimentos tinha o tabernáculo?',
+        opcoes: ['1 compartimento', '2 compartimentos', '3 compartimentos', '4 compartimentos'],
+        resposta: '2 compartimentos'
+      },
+      {
+        pergunta: 'Qual era o nome do compartimento mais sagrado do tabernáculo?',
+        opcoes: ['Lugar Santo', 'Santíssimo', 'Altar', 'Átrio'],
+        resposta: 'Santíssimo'
+      },
+      {
+        pergunta: 'O que estava dentro da Arca da Aliança?',
+        opcoes: ['Ouro e prata', 'As tábuas da lei', 'Incenso', 'Pães'],
+        resposta: 'As tábuas da lei'
+      },
+      {
+        pergunta: 'Quantas vezes por ano o sumo sacerdote entrava no Santíssimo?',
+        opcoes: ['Uma vez', 'Duas vezes', 'Três vezes', 'Quatro vezes'],
+        resposta: 'Uma vez'
+      },
+      {
+        pergunta: 'Qual era o material usado para fazer o véu do tabernáculo?',
+        opcoes: ['Linho fino', 'Lã', 'Seda', 'Algodão'],
+        resposta: 'Linho fino'
+      }
+    ]
+  },
+  {
+    id: 17,
+    categoria: 'Juízes de Israel',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quem foi a única mulher juíza de Israel?',
+        opcoes: ['Rute', 'Débora', 'Ester', 'Ana'],
+        resposta: 'Débora'
+      },
+      {
+        pergunta: 'Qual juiz derrotou os midianitas com apenas 300 homens?',
+        opcoes: ['Gideão', 'Sansão', 'Jefté', 'Eli'],
+        resposta: 'Gideão'
+      },
+      {
+        pergunta: 'De onde Sansão tirava sua força?',
+        opcoes: ['De Deus', 'Do seu cabelo', 'De sua espada', 'De sua armadura'],
+        resposta: 'Do seu cabelo'
+      },
+      {
+        pergunta: 'Quem traiu Sansão?',
+        opcoes: ['Raquel', 'Rebeca', 'Dalila', 'Sara'],
+        resposta: 'Dalila'
+      },
+      {
+        pergunta: 'Quantos juízes principais são mencionados no livro de Juízes?',
+        opcoes: ['10 juízes', '12 juízes', '14 juízes', '16 juízes'],
+        resposta: '12 juízes'
+      }
+    ]
+  },
+  {
+    id: 18,
+    categoria: 'Livro de Apocalipse',
+    dificuldade: 'Difícil',
+    perguntas: [
+      {
+        pergunta: 'Quantas igrejas receberam cartas no Apocalipse?',
+        opcoes: ['5 igrejas', '7 igrejas', '10 igrejas', '12 igrejas'],
+        resposta: '7 igrejas'
+      },
+      {
+        pergunta: 'Qual era a primeira igreja mencionada no Apocalipse?',
+        opcoes: ['Éfeso', 'Esmirna', 'Pérgamo', 'Tiatira'],
+        resposta: 'Éfeso'
+      },
+      {
+        pergunta: 'Quantos selos são mencionados no Apocalipse?',
+        opcoes: ['5 selos', '7 selos', '10 selos', '12 selos'],
+        resposta: '7 selos'
+      },
+      {
+        pergunta: 'Qual é o número da besta mencionado no Apocalipse?',
+        opcoes: ['333', '555', '666', '777'],
+        resposta: '666'
+      },
+      {
+        pergunta: 'Quantos mil serão selados de cada tribo de Israel?',
+        opcoes: ['10 mil', '12 mil', '15 mil', '20 mil'],
+        resposta: '12 mil'
+      }
+    ]
   }
 ]
 

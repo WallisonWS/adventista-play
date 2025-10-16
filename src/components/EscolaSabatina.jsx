@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
-import { Button } from './ui/button'
-import { Badge } from './ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card.jsx'
+import { Button } from './ui/button.jsx'
+import { Badge } from './ui/badge.jsx'
 import { 
   BookOpen, 
   Calendar, 

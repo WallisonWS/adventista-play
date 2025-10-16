@@ -24,6 +24,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { bibliaApiService, historicoService, marcadoresService } from '../services/bibliaApiService'
+import { bibliaExemplo } from '../data/biblia-exemplo'
 
 // Dados dos livros da Bíblia
 const livrosBiblia = {
@@ -136,28 +137,51 @@ export function BibliaPage() {
   }, [livroSelecionado, capituloSelecionado, versao])
 
   const carregarVersiculos = async () => {
+    console.log('🔍 Carregando versículos...', { livro: livroSelecionado?.id, capitulo: capituloSelecionado, versao })
     setCarregando(true)
     setErro(null)
     
     try {
+      // Tentar buscar da API primeiro
       const dados = await bibliaApiService.buscarCapitulo(
         versao, 
         livroSelecionado.id, 
         capituloSelecionado
       )
+      console.log('📖 Dados recebidos da API:', dados)
       
       if (dados && dados.verses) {
         setVersiculos(dados.verses)
-        // Salvar no histórico
         historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
       } else {
-        setErro('Não foi possível carregar os versículos')
-        setVersiculos([])
+        // Se API falhar, usar dados de exemplo
+        const chave = `${livroSelecionado.id}-${capituloSelecionado}`
+        const dadosExemplo = bibliaExemplo[chave]
+        
+        if (dadosExemplo) {
+          console.log('✅ Usando dados de exemplo:', chave)
+          setVersiculos(dadosExemplo.verses)
+          historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+        } else {
+          setErro('Não foi possível carregar os versículos')
+          setVersiculos([])
+        }
       }
     } catch (error) {
-      console.error('Erro ao carregar versículos:', error)
-      setErro('Erro ao carregar os versículos. Tente novamente.')
-      setVersiculos([])
+      console.error('❌ Erro ao carregar versículos:', error)
+      
+      // Fallback para dados de exemplo
+      const chave = `${livroSelecionado.id}-${capituloSelecionado}`
+      const dadosExemplo = bibliaExemplo[chave]
+      
+      if (dadosExemplo) {
+        console.log('✅ Usando dados de exemplo (fallback):', chave)
+        setVersiculos(dadosExemplo.verses)
+        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+      } else {
+        setErro('Erro ao carregar os versículos. Tente novamente.')
+        setVersiculos([])
+      }
     } finally {
       setCarregando(false)
     }

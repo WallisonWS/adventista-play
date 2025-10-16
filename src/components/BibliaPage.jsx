@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
@@ -99,6 +100,9 @@ const livrosBiblia = {
 }
 
 export function BibliaPage() {
+  const { livro: livroParam, capitulo: capituloParam } = useParams()
+  const navigate = useNavigate()
+  
   const [livroSelecionado, setLivroSelecionado] = useState(null)
   const [capituloSelecionado, setCapituloSelecionado] = useState(null)
   const [versao, setVersao] = useState('ARC')
@@ -112,6 +116,17 @@ export function BibliaPage() {
   const [erro, setErro] = useState(null)
 
   const todosLivros = [...livrosBiblia.antigoTestamento, ...livrosBiblia.novoTestamento]
+
+  // Carregar livro e capítulo da URL
+  useEffect(() => {
+    if (livroParam && capituloParam) {
+      const livro = todosLivros.find(l => l.id === livroParam)
+      if (livro) {
+        setLivroSelecionado(livro)
+        setCapituloSelecionado(parseInt(capituloParam))
+      }
+    }
+  }, [livroParam, capituloParam])
 
   // Carregar versículos quando um capítulo é selecionado
   useEffect(() => {
@@ -408,7 +423,10 @@ export function BibliaPage() {
                         variant="outline"
                         className="w-full h-14 text-lg font-semibold hover:bg-blue-100"
                         style={{ borderColor: '#7CB342' }}
-                        onClick={() => setCapituloSelecionado(cap)}
+                        onClick={() => {
+                          setCapituloSelecionado(cap)
+                          navigate(`/biblia/${livroSelecionado.id}/${cap}`)
+                        }}
                       >
                         {cap}
                       </Button>

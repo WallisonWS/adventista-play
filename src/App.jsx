@@ -1443,6 +1443,7 @@ function App() {
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />
             <Route path="/biblia" element={<BibliaPage />} />
+            <Route path="/biblia/:livro/:capitulo" element={<BibliaPage />} />
             <Route path="/estudos" element={<EstudosPage />} />
             <Route path="/planos" element={<PlanosLeituraPage planos={planosLeitura} />} />
             <Route path="/quiz" element={<QuizBiblico />} />

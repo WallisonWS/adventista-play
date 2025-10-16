@@ -133,6 +133,262 @@ const quizzes = [
         resposta: 'Água'
       }
     ]
+  },
+  {
+    id: 5,
+    categoria: 'Profetas do Antigo Testamento',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Qual profeta foi levado ao céu em um carro de fogo?',
+        opcoes: ['Elias', 'Eliseu', 'Isaías', 'Jeremias'],
+        resposta: 'Elias'
+      },
+      {
+        pergunta: 'Qual profeta teve visões de um vale de ossos secos?',
+        opcoes: ['Daniel', 'Ezequiel', 'Jeremias', 'Isaías'],
+        resposta: 'Ezequiel'
+      },
+      {
+        pergunta: 'Qual profeta foi chamado ainda no ventre de sua mãe?',
+        opcoes: ['Isaías', 'Jeremias', 'Ezequiel', 'Daniel'],
+        resposta: 'Jeremias'
+      },
+      {
+        pergunta: 'Qual profeta interpretou os sonhos do rei Nabucodonosor?',
+        opcoes: ['Daniel', 'Ezequiel', 'Isaías', 'Jeremias'],
+        resposta: 'Daniel'
+      },
+      {
+        pergunta: 'Qual profeta foi alimentado por corvos?',
+        opcoes: ['Elias', 'Eliseu', 'Jonas', 'Amós'],
+        resposta: 'Elias'
+      }
+    ]
+  },
+  {
+    id: 6,
+    categoria: 'Parábolas de Jesus',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Na parábola do filho pródigo, o que o filho mais novo pediu ao pai?',
+        opcoes: ['Sua herança', 'Uma bênção', 'Perdão', 'Trabalho'],
+        resposta: 'Sua herança'
+      },
+      {
+        pergunta: 'Na parábola do bom samaritano, quem ajudou o homem ferido?',
+        opcoes: ['Um sacerdote', 'Um levita', 'Um samaritano', 'Um fariseu'],
+        resposta: 'Um samaritano'
+      },
+      {
+        pergunta: 'Na parábola dos talentos, quantos talentos o servo preguiçoso recebeu?',
+        opcoes: ['1', '2', '5', '10'],
+        resposta: '1'
+      },
+      {
+        pergunta: 'Na parábola do semeador, onde as sementes deram mais fruto?',
+        opcoes: ['No caminho', 'Entre espinhos', 'Em pedregais', 'Em boa terra'],
+        resposta: 'Em boa terra'
+      },
+      {
+        pergunta: 'Na parábola das dez virgens, quantas eram prudentes?',
+        opcoes: ['3', '5', '7', '10'],
+        resposta: '5'
+      }
+    ]
+  },
+  {
+    id: 7,
+    categoria: 'Livros da Bíblia',
+    dificuldade: 'Difícil',
+    perguntas: [
+      {
+        pergunta: 'Qual é o menor livro do Antigo Testamento?',
+        opcoes: ['Obadias', 'Jonas', 'Ageu', 'Malaquias'],
+        resposta: 'Obadias'
+      },
+      {
+        pergunta: 'Quantos livros tem o Novo Testamento?',
+        opcoes: ['25', '27', '29', '31'],
+        resposta: '27'
+      },
+      {
+        pergunta: 'Qual livro vem depois de Juízes?',
+        opcoes: ['Rute', '1 Samuel', 'Josué', '1 Reis'],
+        resposta: 'Rute'
+      },
+      {
+        pergunta: 'Quantas cartas Paulo escreveu?',
+        opcoes: ['11', '13', '15', '17'],
+        resposta: '13'
+      },
+      {
+        pergunta: 'Qual é o último livro do Antigo Testamento?',
+        opcoes: ['Zacarias', 'Ageu', 'Malaquias', 'Sofonias'],
+        resposta: 'Malaquias'
+      }
+    ]
+  },
+  {
+    id: 8,
+    categoria: 'Mulheres da Bíblia',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quem foi a mãe de Samuel?',
+        opcoes: ['Ana', 'Sara', 'Rebeca', 'Raquel'],
+        resposta: 'Ana'
+      },
+      {
+        pergunta: 'Qual rainha visitou o rei Salomão?',
+        opcoes: ['Rainha de Sabá', 'Rainha Ester', 'Rainha Jezabel', 'Rainha Vasti'],
+        resposta: 'Rainha de Sabá'
+      },
+      {
+        pergunta: 'Quem foi a profetisa que julgou Israel?',
+        opcoes: ['Débora', 'Hulda', 'Miriã', 'Ana'],
+        resposta: 'Débora'
+      },
+      {
+        pergunta: 'Quem salvou os espias israelitas em Jericó?',
+        opcoes: ['Raabe', 'Rute', 'Ester', 'Débora'],
+        resposta: 'Raabe'
+      },
+      {
+        pergunta: 'Quem foi a mãe de João Batista?',
+        opcoes: ['Isabel', 'Maria', 'Ana', 'Marta'],
+        resposta: 'Isabel'
+      }
+    ]
+  },
+  {
+    id: 9,
+    categoria: 'Os Dez Mandamentos',
+    dificuldade: 'Fácil',
+    perguntas: [
+      {
+        pergunta: 'Onde Deus entregou os Dez Mandamentos a Moisés?',
+        opcoes: ['Monte Sinai', 'Monte Carmelo', 'Monte das Oliveiras', 'Monte Nebo'],
+        resposta: 'Monte Sinai'
+      },
+      {
+        pergunta: 'Em que material foram escritos os Dez Mandamentos?',
+        opcoes: ['Tábuas de pedra', 'Pergaminho', 'Papiro', 'Madeira'],
+        resposta: 'Tábuas de pedra'
+      },
+      {
+        pergunta: 'Qual é o primeiro mandamento?',
+        opcoes: ['Não terás outros deuses diante de mim', 'Não matarás', 'Honra teu pai e tua mãe', 'Não furtarás'],
+        resposta: 'Não terás outros deuses diante de mim'
+      },
+      {
+        pergunta: 'Qual mandamento fala sobre o dia de descanso?',
+        opcoes: ['Terceiro', 'Quarto', 'Quinto', 'Sexto'],
+        resposta: 'Quarto'
+      },
+      {
+        pergunta: 'Quantos mandamentos Deus deu a Moisés?',
+        opcoes: ['8', '10', '12', '15'],
+        resposta: '10'
+      }
+    ]
+  },
+  {
+    id: 10,
+    categoria: 'Reis de Israel',
+    dificuldade: 'Difícil',
+    perguntas: [
+      {
+        pergunta: 'Quem foi o primeiro rei de Israel?',
+        opcoes: ['Saul', 'Davi', 'Salomão', 'Samuel'],
+        resposta: 'Saul'
+      },
+      {
+        pergunta: 'Quantos anos Salomão reinou sobre Israel?',
+        opcoes: ['30 anos', '40 anos', '50 anos', '60 anos'],
+        resposta: '40 anos'
+      },
+      {
+        pergunta: 'Qual rei construiu o templo em Jerusalém?',
+        opcoes: ['Davi', 'Salomão', 'Ezequias', 'Josias'],
+        resposta: 'Salomão'
+      },
+      {
+        pergunta: 'Qual rei foi curado de uma doença mortal após orar?',
+        opcoes: ['Ezequias', 'Josias', 'Asa', 'Josafá'],
+        resposta: 'Ezequias'
+      },
+      {
+        pergunta: 'Qual rei encontrou o livro da Lei no templo?',
+        opcoes: ['Josias', 'Ezequias', 'Manassés', 'Amom'],
+        resposta: 'Josias'
+      }
+    ]
+  },
+  {
+    id: 11,
+    categoria: 'Apóstolos de Jesus',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Qual apóstolo era cobrador de impostos?',
+        opcoes: ['Mateus', 'Pedro', 'João', 'Tiago'],
+        resposta: 'Mateus'
+      },
+      {
+        pergunta: 'Quais eram os filhos de Zebedeu?',
+        opcoes: ['Tiago e João', 'Pedro e André', 'Filipe e Bartolomeu', 'Tiago e Judas'],
+        resposta: 'Tiago e João'
+      },
+      {
+        pergunta: 'Qual apóstolo duvidou da ressurreição de Jesus?',
+        opcoes: ['Tomé', 'Pedro', 'Filipe', 'André'],
+        resposta: 'Tomé'
+      },
+      {
+        pergunta: 'Quem substituiu Judas Iscariotes entre os doze apóstolos?',
+        opcoes: ['Matias', 'Paulo', 'Barnabé', 'Silas'],
+        resposta: 'Matias'
+      },
+      {
+        pergunta: 'Qual apóstolo era irmão de Pedro?',
+        opcoes: ['André', 'Tiago', 'João', 'Filipe'],
+        resposta: 'André'
+      }
+    ]
+  },
+  {
+    id: 12,
+    categoria: 'Salmos e Provérbios',
+    dificuldade: 'Difícil',
+    perguntas: [
+      {
+        pergunta: 'Quem escreveu a maioria dos Salmos?',
+        opcoes: ['Davi', 'Salomão', 'Moisés', 'Asafe'],
+        resposta: 'Davi'
+      },
+      {
+        pergunta: 'Qual é o Salmo mais longo?',
+        opcoes: ['Salmo 119', 'Salmo 23', 'Salmo 91', 'Salmo 150'],
+        resposta: 'Salmo 119'
+      },
+      {
+        pergunta: 'Quem escreveu o livro de Provérbios?',
+        opcoes: ['Salomão', 'Davi', 'Moisés', 'Daniel'],
+        resposta: 'Salomão'
+      },
+      {
+        pergunta: 'Qual Salmo começa com "O Senhor é o meu pastor"?',
+        opcoes: ['Salmo 23', 'Salmo 91', 'Salmo 1', 'Salmo 100'],
+        resposta: 'Salmo 23'
+      },
+      {
+        pergunta: 'Quantos capítulos tem o livro de Provérbios?',
+        opcoes: ['31', '27', '33', '29'],
+        resposta: '31'
+      }
+    ]
   }
 ]
 

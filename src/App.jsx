@@ -47,11 +47,12 @@ import { estudosCompletos } from './data/estudos-completos.js'
 import { personagensBiblicos } from './data/personagens-biblicos.js'
 
 // Importar imagens
+import logo from './assets/logo-adventista-play.png'
 import mission1 from './assets/06ODUmgeXDAv.jpg'
 import mission2 from './assets/ceVxJtPGZzDg.jpeg'
-import mission3 from './assets/HF6RqExkDpl0.jpg'
-import mission4 from './assets/P07w5fmsquqm.jpg'
-import mission5 from './assets/1jBZXZ4E8jtT.jpg'
+import mission3 from './assets/1jBZXZ4E8jtT.jpg'
+import mission4 from './assets/HF6RqExkDpl0.jpg'
+import mission5 from './assets/P07w5fmsquqm.jpg'
 
 const projetos = [
   {
@@ -124,14 +125,17 @@ function Navigation({ user, onLogout }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2 font-bold text-xl group">
+          <Link to="/" className="flex items-center space-x-2 group">
             <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
             >
-              <BookOpen className="h-6 w-6" />
+              <img src={logo} alt="Adventista Play" className="h-10 w-auto" />
             </motion.div>
-            <span className="group-hover:text-accent transition-colors">Portal Adventista</span>
+            <span className="text-xl font-bold group-hover:text-accent transition-colors">
+              <span style={{ color: '#2E3192' }}>Adventista</span>{' '}
+              <span style={{ color: '#7CB342' }}>Play</span>
+            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -243,16 +247,17 @@ function HomePage() {
             transition={{ type: "spring", stiffness: 100 }}
             className="inline-block mb-6"
           >
-            <Sparkles className="h-16 w-16 text-accent mx-auto" />
+            <img src={logo} alt="Adventista Play" className="h-32 md:h-40 mx-auto" />
           </motion.div>
           
           <motion.h1 
-            className="text-5xl md:text-6xl font-bold mb-6 text-primary"
+            className="text-5xl md:text-6xl font-bold mb-6"
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
+            style={{ color: '#2E3192' }}
           >
-            Bem-vindo ao Portal Adventista
+            Bem-vindo ao <span style={{ color: '#7CB342' }}>Adventista Play</span>
           </motion.h1>
           
           <motion.p 

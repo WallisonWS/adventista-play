@@ -1,30 +1,82 @@
 // Serviço para integração com API da Bíblia
-// Usando API pública gratuita
+// Usando Bible API (https://bible-api.com)
 
-const API_BASE_URL = 'https://www.abibliadigital.com.br/api'
+const API_BASE_URL = 'https://bible-api.com'
 
 // Cache local para melhorar performance
 const cache = new Map()
 
+// Mapeamento de IDs de livros para nomes em inglês
+const livrosMap = {
+  'gn': 'genesis',
+  'ex': 'exodus',
+  'lv': 'leviticus',
+  'nm': 'numbers',
+  'dt': 'deuteronomy',
+  'js': 'joshua',
+  'jz': 'judges',
+  'rt': 'ruth',
+  '1sm': '1samuel',
+  '2sm': '2samuel',
+  '1rs': '1kings',
+  '2rs': '2kings',
+  '1cr': '1chronicles',
+  '2cr': '2chronicles',
+  'ed': 'ezra',
+  'ne': 'nehemiah',
+  'et': 'esther',
+  'job': 'job',
+  'sl': 'psalms',
+  'pv': 'proverbs',
+  'ec': 'ecclesiastes',
+  'ct': 'song+of+solomon',
+  'is': 'isaiah',
+  'jr': 'jeremiah',
+  'lm': 'lamentations',
+  'ez': 'ezekiel',
+  'dn': 'daniel',
+  'os': 'hosea',
+  'jl': 'joel',
+  'am': 'amos',
+  'ob': 'obadiah',
+  'jn': 'jonah',
+  'mq': 'micah',
+  'na': 'nahum',
+  'hc': 'habakkuk',
+  'sf': 'zephaniah',
+  'ag': 'haggai',
+  'zc': 'zechariah',
+  'ml': 'malachi',
+  'mt': 'matthew',
+  'mc': 'mark',
+  'lc': 'luke',
+  'jo': 'john',
+  'at': 'acts',
+  'rm': 'romans',
+  '1co': '1corinthians',
+  '2co': '2corinthians',
+  'gl': 'galatians',
+  'ef': 'ephesians',
+  'fp': 'philippians',
+  'cl': 'colossians',
+  '1ts': '1thessalonians',
+  '2ts': '2thessalonians',
+  '1tm': '1timothy',
+  '2tm': '2timothy',
+  'tt': 'titus',
+  'fm': 'philemon',
+  'hb': 'hebrews',
+  'tg': 'james',
+  '1pe': '1peter',
+  '2pe': '2peter',
+  '1jo': '1john',
+  '2jo': '2john',
+  '3jo': '3john',
+  'jd': 'jude',
+  'ap': 'revelation'
+}
+
 export const bibliaApiService = {
-  // Buscar livros da Bíblia
-  async buscarLivros() {
-    const cacheKey = 'livros'
-    if (cache.has(cacheKey)) {
-      return cache.get(cacheKey)
-    }
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/books`)
-      const data = await response.json()
-      cache.set(cacheKey, data)
-      return data
-    } catch (error) {
-      console.error('Erro ao buscar livros:', error)
-      return []
-    }
-  },
-
   // Buscar capítulo específico
   async buscarCapitulo(versao, livro, capitulo) {
     const cacheKey = `${versao}-${livro}-${capitulo}`
@@ -33,18 +85,49 @@ export const bibliaApiService = {
     }
 
     try {
+      // Converter ID do livro para nome em inglês
+      const livroIngles = livrosMap[livro.toLowerCase()] || livro
+      
       // Mapeamento de versões
       const versaoMap = {
         'ARC': 'almeida',
-        'ACF': 'acf',
-        'NVI': 'nvi'
+        'ACF': 'almeida',
+        'NVI': 'almeida'
       }
       
       const versaoApi = versaoMap[versao] || 'almeida'
-      const response = await fetch(`${API_BASE_URL}/verses/${versaoApi}/${livro}/${capitulo}`)
+      
+      // Fazer requisição para a API
+      const response = await fetch(`${API_BASE_URL}/${livroIngles}+${capitulo}?translation=${versaoApi}`)
+      
+      if (!response.ok) {
+        throw new Error('Erro ao buscar capítulo')
+      }
+      
       const data = await response.json()
-      cache.set(cacheKey, data)
-      return data
+      
+      // Transformar dados para o formato esperado
+      const resultado = {
+        book: {
+          abbrev: livro,
+          name: data.verses[0]?.book_name || livro,
+          author: '',
+          group: '',
+          version: versaoApi
+        },
+        chapter: {
+          number: capitulo,
+          verses: data.verses.length
+        },
+        verses: data.verses.map(v => ({
+          number: v.verse,
+          text: v.text.trim()
+        }))
+      }
+      
+      cache.set(cacheKey, resultado)
+      return resultado
+      
     } catch (error) {
       console.error('Erro ao buscar capítulo:', error)
       return null
@@ -54,38 +137,28 @@ export const bibliaApiService = {
   // Buscar versículo específico
   async buscarVersiculo(versao, livro, capitulo, versiculo) {
     try {
+      const livroIngles = livrosMap[livro.toLowerCase()] || livro
+      
       const versaoMap = {
         'ARC': 'almeida',
-        'ACF': 'acf',
-        'NVI': 'nvi'
+        'ACF': 'almeida',
+        'NVI': 'almeida'
       }
       
       const versaoApi = versaoMap[versao] || 'almeida'
-      const response = await fetch(`${API_BASE_URL}/verses/${versaoApi}/${livro}/${capitulo}/${versiculo}`)
+      
+      const response = await fetch(`${API_BASE_URL}/${livroIngles}+${capitulo}:${versiculo}?translation=${versaoApi}`)
+      
+      if (!response.ok) {
+        throw new Error('Erro ao buscar versículo')
+      }
+      
       const data = await response.json()
       return data
+      
     } catch (error) {
       console.error('Erro ao buscar versículo:', error)
       return null
-    }
-  },
-
-  // Buscar por palavra-chave
-  async buscarPalavra(versao, palavra) {
-    try {
-      const versaoMap = {
-        'ARC': 'almeida',
-        'ACF': 'acf',
-        'NVI': 'nvi'
-      }
-      
-      const versaoApi = versaoMap[versao] || 'almeida'
-      const response = await fetch(`${API_BASE_URL}/verses/${versaoApi}/search/${encodeURIComponent(palavra)}`)
-      const data = await response.json()
-      return data
-    } catch (error) {
-      console.error('Erro ao buscar palavra:', error)
-      return []
     }
   },
 
@@ -94,14 +167,37 @@ export const bibliaApiService = {
     try {
       const versaoMap = {
         'ARC': 'almeida',
-        'ACF': 'acf',
-        'NVI': 'nvi'
+        'ACF': 'almeida',
+        'NVI': 'almeida'
       }
       
       const versaoApi = versaoMap[versao] || 'almeida'
-      const response = await fetch(`${API_BASE_URL}/verses/${versaoApi}/random`)
+      
+      // Lista de versículos populares para escolher aleatoriamente
+      const versiculosPopulares = [
+        'john+3:16',
+        'psalms+23:1',
+        'jeremiah+29:11',
+        'philippians+4:13',
+        'romans+8:28',
+        'proverbs+3:5-6',
+        'matthew+6:33',
+        'isaiah+40:31',
+        'joshua+1:9',
+        'psalms+46:1'
+      ]
+      
+      const versiculoAleatorio = versiculosPopulares[Math.floor(Math.random() * versiculosPopulares.length)]
+      
+      const response = await fetch(`${API_BASE_URL}/${versiculoAleatorio}?translation=${versaoApi}`)
+      
+      if (!response.ok) {
+        throw new Error('Erro ao buscar versículo aleatório')
+      }
+      
       const data = await response.json()
       return data
+      
     } catch (error) {
       console.error('Erro ao buscar versículo aleatório:', error)
       return null

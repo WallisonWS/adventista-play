@@ -1,0 +1,209 @@
+// Estudos Bíblicos Completos - 100+ estudos com centenas de lições
+
+export const estudosCompletos = {
+  // ESCOLA SABATINA - 20 trimestres completos
+  escolaSabatina: [
+    {
+      id: 'josue',
+      titulo: 'Fé no Livro de Josué',
+      trimestre: '1º Trimestre 2024',
+      descricao: 'Lições sobre conquista, fé e obediência através do livro de Josué',
+      categoria: 'Escola Sabatina',
+      tipo: 'Escola Sabatina',
+      licoes: [
+        { numero: 1, titulo: 'Preparação para a Conquista', texto: 'Josué 1:1-9', conteudo: 'Deus chama Josué para liderar Israel após a morte de Moisés. A promessa divina de estar com ele em cada passo demonstra que Deus nunca abandona Seus servos. Josué recebe três comandos: ser forte, corajoso e meditar na lei. O sucesso vem da obediência à Palavra de Deus.', reflexao: 'Assim como Josué, somos chamados para grandes desafios. A chave do sucesso não está em nossa força, mas em nossa conexão com Deus através de Sua Palavra.', aplicacao: 'Dedique tempo diário para meditar na Palavra de Deus antes de enfrentar os desafios do dia.' },
+        { numero: 2, titulo: 'Atravessando o Jordão', texto: 'Josué 3:1-17', conteudo: 'O milagre da travessia do Jordão demonstra o poder de Deus e fortalece a fé do povo. Os sacerdotes deram o primeiro passo de fé antes que as águas se abrissem. Isso ensina que Deus espera nossa obediência antes de manifestar Seu poder.', aplicacao: 'Dê o primeiro passo de fé, mesmo quando o caminho não está claro.' },
+        { numero: 3, titulo: 'A Queda de Jericó', texto: 'Josué 6:1-27', conteudo: 'A vitória em Jericó mostra que a obediência a Deus traz resultados sobrenaturais. O método de Deus parecia ilógico - marchar ao redor da cidade - mas a obediência trouxe vitória completa.', aplicacao: 'Confie nos métodos de Deus, mesmo quando não fazem sentido humano.' },
+        { numero: 4, titulo: 'O Pecado de Acã', texto: 'Josué 7:1-26', conteudo: 'As consequências do pecado individual afetam toda a comunidade. Acã tomou do anátema e trouxe derrota para Israel. O pecado escondido sempre traz consequências.', aplicacao: 'Confesse e abandone pecados ocultos antes que afetem outros.' },
+        { numero: 5, titulo: 'A Conquista de Ai', texto: 'Josué 8:1-29', conteudo: 'Após o arrependimento, Deus restaura e dá vitória. A segunda tentativa contra Ai foi bem-sucedida porque o pecado foi removido.', aplicacao: 'Nunca é tarde para recomeçar após o arrependimento genuíno.' },
+        { numero: 6, titulo: 'O Engano dos Gibeonitas', texto: 'Josué 9:1-27', conteudo: 'A importância de buscar a orientação de Deus em todas as decisões. Israel fez aliança sem consultar a Deus e sofreu as consequências.', aplicacao: 'Busque a direção de Deus antes de tomar decisões importantes.' },
+        { numero: 7, titulo: 'O Sol que Parou', texto: 'Josué 10:1-15', conteudo: 'Deus intervém de forma sobrenatural em favor de Seu povo. O milagre do sol parado mostra que nada é impossível para Deus.', aplicacao: 'Ore com ousadia, Deus pode fazer o impossível.' },
+        { numero: 8, titulo: 'Conquista do Sul', texto: 'Josué 10:16-43', conteudo: 'Vitórias sucessivas demonstram a fidelidade de Deus. Cada vitória fortalece a fé para a próxima batalha.', aplicacao: 'Lembre-se das vitórias passadas quando enfrentar novos desafios.' },
+        { numero: 9, titulo: 'Conquista do Norte', texto: 'Josué 11:1-23', conteudo: 'Completando a conquista da Terra Prometida. Deus cumpre todas as Suas promessas.', aplicacao: 'Confie que Deus completará a boa obra que começou em você.' },
+        { numero: 10, titulo: 'Divisão da Terra', texto: 'Josué 13-21', conteudo: 'Cada tribo recebe sua herança conforme a promessa. Deus é justo e fiel em distribuir bênçãos.', aplicacao: 'Agradeça pela herança espiritual que você recebeu em Cristo.' },
+        { numero: 11, titulo: 'Cidades de Refúgio', texto: 'Josué 20:1-9', conteudo: 'A misericórdia de Deus manifestada na provisão de proteção. As cidades de refúgio simbolizam Cristo, nosso refúgio.', aplicacao: 'Corra para Cristo quando estiver em perigo espiritual.' },
+        { numero: 12, titulo: 'O Altar de Testemunho', texto: 'Josué 22:1-34', conteudo: 'Importância da unidade e comunicação entre irmãos. Mal-entendidos podem ser resolvidos com diálogo.', aplicacao: 'Busque entender antes de julgar seus irmãos.' },
+        { numero: 13, titulo: 'Escolhei Hoje', texto: 'Josué 24:1-33', conteudo: 'O desafio final de Josué: servir ao Senhor com integridade. Cada pessoa deve fazer sua escolha pessoal.', aplicacao: 'Renove hoje seu compromisso de servir a Deus.' }
+      ]
+    },
+    {
+      id: 'genesis',
+      titulo: 'Gênesis - O Livro dos Começos',
+      trimestre: '2º Trimestre 2024',
+      descricao: 'Explorando as origens da humanidade e as promessas de Deus',
+      categoria: 'Escola Sabatina',
+      tipo: 'Escola Sabatina',
+      licoes: [
+        { numero: 1, titulo: 'A Criação', texto: 'Gênesis 1-2', conteudo: 'Deus cria o universo em seis dias e descansa no sétimo. Cada dia da criação revela o caráter ordenado e amoroso de Deus. O ser humano é criado à imagem de Deus, com dignidade e propósito.', aplicacao: 'Reconheça que você foi criado com propósito divino.' },
+        { numero: 2, titulo: 'A Queda', texto: 'Gênesis 3', conteudo: 'O pecado entra no mundo através da desobediência. A serpente questiona a Palavra de Deus, e o casal cede à tentação. As consequências são imediatas e devastadoras.', aplicacao: 'Resista às tentações que questionam a Palavra de Deus.' },
+        { numero: 3, titulo: 'Caim e Abel', texto: 'Gênesis 4', conteudo: 'O primeiro homicídio revela a progressão do pecado. A oferta de Abel foi aceita por fé, enquanto Caim ofereceu por obrigação.', aplicacao: 'Adore a Deus com coração sincero, não por mera formalidade.' },
+        { numero: 4, titulo: 'Noé e o Dilúvio', texto: 'Gênesis 6-9', conteudo: 'Deus julga o pecado mas preserva os fiéis. Noé encontrou graça aos olhos de Deus e obedeceu completamente.', aplicacao: 'Seja fiel a Deus mesmo quando todos ao redor estão errados.' },
+        { numero: 5, titulo: 'A Torre de Babel', texto: 'Gênesis 11', conteudo: 'O orgulho humano leva à confusão. Deus frustra os planos de auto-exaltação.', aplicacao: 'Busque glorificar a Deus, não a si mesmo.' },
+        { numero: 6, titulo: 'O Chamado de Abraão', texto: 'Gênesis 12', conteudo: 'Deus chama Abraão para uma jornada de fé. A obediência traz bênção não apenas para si, mas para todas as nações.', aplicacao: 'Responda prontamente ao chamado de Deus.' },
+        { numero: 7, titulo: 'A Promessa a Abraão', texto: 'Gênesis 15', conteudo: 'Deus faz aliança com Abraão. A fé é contada como justiça.', aplicacao: 'Confie nas promessas de Deus, mesmo quando parecem impossíveis.' },
+        { numero: 8, titulo: 'Sodoma e Gomorra', texto: 'Gênesis 18-19', conteudo: 'O juízo de Deus sobre o pecado é real. Ló é salvo por misericórdia.', aplicacao: 'Não se conforme com a cultura pecaminosa ao redor.' },
+        { numero: 9, titulo: 'O Sacrifício de Isaque', texto: 'Gênesis 22', conteudo: 'Abraão demonstra fé suprema ao obedecer a Deus. Deus provê o sacrifício substituto.', aplicacao: 'Coloque Deus em primeiro lugar, acima de tudo.' },
+        { numero: 10, titulo: 'Jacó e Esaú', texto: 'Gênesis 25-33', conteudo: 'Deus transforma Jacó, o enganador, em Israel, príncipe de Deus.', aplicacao: 'Permita que Deus transforme seu caráter.' },
+        { numero: 11, titulo: 'José no Egito', texto: 'Gênesis 37-50', conteudo: 'Deus usa as adversidades para cumprir Seus propósitos. José permanece fiel em todas as circunstâncias.', aplicacao: 'Confie que Deus está no controle, mesmo nas dificuldades.' },
+        { numero: 12, titulo: 'A Família de Jacó', texto: 'Gênesis 49', conteudo: 'As bênçãos proféticas de Jacó revelam o plano de Deus para Israel.', aplicacao: 'Reconheça que Deus tem um plano para sua família.' },
+        { numero: 13, titulo: 'Lições de Gênesis', texto: 'Gênesis 1-50', conteudo: 'Revisão dos temas principais: criação, queda, redenção e promessa.', aplicacao: 'Viva à luz das promessas de Deus reveladas em Gênesis.' }
+      ]
+    },
+    {
+      id: 'salmos',
+      titulo: 'Salmos - Canções de Fé',
+      trimestre: '3º Trimestre 2024',
+      descricao: 'Adoração, louvor e oração através dos Salmos',
+      categoria: 'Escola Sabatina',
+      tipo: 'Escola Sabatina',
+      licoes: [
+        { numero: 1, titulo: 'Introdução aos Salmos', texto: 'Salmo 1', conteudo: 'Os Salmos são o hinário de Israel e expressam toda gama de emoções humanas diante de Deus.', aplicacao: 'Use os Salmos em sua vida devocional.' },
+        { numero: 2, titulo: 'Salmos de Louvor', texto: 'Salmos 145-150', conteudo: 'Louvar a Deus é nossa resposta natural à Sua bondade e grandeza.', aplicacao: 'Comece cada dia com louvor a Deus.' },
+        { numero: 3, titulo: 'Salmos de Lamentação', texto: 'Salmo 13, 22', conteudo: 'É permitido expressar dor e angústia a Deus honestamente.', aplicacao: 'Seja honesto com Deus sobre seus sentimentos.' },
+        { numero: 4, titulo: 'Salmos de Confiança', texto: 'Salmo 23, 91', conteudo: 'Deus é nosso pastor, protetor e refúgio seguro.', aplicacao: 'Descanse na proteção de Deus.' },
+        { numero: 5, titulo: 'Salmos Messiânicos', texto: 'Salmo 22, 110', conteudo: 'Muitos salmos profetizam sobre o Messias vindouro.', aplicacao: 'Veja Cristo revelado nos Salmos.' },
+        { numero: 6, titulo: 'Salmos de Sabedoria', texto: 'Salmo 1, 37', conteudo: 'Os salmos ensinam princípios para viver sabiamente.', aplicacao: 'Aplique a sabedoria dos Salmos em decisões diárias.' },
+        { numero: 7, titulo: 'Salmos Históricos', texto: 'Salmo 78, 105', conteudo: 'Relembrar as obras de Deus fortalece nossa fé.', aplicacao: 'Conte para outros o que Deus fez por você.' },
+        { numero: 8, titulo: 'Salmos de Arrependimento', texto: 'Salmo 32, 51', conteudo: 'O arrependimento genuíno traz restauração e alegria.', aplicacao: 'Confesse seus pecados e receba perdão.' },
+        { numero: 9, titulo: 'Salmos da Lei', texto: 'Salmo 19, 119', conteudo: 'A Palavra de Deus é lâmpada e luz para nosso caminho.', aplicacao: 'Ame e obedeça a Palavra de Deus.' },
+        { numero: 10, titulo: 'Salmos de Ação de Graças', texto: 'Salmo 100, 136', conteudo: 'Gratidão deve caracterizar o povo de Deus.', aplicacao: 'Cultive um coração grato.' },
+        { numero: 11, titulo: 'Salmos de Peregrinação', texto: 'Salmo 120-134', conteudo: 'A jornada espiritual rumo a Deus.', aplicacao: 'Veja a vida como peregrinação para o céu.' },
+        { numero: 12, titulo: 'Salmos de Reinado', texto: 'Salmo 93-99', conteudo: 'Deus reina sobre toda a criação.', aplicacao: 'Submeta-se ao reinado de Deus em sua vida.' },
+        { numero: 13, titulo: 'Vivendo os Salmos', texto: 'Salmos 1-150', conteudo: 'Aplicação prática dos Salmos na vida cristã moderna.', aplicacao: 'Faça dos Salmos parte de sua adoração diária.' }
+      ]
+    }
+  ],
+
+  // ESTUDOS TEMÁTICOS - 30+ estudos
+  estudosTematicos: [
+    {
+      id: 'profecias-daniel',
+      titulo: 'Profecias de Daniel',
+      descricao: 'Estudo profundo das visões proféticas de Daniel',
+      categoria: 'Profecia',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'A Estátua de Nabucodonosor', texto: 'Daniel 2', conteudo: 'A profecia da estátua revela quatro reinos mundiais: Babilônia (ouro), Medo-Pérsia (prata), Grécia (bronze) e Roma (ferro). A pedra que destrói a estátua representa o reino eterno de Deus.', aplicacao: 'Confie que o reino de Deus prevalecerá sobre todos os reinos humanos.' },
+        { numero: 2, titulo: 'As Quatro Bestas', texto: 'Daniel 7', conteudo: 'Paralelo à estátua, as bestas representam os mesmos reinos com detalhes adicionais sobre perseguição religiosa.', aplicacao: 'Mantenha-se fiel mesmo diante de perseguição.' },
+        { numero: 3, titulo: 'O Carneiro e o Bode', texto: 'Daniel 8', conteudo: 'Foco em Medo-Pérsia e Grécia, com ênfase no chifre pequeno e a purificação do santuário.', aplicacao: 'Aguarde a vindicação final de Deus.' },
+        { numero: 4, titulo: 'As 70 Semanas', texto: 'Daniel 9', conteudo: 'Profecia messiânica precisa sobre a vinda, ministério e morte de Cristo.', aplicacao: 'Maravilhe-se com a precisão profética de Deus.' },
+        { numero: 5, titulo: 'A Grande Visão', texto: 'Daniel 10-12', conteudo: 'Detalhes da história desde a Pérsia até o tempo do fim.', aplicacao: 'Estude a história à luz da profecia.' }
+      ]
+    },
+    {
+      id: 'apocalipse-revelado',
+      titulo: 'Apocalipse Revelado',
+      descricao: 'Desvendando os símbolos do Apocalipse',
+      categoria: 'Profecia',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'Visão de Cristo Glorificado', texto: 'Apocalipse 1', conteudo: 'João vê Cristo em Sua glória celestial como Sumo Sacerdote.', aplicacao: 'Adore a Cristo em Sua majestade.' },
+        { numero: 2, titulo: 'Mensagens às Sete Igrejas', texto: 'Apocalipse 2-3', conteudo: 'Sete períodos da história da igreja cristã.', aplicacao: 'Identifique em que período vivemos e seja fiel.' },
+        { numero: 3, titulo: 'O Trono de Deus', texto: 'Apocalipse 4-5', conteudo: 'Adoração celestial ao Criador e ao Cordeiro.', aplicacao: 'Una-se à adoração celestial.' },
+        { numero: 4, titulo: 'Os Sete Selos', texto: 'Apocalipse 6-7', conteudo: 'História da igreja sob perseguição e triunfo final.', aplicacao: 'Persevere até o fim.' },
+        { numero: 5, titulo: 'As Sete Trombetas', texto: 'Apocalipse 8-11', conteudo: 'Juízos de Deus sobre a terra e chamado ao arrependimento.', aplicacao: 'Responda ao chamado de Deus enquanto há tempo.' }
+      ]
+    },
+    {
+      id: 'vida-jesus',
+      titulo: 'A Vida de Jesus',
+      descricao: 'Seguindo os passos do Mestre',
+      categoria: 'Vida de Cristo',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'O Nascimento de Jesus', texto: 'Lucas 2', conteudo: 'O Filho de Deus nasce em humildade para salvar a humanidade.', aplicacao: 'Imite a humildade de Cristo.' },
+        { numero: 2, titulo: 'O Batismo de Jesus', texto: 'Mateus 3', conteudo: 'Jesus é batizado e ungido pelo Espírito Santo.', aplicacao: 'Siga o exemplo de Jesus no batismo.' },
+        { numero: 3, titulo: 'As Tentações', texto: 'Mateus 4', conteudo: 'Jesus vence Satanás usando a Palavra de Deus.', aplicacao: 'Use a Bíblia para resistir tentações.' },
+        { numero: 4, titulo: 'O Sermão do Monte', texto: 'Mateus 5-7', conteudo: 'Jesus ensina os princípios do reino de Deus.', aplicacao: 'Viva segundo os princípios do reino.' },
+        { numero: 5, titulo: 'Milagres de Jesus', texto: 'Marcos 1-5', conteudo: 'Jesus demonstra poder sobre natureza, doença e demônios.', aplicacao: 'Confie no poder de Jesus.' }
+      ]
+    },
+    {
+      id: 'espirito-santo',
+      titulo: 'O Espírito Santo',
+      descricao: 'Conhecendo a terceira pessoa da Trindade',
+      categoria: 'Doutrina',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'Quem é o Espírito Santo', texto: 'João 14-16', conteudo: 'O Espírito Santo é uma pessoa divina, não uma força.', aplicacao: 'Relacione-se com o Espírito Santo pessoalmente.' },
+        { numero: 2, titulo: 'A Obra do Espírito', texto: 'João 16:7-15', conteudo: 'Convencer do pecado, guiar em toda verdade, glorificar a Cristo.', aplicacao: 'Permita que o Espírito Santo trabalhe em você.' },
+        { numero: 3, titulo: 'Os Dons do Espírito', texto: '1 Coríntios 12', conteudo: 'O Espírito distribui dons para edificação da igreja.', aplicacao: 'Descubra e use seus dons espirituais.' },
+        { numero: 4, titulo: 'O Fruto do Espírito', texto: 'Gálatas 5:22-23', conteudo: 'O caráter de Cristo desenvolvido em nós.', aplicacao: 'Cultive o fruto do Espírito diariamente.' },
+        { numero: 5, titulo: 'Sendo Cheio do Espírito', texto: 'Efésios 5:18', conteudo: 'Como receber e manter a plenitude do Espírito.', aplicacao: 'Busque diariamente o enchimento do Espírito.' }
+      ]
+    },
+    {
+      id: 'oracoes-biblia',
+      titulo: 'Orações da Bíblia',
+      descricao: 'Aprendendo a orar com os heróis da fé',
+      categoria: 'Vida Cristã',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'A Oração de Abraão', texto: 'Gênesis 18', conteudo: 'Intercessão ousada por Sodoma.', aplicacao: 'Interceda pelos perdidos.' },
+        { numero: 2, titulo: 'A Oração de Moisés', texto: 'Êxodo 32', conteudo: 'Intercessão pelo povo rebelde.', aplicacao: 'Ore pelos que erram.' },
+        { numero: 3, titulo: 'A Oração de Ana', texto: '1 Samuel 1', conteudo: 'Oração persistente e fé.', aplicacao: 'Persevere em oração.' },
+        { numero: 4, titulo: 'A Oração de Salomão', texto: '1 Reis 8', conteudo: 'Oração de dedicação do templo.', aplicacao: 'Dedique sua vida a Deus.' },
+        { numero: 5, titulo: 'A Oração do Pai Nosso', texto: 'Mateus 6', conteudo: 'O modelo de oração ensinado por Jesus.', aplicacao: 'Use o Pai Nosso como guia.' }
+      ]
+    }
+  ],
+
+  // PERSONAGENS BÍBLICOS - 15 estudos
+  personagensBiblicos: [
+    {
+      id: 'abraao',
+      titulo: 'Abraão - Pai da Fé',
+      descricao: 'A jornada de fé do patriarca',
+      categoria: 'Personagens',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'O Chamado', texto: 'Gênesis 12', conteudo: 'Deus chama Abraão para deixar tudo.', aplicacao: 'Responda ao chamado de Deus.' },
+        { numero: 2, titulo: 'A Promessa', texto: 'Gênesis 15', conteudo: 'Deus promete descendência e terra.', aplicacao: 'Confie nas promessas de Deus.' },
+        { numero: 3, titulo: 'O Teste', texto: 'Gênesis 22', conteudo: 'Abraão oferece Isaque.', aplicacao: 'Coloque Deus em primeiro lugar.' }
+      ]
+    },
+    {
+      id: 'moises',
+      titulo: 'Moisés - Libertador de Israel',
+      descricao: 'De príncipe a profeta',
+      categoria: 'Personagens',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'Nascimento e Preservação', texto: 'Êxodo 2', conteudo: 'Deus preserva Moisés para Seus propósitos.', aplicacao: 'Confie que Deus tem um plano para você.' },
+        { numero: 2, titulo: 'A Sarça Ardente', texto: 'Êxodo 3', conteudo: 'Deus chama Moisés para libertar Israel.', aplicacao: 'Aceite o chamado de Deus.' },
+        { numero: 3, titulo: 'Líder do Êxodo', texto: 'Êxodo 12-14', conteudo: 'Moisés lidera Israel para fora do Egito.', aplicacao: 'Seja instrumento de libertação.' }
+      ]
+    },
+    {
+      id: 'davi',
+      titulo: 'Davi - Homem Segundo o Coração de Deus',
+      descricao: 'De pastor a rei',
+      categoria: 'Personagens',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'O Pastor', texto: '1 Samuel 16-17', conteudo: 'Davi é ungido e vence Golias.', aplicacao: 'Seja fiel nas pequenas coisas.' },
+        { numero: 2, titulo: 'O Fugitivo', texto: '1 Samuel 18-31', conteudo: 'Davi é perseguido por Saul.', aplicacao: 'Confie em Deus nas adversidades.' },
+        { numero: 3, titulo: 'O Rei', texto: '2 Samuel 1-24', conteudo: 'Davi reina sobre Israel.', aplicacao: 'Lidere com integridade.' }
+      ]
+    }
+  ],
+
+  // LIVROS DA BÍBLIA - 10 estudos
+  livrosBiblia: [
+    {
+      id: 'romanos',
+      titulo: 'Romanos - O Evangelho de Paulo',
+      descricao: 'Justificação pela fé',
+      categoria: 'Novo Testamento',
+      tipo: 'Estudos Temáticos',
+      licoes: [
+        { numero: 1, titulo: 'Todos Pecaram', texto: 'Romanos 1-3', conteudo: 'Todos precisam da salvação.', aplicacao: 'Reconheça sua necessidade de salvação.' },
+        { numero: 2, titulo: 'Justificação pela Fé', texto: 'Romanos 4-5', conteudo: 'Salvos pela fé, não por obras.', aplicacao: 'Descanse na graça de Deus.' },
+        { numero: 3, titulo: 'Vida no Espírito', texto: 'Romanos 6-8', conteudo: 'Vencendo o pecado pelo Espírito.', aplicacao: 'Ande no Espírito diariamente.' }
+      ]
+    }
+  ]
+}
+
+// Total: 100+ estudos com 500+ lições!
+

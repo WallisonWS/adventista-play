@@ -39,12 +39,11 @@ import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
 import { ConquistasPage } from './components/ConquistasPage.jsx'
 import { LessonViewer } from './components/LessonViewer.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
-
 // Importar dados
 import { devocionais } from './data/devocionais.js'
 import { hinos } from './data/hinario.js'
-import { livrosBiblia } from './data/biblia.js'
 import { estudos } from './data/estudos.js'
+import { estudosCompletos } from './data/estudos-completos.js'
 
 // Importar imagens
 import mission1 from './assets/06ODUmgeXDAv.jpg'
@@ -1108,8 +1107,19 @@ function BibliaPage() {
 function EstudosPage() {
   const [selectedEstudo, setSelectedEstudo] = useState(null)
 
-  const escolaSabatina = estudos.filter(e => e.tipo === 'Escola Sabatina')
-  const outrosEstudos = estudos.filter(e => e.tipo !== 'Escola Sabatina')
+  // Combinar estudos antigos com novos
+  const todosEstudos = [
+    ...estudos,
+    ...estudosCompletos.escolaSabatina,
+    ...estudosCompletos.estudosTematicos,
+    ...estudosCompletos.personagensBiblicos,
+    ...estudosCompletos.livrosBiblia
+  ]
+
+  const escolaSabatina = todosEstudos.filter(e => e.tipo === 'Escola Sabatina')
+  const estudosTematicos = todosEstudos.filter(e => e.categoria === 'Profecia' || e.categoria === 'Vida de Cristo' || e.categoria === 'Doutrina' || e.categoria === 'Vida Cristã')
+  const personagens = todosEstudos.filter(e => e.categoria === 'Personagens')
+  const livros = todosEstudos.filter(e => e.categoria === 'Novo Testamento' || e.categoria === 'Antigo Testamento')
 
   // Se um estudo foi selecionado, mostrar o visualizador de lições
   if (selectedEstudo) {
@@ -1144,9 +1154,11 @@ function EstudosPage() {
         </motion.div>
 
         <Tabs defaultValue="escola-sabatina" className="mb-6">
-          <TabsList>
-            <TabsTrigger value="escola-sabatina">Escola Sabatina</TabsTrigger>
-            <TabsTrigger value="estudos-tematicos">Estudos Temáticos</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+            <TabsTrigger value="escola-sabatina">Escola Sabatina ({escolaSabatina.length})</TabsTrigger>
+            <TabsTrigger value="estudos-tematicos">Temáticos ({estudosTematicos.length})</TabsTrigger>
+            <TabsTrigger value="personagens">Personagens ({personagens.length})</TabsTrigger>
+            <TabsTrigger value="livros">Livros ({livros.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="escola-sabatina" className="mt-6">
@@ -1205,7 +1217,7 @@ function EstudosPage() {
               initial="initial"
               animate="animate"
             >
-              {outrosEstudos.map((estudo, index) => (
+              {estudosTematicos.map((estudo, index) => (
                 <motion.div
                   key={estudo.id}
                   variants={fadeInUp}
@@ -1242,6 +1254,82 @@ function EstudosPage() {
                       )}
                       <Button className="w-full">
                         Começar Estudo
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="personagens" className="mt-6">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+            >
+              {personagens.map((estudo, index) => (
+                <motion.div
+                  key={estudo.id}
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => setSelectedEstudo(estudo)}>
+                    <CardHeader>
+                      <div className="flex items-center space-x-2 mb-2">
+                        <Badge variant="secondary">{estudo.categoria}</Badge>
+                      </div>
+                      <CardTitle>{estudo.titulo}</CardTitle>
+                      <CardDescription>{estudo.descricao}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      {estudo.licoes && (
+                        <div className="mb-4">
+                          <p className="text-sm font-semibold mb-2">{estudo.licoes.length} lições</p>
+                        </div>
+                      )}
+                      <Button className="w-full">
+                        Estudar Personagem
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </TabsContent>
+
+          <TabsContent value="livros" className="mt-6">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+            >
+              {livros.map((estudo, index) => (
+                <motion.div
+                  key={estudo.id}
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => setSelectedEstudo(estudo)}>
+                    <CardHeader>
+                      <div className="flex items-center space-x-2 mb-2">
+                        <Badge>{estudo.categoria}</Badge>
+                      </div>
+                      <CardTitle>{estudo.titulo}</CardTitle>
+                      <CardDescription>{estudo.descricao}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      {estudo.licoes && (
+                        <div className="mb-4">
+                          <p className="text-sm font-semibold mb-2">{estudo.licoes.length} lições</p>
+                        </div>
+                      )}
+                      <Button className="w-full">
+                        Estudar Livro
                         <ChevronRight className="ml-2 h-4 w-4" />
                       </Button>
                     </CardContent>

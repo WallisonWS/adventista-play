@@ -1,0 +1,57 @@
+{
+  "name": "Portal Adventista - Estudos Bíblicos",
+  "short_name": "Portal Adventista",
+  "description": "Plataforma completa de estudos bíblicos, devocionais, hinário e recursos adventistas",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle", "productivity"],
+  "screenshots": [
+    {
+      "src": "/screenshot1.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Devocional",
+      "short_name": "Devocional",
+      "description": "Acessar devocional do dia",
+      "url": "/devocional",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Estudos",
+      "short_name": "Estudos",
+      "description": "Acessar estudos bíblicos",
+      "url": "/estudos",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Bíblia",
+      "short_name": "Bíblia",
+      "description": "Ler a Bíblia",
+      "url": "/biblia",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}
+

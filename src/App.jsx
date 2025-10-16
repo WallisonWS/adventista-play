@@ -44,6 +44,7 @@ import { devocionais } from './data/devocionais.js'
 import { hinos } from './data/hinario.js'
 import { estudos } from './data/estudos.js'
 import { estudosCompletos } from './data/estudos-completos.js'
+import { personagensBiblicos } from './data/personagens-biblicos.js'
 
 // Importar imagens
 import mission1 from './assets/06ODUmgeXDAv.jpg'
@@ -1113,12 +1114,13 @@ function EstudosPage() {
     ...estudosCompletos.escolaSabatina,
     ...estudosCompletos.estudosTematicos,
     ...estudosCompletos.personagensBiblicos,
-    ...estudosCompletos.livrosBiblia
+    ...estudosCompletos.livrosBiblia,
+    ...personagensBiblicos
   ]
 
   const escolaSabatina = todosEstudos.filter(e => e.tipo === 'Escola Sabatina')
   const estudosTematicos = todosEstudos.filter(e => e.categoria === 'Profecia' || e.categoria === 'Vida de Cristo' || e.categoria === 'Doutrina' || e.categoria === 'Vida Cristã')
-  const personagens = todosEstudos.filter(e => e.categoria === 'Personagens')
+  const personagens = todosEstudos.filter(e => e.categoria === 'Personagens' || e.categoria === 'Patriarcas' || e.categoria === 'Mulheres da Bíblia' || e.categoria === 'Líderes' || e.categoria === 'Profetas' || e.categoria === 'Reis')
   const livros = todosEstudos.filter(e => e.categoria === 'Novo Testamento' || e.categoria === 'Antigo Testamento')
 
   // Se um estudo foi selecionado, mostrar o visualizador de lições

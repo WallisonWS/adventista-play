@@ -26,6 +26,7 @@ import {
 import { bibliaApiService, historicoService, marcadoresService } from '../services/bibliaApiService'
 import { bibliaExemplo } from '../data/biblia-exemplo'
 import { bibliaCompleta } from '../data/biblia-completa'
+import { bibliaVersoes } from '../data/biblia-versoes'
 
 // Dados dos livros da Bíblia
 const livrosBiblia = {
@@ -155,13 +156,28 @@ export function BibliaPage() {
         setVersiculos(dados.verses)
         historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
       } else {
-        // Se API falhar, tentar bibliaCompleta primeiro, depois bibliaExemplo
+        // Se API falhar, tentar versões locais
         const chave = `${livroSelecionado.id}-${capituloSelecionado}`
+        
+        // Tentar versão específica primeiro
+        let dadosVersao = null
+        if (versao === 'ACF' && bibliaVersoes.ACF && bibliaVersoes.ACF[chave]) {
+          dadosVersao = bibliaVersoes.ACF[chave]
+          console.log('✅ Usando Almeida CF:', chave)
+        } else if (versao === 'NVI' && bibliaVersoes.NVI && bibliaVersoes.NVI[chave]) {
+          dadosVersao = bibliaVersoes.NVI[chave]
+          console.log('✅ Usando Nova VI:', chave)
+        }
+        
+        // Fallback para bibliaCompleta (ARC) ou bibliaExemplo
         const dadosCompletos = bibliaCompleta[chave]
         const dadosExemplo = bibliaExemplo[chave]
         
-        if (dadosCompletos) {
-          console.log('✅ Usando dados completos:', chave)
+        if (dadosVersao) {
+          setVersiculos(dadosVersao.verses)
+          historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+        } else if (dadosCompletos) {
+          console.log('✅ Usando dados completos (ARC):', chave)
           setVersiculos(dadosCompletos.verses)
           historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
         } else if (dadosExemplo) {
@@ -176,12 +192,26 @@ export function BibliaPage() {
     } catch (error) {
       console.error('❌ Erro ao carregar versículos:', error)
       
-      // Fallback para dados completos ou de exemplo
+      // Fallback para versões locais
       const chave = `${livroSelecionado.id}-${capituloSelecionado}`
+      
+      // Tentar versão específica primeiro
+      let dadosVersao = null
+      if (versao === 'ACF' && bibliaVersoes.ACF && bibliaVersoes.ACF[chave]) {
+        dadosVersao = bibliaVersoes.ACF[chave]
+        console.log('✅ Usando Almeida CF (fallback):', chave)
+      } else if (versao === 'NVI' && bibliaVersoes.NVI && bibliaVersoes.NVI[chave]) {
+        dadosVersao = bibliaVersoes.NVI[chave]
+        console.log('✅ Usando Nova VI (fallback):', chave)
+      }
+      
       const dadosCompletos = bibliaCompleta[chave]
       const dadosExemplo = bibliaExemplo[chave]
       
-      if (dadosCompletos) {
+      if (dadosVersao) {
+        setVersiculos(dadosVersao.verses)
+        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+      } else if (dadosCompletos) {
         console.log('✅ Usando dados completos (fallback):', chave)
         setVersiculos(dadosCompletos.verses)
         historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)

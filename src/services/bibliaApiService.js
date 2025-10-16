@@ -1,79 +1,89 @@
 // Serviço para integração com API da Bíblia
-// Usando Bible API (https://bible-api.com)
+// Usando Bible API do GitHub (https://github.com/MaatheusGois/bible)
+// API gratuita, sem limites, com múltiplas versões em português
 
-const API_BASE_URL = 'https://bible-api.com'
+const API_BASE_URL = 'https://raw.githubusercontent.com/MaatheusGois/bible/main/versions/pt-br'
 
 // Cache local para melhorar performance
 const cache = new Map()
 
-// Mapeamento de IDs de livros para nomes em inglês
+// Mapeamento de versões
+const versoesMap = {
+  'ARC': 'arc',  // Almeida Revista e Corrigida
+  'ACF': 'acf',  // Almeida Corrigida Fiel
+  'NVI': 'nvi'   // Nova Versão Internacional
+}
+
+// Mapeamento de IDs de livros (nosso formato -> formato da API)
 const livrosMap = {
-  'gn': 'genesis',
-  'ex': 'exodus',
-  'lv': 'leviticus',
-  'nm': 'numbers',
-  'dt': 'deuteronomy',
-  'js': 'joshua',
-  'jz': 'judges',
-  'rt': 'ruth',
-  '1sm': '1samuel',
-  '2sm': '2samuel',
-  '1rs': '1kings',
-  '2rs': '2kings',
-  '1cr': '1chronicles',
-  '2cr': '2chronicles',
-  'ed': 'ezra',
-  'ne': 'nehemiah',
-  'et': 'esther',
-  'job': 'job',
-  'sl': 'psalms',
-  'pv': 'proverbs',
-  'ec': 'ecclesiastes',
-  'ct': 'song+of+solomon',
-  'is': 'isaiah',
-  'jr': 'jeremiah',
-  'lm': 'lamentations',
-  'ez': 'ezekiel',
-  'dn': 'daniel',
-  'os': 'hosea',
-  'jl': 'joel',
-  'am': 'amos',
-  'ob': 'obadiah',
-  'jn': 'jonah',
-  'mq': 'micah',
-  'na': 'nahum',
-  'hc': 'habakkuk',
-  'sf': 'zephaniah',
-  'ag': 'haggai',
-  'zc': 'zechariah',
-  'ml': 'malachi',
-  'mt': 'matthew',
-  'mc': 'mark',
-  'lc': 'luke',
-  'jo': 'john',
-  'at': 'acts',
-  'rm': 'romans',
-  '1co': '1corinthians',
-  '2co': '2corinthians',
-  'gl': 'galatians',
-  'ef': 'ephesians',
-  'fp': 'philippians',
-  'cl': 'colossians',
-  '1ts': '1thessalonians',
-  '2ts': '2thessalonians',
-  '1tm': '1timothy',
-  '2tm': '2timothy',
-  'tt': 'titus',
-  'fm': 'philemon',
-  'hb': 'hebrews',
-  'tg': 'james',
-  '1pe': '1peter',
-  '2pe': '2peter',
-  '1jo': '1john',
-  '2jo': '2john',
-  '3jo': '3john',
-  'jd': 'jude',
-  'ap': 'revelation'
+  // Antigo Testamento
+  'gn': 'gn',      // Gênesis
+  'ex': 'ex',      // Êxodo
+  'lv': 'lv',      // Levítico
+  'nm': 'nm',      // Números
+  'dt': 'dt',      // Deuteronômio
+  'js': 'js',      // Josué
+  'jz': 'jud',     // Juízes
+  'rt': 'rt',      // Rute
+  '1sm': '1sm',    // 1 Samuel
+  '2sm': '2sm',    // 2 Samuel
+  '1rs': '1kgs',   // 1 Reis
+  '2rs': '2kgs',   // 2 Reis
+  '1cr': '1ch',    // 1 Crônicas
+  '2cr': '2ch',    // 2 Crônicas
+  'ed': 'ezr',     // Esdras
+  'ne': 'ne',      // Neemias
+  'et': 'et',      // Ester
+  'job': 'job',    // Jó
+  'sl': 'ps',      // Salmos
+  'pv': 'prv',     // Provérbios
+  'ec': 'ec',      // Eclesiastes
+  'ct': 'so',      // Cânticos (Song of Solomon)
+  'is': 'is',      // Isaías
+  'jr': 'jr',      // Jeremias
+  'lm': 'lm',      // Lamentações
+  'ez': 'ez',      // Ezequiel
+  'dn': 'dn',      // Daniel
+  'os': 'ho',      // Oséias
+  'jl': 'jl',      // Joel
+  'am': 'am',      // Amós
+  'ob': 'ob',      // Obadias
+  'jn': 'jn',      // Jonas
+  'mq': 'mi',      // Miquéias
+  'na': 'na',      // Naum
+  'hc': 'hk',      // Habacuque
+  'sf': 'zp',      // Sofonias
+  'ag': 'hg',      // Ageu
+  'zc': 'zc',      // Zacarias
+  'ml': 'ml',      // Malaquias
+  // Novo Testamento
+  'mt': 'mt',      // Mateus
+  'mc': 'mk',      // Marcos
+  'lc': 'lk',      // Lucas
+  'jo': 'jo',      // João
+  'at': 'act',     // Atos
+  'rm': 'rm',      // Romanos
+  '1co': '1co',    // 1 Coríntios
+  '2co': '2co',    // 2 Coríntios
+  'gl': 'gl',      // Gálatas
+  'ef': 'eph',     // Efésios
+  'fp': 'ph',      // Filipenses
+  'cl': 'cl',      // Colossenses
+  '1ts': '1ts',    // 1 Tessalonicenses
+  '2ts': '2ts',    // 2 Tessalonicenses
+  '1tm': '1tm',    // 1 Timóteo
+  '2tm': '2tm',    // 2 Timóteo
+  'tt': 'tt',      // Tito
+  'fm': 'phm',     // Filemom
+  'hb': 'hb',      // Hebreus
+  'tg': 'jm',      // Tiago
+  '1pe': '1pe',    // 1 Pedro
+  '2pe': '2pe',    // 2 Pedro
+  '1jo': '1jo',    // 1 João
+  '2jo': '2jo',    // 2 João
+  '3jo': '3jo',    // 3 João
+  'jd': 'jd',      // Judas
+  'ap': 're'       // Apocalipse
 }
 
 export const bibliaApiService = {
@@ -81,55 +91,87 @@ export const bibliaApiService = {
   async buscarCapitulo(versao, livro, capitulo) {
     const cacheKey = `${versao}-${livro}-${capitulo}`
     if (cache.has(cacheKey)) {
+      console.log('✅ Usando cache:', cacheKey)
       return cache.get(cacheKey)
     }
 
     try {
-      // Converter ID do livro para nome em inglês
-      const livroIngles = livrosMap[livro.toLowerCase()] || livro
+      // Converter versão e livro para o formato da API
+      const versaoApi = versoesMap[versao] || 'arc'
+      const livroApi = livrosMap[livro.toLowerCase()] || livro
       
-      // Mapeamento de versões
-      const versaoMap = {
-        'ARC': 'almeida',
-        'ACF': 'almeida',
-        'NVI': 'almeida'
-      }
+      // URL para buscar o livro completo
+      const url = `${API_BASE_URL}/${versaoApi}/${livroApi}/${livroApi}.json`
       
-      const versaoApi = versaoMap[versao] || 'almeida'
+      console.log(`🔍 Buscando: ${url}`)
       
       // Fazer requisição para a API
-      const response = await fetch(`${API_BASE_URL}/${livroIngles}+${capitulo}?translation=${versaoApi}`)
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
       
       if (!response.ok) {
-        throw new Error('Erro ao buscar capítulo')
+        console.warn(`⚠️ API retornou status ${response.status}`)
+        throw new Error(`Erro HTTP: ${response.status}`)
       }
       
       const data = await response.json()
+      console.log('📖 Dados recebidos da API')
+      
+      // Verificar se os dados são válidos
+      if (!data || !data.chapters || !Array.isArray(data.chapters) || data.chapters.length === 0) {
+        console.warn('⚠️ API retornou dados vazios ou inválidos')
+        throw new Error('Dados vazios da API')
+      }
+      
+      // Encontrar o capítulo específico (índice começa em 0, mas capítulo começa em 1)
+      const capituloIndex = capitulo - 1
+      
+      if (capituloIndex < 0 || capituloIndex >= data.chapters.length) {
+        console.warn(`⚠️ Capítulo ${capitulo} não encontrado (índice ${capituloIndex})`)
+        throw new Error(`Capítulo ${capitulo} não encontrado`)
+      }
+      
+      const versiculosArray = data.chapters[capituloIndex]
+      
+      if (!Array.isArray(versiculosArray) || versiculosArray.length === 0) {
+        console.warn(`⚠️ Capítulo ${capitulo} está vazio`)
+        throw new Error(`Capítulo ${capitulo} está vazio`)
+      }
+      
+      // Transformar array de strings em array de objetos com número e texto
+      const verses = versiculosArray.map((texto, index) => ({
+        number: index + 1,
+        text: texto.trim()
+      }))
       
       // Transformar dados para o formato esperado
       const resultado = {
         book: {
-          abbrev: livro,
-          name: data.verses[0]?.book_name || livro,
-          author: '',
-          group: '',
-          version: versaoApi
+          abbrev: data.abbrev || livro,
+          name: data.name || livro,
+          author: data.author || '',
+          group: data.group || '',
+          version: versao
         },
         chapter: {
           number: capitulo,
-          verses: data.verses.length
+          verses: verses.length
         },
-        verses: data.verses.map(v => ({
-          number: v.verse,
-          text: v.text.trim()
-        }))
+        verses: verses
       }
       
       cache.set(cacheKey, resultado)
+      console.log(`✅ ${resultado.verses.length} versículos carregados com sucesso!`)
       return resultado
       
     } catch (error) {
-      console.error('Erro ao buscar capítulo:', error)
+      console.error('❌ Erro ao buscar capítulo da API:', error.message)
+      
+      // Retornar null para que o componente use o fallback local
       return null
     }
   },
@@ -137,24 +179,24 @@ export const bibliaApiService = {
   // Buscar versículo específico
   async buscarVersiculo(versao, livro, capitulo, versiculo) {
     try {
-      const livroIngles = livrosMap[livro.toLowerCase()] || livro
+      // Buscar o capítulo completo e filtrar o versículo
+      const capituloData = await this.buscarCapitulo(versao, livro, capitulo)
       
-      const versaoMap = {
-        'ARC': 'almeida',
-        'ACF': 'almeida',
-        'NVI': 'almeida'
+      if (!capituloData || !capituloData.verses) {
+        return null
       }
       
-      const versaoApi = versaoMap[versao] || 'almeida'
+      const versiculoData = capituloData.verses.find(v => v.number === versiculo)
       
-      const response = await fetch(`${API_BASE_URL}/${livroIngles}+${capitulo}:${versiculo}?translation=${versaoApi}`)
-      
-      if (!response.ok) {
-        throw new Error('Erro ao buscar versículo')
+      if (!versiculoData) {
+        return null
       }
       
-      const data = await response.json()
-      return data
+      return {
+        book: capituloData.book,
+        chapter: capituloData.chapter,
+        verse: versiculoData
+      }
       
     } catch (error) {
       console.error('Erro ao buscar versículo:', error)
@@ -165,43 +207,41 @@ export const bibliaApiService = {
   // Buscar versículo aleatório
   async versiculoAleatorio(versao = 'ARC') {
     try {
-      const versaoMap = {
-        'ARC': 'almeida',
-        'ACF': 'almeida',
-        'NVI': 'almeida'
-      }
-      
-      const versaoApi = versaoMap[versao] || 'almeida'
-      
       // Lista de versículos populares para escolher aleatoriamente
       const versiculosPopulares = [
-        'john+3:16',
-        'psalms+23:1',
-        'jeremiah+29:11',
-        'philippians+4:13',
-        'romans+8:28',
-        'proverbs+3:5-6',
-        'matthew+6:33',
-        'isaiah+40:31',
-        'joshua+1:9',
-        'psalms+46:1'
+        { livro: 'jo', capitulo: 3, versiculo: 16 },
+        { livro: 'sl', capitulo: 23, versiculo: 1 },
+        { livro: 'jr', capitulo: 29, versiculo: 11 },
+        { livro: 'fp', capitulo: 4, versiculo: 13 },
+        { livro: 'rm', capitulo: 8, versiculo: 28 },
+        { livro: 'pv', capitulo: 3, versiculo: 5 },
+        { livro: 'mt', capitulo: 6, versiculo: 33 },
+        { livro: 'is', capitulo: 40, versiculo: 31 },
+        { livro: 'js', capitulo: 1, versiculo: 9 },
+        { livro: 'sl', capitulo: 46, versiculo: 1 }
       ]
       
-      const versiculoAleatorio = versiculosPopulares[Math.floor(Math.random() * versiculosPopulares.length)]
+      const aleatorio = versiculosPopulares[Math.floor(Math.random() * versiculosPopulares.length)]
       
-      const response = await fetch(`${API_BASE_URL}/${versiculoAleatorio}?translation=${versaoApi}`)
+      const data = await this.buscarVersiculo(
+        versao,
+        aleatorio.livro,
+        aleatorio.capitulo,
+        aleatorio.versiculo
+      )
       
-      if (!response.ok) {
-        throw new Error('Erro ao buscar versículo aleatório')
-      }
-      
-      const data = await response.json()
       return data
       
     } catch (error) {
       console.error('Erro ao buscar versículo aleatório:', error)
       return null
     }
+  },
+
+  // Limpar cache
+  limparCache() {
+    cache.clear()
+    console.log('🗑️ Cache limpo')
   }
 }
 

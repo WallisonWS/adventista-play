@@ -4,8 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card.jsx'
 import { Button } from './ui/button.jsx'
 import { Badge } from './ui/badge.jsx'
 import { Book, BookOpen, ArrowLeft, ChevronRight } from 'lucide-react'
+import { livrosEllenWhite } from '../data/livros-ellen-white-completo.js'
 
-const livros = [
+const livrosComConteudo = [
   {
     id: 1,
     titulo: 'O Grande Conflito',
@@ -313,6 +314,9 @@ A educação verdadeira é a preparação para a vida eterna. Ela desenvolve o c
 
 export function LivrosEllenWhite() {
   const [livroSelecionado, setLivroSelecionado] = useState(null)
+  
+  // Usar os 46 livros importados
+  const livros = livrosEllenWhite
 
   if (!livroSelecionado) {
     return (

@@ -25,6 +25,7 @@ import {
 } from 'lucide-react'
 import { bibliaApiService, historicoService, marcadoresService } from '../services/bibliaApiService'
 import { bibliaExemplo } from '../data/biblia-exemplo'
+import { bibliaCompleta } from '../data/biblia-completa'
 
 // Dados dos livros da Bíblia
 const livrosBiblia = {
@@ -154,11 +155,16 @@ export function BibliaPage() {
         setVersiculos(dados.verses)
         historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
       } else {
-        // Se API falhar, usar dados de exemplo
+        // Se API falhar, tentar bibliaCompleta primeiro, depois bibliaExemplo
         const chave = `${livroSelecionado.id}-${capituloSelecionado}`
+        const dadosCompletos = bibliaCompleta[chave]
         const dadosExemplo = bibliaExemplo[chave]
         
-        if (dadosExemplo) {
+        if (dadosCompletos) {
+          console.log('✅ Usando dados completos:', chave)
+          setVersiculos(dadosCompletos.verses)
+          historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+        } else if (dadosExemplo) {
           console.log('✅ Usando dados de exemplo:', chave)
           setVersiculos(dadosExemplo.verses)
           historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
@@ -170,11 +176,16 @@ export function BibliaPage() {
     } catch (error) {
       console.error('❌ Erro ao carregar versículos:', error)
       
-      // Fallback para dados de exemplo
+      // Fallback para dados completos ou de exemplo
       const chave = `${livroSelecionado.id}-${capituloSelecionado}`
+      const dadosCompletos = bibliaCompleta[chave]
       const dadosExemplo = bibliaExemplo[chave]
       
-      if (dadosExemplo) {
+      if (dadosCompletos) {
+        console.log('✅ Usando dados completos (fallback):', chave)
+        setVersiculos(dadosCompletos.verses)
+        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+      } else if (dadosExemplo) {
         console.log('✅ Usando dados de exemplo (fallback):', chave)
         setVersiculos(dadosExemplo.verses)
         historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)

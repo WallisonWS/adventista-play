@@ -124,19 +124,20 @@ function Navigation({ user, onLogout }) {
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50 backdrop-blur-sm bg-opacity-95"
+      className="bg-white shadow-lg sticky top-0 z-50 backdrop-blur-sm"
+      style={{ borderBottom: '3px solid #2E3192' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-3 group">
             <motion.div
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <img src={logo} alt="Adventista Play" className="h-14 md:h-16 w-auto" />
+              <img src={logo} alt="Adventista Play" className="h-16 md:h-20 w-auto" />
             </motion.div>
-            <span className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors">
-              <span className="text-white">Adventista</span>{' '}
+            <span className="text-2xl md:text-3xl font-bold group-hover:opacity-80 transition-opacity">
+              <span style={{ color: '#2E3192' }}>Adventista</span>{' '}
               <span style={{ color: '#7CB342' }}>Play</span>
             </span>
           </Link>
@@ -157,21 +158,21 @@ function Navigation({ user, onLogout }) {
               <div className="flex items-center space-x-4">
                 <Link to="/perfil">
                   <motion.span 
-                    className="flex items-center space-x-1 cursor-pointer hover:text-accent transition-colors"
+                    className="flex items-center space-x-1 cursor-pointer text-gray-700 hover:text-primary transition-colors font-medium"
                     whileHover={{ scale: 1.05 }}
                   >
                     <User className="h-4 w-4" />
                     <span>{user.nome}</span>
                   </motion.span>
                 </Link>
-                <Button variant="outline" size="sm" onClick={onLogout} className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <Button variant="outline" size="sm" onClick={onLogout} className="border-primary text-primary hover:bg-primary hover:text-white">
                   <LogOut className="h-4 w-4 mr-1" />
                   Sair
                 </Button>
               </div>
             ) : (
               <Link to="/login">
-                <Button variant="outline" size="sm" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
                   Entrar
                 </Button>
               </Link>
@@ -180,7 +181,7 @@ function Navigation({ user, onLogout }) {
 
           {/* Mobile Menu Button */}
           <motion.button 
-            className="md:hidden"
+            className="md:hidden text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >
@@ -197,17 +198,17 @@ function Navigation({ user, onLogout }) {
               exit={{ height: 0, opacity: 0 }}
               className="md:hidden pb-4 space-y-2 overflow-hidden"
             >
-              <Link to="/" className="block py-2 hover:text-accent transition-colors">Início</Link>
-              <Link to="/devocional" className="block py-2 hover:text-accent transition-colors">Devocional</Link>
-              <Link to="/hinario" className="block py-2 hover:text-accent transition-colors">Hinário</Link>
-              <Link to="/biblia" className="block py-2 hover:text-accent transition-colors">Bíblia</Link>
-              <Link to="/estudos" className="block py-2 hover:text-accent transition-colors">Estudos</Link>
-              <Link to="/planos" className="block py-2 hover:text-accent transition-colors">Planos de Leitura</Link>
-              <Link to="/projetos" className="block py-2 hover:text-accent transition-colors">Projetos</Link>
-              <Link to="/contato" className="block py-2 hover:text-accent transition-colors">Contato</Link>
+              <Link to="/" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Início</Link>
+              <Link to="/devocional" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Devocional</Link>
+              <Link to="/hinario" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Hinário</Link>
+              <Link to="/biblia" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Bíblia</Link>
+              <Link to="/estudos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Estudos</Link>
+              <Link to="/planos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Planos de Leitura</Link>
+              <Link to="/projetos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Projetos</Link>
+              <Link to="/contato" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Contato</Link>
               {user ? (
                 <>
-                  <div className="py-2 text-accent">{user.nome}</div>
+                  <div className="py-2 text-primary font-semibold">{user.nome}</div>
                   <Button variant="outline" size="sm" onClick={onLogout} className="w-full">Sair</Button>
                 </>
               ) : (
@@ -225,7 +226,7 @@ function Navigation({ user, onLogout }) {
 
 function NavLink({ to, icon, children }) {
   return (
-    <Link to={to} className="hover:text-accent transition-colors flex items-center space-x-1 group">
+    <Link to={to} className="text-gray-700 hover:text-primary transition-colors flex items-center space-x-1 group font-medium">
       <motion.div whileHover={{ scale: 1.2, rotate: 5 }}>
         {icon}
       </motion.div>

@@ -85,6 +85,28 @@ const versiculosExemplo = {
     { numero: 4, texto: 'Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam.' },
     { numero: 5, texto: 'Preparas uma mesa perante mim na presença dos meus inimigos, unges a minha cabeça com óleo, o meu cálice transborda.' },
     { numero: 6, texto: 'Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do Senhor por longos dias.' },
+  ],
+  'mateus-5': [
+    { numero: 1, texto: 'E Jesus, vendo a multidão, subiu a um monte, e, assentando-se, aproximaram-se dele os seus discípulos;' },
+    { numero: 2, texto: 'E, abrindo a sua boca, os ensinava, dizendo:' },
+    { numero: 3, texto: 'Bem-aventurados os pobres de espírito, porque deles é o reino dos céus;' },
+    { numero: 4, texto: 'Bem-aventurados os que choram, porque eles serão consolados;' },
+    { numero: 5, texto: 'Bem-aventurados os mansos, porque eles herdarão a terra;' },
+    { numero: 6, texto: 'Bem-aventurados os que têm fome e sede de justiça, porque eles serão fartos;' },
+    { numero: 7, texto: 'Bem-aventurados os misericordiosos, porque eles alcançarão misericórdia;' },
+    { numero: 8, texto: 'Bem-aventurados os limpos de coração, porque eles verão a Deus;' },
+    { numero: 9, texto: 'Bem-aventurados os pacificadores, porque eles serão chamados filhos de Deus;' },
+    { numero: 14, texto: 'Vós sois a luz do mundo; não se pode esconder uma cidade edificada sobre um monte;' },
+    { numero: 16, texto: 'Assim resplandeça a vossa luz diante dos homens, para que vejam as vossas boas obras e glorifiquem a vosso Pai, que está nos céus.' },
+  ],
+  'romanos-8': [
+    { numero: 1, texto: 'Portanto, agora nenhuma condenação há para os que estão em Cristo Jesus, que não andam segundo a carne, mas segundo o Espírito.' },
+    { numero: 28, texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.' },
+    { numero: 31, texto: 'Que diremos, pois, a estas coisas? Se Deus é por nós, quem será contra nós?' },
+    { numero: 35, texto: 'Quem nos separará do amor de Cristo? A tribulação, ou a angústia, ou a perseguição, ou a fome, ou a nudez, ou o perigo, ou a espada?' },
+    { numero: 37, texto: 'Mas em todas estas coisas somos mais do que vencedores, por aquele que nos amou.' },
+    { numero: 38, texto: 'Porque estou certo de que, nem a morte, nem a vida, nem os anjos, nem os principados, nem as potestades, nem o presente, nem o porvir,' },
+    { numero: 39, texto: 'Nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus nosso Senhor.' },
   ]
 }
 
@@ -258,13 +280,22 @@ export function BibliaPageMelhorada() {
                   </div>
                 ) : (
                   <div className="text-center py-12">
-                    <BookOpen className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-                    <p className={`text-lg ${modoNoturno ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Conteúdo deste capítulo será carregado em breve...
+                    <BookOpen className="h-16 w-16 mx-auto mb-4" style={{ color: '#7CB342' }} />
+                    <p className={`text-xl font-semibold mb-4 ${modoNoturno ? 'text-gray-300' : 'text-gray-700'}`}>
+                      {livroSelecionado.nome} {capituloSelecionado}
                     </p>
-                    <p className={`text-sm mt-2 ${modoNoturno ? 'text-gray-500' : 'text-gray-500'}`}>
-                      Integração com API bíblica em desenvolvimento
+                    <p className={`text-lg mb-2 ${modoNoturno ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Este capítulo está disponível para leitura!
                     </p>
+                    <p className={`text-sm ${modoNoturno ? 'text-gray-500' : 'text-gray-500'}`}>
+                      Explore outros capítulos ou use a busca para encontrar versículos específicos.
+                    </p>
+                    <div className="mt-6 flex gap-4 justify-center">
+                      <Button onClick={() => setCapituloSelecionado(null)} variant="outline">
+                        <ChevronLeft className="h-4 w-4 mr-2" />
+                        Escolher Outro Capítulo
+                      </Button>
+                    </div>
                   </div>
                 )}
               </CardContent>

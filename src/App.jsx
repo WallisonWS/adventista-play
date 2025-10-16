@@ -37,6 +37,7 @@ import { BibliaPageNova } from './components/BibliaPageNova.jsx'
 import { PerfilPage } from './components/PerfilPage.jsx'
 import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
 import { ConquistasPage } from './components/ConquistasPage.jsx'
+import { LessonViewer } from './components/LessonViewer.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 
 // Importar dados
@@ -1109,6 +1110,18 @@ function EstudosPage() {
 
   const escolaSabatina = estudos.filter(e => e.tipo === 'Escola Sabatina')
   const outrosEstudos = estudos.filter(e => e.tipo !== 'Escola Sabatina')
+
+  // Se um estudo foi selecionado, mostrar o visualizador de lições
+  if (selectedEstudo) {
+    return (
+      <AnimatePresence>
+        <LessonViewer 
+          estudo={selectedEstudo} 
+          onClose={() => setSelectedEstudo(null)} 
+        />
+      </AnimatePresence>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-background py-8 px-4">

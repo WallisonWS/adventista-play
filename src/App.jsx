@@ -33,6 +33,9 @@ import {
 import './App.css'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { BibliaPageNova } from './components/BibliaPageNova.jsx'
+import { PerfilPage } from './components/PerfilPage.jsx'
+import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
+import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -140,13 +143,15 @@ function Navigation({ user, onLogout }) {
             
             {user ? (
               <div className="flex items-center space-x-4">
-                <motion.span 
-                  className="flex items-center space-x-1"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <User className="h-4 w-4" />
-                  <span>{user.nome}</span>
-                </motion.span>
+                <Link to="/perfil">
+                  <motion.span 
+                    className="flex items-center space-x-1 cursor-pointer hover:text-accent transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <User className="h-4 w-4" />
+                    <span>{user.nome}</span>
+                  </motion.span>
+                </Link>
                 <Button variant="outline" size="sm" onClick={onLogout} className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
                   <LogOut className="h-4 w-4 mr-1" />
                   Sair
@@ -376,6 +381,18 @@ function HomePage() {
         </motion.div>
       </section>
 
+      {/* Versículo do Dia */}
+      <section className="py-16 px-4">
+        <motion.div
+          className="container mx-auto max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <VersiculoDoDia />
+        </motion.div>
+      </section>
+
       {/* Call to Action */}
       <section className="py-16 px-4 bg-primary text-primary-foreground relative overflow-hidden">
         <motion.div 
@@ -439,14 +456,31 @@ function LoginPage({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (isLogin) {
-      onLogin({ nome: formData.nome || 'Usuário', email: formData.email })
-      navigate('/')
-    } else {
-      if (formData.senha === formData.confirmarSenha) {
-        onLogin({ nome: formData.nome, email: formData.email })
+      // Login
+      const result = loginUser(formData.email, formData.senha)
+      if (result.success) {
+        onLogin(result.user)
         navigate('/')
       } else {
-        alert('As senhas não coincidem')
+        alert(result.message)
+      }
+    } else {
+      // Cadastro
+      if (formData.senha !== formData.confirmarSenha) {
+        alert('As senhas não coincidem!')
+        return
+      }
+      if (formData.senha.length < 6) {
+        alert('A senha deve ter pelo menos 6 caracteres!')
+        return
+      }
+      const result = registerUser(formData)
+      if (result.success) {
+        alert(result.message)
+        setIsLogin(true)
+        setFormData({ nome: '', email: '', senha: '', confirmarSenha: '' })
+      } else {
+        alert(result.message)
       }
     }
   }
@@ -1398,11 +1432,20 @@ function ProjetosPage() {
 function App() {
   const [user, setUser] = useState(null)
 
+  // Verificar se há usuário logado ao carregar
+  useEffect(() => {
+    const currentUser = getCurrentUser()
+    if (currentUser) {
+      setUser(currentUser)
+    }
+  }, [])
+
   const handleLogin = (userData) => {
     setUser(userData)
   }
 
   const handleLogout = () => {
+    logoutUser()
     setUser(null)
   }
 
@@ -1420,6 +1463,7 @@ function App() {
             <Route path="/estudos" element={<EstudosPage />} />
             <Route path="/projetos" element={<ProjetosPage />} />
             <Route path="/contato" element={<ContatoPage />} />
+            <Route path="/perfil" element={<PerfilPage />} />
           </Routes>
         </AnimatePresence>
         

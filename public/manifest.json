@@ -31,24 +31,45 @@
   ],
   "shortcuts": [
     {
+      "name": "Bíblia",
+      "short_name": "Bíblia",
+      "description": "Ler a Bíblia Sagrada",
+      "url": "/biblia",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
       "name": "Devocional",
       "short_name": "Devocional",
-      "description": "Acessar devocional do dia",
+      "description": "Devocional do dia",
       "url": "/devocional",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Estudos",
-      "short_name": "Estudos",
-      "description": "Acessar estudos bíblicos",
-      "url": "/estudos",
+      "name": "Escola Sabatina",
+      "short_name": "Lição",
+      "description": "Lição da Escola Sabatina",
+      "url": "/escola-sabatina",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Bíblia",
-      "short_name": "Bíblia",
-      "description": "Ler a Bíblia",
-      "url": "/biblia",
+      "name": "Ellen White",
+      "short_name": "Ellen White",
+      "description": "Livros de Ellen White",
+      "url": "/ellen-white",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hinário",
+      "short_name": "Hinário",
+      "description": "Hinário Adventista",
+      "url": "/hinario",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Quiz",
+      "short_name": "Quiz",
+      "description": "Quiz Bíblico",
+      "url": "/quiz",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ],

@@ -358,7 +358,7 @@ function HomePage() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard
-              to="/devocional"
+              to="/devocionais-diarios"
               icon={<Heart className="h-12 w-12 text-primary" />}
               title="Devocional Diário"
               description="Meditações e reflexões para fortalecer sua fé todos os dias"

@@ -64,7 +64,7 @@ import { personagensBiblicos } from './data/personagens-biblicos.js'
 import { planosLeitura } from './data/planos-leitura.js'
 
 // Importar imagens
-import logo from '../logo-sem-fundo.png'
+import logo from '../logo-icon-only.png'
 import mission1 from './assets/06ODUmgeXDAv.jpg'
 import mission2 from './assets/ceVxJtPGZzDg.jpeg'
 import mission3 from './assets/1jBZXZ4E8jtT.jpg'
@@ -212,18 +212,18 @@ function Navigation({ user, onLogout }) {
               exit={{ height: 0, opacity: 0 }}
               className="md:hidden pb-4 space-y-2 overflow-hidden"
             >
-              <Link to="/" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Início</Link>
-              <Link to="/devocional" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Devocional</Link>
-              <Link to="/hinario" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Hinário</Link>
-              <Link to="/biblia" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Bíblia</Link>
-              <Link to="/estudos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Estudos</Link>
-              <Link to="/planos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Planos de Leitura</Link>
-              <Link to="/quiz" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Quiz Bíblico</Link>
-              <Link to="/projetos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Projetos</Link>
-              <Link to="/cursos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Cursos</Link>
-              <Link to="/desbravadores" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Desbravadores</Link>
-              <Link to="/oracao" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Oração</Link>
-              <Link to="/contato" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Contato</Link>
+              <Link to="/" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Início</Link>
+              <Link to="/devocional" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Devocional</Link>
+              <Link to="/hinario" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Hinário</Link>
+              <Link to="/biblia" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Bíblia</Link>
+              <Link to="/estudos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Estudos</Link>
+              <Link to="/planos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Planos de Leitura</Link>
+              <Link to="/quiz" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Quiz Bíblico</Link>
+              <Link to="/projetos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Projetos</Link>
+              <Link to="/cursos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Cursos</Link>
+              <Link to="/desbravadores" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Desbravadores</Link>
+              <Link to="/oracao" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Oração</Link>
+              <Link to="/contato" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Contato</Link>
               {user ? (
                 <>
                   <div className="py-2 text-primary font-semibold">{user.nome}</div>

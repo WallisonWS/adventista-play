@@ -47,6 +47,9 @@ import { EscolaSabatinaCompleta } from './components/EscolaSabatinaCompleta.jsx'
 import { LivrosEllenWhite } from './components/LivrosEllenWhite.jsx'
 import { DicionarioBiblico } from './components/DicionarioBiblico.jsx'
 import { DevocionaisEllenWhite } from './components/DevocionaisEllenWhite.jsx'
+import { CompartilharOracao } from './components/CompartilharOracao.jsx'
+import { CursosAdventistas } from './components/CursosAdventistas.jsx'
+import { DesbravadoresPage } from './components/DesbravadoresPage.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -159,6 +162,9 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/planos" icon={<Calendar className="h-4 w-4" />}>Planos</NavLink>
             <NavLink to="/quiz" icon={<Trophy className="h-4 w-4" />}>Quiz</NavLink>
             <NavLink to="/projetos" icon={<Globe className="h-4 w-4" />}>Projetos</NavLink>
+            <NavLink to="/cursos" icon={<GraduationCap className="h-4 w-4" />}>Cursos</NavLink>
+            <NavLink to="/desbravadores" icon={<Star className="h-4 w-4" />}>Desbravadores</NavLink>
+            <NavLink to="/oracao" icon={<Heart className="h-4 w-4" />}>Oração</NavLink>
             {user && <NavLink to="/conquistas" icon={<Trophy className="h-4 w-4" />}>Conquistas</NavLink>}
             <NavLink to="/contato" icon={<MessageSquare className="h-4 w-4" />}>Contato</NavLink>
             
@@ -214,6 +220,9 @@ function Navigation({ user, onLogout }) {
               <Link to="/planos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Planos de Leitura</Link>
               <Link to="/quiz" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Quiz Bíblico</Link>
               <Link to="/projetos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Projetos</Link>
+              <Link to="/cursos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Cursos</Link>
+              <Link to="/desbravadores" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Desbravadores</Link>
+              <Link to="/oracao" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Oração</Link>
               <Link to="/contato" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Contato</Link>
               {user ? (
                 <>
@@ -1459,6 +1468,9 @@ function App() {
             <Route path="/planos" element={<PlanosLeituraPage planos={planosLeitura} />} />
             <Route path="/quiz" element={<QuizBiblico />} />
             <Route path="/projetos" element={<ProjetosPage />} />
+            <Route path="/cursos" element={<CursosAdventistas />} />
+            <Route path="/desbravadores" element={<DesbravadoresPage />} />
+            <Route path="/oracao" element={<CompartilharOracao />} />
             <Route path="/contato" element={<ContatoPage />} />
             <Route path="/perfil" element={<PerfilPage />} />
             <Route path="/conquistas" element={<ConquistasPage />} />

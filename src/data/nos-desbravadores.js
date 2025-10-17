@@ -357,29 +357,134 @@ export const dicasGerais = [
 export const desafiosNos = [
   {
     nivel: "Iniciante",
+    descricao: "Desafios para quem está começando a aprender nós",
     desafios: [
-      "Fazer 5 nós direitos perfeitos em 2 minutos",
-      "Fazer lais de guia com os olhos fechados",
-      "Amarrar uma mochila usando apenas nó de escota",
-      "Fazer nó catau em 10 segundos"
+      {
+        titulo: "Velocidade Básica",
+        descricao: "Fazer 5 nós direitos perfeitos em 2 minutos",
+        pontos: 10,
+        dica: "Pratique o movimento 'direita sobre esquerda, esquerda sobre direita'"
+      },
+      {
+        titulo: "Memória Muscular",
+        descricao: "Fazer lais de guia com os olhos fechados",
+        pontos: 15,
+        dica: "Lembre da história do coelho: sai da toca, rodeia a árvore e volta"
+      },
+      {
+        titulo: "Aplicação Prática",
+        descricao: "Amarrar uma mochila usando apenas nó de escota",
+        pontos: 10,
+        dica: "Use a alça da mochila como a corda mais grossa"
+      },
+      {
+        titulo: "Contra o Relógio",
+        descricao: "Fazer nó catau em 10 segundos",
+        pontos: 10,
+        dica: "Pratique o movimento até ficar automático"
+      },
+      {
+        titulo: "Nó de Segurança",
+        descricao: "Fazer 3 nós de oito perfeitos seguidos",
+        pontos: 10,
+        dica: "O nó deve parecer um número 8 quando pronto"
+      },
+      {
+        titulo: "Primeiros Socorros",
+        descricao: "Fazer nó de cirurgião e demonstrar sua aplicação",
+        pontos: 15,
+        dica: "Útil quando você precisa das mãos livres enquanto amarra"
+      }
     ]
   },
   {
     nivel: "Intermediário",
+    descricao: "Desafios para quem já domina os nós básicos",
     desafios: [
-      "Fazer todos os 10 nós básicos em sequência sem erro",
-      "Construir uma mesa usando amarração quadrada",
-      "Fazer uma escada de corda funcional",
-      "Ensinar 3 nós para um iniciante"
+      {
+        titulo: "Sequência Completa",
+        descricao: "Fazer todos os 10 nós básicos em sequência sem erro",
+        pontos: 25,
+        dica: "Crie uma ordem lógica: básicos → alças → amarração → emenda → avançados"
+      },
+      {
+        titulo: "Construção de Mesa",
+        descricao: "Construir uma mesa usando amarração quadrada que aguente 10kg",
+        pontos: 30,
+        dica: "Use pelo menos 4 voltas em cada direção e faça bom frechamento"
+      },
+      {
+        titulo: "Escada Funcional",
+        descricao: "Fazer uma escada de corda com 5 degraus que aguente seu peso",
+        pontos: 35,
+        dica: "Use amarração paralela para os degraus e teste antes de subir"
+      },
+      {
+        titulo: "Professor Desbravador",
+        descricao: "Ensinar 3 nós diferentes para um iniciante até ele conseguir fazer sozinho",
+        pontos: 20,
+        dica: "Ensinar é a melhor forma de aprender. Seja paciente e demonstre devagar"
+      },
+      {
+        titulo: "Resgate Simulado",
+        descricao: "Criar um sistema de içamento usando nós e polias improvisadas",
+        pontos: 30,
+        dica: "Use lais de guia para as alças e volta do fiel para fixação"
+      },
+      {
+        titulo: "Tripé Estável",
+        descricao: "Construir um tripé de 2 metros que fique em pé sozinho",
+        pontos: 25,
+        dica: "Use amarração diagonal e distribua bem o peso dos bastões"
+      }
     ]
   },
   {
     nivel: "Avançado",
+    descricao: "Desafios para mestres em nós e amarrações",
     desafios: [
-      "Construir uma ponte suspensa para 3 pessoas",
-      "Fazer uma maca de emergência apenas com cordas e bastões",
-      "Completar circuito de nós em menos de 5 minutos",
-      "Criar uma nova aplicação para um nó conhecido"
+      {
+        titulo: "Ponte Suspensa",
+        descricao: "Construir uma ponte suspensa de 3 metros que aguente 3 pessoas",
+        pontos: 50,
+        dica: "Use cabos principais fortes e amarrações diagonais para estabilidade"
+      },
+      {
+        titulo: "Maca de Emergência",
+        descricao: "Fazer uma maca funcional apenas com cordas e 2 bastões em 10 minutos",
+        pontos: 45,
+        dica: "Use a técnica de tecelagem com a corda entre os bastões"
+      },
+      {
+        titulo: "Circuito Completo",
+        descricao: "Completar circuito de 15 nós diferentes em menos de 5 minutos",
+        pontos: 40,
+        dica: "Pratique a transição entre os nós para não perder tempo"
+      },
+      {
+        titulo: "Inovação Criativa",
+        descricao: "Criar e documentar uma nova aplicação prática para um nó conhecido",
+        pontos: 35,
+        dica: "Pense em situações reais de acampamento ou resgate"
+      },
+      {
+        titulo: "Torre de Observação",
+        descricao: "Construir uma torre de 4 metros de altura que aguente uma pessoa no topo",
+        pontos: 60,
+        dica: "Use amarrações quadradas e diagonais. Segurança em primeiro lugar!"
+      },
+      {
+        titulo: "Mestre Instrutor",
+        descricao: "Conduzir um workshop completo de nós para 10+ pessoas",
+        pontos: 50,
+        dica: "Prepare material visual, demonstrações práticas e exercícios progressivos"
+      },
+      {
+        titulo: "Resgate Real",
+        descricao: "Montar sistema completo de resgate vertical com segurança redundante",
+        pontos: 55,
+        dica: "Use nó prussik para backup, lais de guia para cadeirinha e volta do fiel para ancoragem"
+      }
     ]
   }
 ]

@@ -10,7 +10,10 @@ import {
   AlertTriangle,
   Lightbulb,
   Target,
-  ChevronRight
+  ChevronRight,
+  Trophy,
+  Award,
+  Zap
 } from 'lucide-react'
 import { nosDesbravadores, amarracoes, dicasGerais, desafiosNos } from '../data/nos-desbravadores'
 import { Link } from 'react-router-dom'
@@ -65,7 +68,18 @@ export function NosDesbravadores() {
                       Categoria: {noSelecionado.categoria} • Dificuldade: {noSelecionado.dificuldade}
                     </CardDescription>
                   </div>
-                  <Badge className="text-lg px-4 py-2">{noSelecionado.dificuldade}</Badge>
+                  <Badge className={
+                    `text-lg px-4 py-2 ${
+                      noSelecionado.dificuldade === 'Fácil' ? 'bg-green-500 hover:bg-green-600' :
+                      noSelecionado.dificuldade === 'Médio' ? 'bg-yellow-500 hover:bg-yellow-600' :
+                      'bg-red-500 hover:bg-red-600'
+                    }`
+                  }>
+                    {noSelecionado.dificuldade === 'Fácil' && <Zap className="h-4 w-4 mr-2" />}
+                    {noSelecionado.dificuldade === 'Médio' && <Award className="h-4 w-4 mr-2" />}
+                    {noSelecionado.dificuldade === 'Difícil' && <Trophy className="h-4 w-4 mr-2" />}
+                    {noSelecionado.dificuldade}
+                  </Badge>
                 </div>
               </CardHeader>
 
@@ -163,13 +177,22 @@ export function NosDesbravadores() {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ y: -5 }}
                   >
-                    <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer" onClick={() => setNoSelecionado(no)}>
+                    <Card className="h-full hover:shadow-xl transition-shadow">
                       <CardHeader>
                         <CardTitle>{no.nome}</CardTitle>
                         <CardDescription>{no.categoria}</CardDescription>
                       </CardHeader>
                       <CardContent className="space-y-4">
-                        <Badge>{no.dificuldade}</Badge>
+                        <Badge className={
+                          no.dificuldade === 'Fácil' ? 'bg-green-500 hover:bg-green-600' :
+                          no.dificuldade === 'Médio' ? 'bg-yellow-500 hover:bg-yellow-600' :
+                          'bg-red-500 hover:bg-red-600'
+                        }>
+                          {no.dificuldade === 'Fácil' && <Zap className="h-3 w-3 mr-1" />}
+                          {no.dificuldade === 'Médio' && <Award className="h-3 w-3 mr-1" />}
+                          {no.dificuldade === 'Difícil' && <Trophy className="h-3 w-3 mr-1" />}
+                          {no.dificuldade}
+                        </Badge>
                         
                         <div>
                           <p className="text-sm font-semibold mb-2">Usos:</p>
@@ -183,7 +206,13 @@ export function NosDesbravadores() {
                           </ul>
                         </div>
 
-                        <Button className="w-full">
+                        <Button 
+                          className="w-full" 
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            setNoSelecionado(no)
+                          }}
+                        >
                           Ver Tutorial Completo
                         </Button>
                       </CardContent>
@@ -276,42 +305,64 @@ export function NosDesbravadores() {
 
             {/* Tab: Desafios */}
             <TabsContent value="desafios">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {desafiosNos.map((nivel, index) => (
+              <div className="space-y-8">
+                {desafiosNos.map((nivel, nivelIndex) => (
                   <motion.div
-                    key={index}
+                    key={nivelIndex}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: nivelIndex * 0.1 }}
                   >
-                    <Card className={`border-2 ${
-                      nivel.nivel === 'Iniciante' ? 'border-green-500' :
-                      nivel.nivel === 'Intermediário' ? 'border-yellow-500' :
-                      'border-red-500'
-                    }`}>
-                      <CardHeader>
-                        <CardTitle className="flex items-center justify-between">
-                          {nivel.nivel}
-                          <Badge className={
-                            nivel.nivel === 'Iniciante' ? 'bg-green-500' :
-                            nivel.nivel === 'Intermediário' ? 'bg-yellow-500' :
-                            'bg-red-500'
-                          }>
-                            {nivel.nivel}
-                          </Badge>
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-3">
-                          {nivel.desafios.map((desafio, i) => (
-                            <li key={i} className="flex items-start space-x-2">
-                              <Target className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                              <span className="text-sm">{desafio}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
+                    <div className="mb-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h2 className="text-2xl font-bold">{nivel.nivel}</h2>
+                        <Badge className={
+                          nivel.nivel === 'Iniciante' ? 'bg-green-500' :
+                          nivel.nivel === 'Intermediário' ? 'bg-yellow-500' :
+                          'bg-red-500'
+                        }>
+                          {nivel.desafios.length} desafios
+                        </Badge>
+                      </div>
+                      <p className="text-muted-foreground">{nivel.descricao}</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {nivel.desafios.map((desafio, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: nivelIndex * 0.1 + i * 0.05 }}
+                          whileHover={{ scale: 1.02 }}
+                        >
+                          <Card className={`h-full border-l-4 ${
+                            nivel.nivel === 'Iniciante' ? 'border-l-green-500' :
+                            nivel.nivel === 'Intermediário' ? 'border-l-yellow-500' :
+                            'border-l-red-500'
+                          } hover:shadow-lg transition-shadow`}>
+                            <CardHeader>
+                              <div className="flex items-start justify-between gap-2">
+                                <CardTitle className="text-lg">{desafio.titulo}</CardTitle>
+                                <Badge variant="outline" className="flex-shrink-0">
+                                  {desafio.pontos} pts
+                                </Badge>
+                              </div>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                              <p className="text-sm">{desafio.descricao}</p>
+                              
+                              <div className="bg-primary/5 p-3 rounded-lg border border-primary/20">
+                                <div className="flex items-start gap-2">
+                                  <Lightbulb className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                                  <p className="text-xs text-muted-foreground">{desafio.dica}</p>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      ))}
+                    </div>
                   </motion.div>
                 ))}
               </div>

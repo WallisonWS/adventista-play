@@ -143,17 +143,13 @@ function Navigation({ user, onLogout }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-4 group ml-2">
+          <Link to="/" className="flex items-center group ml-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <img src={logo} alt="Adventista Play" className="h-14 md:h-16 w-auto" />
+              <img src={logo} alt="Adventista Play" className="h-12 md:h-14 w-auto" />
             </motion.div>
-            <span className="text-xl md:text-2xl font-bold group-hover:opacity-80 transition-opacity ml-2">
-              <span style={{ color: '#2E3192' }}>Adventista</span>{' '}
-              <span style={{ color: '#7CB342' }}>Play</span>
-            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -273,13 +269,13 @@ function HomePage() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 100 }}
-            className="inline-block mb-6"
+            className="inline-block mb-8"
           >
-            <img src={logo} alt="Adventista Play" className="h-32 md:h-40 mx-auto" />
+            <img src={logo} alt="Adventista Play" className="h-48 md:h-56 mx-auto" />
           </motion.div>
           
           <motion.h1 
-            className="text-5xl md:text-6xl font-bold mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6"
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}

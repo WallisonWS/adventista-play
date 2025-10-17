@@ -422,6 +422,28 @@ export function DesbravadoresPage() {
               })}
             </div>
 
+            {/* Card Especial: Nós e Amarras */}
+            <Card className="bg-gradient-to-r from-primary/20 to-primary/10 border-primary/30 border-2">
+              <CardContent className="pt-6">
+                <div className="flex items-start space-x-4">
+                  <Target className="h-12 w-12 text-primary flex-shrink-0" />
+                  <div className="flex-1">
+                    <h3 className="font-bold text-xl mb-2">🎯 Aprenda Nós e Amarras!</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Tutorial completo com 10 nós essenciais, amarrações, dicas de segurança e desafios práticos. 
+                      Aprenda passo a passo como fazer cada nó e suas aplicações.
+                    </p>
+                    <Link to="/nos-desbravadores">
+                      <Button className="bg-primary hover:bg-primary/90">
+                        <ChevronRight className="h-4 w-4 mr-2" />
+                        Começar Tutorial de Nós
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="pt-6">
                 <div className="flex items-start space-x-4">

@@ -47,6 +47,7 @@ import { EscolaSabatinaCompleta } from './components/EscolaSabatinaCompleta.jsx'
 import { LivrosEllenWhite } from './components/LivrosEllenWhite.jsx'
 import { DicionarioBiblico } from './components/DicionarioBiblico.jsx'
 import { DevocionaisEllenWhite } from './components/DevocionaisEllenWhite.jsx'
+import { DevocionaisDiarios } from './components/DevocionaisDiarios.jsx'
 import { CompartilharOracao } from './components/CompartilharOracao.jsx'
 import { CursosAdventistas } from './components/CursosAdventistas.jsx'
 import { DesbravadoresPage } from './components/DesbravadoresPage.jsx'
@@ -1467,6 +1468,7 @@ function App() {
             <Route path="/ellen-white" element={<LivrosEllenWhite />} />
             <Route path="/dicionario" element={<DicionarioBiblico />} />
             <Route path="/devocionais-ellen" element={<DevocionaisEllenWhite />} />
+            <Route path="/devocionais-diarios" element={<DevocionaisDiarios />} />
             <Route path="/planos" element={<PlanosLeituraPage planos={planosLeitura} />} />
             <Route path="/quiz" element={<QuizBiblico />} />
             <Route path="/projetos" element={<ProjetosPage />} />

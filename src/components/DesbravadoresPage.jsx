@@ -34,6 +34,7 @@ const cursosDesbravadores = [
     nivel: "Classe I",
     idade: "10 anos",
     cor: "bg-red-500",
+    simbolo: "/simbolos-classes/amigo.png",
     descricao: "Primeira classe dos Desbravadores",
     requisitos: [
       "Ter no mínimo 10 anos de idade",
@@ -56,6 +57,7 @@ const cursosDesbravadores = [
     nivel: "Classe II",
     idade: "11 anos",
     cor: "bg-blue-500",
+    simbolo: "/simbolos-classes/companheiro.png",
     descricao: "Segunda classe dos Desbravadores",
     requisitos: [
       "Ter no mínimo 11 anos de idade",
@@ -78,6 +80,7 @@ const cursosDesbravadores = [
     nivel: "Classe III",
     idade: "12 anos",
     cor: "bg-green-500",
+    simbolo: "/simbolos-classes/pesquisador.png",
     descricao: "Terceira classe dos Desbravadores",
     requisitos: [
       "Ter no mínimo 12 anos de idade",
@@ -100,6 +103,7 @@ const cursosDesbravadores = [
     nivel: "Classe IV",
     idade: "13 anos",
     cor: "bg-yellow-500",
+    simbolo: "/simbolos-classes/pioneiro.png",
     descricao: "Quarta classe dos Desbravadores",
     requisitos: [
       "Ter no mínimo 13 anos de idade",
@@ -122,6 +126,7 @@ const cursosDesbravadores = [
     nivel: "Classe V",
     idade: "14 anos",
     cor: "bg-purple-500",
+    simbolo: "/simbolos-classes/excursionista.png",
     descricao: "Quinta classe dos Desbravadores",
     requisitos: [
       "Ter no mínimo 14 anos de idade",
@@ -144,6 +149,7 @@ const cursosDesbravadores = [
     nivel: "Classe VI",
     idade: "15 anos",
     cor: "bg-orange-500",
+    simbolo: "/simbolos-classes/guia.png",
     descricao: "Sexta e última classe regular dos Desbravadores",
     requisitos: [
       "Ter no mínimo 15 anos de idade",
@@ -339,7 +345,7 @@ export function DesbravadoresPage() {
                           <CardTitle className="text-2xl">{classe.titulo}</CardTitle>
                           <CardDescription className="text-white/90">{classe.nivel}</CardDescription>
                         </div>
-                        <Award className="h-12 w-12" />
+                        <img src={classe.simbolo} alt={`Símbolo ${classe.titulo}`} className="h-16 w-16 object-contain" />
                       </div>
                     </CardHeader>
 

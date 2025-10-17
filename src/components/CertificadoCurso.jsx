@@ -13,6 +13,7 @@ import {
   Star,
   CheckCircle2
 } from 'lucide-react'
+import logoCertificado from '../assets/logo-certificado.png'
 
 export function CertificadoCurso({ curso, onClose }) {
   const [nomeAluno, setNomeAluno] = useState('')
@@ -48,20 +49,15 @@ export function CertificadoCurso({ curso, onClose }) {
     ctx.lineWidth = 5
     ctx.strokeRect(90, 90, canvas.width - 180, canvas.height - 180)
 
-    // Logo/Selo no topo
-    ctx.beginPath()
-    ctx.arc(canvas.width / 2, 200, 80, 0, 2 * Math.PI)
-    ctx.fillStyle = '#FFD700'
-    ctx.fill()
-    ctx.strokeStyle = '#FFFFFF'
-    ctx.lineWidth = 5
-    ctx.stroke()
-
-    // Estrela dentro do selo
-    ctx.fillStyle = '#2E3192'
-    ctx.font = 'bold 80px Arial'
-    ctx.textAlign = 'center'
-    ctx.fillText('★', canvas.width / 2, 230)
+    // Logo no topo
+    const logoImg = new Image()
+    logoImg.src = logoCertificado
+    logoImg.onload = () => {
+      ctx.drawImage(logoImg, canvas.width / 2 - 80, 120, 160, 160)
+      finalizarCertificado()
+    }
+    
+    const finalizarCertificado = () => {
 
     // Título
     ctx.fillStyle = '#FFFFFF'
@@ -151,16 +147,17 @@ export function CertificadoCurso({ curso, onClose }) {
     ctx.restore()
     ctx.globalAlpha = 1.0
 
-    // Download
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `certificado-${cursoNome.toLowerCase().replace(/\s+/g, '-')}.png`
-      a.click()
-      URL.revokeObjectURL(url)
-      alert('Certificado gerado com sucesso!')
-    })
+      // Download
+      canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `certificado-${cursoNome.toLowerCase().replace(/\s+/g, '-')}.png`
+        a.click()
+        URL.revokeObjectURL(url)
+        alert('Certificado gerado com sucesso!')
+      })
+    }
   }
 
   const compartilharCertificado = () => {

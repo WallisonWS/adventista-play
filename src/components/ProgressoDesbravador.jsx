@@ -15,6 +15,7 @@ import {
   Download,
   Share2
 } from 'lucide-react'
+import logoCertificado from '../assets/logo-certificado.png'
 
 // Dados das classes com requisitos detalhados
 const classesDesbravadores = [
@@ -240,25 +241,23 @@ export function ProgressoDesbravador() {
     ctx.font = '20px Arial'
     ctx.fillText(dataAtual, canvas.width / 2, 650)
 
-    // Logo/Selo
-    ctx.beginPath()
-    ctx.arc(canvas.width / 2, 720, 40, 0, 2 * Math.PI)
-    ctx.fillStyle = '#FFD700'
-    ctx.fill()
-    ctx.fillStyle = '#2E3192'
-    ctx.font = 'bold 30px Arial'
-    ctx.fillText('★', canvas.width / 2, 735)
-
-    // Download
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `certificado-${classe.titulo.toLowerCase()}-desbravador.png`
-      a.click()
-      URL.revokeObjectURL(url)
-      alert('Certificado gerado com sucesso!')
-    })
+    // Logo
+    const logoImg = new Image()
+    logoImg.src = logoCertificado
+    logoImg.onload = () => {
+      ctx.drawImage(logoImg, canvas.width / 2 - 50, 670, 100, 100)
+      
+      // Download
+      canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `certificado-${classe.titulo.toLowerCase()}-desbravador.png`
+        a.click()
+        URL.revokeObjectURL(url)
+        alert('Certificado gerado com sucesso!')
+      })
+    }
   }
 
   const classe = classesDesbravadores[classeAtual]

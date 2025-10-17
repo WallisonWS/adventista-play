@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Button } from '@/components/ui/button.jsx'
@@ -22,6 +22,57 @@ export function LessonViewer({ estudo, onClose }) {
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0)
   const [completedLessons, setCompletedLessons] = useState(new Set())
   const [showQuiz, setShowQuiz] = useState(false)
+  const [marcadores, setMarcadores] = useState({})
+  const [isBookmarked, setIsBookmarked] = useState(false)
+
+  // Carregar marcadores do localStorage
+  useEffect(() => {
+    const marcadoresSalvos = localStorage.getItem('marcadores-estudos')
+    if (marcadoresSalvos) {
+      const parsed = JSON.parse(marcadoresSalvos)
+      setMarcadores(parsed)
+      
+      // Verificar se a lição atual está marcada
+      const estudoKey = `${estudo.id}-${currentLessonIndex}`
+      setIsBookmarked(!!parsed[estudoKey])
+      
+      // Se há marcador para este estudo, ir para a lição marcada
+      const ultimaLicao = parsed[`ultimo-${estudo.id}`]
+      if (ultimaLicao !== undefined) {
+        setCurrentLessonIndex(ultimaLicao)
+      }
+    }
+  }, [])
+
+  // Atualizar status de marcador quando mudar de lição
+  useEffect(() => {
+    const estudoKey = `${estudo.id}-${currentLessonIndex}`
+    setIsBookmarked(!!marcadores[estudoKey])
+  }, [currentLessonIndex, marcadores, estudo.id])
+
+  // Função para adicionar/remover marcador
+  const toggleMarcador = () => {
+    const estudoKey = `${estudo.id}-${currentLessonIndex}`
+    const novosMarcadores = { ...marcadores }
+    
+    if (isBookmarked) {
+      delete novosMarcadores[estudoKey]
+    } else {
+      novosMarcadores[estudoKey] = {
+        estudoTitulo: estudo.titulo,
+        licaoNumero: currentLesson.numero,
+        licaoTitulo: currentLesson.titulo,
+        data: new Date().toISOString()
+      }
+    }
+    
+    // Salvar última lição acessada
+    novosMarcadores[`ultimo-${estudo.id}`] = currentLessonIndex
+    
+    setMarcadores(novosMarcadores)
+    setIsBookmarked(!isBookmarked)
+    localStorage.setItem('marcadores-estudos', JSON.stringify(novosMarcadores))
+  }
 
   if (!estudo || !estudo.licoes) return null
 
@@ -180,8 +231,16 @@ export function LessonViewer({ estudo, onClose }) {
                     <div className="flex items-center justify-between mb-2">
                       <Badge>Lição {currentLesson.numero}</Badge>
                       <div className="flex gap-2">
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Bookmark className="h-4 w-4" />
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-8 w-8"
+                          onClick={toggleMarcador}
+                          title={isBookmarked ? "Remover marcador" : "Adicionar marcador"}
+                        >
+                          <Bookmark 
+                            className={`h-4 w-4 ${isBookmarked ? 'fill-yellow-500 text-yellow-500' : ''}`} 
+                          />
                         </Button>
                         <Button variant="ghost" size="icon" className="h-8 w-8">
                           <Share2 className="h-4 w-4" />

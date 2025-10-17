@@ -161,6 +161,7 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/hinario" icon={<Music className="h-4 w-4" />}>Hinário</NavLink>
             <NavLink to="/biblia" icon={<BookText className="h-4 w-4" />}>Bíblia</NavLink>
             <NavLink to="/estudos" icon={<GraduationCap className="h-4 w-4" />}>Estudos</NavLink>
+            <NavLink to="/ellen-white" icon={<BookOpen className="h-4 w-4" />}>Ellen White</NavLink>
             <NavLink to="/planos" icon={<Calendar className="h-4 w-4" />}>Planos</NavLink>
             <NavLink to="/quiz" icon={<Trophy className="h-4 w-4" />}>Quiz</NavLink>
             <NavLink to="/projetos" icon={<Globe className="h-4 w-4" />}>Projetos</NavLink>
@@ -219,6 +220,7 @@ function Navigation({ user, onLogout }) {
               <Link to="/hinario" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Hinário</Link>
               <Link to="/biblia" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Bíblia</Link>
               <Link to="/estudos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Estudos</Link>
+              <Link to="/ellen-white" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Ellen White</Link>
               <Link to="/planos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Planos de Leitura</Link>
               <Link to="/quiz" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Quiz Bíblico</Link>
               <Link to="/projetos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Projetos</Link>

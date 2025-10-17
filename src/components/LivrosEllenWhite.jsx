@@ -17,6 +17,7 @@ import {
   FileText
 } from 'lucide-react'
 import { livrosEllenWhite } from '../data/livros-ellen-white-completo.js'
+import { grandeConflitoCapitulos } from '../data/grande-conflito-urls.js'
 
 // Importar capas dos livros
 import grandeConflitoImg from '../assets/livros-capas/grande-conflito.jpg'
@@ -78,71 +79,29 @@ const titulosCapitulos = {
   ]
 }
 
-// Gerar estrutura de capítulos com informação sobre onde ler
-const gerarCapitulosExemplo = (livroId, numCapitulos) => {
+// Gerar estrutura de capítulos com URLs oficiais
+const gerarCapitulosComUrls = (livroId, numCapitulos) => {
   const capitulos = []
   const titulos = titulosCapitulos[livroId] || []
   
+  // Se for O Grande Conflito, usar URLs oficiais
+  if (livroId === 'grande-conflito' && grandeConflitoCapitulos) {
+    return grandeConflitoCapitulos.map(cap => ({
+      numero: cap.numero,
+      titulo: cap.titulo,
+      url: cap.url,
+      temConteudo: true
+    }))
+  }
+  
+  // Para outros livros, manter estrutura antiga
   for (let i = 1; i <= numCapitulos; i++) {
     const titulo = titulos[i - 1] || `Capítulo ${i}`
     capitulos.push({
       numero: i,
       titulo: titulo,
-      conteudo: `
-# ${titulo}
-
-## 📖 Leia o Conteúdo Completo Online
-
-Os livros de Ellen G. White estão disponíveis **gratuitamente** nos seguintes sites oficiais:
-
-### 🌐 Fontes Oficiais Recomendadas:
-
-**1. Ellen G. White Writings (Site Oficial)**
-- 🔗 [egwwritings.org/pt](https://m.egwwritings.org/pt)
-- ✅ Conteúdo oficial e completo em português
-- ✅ Pesquisa avançada por tópicos
-- ✅ Disponível em múltiplos idiomas
-
-**2. Centro White Brasil**
-- 🔗 [centrowhite.org.br](https://centrowhite.org.br)
-- ✅ Livros em PDF para download
-- ✅ Recursos em português
-
-**3. Casa Publicadora Brasileira**
-- 🔗 [ellenwhite.cpb.com.br](https://ellenwhite.cpb.com.br)
-- ✅ Leitura online organizada por capítulos
-- ✅ Interface em português
-
----
-
-## 💡 Por que não está disponível aqui?
-
-Os livros de Ellen G. White são protegidos por direitos autorais e estão disponíveis gratuitamente através dos sites oficiais acima. Recomendamos acessar essas fontes para:
-
-- ✅ Garantir a **autenticidade** do texto
-- ✅ Ter acesso a **recursos adicionais** (notas, referências)
-- ✅ Apoiar o trabalho oficial de preservação
-- ✅ Acessar **atualizações** e correções
-
----
-
-## 📱 Como Ler?
-
-**Opção 1: Online**
-Acesse qualquer um dos links acima e navegue pelos capítulos.
-
-**Opção 2: Download**
-Baixe os PDFs completos no Centro White Brasil.
-
-**Opção 3: Aplicativo**
-Baixe o app oficial "Ellen White Writings" na App Store ou Google Play.
-
----
-
-## 🔖 Marcador Salvo
-
-Seu progresso de leitura está sendo salvo automaticamente neste aplicativo. Quando retornar, você continuará de onde parou!
-      `
+      url: null,
+      temConteudo: false
     })
   }
   
@@ -191,7 +150,7 @@ export function LivrosEllenWhite() {
   
   // Gerar capítulos para o livro selecionado
   const capitulos = livroSelecionado 
-    ? gerarCapitulosExemplo(livroSelecionado.id, livroSelecionado.capitulos)
+    ? gerarCapitulosComUrls(livroSelecionado.id, livroSelecionado.capitulos)
     : []
   
   const capituloAtualData = capitulos.find(c => c.numero === capituloAtual)
@@ -436,9 +395,61 @@ export function LivrosEllenWhite() {
                   transition={{ duration: 0.3 }}
                   className="prose max-w-none"
                 >
-                  <div className="whitespace-pre-line text-gray-700 leading-relaxed text-lg">
-                    {capituloAtualData?.conteudo}
-                  </div>
+                  {capituloAtualData?.temConteudo && capituloAtualData?.url ? (
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                        <p className="text-sm text-blue-800">
+                          📖 <strong>Conteúdo Oficial:</strong> Este capítulo é carregado diretamente do site oficial Ellen G. White Writings.
+                        </p>
+                      </div>
+                      <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ height: '600px' }}>
+                        <iframe 
+                          src={capituloAtualData.url}
+                          className="w-full h-full border-0"
+                          title={`${livroSelecionado.titulo} - ${capituloAtualData.titulo}`}
+                          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                        />
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => window.open(capituloAtualData.url, '_blank')}
+                          className="gap-2"
+                        >
+                          <FileText className="w-4 h-4" />
+                          Abrir em Nova Aba
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+                      <h3 className="text-lg font-semibold text-amber-900 mb-3">
+                        📖 Leia o Conteúdo Completo Online
+                      </h3>
+                      <p className="text-amber-800 mb-4">
+                        Este livro está disponível gratuitamente nos sites oficiais:
+                      </p>
+                      <div className="space-y-2">
+                        <a 
+                          href="https://m.egwwritings.org/pt" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="block text-blue-600 hover:text-blue-800 underline"
+                        >
+                          • Ellen G. White Writings (Site Oficial)
+                        </a>
+                        <a 
+                          href="https://centrowhite.org.br" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="block text-blue-600 hover:text-blue-800 underline"
+                        >
+                          • Centro White Brasil
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               </AnimatePresence>
 

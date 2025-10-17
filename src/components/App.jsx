@@ -53,6 +53,7 @@ import { CursosAdventistas } from './components/CursosAdventistas.jsx'
 import { DesbravadoresPage } from './components/DesbravadoresPage.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
+import { EllenWhitePage } from './components/EllenWhitePage.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -1465,7 +1466,7 @@ function App() {
             <Route path="/biblia/:livro/:capitulo" element={<BibliaPage />} />
             <Route path="/estudos" element={<EstudosPage />} />
             <Route path="/escola-sabatina" element={<EscolaSabatinaCompleta />} />
-            <Route path="/ellen-white" element={<LivrosEllenWhite />} />
+            <Route path="/ellen-white" element={<EllenWhitePage />} />
             <Route path="/dicionario" element={<DicionarioBiblico />} />
             <Route path="/devocionais-ellen" element={<DevocionaisEllenWhite />} />
             <Route path="/devocionais-diarios" element={<DevocionaisDiarios />} />

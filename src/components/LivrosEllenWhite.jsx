@@ -18,58 +18,130 @@ import {
 } from 'lucide-react'
 import { livrosEllenWhite } from '../data/livros-ellen-white-completo.js'
 
-// Dados de exemplo de capítulos para demonstração
+// Importar capas dos livros
+import grandeConflitoImg from '../assets/livros-capas/grande-conflito.jpg'
+import caminhoCristoImg from '../assets/livros-capas/caminho-cristo.jpg'
+import patriarcasProfetasImg from '../assets/livros-capas/patriarcas-profetas.png'
+import desejadoNacoesImg from '../assets/livros-capas/desejado-nacoes.png'
+import atosApostolosImg from '../assets/livros-capas/atos-apostolos.jpg'
+import educacaoImg from '../assets/livros-capas/educacao.jpg'
+
+// Mapeamento de IDs para imagens importadas
+const capasImportadas = {
+  1: grandeConflitoImg,
+  2: caminhoCristoImg,
+  3: patriarcasProfetasImg,
+  4: desejadoNacoesImg,
+  5: atosApostolosImg,
+  6: educacaoImg
+}
+
+// Mapeamento de títulos de capítulos por livro
+const titulosCapitulos = {
+  1: [ // O Grande Conflito
+    'Predito o Destino do Mundo',
+    'O Valor dos Mártires',
+    'Como Começaram as Trevas Morais',
+    'Um Povo que Guardou a Verdade Viva',
+    'A Reforma na Inglaterra',
+    'Dois Heróis da Idade Média',
+    'Lutero Diante da Dieta',
+    'Lutero e a Reforma na Suíça',
+    'Progresso da Reforma na Alemanha',
+    'Protesto dos Príncipes',
+    'A Reforma na França',
+    'A Reforma nos Países Baixos e Escandinávia',
+    'Mais Tarde, Reformadores Ingleses',
+    'As Trevas Espirituais do Século 18',
+    'A Bíblia e a Revolução Francesa',
+    'Os Peregrinos Buscam Liberdade',
+    'Arautos de uma Nova Era',
+    'Um Reformador Americano',
+    'Luz Através das Trevas',
+    'Um Grande Despertar Religioso'
+    // ... mais capítulos
+  ],
+  2: [ // Caminho a Cristo
+    'O Amor de Deus',
+    'O Pecador Necessita de Cristo',
+    'Arrependimento',
+    'Confissão',
+    'Consagração',
+    'Fé e Aceitação',
+    'O Teste do Discipulado',
+    'Crescendo em Cristo',
+    'O Trabalho e a Vida',
+    'O Conhecimento de Deus',
+    'O Privilégio de Orar',
+    'O Que Fazer com a Dúvida',
+    'Regozijando-se no Senhor'
+  ]
+}
+
+// Gerar estrutura de capítulos com informação sobre onde ler
 const gerarCapitulosExemplo = (livroId, numCapitulos) => {
   const capitulos = []
+  const titulos = titulosCapitulos[livroId] || []
   
   for (let i = 1; i <= numCapitulos; i++) {
+    const titulo = titulos[i - 1] || `Capítulo ${i}`
     capitulos.push({
       numero: i,
-      titulo: `Capítulo ${i}`,
+      titulo: titulo,
       conteudo: `
-# Capítulo ${i}
+# ${titulo}
 
-## Introdução
+## 📖 Leia o Conteúdo Completo Online
 
-Este é o conteúdo do capítulo ${i}. Em uma implementação completa, aqui estaria o texto integral do capítulo do livro.
+Os livros de Ellen G. White estão disponíveis **gratuitamente** nos seguintes sites oficiais:
 
-## Seção 1: Contexto Histórico
+### 🌐 Fontes Oficiais Recomendadas:
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+**1. Ellen G. White Writings (Site Oficial)**
+- 🔗 [egwwritings.org/pt](https://m.egwwritings.org/pt)
+- ✅ Conteúdo oficial e completo em português
+- ✅ Pesquisa avançada por tópicos
+- ✅ Disponível em múltiplos idiomas
 
-### Subsecção 1.1
+**2. Centro White Brasil**
+- 🔗 [centrowhite.org.br](https://centrowhite.org.br)
+- ✅ Livros em PDF para download
+- ✅ Recursos em português
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-
-### Subsecção 1.2
-
-Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-
-## Seção 2: Lições Espirituais
-
-Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-
-> "Esta é uma citação importante do texto original que merece destaque especial." - Ellen G. White
-
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-
-## Seção 3: Aplicação Prática
-
-Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-
-### Pontos-chave para reflexão:
-
-1. **Primeiro ponto**: Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam
-2. **Segundo ponto**: Nisi ut aliquid ex ea commodi consequatur
-3. **Terceiro ponto**: Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur
-
-## Conclusão
-
-Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+**3. Casa Publicadora Brasileira**
+- 🔗 [ellenwhite.cpb.com.br](https://ellenwhite.cpb.com.br)
+- ✅ Leitura online organizada por capítulos
+- ✅ Interface em português
 
 ---
 
-**Nota**: Este é um conteúdo de exemplo. O texto completo dos capítulos deve ser adicionado posteriormente.
+## 💡 Por que não está disponível aqui?
+
+Os livros de Ellen G. White são protegidos por direitos autorais e estão disponíveis gratuitamente através dos sites oficiais acima. Recomendamos acessar essas fontes para:
+
+- ✅ Garantir a **autenticidade** do texto
+- ✅ Ter acesso a **recursos adicionais** (notas, referências)
+- ✅ Apoiar o trabalho oficial de preservação
+- ✅ Acessar **atualizações** e correções
+
+---
+
+## 📱 Como Ler?
+
+**Opção 1: Online**
+Acesse qualquer um dos links acima e navegue pelos capítulos.
+
+**Opção 2: Download**
+Baixe os PDFs completos no Centro White Brasil.
+
+**Opção 3: Aplicativo**
+Baixe o app oficial "Ellen White Writings" na App Store ou Google Play.
+
+---
+
+## 🔖 Marcador Salvo
+
+Seu progresso de leitura está sendo salvo automaticamente neste aplicativo. Quando retornar, você continuará de onde parou!
       `
     })
   }
@@ -190,9 +262,13 @@ export function LivrosEllenWhite() {
                   >
                     <div className="relative h-80 overflow-hidden">
                       <img 
-                        src={livro.capa} 
+                        src={capasImportadas[livro.id] || livro.capa} 
                         alt={livro.titulo}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                          e.target.parentElement.style.backgroundColor = '#f3f4f6'
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                       

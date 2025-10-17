@@ -50,6 +50,8 @@ import { DevocionaisEllenWhite } from './components/DevocionaisEllenWhite.jsx'
 import { CompartilharOracao } from './components/CompartilharOracao.jsx'
 import { CursosAdventistas } from './components/CursosAdventistas.jsx'
 import { DesbravadoresPage } from './components/DesbravadoresPage.jsx'
+import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
+import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -1470,6 +1472,8 @@ function App() {
             <Route path="/projetos" element={<ProjetosPage />} />
             <Route path="/cursos" element={<CursosAdventistas />} />
             <Route path="/desbravadores" element={<DesbravadoresPage />} />
+            <Route path="/progresso-desbravador" element={<ProgressoDesbravador />} />
+            <Route path="/certificado" element={<CertificadoCurso />} />
             <Route path="/oracao" element={<CompartilharOracao />} />
             <Route path="/contato" element={<ContatoPage />} />
             <Route path="/perfil" element={<PerfilPage />} />

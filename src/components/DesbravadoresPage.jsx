@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import logoDesbravadores from '../assets/logo-desbravadores.png'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
@@ -275,7 +277,7 @@ export function DesbravadoresPage() {
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <Shield className="h-24 w-24 text-primary" />
+            <img src={logoDesbravadores} alt="Logo Desbravadores" className="h-32 w-32 object-contain" />
           </motion.div>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             <span className="text-primary">Desbravadores</span>
@@ -283,13 +285,19 @@ export function DesbravadoresPage() {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             A mensagem do advento a todo mundo nesta geração
           </p>
-          <div className="bg-primary/10 border-2 border-primary/20 rounded-lg p-6 max-w-2xl mx-auto">
+          <div className="bg-primary/10 border-2 border-primary/20 rounded-lg p-6 max-w-2xl mx-auto mb-6">
             <h3 className="font-bold text-lg mb-3">Voto do Desbravador</h3>
             <p className="italic">
               "Pela graça de Deus, serei puro, bondoso e leal. Guardarei a Lei do Desbravador, 
               serei servo de Deus e amigo de todos."
             </p>
           </div>
+          <Link to="/progresso-desbravador">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              <Trophy className="h-5 w-5 mr-2" />
+              Acompanhar Meu Progresso
+            </Button>
+          </Link>
         </motion.div>
 
         {/* Tabs */}

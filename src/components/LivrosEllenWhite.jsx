@@ -18,6 +18,11 @@ import {
 } from 'lucide-react'
 import { livrosEllenWhite } from '../data/livros-ellen-white-completo.js'
 import { grandeConflitoCapitulos } from '../data/grande-conflito-urls.js'
+import { caminhoCristoCapitulos } from '../data/caminho-cristo-urls.js'
+import { patriarcasProfetasCapitulos } from '../data/patriarcas-profetas-urls.js'
+import { desejadoNacoesCapitulos } from '../data/desejado-nacoes-urls.js'
+import { atosApostolosCapitulos } from '../data/atos-apostolos-urls.js'
+import { parabolasJesusCapitulos } from '../data/parabolas-jesus-urls.js'
 
 // Importar capas dos livros
 import grandeConflitoImg from '../assets/livros-capas/grande-conflito.jpg'
@@ -81,12 +86,20 @@ const titulosCapitulos = {
 
 // Gerar estrutura de capítulos com URLs oficiais
 const gerarCapitulosComUrls = (livroId, numCapitulos) => {
-  const capitulos = []
-  const titulos = titulosCapitulos[livroId] || []
+  // Mapeamento de IDs para arrays de capítulos
+  const capitulosPorLivro = {
+    'grande-conflito': grandeConflitoCapitulos,
+    'caminho-cristo': caminhoCristoCapitulos,
+    'patriarcas-profetas': patriarcasProfetasCapitulos,
+    'desejado-nacoes': desejadoNacoesCapitulos,
+    'atos-apostolos': atosApostolosCapitulos,
+    'parabolas-jesus': parabolasJesusCapitulos
+  }
   
-  // Se for O Grande Conflito, usar URLs oficiais
-  if (livroId === 'grande-conflito' && grandeConflitoCapitulos) {
-    return grandeConflitoCapitulos.map(cap => ({
+  // Se o livro tiver URLs oficiais, usar elas
+  const capitulosOficiais = capitulosPorLivro[livroId]
+  if (capitulosOficiais) {
+    return capitulosOficiais.map(cap => ({
       numero: cap.numero,
       titulo: cap.titulo,
       url: cap.url,
@@ -94,7 +107,10 @@ const gerarCapitulosComUrls = (livroId, numCapitulos) => {
     }))
   }
   
-  // Para outros livros, manter estrutura antiga
+  // Para outros livros sem URLs, manter estrutura antiga
+  const capitulos = []
+  const titulos = titulosCapitulos[livroId] || []
+  
   for (let i = 1; i <= numCapitulos; i++) {
     const titulo = titulos[i - 1] || `Capítulo ${i}`
     capitulos.push({

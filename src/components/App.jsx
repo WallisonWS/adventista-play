@@ -63,7 +63,7 @@ import { personagensBiblicos } from './data/personagens-biblicos.js'
 import { planosLeitura } from './data/planos-leitura.js'
 
 // Importar imagens
-import logo from './assets/logo-adventista-play.png'
+import logo from '../logo-sem-fundo.png'
 import mission1 from './assets/06ODUmgeXDAv.jpg'
 import mission2 from './assets/ceVxJtPGZzDg.jpeg'
 import mission3 from './assets/1jBZXZ4E8jtT.jpg'
@@ -350,7 +350,7 @@ function HomePage() {
       {/* Features Grid */}
       <section className="py-16 px-4">
         <motion.div 
-          className="container mx-auto"
+          className="container mx-auto max-w-7xl"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logoDesbravadores from '../assets/logo-desbravadores.png'
+import logoDesbravadores from '../assets/logo-desbravadores-pt.png'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog.jsx'
 import { 
   Award, 
   BookOpen, 
@@ -268,6 +269,8 @@ const estudosBiblicos = [
 
 export function DesbravadoresPage() {
   const [classeSelecionada, setClasseSelecionada] = useState(null)
+  const [especialidadeSelecionada, setEspecialidadeSelecionada] = useState(null)
+  const [estudoSelecionado, setEstudoSelecionado] = useState(null)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted py-12 px-4">
@@ -403,7 +406,7 @@ export function DesbravadoresPage() {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+                    <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setEspecialidadeSelecionada(esp)}>
                       <CardContent className="pt-6 space-y-3">
                         <div className="flex justify-center">
                           <div className="p-4 bg-primary/10 rounded-full">
@@ -463,7 +466,7 @@ export function DesbravadoresPage() {
                     <CardContent>
                       <div className="flex items-center justify-between">
                         <Badge>{estudo.licoes} lições</Badge>
-                        <Button size="sm">
+                        <Button size="sm" onClick={() => setEstudoSelecionado(estudo)}>
                           Iniciar Estudo
                           <ChevronRight className="h-4 w-4 ml-1" />
                         </Button>
@@ -515,6 +518,117 @@ export function DesbravadoresPage() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Modal de Detalhes da Classe */}
+      <Dialog open={!!classeSelecionada} onOpenChange={() => setClasseSelecionada(null)}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">{classeSelecionada?.titulo} - {classeSelecionada?.nivel}</DialogTitle>
+            <DialogDescription>{classeSelecionada?.descricao}</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-6">
+            <div>
+              <Badge>{classeSelecionada?.idade}</Badge>
+            </div>
+            
+            <div>
+              <h3 className="font-bold text-lg mb-3">Requisitos Básicos</h3>
+              <ul className="space-y-2">
+                {classeSelecionada?.requisitos.map((req, i) => (
+                  <li key={i} className="flex items-start space-x-2">
+                    <ChevronRight className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span>{req}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-3">Áreas de Estudo</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {classeSelecionada?.areas.map((area, i) => (
+                  <Card key={i}>
+                    <CardContent className="pt-4">
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold">{area.nome}</span>
+                        <Badge variant="outline">{area.atividades} atividades</Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <Link to="/progresso-desbravador" className="flex-1">
+                <Button className="w-full">
+                  <Trophy className="h-4 w-4 mr-2" />
+                  Iniciar Progresso
+                </Button>
+              </Link>
+              <Button variant="outline" onClick={() => setClasseSelecionada(null)}>Fechar</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal de Especialidade */}
+      <Dialog open={!!especialidadeSelecionada} onOpenChange={() => setEspecialidadeSelecionada(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{especialidadeSelecionada?.nome}</DialogTitle>
+            <DialogDescription>Categoria: {especialidadeSelecionada?.categoria}</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              Esta especialidade faz parte da categoria <strong>{especialidadeSelecionada?.categoria}</strong> e é uma ótima oportunidade para desenvolver novas habilidades e conhecimentos.
+            </p>
+            <div className="bg-primary/5 p-4 rounded-lg">
+              <p className="text-sm">
+                📌 Para obter esta especialidade, você precisará completar uma série de requisitos práticos e teóricos sob a orientação de um instrutor qualificado.
+              </p>
+            </div>
+            <Button className="w-full" onClick={() => setEspecialidadeSelecionada(null)}>
+              Entendido
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal de Estudo */}
+      <Dialog open={!!estudoSelecionado} onOpenChange={() => setEstudoSelecionado(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{estudoSelecionado?.titulo}</DialogTitle>
+            <DialogDescription>{estudoSelecionado?.descricao}</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-primary" />
+              <span className="font-semibold">{estudoSelecionado?.licoes} lições disponíveis</span>
+            </div>
+            <div className="bg-primary/5 p-4 rounded-lg">
+              <p className="text-sm">
+                📖 Este estudo bíblico foi desenvolvido especialmente para Desbravadores, com linguagem acessível e aplicações práticas para o dia a dia.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">
+                O conteúdo completo estará disponível em breve. Enquanto isso, você pode explorar outros recursos da plataforma.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Link to="/estudos" className="flex-1">
+                <Button className="w-full">
+                  <BookOpen className="h-4 w-4 mr-2" />
+                  Ver Estudos Disponíveis
+                </Button>
+              </Link>
+              <Button variant="outline" onClick={() => setEstudoSelecionado(null)}>Fechar</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

@@ -206,26 +206,26 @@ function Navigation({ user, onLogout }) {
               exit={{ height: 0, opacity: 0 }}
               className="md:hidden pb-4 space-y-2 overflow-hidden"
             >
-              <Link to="/" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Início</Link>
-              <Link to="/devocional" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Devocional</Link>
-              <Link to="/hinario" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Hinário</Link>
-              <Link to="/biblia" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Bíblia</Link>
-              <Link to="/estudos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Estudos</Link>
-              <Link to="/ellen-white" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Ellen White</Link>
-              <Link to="/planos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Planos de Leitura</Link>
-              <Link to="/quiz" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Quiz Bíblico</Link>
-              <Link to="/projetos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Projetos</Link>
-              <Link to="/cursos" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Cursos</Link>
-              <Link to="/desbravadores" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Desbravadores</Link>
-              <Link to="/oracao" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Oração</Link>
-              <Link to="/contato" className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Contato</Link>
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Início</Link>
+              <Link to="/devocional" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Devocional</Link>
+              <Link to="/hinario" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Hinário</Link>
+              <Link to="/biblia" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Bíblia</Link>
+              <Link to="/estudos" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Estudos</Link>
+              <Link to="/ellen-white" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Ellen White</Link>
+              <Link to="/planos" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Planos de Leitura</Link>
+              <Link to="/quiz" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Quiz Bíblico</Link>
+              <Link to="/projetos" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Projetos</Link>
+              <Link to="/cursos" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Cursos</Link>
+              <Link to="/desbravadores" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Desbravadores</Link>
+              <Link to="/oracao" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Oração</Link>
+              <Link to="/contato" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Contato</Link>
               {user ? (
                 <>
                   <div className="py-2 text-primary font-semibold">{user.nome}</div>
                   <Button variant="outline" size="sm" onClick={onLogout} className="w-full">Sair</Button>
                 </>
               ) : (
-                <Link to="/login" className="block">
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="block">
                   <Button variant="outline" size="sm" className="w-full">Entrar</Button>
                 </Link>
               )}

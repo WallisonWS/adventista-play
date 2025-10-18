@@ -413,36 +413,102 @@ export function DesbravadoresPage() {
           </TabsContent>
 
           {/* Tab: Especialidades */}
-          <TabsContent value="especialidades" className="space-y-6" ref={especialidadesRef}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {especialidades.map((esp, index) => {
-                const Icone = esp.icone
-                return (
-                  <motion.div
-                    key={esp.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Card className="text-center hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary" onClick={() => setEspecialidadeSelecionada(esp)}>
-                      <CardContent className="pt-6 pb-6 space-y-3">
-                        <div className="flex justify-center">
-                          <motion.div 
-                            className={`p-5 ${esp.cor} rounded-full shadow-lg`}
-                            whileHover={{ rotate: 360, scale: 1.1 }}
-                            transition={{ duration: 0.5 }}
+          <TabsContent value="especialidades" className="space-y-8" ref={especialidadesRef}>
+            {/* Banner de Especialidades com Imagem Oficial */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/90 via-primary to-primary/80 text-white p-8 md:p-12 shadow-2xl"
+            >
+              <div className="absolute inset-0 bg-[url('/src/assets/especialidades-oficiais-1.jpg')] bg-cover bg-center opacity-20"></div>
+              <div className="relative z-10">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring" }}
+                >
+                  <Trophy className="h-16 w-16 mb-4 text-yellow-300" />
+                </motion.div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Especialidades de Desbravadores</h2>
+                <p className="text-lg md:text-xl mb-6 opacity-90 max-w-2xl">
+                  Desenvolva habilidades incríveis e conquiste especialidades oficiais! Mais de 300 opções em 8 categorias diferentes.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Badge className="bg-white/20 hover:bg-white/30 text-white border-white/30 text-sm py-2 px-4">
+                    <Star className="h-4 w-4 mr-2" />
+                    300+ Especialidades
+                  </Badge>
+                  <Badge className="bg-white/20 hover:bg-white/30 text-white border-white/30 text-sm py-2 px-4">
+                    <Award className="h-4 w-4 mr-2" />
+                    8 Categorias
+                  </Badge>
+                  <Badge className="bg-white/20 hover:bg-white/30 text-white border-white/30 text-sm py-2 px-4">
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    Certificado Oficial
+                  </Badge>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Grid de Especialidades Populares */}
+            <div>
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <Sparkles className="h-7 w-7 text-primary" />
+                Especialidades Mais Populares
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                {especialidades.map((esp, index) => {
+                  const Icone = esp.icone
+                  return (
+                    <motion.div
+                      key={esp.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileHover={{ y: -8, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Card 
+                        className="text-center hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 hover:border-primary group overflow-hidden h-full"
+                        onClick={() => setEspecialidadeSelecionada(esp)}
+                      >
+                        <CardContent className="pt-6 pb-4 space-y-3 relative">
+                          {/* Efeito de brilho no hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          
+                          <div className="flex justify-center relative">
+                            <motion.div 
+                              className={`p-4 ${esp.cor} rounded-full shadow-lg relative overflow-hidden`}
+                              whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.15 }}
+                              transition={{ duration: 0.6 }}
+                            >
+                              {/* Efeito de pulsação */}
+                              <motion.div
+                                className={`absolute inset-0 ${esp.cor} rounded-full`}
+                                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                              />
+                              <Icone className="h-8 w-8 text-white relative z-10" />
+                            </motion.div>
+                          </div>
+                          
+                          <h3 className="font-bold text-sm md:text-base group-hover:text-primary transition-colors">{esp.nome}</h3>
+                          <Badge variant="secondary" className="text-xs">{esp.categoria}</Badge>
+                          
+                          {/* Indicador de clique */}
+                          <motion.div
+                            className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                            initial={{ opacity: 0 }}
+                            whileHover={{ opacity: 1 }}
                           >
-                            <Icone className="h-10 w-10 text-white" />
+                            <ChevronRight className="h-4 w-4 mx-auto" />
                           </motion.div>
-                        </div>
-                        <h3 className="font-bold text-lg">{esp.nome}</h3>
-                        <Badge variant="secondary" className="text-xs">{esp.categoria}</Badge>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                )
-              })}
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  )
+                })}
+              </div>
             </div>
 
             {/* Card Especial: Nós e Amarras */}

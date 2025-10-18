@@ -84,26 +84,114 @@ export function VersiculoDoDia({ compact = false }) {
     }
   }
 
+  const generateVerseImage = async () => {
+    return new Promise((resolve, reject) => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1080;
+        canvas.height = 1920;
+        const ctx = canvas.getContext('2d');
+
+        // Gradiente de fundo (azul para roxo)
+        const gradient = ctx.createLinearGradient(0, 0, 0, 1920);
+        gradient.addColorStop(0, '#1e3a8a');
+        gradient.addColorStop(0.5, '#7c3aed');
+        gradient.addColorStop(1, '#2563eb');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Overlay
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Título
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 60px Arial, sans-serif';
+        ctx.fillText('Versículo do Dia', 540, 200);
+
+        // Linha decorativa
+        ctx.strokeStyle = '#7BB342';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(340, 240);
+        ctx.lineTo(740, 240);
+        ctx.stroke();
+
+        // Texto do versículo (GRANDE)
+        ctx.font = 'bold 56px Arial, sans-serif';
+        const maxWidth = 900;
+        const lineHeight = 80;
+        const words = versiculo.texto.split(' ');
+        let line = '';
+        let y = 500;
+
+        // Aspas de abertura
+        ctx.font = 'bold 80px Georgia, serif';
+        ctx.fillStyle = '#7BB342';
+        ctx.fillText('\u201C', 540, y - 60);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 56px Arial, sans-serif';
+
+        // Quebrar texto
+        for (let i = 0; i < words.length; i++) {
+          const testLine = line + words[i] + ' ';
+          const metrics = ctx.measureText(testLine);
+          
+          if (metrics.width > maxWidth && i > 0) {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillText(line, 542, y + 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(line, 540, y);
+            line = words[i] + ' ';
+            y += lineHeight;
+          } else {
+            line = testLine;
+          }
+        }
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillText(line, 542, y + 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(line, 540, y);
+
+        // Aspas de fechamento
+        ctx.font = 'bold 80px Georgia, serif';
+        ctx.fillStyle = '#7BB342';
+        ctx.fillText('\u201D', 540, y + 100);
+
+        // Referência
+        y += 200;
+        ctx.font = 'bold 52px Arial, sans-serif';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillText(versiculo.referencia, 542, y + 2);
+        ctx.fillStyle = '#7BB342';
+        ctx.fillText(versiculo.referencia, 540, y);
+
+        // Marca d'água
+        ctx.font = 'bold 40px Arial, sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillText('www.adventistaplay.online', 540, 1800);
+
+        canvas.toBlob((blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('Erro ao gerar imagem'));
+          }
+        }, 'image/jpeg', 0.95);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
   const handleCompartilharWhatsApp = async () => {
     if (!versiculo) return;
     
     try {
-      // Gerar imagem com o versículo
-      const response = await fetch('/api/generate-verse-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          texto: versiculo.texto,
-          referencia: versiculo.referencia
-        })
-      });
-
-      if (!response.ok) throw new Error('Erro ao gerar imagem');
-
-      const blob = await response.blob();
+      const blob = await generateVerseImage();
       const file = new File([blob], 'versiculo.jpg', { type: 'image/jpeg' });
 
-      // Tentar compartilhar via Web Share API com imagem
       if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
@@ -111,11 +199,9 @@ export function VersiculoDoDia({ compact = false }) {
           text: `*Versículo do Dia* 📖\n\n${versiculo.referencia}\n\nCompartilhado via Adventista Play`
         });
       } else {
-        // Fallback: abrir WhatsApp com texto apenas
         const texto = encodeURIComponent(`*Versículo do Dia* 📖\n\n"${versiculo.texto}"\n\n_${versiculo.referencia}_\n\nCompartilhado via Adventista Play`);
         window.open(`https://wa.me/?text=${texto}`, '_blank');
         
-        // Fazer download da imagem para o usuário anexar manualmente
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -127,7 +213,6 @@ export function VersiculoDoDia({ compact = false }) {
       }
     } catch (error) {
       console.error('Erro:', error);
-      // Fallback em caso de erro: compartilhar apenas texto
       const texto = encodeURIComponent(`*Versículo do Dia* 📖\n\n"${versiculo.texto}"\n\n_${versiculo.referencia}_\n\nCompartilhado via Adventista Play`);
       window.open(`https://wa.me/?text=${texto}`, '_blank');
     }
@@ -137,22 +222,9 @@ export function VersiculoDoDia({ compact = false }) {
     if (!versiculo) return;
     
     try {
-      // Gerar imagem com o versículo
-      const response = await fetch('/api/generate-verse-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          texto: versiculo.texto,
-          referencia: versiculo.referencia
-        })
-      });
-
-      if (!response.ok) throw new Error('Erro ao gerar imagem');
-
-      const blob = await response.blob();
+      const blob = await generateVerseImage();
       const file = new File([blob], 'versiculo.jpg', { type: 'image/jpeg' });
 
-      // Tentar compartilhar via Web Share API (funciona no mobile)
       if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
@@ -160,7 +232,6 @@ export function VersiculoDoDia({ compact = false }) {
           text: `${versiculo.referencia} - Adventista Play`
         });
       } else {
-        // Fallback: fazer download da imagem
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;

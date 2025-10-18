@@ -142,18 +142,8 @@ function Navigation({ user, onLogout }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-4 group ml-2">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <img src={logo} alt="Adventista Play" className="h-14 md:h-16 w-auto" />
-            </motion.div>
-            <span className="text-xl md:text-2xl font-bold group-hover:opacity-80 transition-opacity ml-2">
-              <span style={{ color: '#2E3192' }}>Adventista</span>{' '}
-              <span style={{ color: '#7CB342' }}>Play</span>
-            </span>
-          </Link>
+          {/* Logo e nome removidos do cabeçalho */}
+          <div className="w-4"></div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">

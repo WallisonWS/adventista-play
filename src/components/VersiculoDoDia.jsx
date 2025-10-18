@@ -84,19 +84,96 @@ export function VersiculoDoDia({ compact = false }) {
     }
   }
 
-  const handleCompartilharWhatsApp = () => {
-    if (versiculo) {
-      const texto = encodeURIComponent(`*Versículo do Dia* 📖\n\n"${versiculo.texto}"\n\n_${versiculo.referencia}_\n\nCompartilhado via Adventista Play`)
-      window.open(`https://wa.me/?text=${texto}`, '_blank')
+  const handleCompartilharWhatsApp = async () => {
+    if (!versiculo) return;
+    
+    try {
+      // Gerar imagem com o versículo
+      const response = await fetch('/api/generate-verse-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          texto: versiculo.texto,
+          referencia: versiculo.referencia
+        })
+      });
+
+      if (!response.ok) throw new Error('Erro ao gerar imagem');
+
+      const blob = await response.blob();
+      const file = new File([blob], 'versiculo.jpg', { type: 'image/jpeg' });
+
+      // Tentar compartilhar via Web Share API com imagem
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: 'Versículo do Dia',
+          text: `*Versículo do Dia* 📖\n\n${versiculo.referencia}\n\nCompartilhado via Adventista Play`
+        });
+      } else {
+        // Fallback: abrir WhatsApp com texto apenas
+        const texto = encodeURIComponent(`*Versículo do Dia* 📖\n\n"${versiculo.texto}"\n\n_${versiculo.referencia}_\n\nCompartilhado via Adventista Play`);
+        window.open(`https://wa.me/?text=${texto}`, '_blank');
+        
+        // Fazer download da imagem para o usuário anexar manualmente
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `versiculo-${Date.now()}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      // Fallback em caso de erro: compartilhar apenas texto
+      const texto = encodeURIComponent(`*Versículo do Dia* 📖\n\n"${versiculo.texto}"\n\n_${versiculo.referencia}_\n\nCompartilhado via Adventista Play`);
+      window.open(`https://wa.me/?text=${texto}`, '_blank');
     }
   }
 
-  const handleCompartilharInstagram = () => {
-    if (versiculo) {
-      // Copiar o texto para que o usuário possa colar no Instagram
-      const texto = `"${versiculo.texto}"\n\n${versiculo.referencia}\n\n#VersiculoDoDia #AdventistaPlay`
-      navigator.clipboard.writeText(texto)
-      alert('✅ Texto copiado! Cole no Instagram Stories e adicione uma imagem de fundo.')
+  const handleCompartilharInstagram = async () => {
+    if (!versiculo) return;
+    
+    try {
+      // Gerar imagem com o versículo
+      const response = await fetch('/api/generate-verse-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          texto: versiculo.texto,
+          referencia: versiculo.referencia
+        })
+      });
+
+      if (!response.ok) throw new Error('Erro ao gerar imagem');
+
+      const blob = await response.blob();
+      const file = new File([blob], 'versiculo.jpg', { type: 'image/jpeg' });
+
+      // Tentar compartilhar via Web Share API (funciona no mobile)
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: 'Versículo do Dia',
+          text: `${versiculo.referencia} - Adventista Play`
+        });
+      } else {
+        // Fallback: fazer download da imagem
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `versiculo-${Date.now()}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert('✅ Imagem baixada! Agora é só postar no Instagram Stories!');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert('❌ Erro ao gerar imagem. Tente novamente.');
     }
   }
 
@@ -131,10 +208,10 @@ export function VersiculoDoDia({ compact = false }) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
+      <Card className="bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 shadow-xl">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-xl md:text-2xl">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 3 }}
@@ -162,42 +239,42 @@ export function VersiculoDoDia({ compact = false }) {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-3"
           >
-            <div className="bg-white/50 dark:bg-black/20 p-4 rounded-lg">
-              <p className="text-lg italic leading-relaxed text-center">
+            <div className="bg-white/50 dark:bg-black/20 p-6 md:p-8 rounded-xl shadow-inner">
+              <p className="text-base md:text-lg italic leading-relaxed text-center font-medium">
                 "{versiculo.texto}"
               </p>
             </div>
             
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-bold text-primary">{versiculo.referencia}</p>
-                <p className="text-sm text-muted-foreground">Tema: {versiculo.tema}</p>
+                <p className="font-bold text-primary text-lg md:text-xl">{versiculo.referencia}</p>
+                <p className="text-sm md:text-base text-muted-foreground">Tema: {versiculo.tema}</p>
               </div>
             </div>
           </motion.div>
 
           <div className="space-y-3">
-            <div className="flex gap-2">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
+            <div className="flex flex-wrap gap-2">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1 min-w-[100px]">
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="default"
                   onClick={handleCopiar}
-                  className="w-full"
+                  className="w-full h-11 text-sm md:text-base"
                 >
-                  <Copy className="h-4 w-4 mr-2" />
+                  <Copy className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                   {copiado ? 'Copiado!' : 'Copiar'}
                 </Button>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1 min-w-[120px]">
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="default"
                   onClick={handleCompartilhar}
-                  className="w-full"
+                  className="w-full h-11 text-sm md:text-base"
                 >
-                  <Share2 className="h-4 w-4 mr-2" />
+                  <Share2 className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                   Compartilhar
                 </Button>
               </motion.div>
@@ -205,41 +282,42 @@ export function VersiculoDoDia({ compact = false }) {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   variant="outline"
-                  size="sm"
+                  size="default"
                   onClick={handleNovoVersiculo}
+                  className="h-11 px-4"
                 >
-                  <RefreshCw className="h-4 w-4" />
+                  <RefreshCw className="h-4 w-4 md:h-5 md:w-5" />
                 </Button>
               </motion.div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
                 <Button
-                  size="sm"
+                  size="default"
                   onClick={handleCompartilharWhatsApp}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+                  className="w-full h-12 bg-green-600 hover:bg-green-700 text-white shadow-lg text-sm md:text-base font-semibold"
                 >
-                  <MessageCircle className="h-4 w-4 mr-2" />
+                  <MessageCircle className="h-5 w-5 mr-2" />
                   WhatsApp
                 </Button>
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
                 <Button
-                  size="sm"
+                  size="default"
                   onClick={handleCompartilharInstagram}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                  className="w-full h-12 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg text-sm md:text-base font-semibold"
                 >
-                  <Instagram className="h-4 w-4 mr-2" />
+                  <Instagram className="h-5 w-5 mr-2" />
                   Instagram Stories
                 </Button>
               </motion.div>
             </div>
           </div>
 
-          <p className="text-xs text-center text-muted-foreground">
-            Compartilhe este versículo com alguém hoje!
+          <p className="text-xs md:text-sm text-center text-muted-foreground mt-2">
+            📸 Compartilhe este versículo com uma imagem linda!
           </p>
         </CardContent>
       </Card>

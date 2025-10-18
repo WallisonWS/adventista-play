@@ -142,8 +142,17 @@ function Navigation({ user, onLogout }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo e nome removidos do cabeçalho */}
-          <div className="w-4"></div>
+          {/* Logo no cabeçalho */}
+          <Link to="/" className="flex items-center">
+            <motion.img 
+              src="/src/assets/logo-icon.png" 
+              alt="Adventista Play" 
+              className="h-12 w-12 cursor-pointer"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            />
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
@@ -1492,18 +1501,22 @@ function App() {
         >
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              {/* Sobre */}
+              {/* Sobre com Logo */}
               <div>
-                <div className="flex items-center space-x-2 mb-4">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <BookOpen className="h-6 w-6" />
-                  </motion.div>
-                  <span className="font-bold text-xl">Portal Adventista</span>
-                </div>
-                <p className="text-sm opacity-80">
+                <Link to="/" className="flex items-center space-x-3 mb-4 group">
+                  <motion.img 
+                    src="/src/assets/logo-icon.png" 
+                    alt="Adventista Play" 
+                    className="h-16 w-16"
+                    whileHover={{ scale: 1.1, rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  <div>
+                    <span className="font-bold text-2xl block group-hover:text-yellow-300 transition-colors">Adventista Play</span>
+                    <span className="text-xs opacity-70">Portal Adventista</span>
+                  </div>
+                </Link>
+                <p className="text-sm opacity-80 mt-2">
                   Fortalecendo a fé e conectando corações com a Palavra de Deus
                 </p>
               </div>

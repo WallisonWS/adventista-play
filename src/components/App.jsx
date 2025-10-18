@@ -144,14 +144,8 @@ function Navigation({ user, onLogout }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center group ml-2">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <img src={logo} alt="Adventista Play" className="h-12 md:h-14 w-auto" />
-            </motion.div>
-          </Link>
+          {/* Logo removida do cabeçalho */}
+          <div className="w-4"></div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">

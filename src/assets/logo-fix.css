@@ -1,0 +1,31 @@
+/* Forçar logo sem fundo cinza/branco */
+.site-logo, 
+.logo-box, 
+.site-branding, 
+.header-logo,
+img[alt="Adventista Play"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Força no próprio <img> */
+.site-logo img, 
+.logo-box img, 
+.custom-logo-link img,
+img[src*="logo"] {
+  background: none !important;
+  background-color: transparent !important;
+  display: inline-block;
+  object-fit: contain;
+}
+
+/* Remove qualquer container com fundo */
+a[href="/"] > div,
+.flex.items-center.group > div {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+

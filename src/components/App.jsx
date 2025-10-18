@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Analytics } from '@vercel/analytics/react'
+import '../assets/logo-fix.css'
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
@@ -64,7 +65,7 @@ import { personagensBiblicos } from './data/personagens-biblicos.js'
 import { planosLeitura } from './data/planos-leitura.js'
 
 // Importar imagens
-import logo from '../logo-icon-only.png'
+import logo from '../assets/logo-adventista-play-nova.png'
 import mission1 from './assets/06ODUmgeXDAv.jpg'
 import mission2 from './assets/ceVxJtPGZzDg.jpeg'
 import mission3 from './assets/1jBZXZ4E8jtT.jpg'

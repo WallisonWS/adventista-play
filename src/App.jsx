@@ -295,20 +295,24 @@ function HomePage() {
             transition={{ delay: 0.6 }}
           >
             <Link to="/devocional">
-              <Button size="lg" className="text-lg group">
-                Devocional do Dia
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                >
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </motion.div>
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" className="text-lg group shadow-lg hover:shadow-xl">
+                  Devocional do Dia
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </motion.div>
+                </Button>
+              </motion.div>
             </Link>
             <Link to="/estudos">
-              <Button size="lg" variant="outline" className="text-lg">
-                Explorar Estudos
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" variant="outline" className="text-lg shadow-lg hover:shadow-xl">
+                  Explorar Estudos
+                </Button>
+              </motion.div>
             </Link>
           </motion.div>
         </motion.div>
@@ -451,18 +455,22 @@ function HomePage() {
 function FeatureCard({ to, icon, title, description, color }) {
   return (
     <Link to={to}>
-      <motion.div variants={fadeInUp}>
-        <Card className={`hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full bg-gradient-to-br ${color}`}>
+      <motion.div 
+        variants={fadeInUp}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <Card className={`hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer h-full bg-gradient-to-br ${color} border-2 hover:border-primary/50`}>
           <CardHeader>
             <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="mb-4"
             >
               {icon}
             </motion.div>
-            <CardTitle>{title}</CardTitle>
-            <CardDescription>{description}</CardDescription>
+            <CardTitle className="text-xl">{title}</CardTitle>
+            <CardDescription className="text-base">{description}</CardDescription>
           </CardHeader>
         </Card>
       </motion.div>

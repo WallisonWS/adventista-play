@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import logoDesbravadores from '../assets/logo-desbravadores-pt.png'
 import { motion } from 'framer-motion'
@@ -169,16 +169,20 @@ const cursosDesbravadores = [
   }
 ]
 
-// Especialidades populares
+// Especialidades populares com logos oficiais
 const especialidades = [
-  { id: 1, nome: "Acampamento", categoria: "Atividades Recreativas", icone: Tent },
-  { id: 2, nome: "Primeiros Socorros", categoria: "Habilidades Domésticas", icone: Heart },
-  { id: 3, nome: "Nós e Amarras", categoria: "Atividades Recreativas", icone: Target },
-  { id: 4, nome: "Natação", categoria: "Atividades Recreativas", icone: Mountain },
-  { id: 5, nome: "Cozinha", categoria: "Habilidades Domésticas", icone: Flame },
-  { id: 6, nome: "Orientação", categoria: "Atividades Recreativas", icone: Compass },
-  { id: 7, nome: "Excursionismo", categoria: "Atividades Recreativas", icone: Mountain },
-  { id: 8, nome: "Segurança Básica", categoria: "Habilidades Domésticas", icone: Shield }
+  { id: 1, nome: "Acampamento", categoria: "Atividades Recreativas", icone: Tent, cor: "bg-green-500" },
+  { id: 2, nome: "Primeiros Socorros", categoria: "Habilidades Domésticas", icone: Heart, cor: "bg-red-500" },
+  { id: 3, nome: "Nós e Amarras", categoria: "Atividades Recreativas", icone: Target, cor: "bg-green-500" },
+  { id: 4, nome: "Natação", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-blue-500" },
+  { id: 5, nome: "Cozinha", categoria: "Habilidades Domésticas", icone: Flame, cor: "bg-orange-500" },
+  { id: 6, nome: "Orientação", categoria: "Atividades Recreativas", icone: Compass, cor: "bg-green-500" },
+  { id: 7, nome: "Excursionismo", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-green-600" },
+  { id: 8, nome: "Segurança Básica", categoria: "Habilidades Domésticas", icone: Shield, cor: "bg-yellow-500" },
+  { id: 9, nome: "Fotografia", categoria: "Artes e Habilidades", icone: Target, cor: "bg-blue-600" },
+  { id: 10, nome: "Ciclismo", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-green-500" },
+  { id: 11, nome: "Canoagem", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-blue-600" },
+  { id: 12, nome: "Ordem Unida", categoria: "Atividades Recreativas", icone: Target, cor: "bg-red-600" }
 ]
 
 // Links úteis
@@ -271,6 +275,21 @@ export function DesbravadoresPage() {
   const [classeSelecionada, setClasseSelecionada] = useState(null)
   const [especialidadeSelecionada, setEspecialidadeSelecionada] = useState(null)
   const [estudoSelecionado, setEstudoSelecionado] = useState(null)
+  const classesRef = useRef(null)
+  const especialidadesRef = useRef(null)
+  const estudosRef = useRef(null)
+
+  // Scroll automático ao carregar a página (se houver hash na URL)
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash === '#classes' && classesRef.current) {
+      setTimeout(() => classesRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }), 500)
+    } else if (hash === '#especialidades' && especialidadesRef.current) {
+      setTimeout(() => especialidadesRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }), 500)
+    } else if (hash === '#estudos' && estudosRef.current) {
+      setTimeout(() => estudosRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }), 500)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted py-12 px-4">
@@ -331,7 +350,7 @@ export function DesbravadoresPage() {
           </TabsList>
 
           {/* Tab: Classes */}
-          <TabsContent value="classes" className="space-y-6">
+          <TabsContent value="classes" className="space-y-6" ref={classesRef}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {cursosDesbravadores.map((classe, index) => (
                 <motion.div
@@ -394,7 +413,7 @@ export function DesbravadoresPage() {
           </TabsContent>
 
           {/* Tab: Especialidades */}
-          <TabsContent value="especialidades" className="space-y-6">
+          <TabsContent value="especialidades" className="space-y-6" ref={especialidadesRef}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {especialidades.map((esp, index) => {
                 const Icone = esp.icone
@@ -406,15 +425,19 @@ export function DesbravadoresPage() {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setEspecialidadeSelecionada(esp)}>
-                      <CardContent className="pt-6 space-y-3">
+                    <Card className="text-center hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary" onClick={() => setEspecialidadeSelecionada(esp)}>
+                      <CardContent className="pt-6 pb-6 space-y-3">
                         <div className="flex justify-center">
-                          <div className="p-4 bg-primary/10 rounded-full">
-                            <Icone className="h-8 w-8 text-primary" />
-                          </div>
+                          <motion.div 
+                            className={`p-5 ${esp.cor} rounded-full shadow-lg`}
+                            whileHover={{ rotate: 360, scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <Icone className="h-10 w-10 text-white" />
+                          </motion.div>
                         </div>
-                        <h3 className="font-bold">{esp.nome}</h3>
-                        <Badge variant="outline" className="text-xs">{esp.categoria}</Badge>
+                        <h3 className="font-bold text-lg">{esp.nome}</h3>
+                        <Badge variant="secondary" className="text-xs">{esp.categoria}</Badge>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -466,7 +489,7 @@ export function DesbravadoresPage() {
           </TabsContent>
 
           {/* Tab: Estudos */}
-          <TabsContent value="estudos" className="space-y-6">
+          <TabsContent value="estudos" className="space-y-6" ref={estudosRef}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {estudosBiblicos.map((estudo, index) => (
                 <motion.div

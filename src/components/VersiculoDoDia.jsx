@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Button } from '@/components/ui/button.jsx'
-import { BookText, Share2, Copy, Heart, RefreshCw } from 'lucide-react'
+import { BookText, Share2, Copy, Heart, RefreshCw, Instagram, MessageCircle } from 'lucide-react'
 
 // Versículos do dia (rotação diária)
 const versiculos = [
@@ -84,6 +84,22 @@ export function VersiculoDoDia({ compact = false }) {
     }
   }
 
+  const handleCompartilharWhatsApp = () => {
+    if (versiculo) {
+      const texto = encodeURIComponent(`*Versículo do Dia* 📖\n\n"${versiculo.texto}"\n\n_${versiculo.referencia}_\n\nCompartilhado via Adventista Play`)
+      window.open(`https://wa.me/?text=${texto}`, '_blank')
+    }
+  }
+
+  const handleCompartilharInstagram = () => {
+    if (versiculo) {
+      // Copiar o texto para que o usuário possa colar no Instagram
+      const texto = `"${versiculo.texto}"\n\n${versiculo.referencia}\n\n#VersiculoDoDia #AdventistaPlay`
+      navigator.clipboard.writeText(texto)
+      alert('✅ Texto copiado! Cole no Instagram Stories e adicione uma imagem de fundo.')
+    }
+  }
+
   const handleNovoVersiculo = () => {
     const index = Math.floor(Math.random() * versiculos.length)
     setVersiculo(versiculos[index])
@@ -160,40 +176,66 @@ export function VersiculoDoDia({ compact = false }) {
             </div>
           </motion.div>
 
-          <div className="flex gap-2">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleCopiar}
-                className="w-full"
-              >
-                <Copy className="h-4 w-4 mr-2" />
-                {copiado ? 'Copiado!' : 'Copiar'}
-              </Button>
-            </motion.div>
+          <div className="space-y-3">
+            <div className="flex gap-2">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopiar}
+                  className="w-full"
+                >
+                  <Copy className="h-4 w-4 mr-2" />
+                  {copiado ? 'Copiado!' : 'Copiar'}
+                </Button>
+              </motion.div>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleCompartilhar}
-                className="w-full"
-              >
-                <Share2 className="h-4 w-4 mr-2" />
-                Compartilhar
-              </Button>
-            </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCompartilhar}
+                  className="w-full"
+                >
+                  <Share2 className="h-4 w-4 mr-2" />
+                  Compartilhar
+                </Button>
+              </motion.div>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleNovoVersiculo}
-              >
-                <RefreshCw className="h-4 w-4" />
-              </Button>
-            </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleNovoVersiculo}
+                >
+                  <RefreshCw className="h-4 w-4" />
+                </Button>
+              </motion.div>
+            </div>
+
+            <div className="flex gap-2">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
+                <Button
+                  size="sm"
+                  onClick={handleCompartilharWhatsApp}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+                >
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  WhatsApp
+                </Button>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
+                <Button
+                  size="sm"
+                  onClick={handleCompartilharInstagram}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                >
+                  <Instagram className="h-4 w-4 mr-2" />
+                  Instagram Stories
+                </Button>
+              </motion.div>
+            </div>
           </div>
 
           <p className="text-xs text-center text-muted-foreground">

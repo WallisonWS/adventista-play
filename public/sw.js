@@ -1,11 +1,13 @@
 // Service Worker para Adventista Play PWA
-const CACHE_NAME = 'adventista-play-v1.0.0';
+const CACHE_NAME = 'adventista-play-v2.0.0';
+const OFFLINE_URL = '/offline.html';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png'
+  '/offline.html',
+  '/icon-192x192.png',
+  '/icon-512x512.png'
 ];
 
 // Instalar Service Worker
@@ -67,4 +69,50 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+
+// Background Sync
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-data') {
+    event.waitUntil(syncData());
+  }
+});
+
+async function syncData() {
+  try {
+    console.log('Sincronizando dados...');
+  } catch (error) {
+    console.error('Erro ao sincronizar:', error);
+  }
+}
+
+// Push Notifications
+self.addEventListener('push', (event) => {
+  const options = {
+    body: event.data ? event.data.text() : 'Nova atualização disponível!',
+    icon: '/icon-192x192.png',
+    badge: '/icon-72x72.png',
+    vibrate: [200, 100, 200],
+    tag: 'adventista-play',
+    requireInteraction: false,
+    actions: [
+      { action: 'open', title: 'Abrir' },
+      { action: 'close', title: 'Fechar' }
+    ]
+  };
+  
+  event.waitUntil(
+    self.registration.showNotification('Adventista Play', options)
+  );
+});
+
+// Notification Click
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  
+  if (event.action === 'open') {
+    event.waitUntil(clients.openWindow('/'));
+  }
+});
+
+console.log('Service Worker v2.0.0 carregado!');
 

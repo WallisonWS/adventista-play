@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -37,6 +38,7 @@ import {
 } from '../services/authService.js'
 
 export function PerfilPage() {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [user, setUser] = useState(null)
   const [stats, setStats] = useState(null)
   const [editing, setEditing] = useState(false)
@@ -44,6 +46,7 @@ export function PerfilPage() {
   const [history, setHistory] = useState([])
   const [bookmarks, setBookmarks] = useState([])
   const [notes, setNotes] = useState([])
+  const [activeTab, setActiveTab] = useState('info')
 
   useEffect(() => {
     const currentUser = getCurrentUser()
@@ -55,7 +58,19 @@ export function PerfilPage() {
       setBookmarks(getBookmarks())
       setNotes(getNotes())
     }
+    
+    // Verificar parâmetro de aba na URL
+    const tab = searchParams.get('tab')
+    if (tab && ['info', 'history', 'bookmarks', 'notes', 'settings'].includes(tab)) {
+      setActiveTab(tab)
+    }
   }, [])
+  
+  // Atualizar URL quando aba mudar
+  const handleTabChange = (tab) => {
+    setActiveTab(tab)
+    setSearchParams({ tab })
+  }
 
   const handleSaveProfile = () => {
     // Validar campos obrigatórios
@@ -82,6 +97,54 @@ export function PerfilPage() {
     const result = updatePreferences({ theme: newTheme })
     if (result.success) {
       setUser(result.user)
+    }
+  }
+
+  const handleUploadPhoto = () => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+    input.onchange = (e) => {
+      const file = e.target.files[0]
+      if (file) {
+        const reader = new FileReader()
+        reader.onload = (event) => {
+          const result = updateUserProfile({ fotoPerfil: event.target.result })
+          if (result.success) {
+            setUser(result.user)
+            setFormData(result.user)
+            alert('✅ Foto atualizada com sucesso!')
+          }
+        }
+        reader.readAsDataURL(file)
+      }
+    }
+    input.click()
+  }
+
+  const handleToggleNotifications = () => {
+    if (!user.preferences) {
+      user.preferences = { notifications: true }
+    }
+    const newValue = !user.preferences.notifications
+    const result = updatePreferences({ notifications: newValue })
+    if (result.success) {
+      setUser(result.user)
+      alert(`✅ Notificações ${newValue ? 'ativadas' : 'desativadas'}!`)
+    }
+  }
+
+  const handleChangeBibleVersion = () => {
+    const versions = ['arc', 'acf', 'nvi']
+    const versionNames = { arc: 'Almeida Revista e Corrigida', acf: 'Almeida Corrigida Fiel', nvi: 'Nova Versão Internacional' }
+    const currentVersion = user.preferences?.bibleVersion || 'arc'
+    const currentIndex = versions.indexOf(currentVersion)
+    const nextVersion = versions[(currentIndex + 1) % versions.length]
+    
+    const result = updatePreferences({ bibleVersion: nextVersion })
+    if (result.success) {
+      setUser(result.user)
+      alert(`✅ Versão alterada para: ${versionNames[nextVersion]}`)
     }
   }
 
@@ -127,7 +190,9 @@ export function PerfilPage() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="absolute bottom-0 right-0 bg-white text-primary p-2 rounded-full shadow-lg"
+                    onClick={handleUploadPhoto}
+                    className="absolute bottom-0 right-0 bg-white text-primary p-2 rounded-full shadow-lg cursor-pointer"
+                    title="Alterar foto de perfil"
                   >
                     <Camera className="h-4 w-4" />
                   </motion.button>
@@ -223,7 +288,7 @@ export function PerfilPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Tabs defaultValue="info" className="w-full">
+          <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
               <TabsTrigger value="info">Informações</TabsTrigger>
               <TabsTrigger value="history">Histórico</TabsTrigger>
@@ -501,8 +566,8 @@ export function PerfilPage() {
                         </div>
                       </div>
                     </div>
-                    <Button variant="outline">
-                      {user.preferences.notifications ? 'Ativado' : 'Desativado'}
+                    <Button variant="outline" onClick={handleToggleNotifications}>
+                      {user.preferences?.notifications ? 'Ativado' : 'Desativado'}
                     </Button>
                   </div>
 
@@ -516,7 +581,7 @@ export function PerfilPage() {
                         </div>
                       </div>
                     </div>
-                    <Button variant="outline">Alterar</Button>
+                    <Button variant="outline" onClick={handleChangeBibleVersion}>Alterar</Button>
                   </div>
                 </CardContent>
               </Card>

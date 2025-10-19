@@ -147,7 +147,7 @@ function Navigation({ user, onLogout }) {
           {/* Logo no cabeçalho */}
           <Link to="/" className="flex items-center">
             <motion.img 
-              src="/src/assets/logo-adventista-play-novo.png" 
+              src="/logo-adventista-play-novo.png" 
               alt="Adventista Play" 
               className="h-12 w-12 cursor-pointer"
               whileHover={{ scale: 1.1, rotate: 5 }}
@@ -1507,7 +1507,7 @@ function AppContent() {
               <div>
                 <Link to="/" className="flex items-center space-x-3 mb-4 group">
                   <motion.img 
-                    src="/src/assets/logo-adventista-play-novo.png" 
+                    src="/logo-adventista-play-novo.png" 
                     alt="Adventista Play" 
                     className="h-16 w-16"
                     whileHover={{ scale: 1.1, rotate: 360 }}

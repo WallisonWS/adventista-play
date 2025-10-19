@@ -1,0 +1,190 @@
+/* Temas Coloridos - Adventista Play */
+
+/* Tema Padrão (Azul) */
+:root {
+  --theme-primary: #2563eb;
+  --theme-primary-hover: #1d4ed8;
+  --theme-primary-light: #3b82f6;
+  --theme-gradient-start: #667eea;
+  --theme-gradient-end: #764ba2;
+}
+
+/* Tema Verde */
+.theme-green {
+  --theme-primary: #10b981;
+  --theme-primary-hover: #059669;
+  --theme-primary-light: #34d399;
+  --theme-gradient-start: #34d399;
+  --theme-gradient-end: #059669;
+}
+
+.theme-green .bg-primary {
+  background-color: var(--theme-primary) !important;
+}
+
+.theme-green .text-primary {
+  color: var(--theme-primary) !important;
+}
+
+.theme-green .border-primary {
+  border-color: var(--theme-primary) !important;
+}
+
+.theme-green button.btn-primary,
+.theme-green .Button {
+  background: linear-gradient(135deg, var(--theme-gradient-start), var(--theme-gradient-end)) !important;
+}
+
+/* Tema Roxo */
+.theme-purple {
+  --theme-primary: #8b5cf6;
+  --theme-primary-hover: #7c3aed;
+  --theme-primary-light: #a78bfa;
+  --theme-gradient-start: #a78bfa;
+  --theme-gradient-end: #7c3aed;
+}
+
+.theme-purple .bg-primary {
+  background-color: var(--theme-primary) !important;
+}
+
+.theme-purple .text-primary {
+  color: var(--theme-primary) !important;
+}
+
+.theme-purple .border-primary {
+  border-color: var(--theme-primary) !important;
+}
+
+.theme-purple button.btn-primary,
+.theme-purple .Button {
+  background: linear-gradient(135deg, var(--theme-gradient-start), var(--theme-gradient-end)) !important;
+}
+
+/* Tema Rosa */
+.theme-pink {
+  --theme-primary: #ec4899;
+  --theme-primary-hover: #db2777;
+  --theme-primary-light: #f472b6;
+  --theme-gradient-start: #f472b6;
+  --theme-gradient-end: #db2777;
+}
+
+.theme-pink .bg-primary {
+  background-color: var(--theme-primary) !important;
+}
+
+.theme-pink .text-primary {
+  color: var(--theme-primary) !important;
+}
+
+.theme-pink .border-primary {
+  border-color: var(--theme-primary) !important;
+}
+
+.theme-pink button.btn-primary,
+.theme-pink .Button {
+  background: linear-gradient(135deg, var(--theme-gradient-start), var(--theme-gradient-end)) !important;
+}
+
+/* Tema Laranja */
+.theme-orange {
+  --theme-primary: #f59e0b;
+  --theme-primary-hover: #d97706;
+  --theme-primary-light: #fbbf24;
+  --theme-gradient-start: #fbbf24;
+  --theme-gradient-end: #d97706;
+}
+
+.theme-orange .bg-primary {
+  background-color: var(--theme-primary) !important;
+}
+
+.theme-orange .text-primary {
+  color: var(--theme-primary) !important;
+}
+
+.theme-orange .border-primary {
+  border-color: var(--theme-primary) !important;
+}
+
+.theme-orange button.btn-primary,
+.theme-orange .Button {
+  background: linear-gradient(135deg, var(--theme-gradient-start), var(--theme-gradient-end)) !important;
+}
+
+/* Tema Vermelho */
+.theme-red {
+  --theme-primary: #ef4444;
+  --theme-primary-hover: #dc2626;
+  --theme-primary-light: #f87171;
+  --theme-gradient-start: #f87171;
+  --theme-gradient-end: #dc2626;
+}
+
+.theme-red .bg-primary {
+  background-color: var(--theme-primary) !important;
+}
+
+.theme-red .text-primary {
+  color: var(--theme-primary) !important;
+}
+
+.theme-red .border-primary {
+  border-color: var(--theme-primary) !important;
+}
+
+.theme-red button.btn-primary,
+.theme-red .Button {
+  background: linear-gradient(135deg, var(--theme-gradient-start), var(--theme-gradient-end)) !important;
+}
+
+/* Aplicar tema em elementos específicos */
+.theme-green header,
+.theme-purple header,
+.theme-pink header,
+.theme-orange header,
+.theme-red header {
+  background: linear-gradient(135deg, var(--theme-gradient-start), var(--theme-gradient-end)) !important;
+}
+
+.theme-green footer,
+.theme-purple footer,
+.theme-pink footer,
+.theme-orange footer,
+.theme-red footer {
+  background: linear-gradient(135deg, var(--theme-gradient-start), var(--theme-gradient-end)) !important;
+}
+
+/* Links com tema */
+.theme-green a:hover,
+.theme-purple a:hover,
+.theme-pink a:hover,
+.theme-orange a:hover,
+.theme-red a:hover {
+  color: var(--theme-primary-light) !important;
+}
+
+/* Badges com tema */
+.theme-green .badge,
+.theme-purple .badge,
+.theme-pink .badge,
+.theme-orange .badge,
+.theme-red .badge {
+  background-color: var(--theme-primary) !important;
+}
+
+/* Cards com tema */
+.theme-green .card:hover,
+.theme-purple .card:hover,
+.theme-pink .card:hover,
+.theme-orange .card:hover,
+.theme-red .card:hover {
+  border-color: var(--theme-primary) !important;
+}
+
+/* Transições suaves */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+

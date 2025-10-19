@@ -11,6 +11,11 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
+  const [colorTheme, setColorTheme] = useState(() => {
+    const saved = localStorage.getItem('colorTheme');
+    return saved || 'blue';
+  });
+
   const [theme, setTheme] = useState(() => {
     // Verifica preferência salva
     const saved = localStorage.getItem('theme');
@@ -23,6 +28,14 @@ export function ThemeProvider({ children }) {
     
     return 'light';
   });
+
+  useEffect(() => {
+    // Aplica tema de cor
+    const themeClasses = ['theme-blue', 'theme-green', 'theme-purple', 'theme-pink', 'theme-orange', 'theme-red'];
+    themeClasses.forEach(cls => document.documentElement.classList.remove(cls));
+    document.documentElement.classList.add(`theme-${colorTheme}`);
+    localStorage.setItem('colorTheme', colorTheme);
+  }, [colorTheme]);
 
   useEffect(() => {
     // Aplica tema no documento
@@ -65,7 +78,9 @@ export function ThemeProvider({ children }) {
     theme,
     setTheme,
     toggleTheme,
-    isDark: theme === 'dark'
+    isDark: theme === 'dark',
+    colorTheme,
+    setColorTheme
   };
 
   return (

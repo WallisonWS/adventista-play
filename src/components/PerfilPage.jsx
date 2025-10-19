@@ -39,7 +39,7 @@ import {
 import { useTheme } from '../contexts/ThemeContext'
 
 export function PerfilPage() {
-  const { theme, toggleTheme, isDark } = useTheme()
+  const { theme, toggleTheme, isDark, colorTheme, setColorTheme } = useTheme()
   const [searchParams, setSearchParams] = useSearchParams()
   const [user, setUser] = useState(null)
   const [stats, setStats] = useState(null)
@@ -585,6 +585,34 @@ export function PerfilPage() {
                       </div>
                     </div>
                     <Button variant="outline" onClick={handleChangeBibleVersion}>Alterar</Button>
+                  </div>
+
+                  <div>
+                    <div className="font-semibold mb-3">Tema de Cores</div>
+                    <div className="grid grid-cols-3 gap-3">
+                      {[
+                        { name: 'blue', label: 'Azul', color: '#2563eb' },
+                        { name: 'green', label: 'Verde', color: '#10b981' },
+                        { name: 'purple', label: 'Roxo', color: '#8b5cf6' },
+                        { name: 'pink', label: 'Rosa', color: '#ec4899' },
+                        { name: 'orange', label: 'Laranja', color: '#f59e0b' },
+                        { name: 'red', label: 'Vermelho', color: '#ef4444' }
+                      ].map(t => (
+                        <button
+                          key={t.name}
+                          onClick={() => setColorTheme(t.name)}
+                          className={`p-3 rounded-lg border-2 transition-all ${
+                            colorTheme === t.name ? 'border-primary scale-105' : 'border-gray-200'
+                          }`}
+                          style={{ backgroundColor: t.color }}
+                        >
+                          <div className="text-white font-semibold text-sm">{t.label}</div>
+                          {colorTheme === t.name && (
+                            <div className="text-white text-xs mt-1">✓ Ativo</div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </CardContent>
               </Card>

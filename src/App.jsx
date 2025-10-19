@@ -35,8 +35,12 @@ import {
 } from 'lucide-react'
 import './App.css'
 import './styles/dark-mode.css'
+import './styles/themes.css'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { ContatoPage } from './components/ContatoPage.jsx'
+import { FeedbackPage } from './components/FeedbackPage.jsx'
+import { NoticiasDesbravadores } from './components/NoticiasDesbravadores.jsx'
+import { Feliz7Play } from './components/Feliz7Play.jsx'
 import { BibliaPage } from './components/BibliaPage.jsx'
 import { PerfilPage } from './components/PerfilPage.jsx'
 import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
@@ -1489,6 +1493,9 @@ function AppContent() {
             <Route path="/certificado" element={<CertificadoCurso />} />
             <Route path="/oracao" element={<CompartilharOracao />} />
             <Route path="/contato" element={<ContatoPage />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
+            <Route path="/noticias-desbravadores" element={<NoticiasDesbravadores />} />
+            <Route path="/feliz7play" element={<Feliz7Play />} />
             <Route path="/perfil" element={<PerfilPage />} />
             <Route path="/conquistas" element={<ConquistasPage />} />
           </Routes>

@@ -581,6 +581,390 @@ const quizzes = [
         resposta: '12 mil'
       }
     ]
+  },
+  {
+    id: 19,
+    categoria: 'Mulheres da Bíblia',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quem foi a mãe de Samuel?',
+        opcoes: ['Ana', 'Sara', 'Rebeca', 'Raquel'],
+        resposta: 'Ana'
+      },
+      {
+        pergunta: 'Quem foi a rainha que salvou o povo judeu da destruição?',
+        opcoes: ['Ester', 'Rute', 'Débora', 'Abigail'],
+        resposta: 'Ester'
+      },
+      {
+        pergunta: 'Quem foi a profetisa e juíza de Israel?',
+        opcoes: ['Miriã', 'Débora', 'Hulda', 'Ana'],
+        resposta: 'Débora'
+      },
+      {
+        pergunta: 'Quem foi a sogra de Rute?',
+        opcoes: ['Noemi', 'Sara', 'Rebeca', 'Raquel'],
+        resposta: 'Noemi'
+      },
+      {
+        pergunta: 'Quem foi a mãe de João Batista?',
+        opcoes: ['Isabel', 'Maria', 'Ana', 'Marta'],
+        resposta: 'Isabel'
+      }
+    ]
+  },
+  {
+    id: 20,
+    categoria: 'Reis de Israel',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quem foi o primeiro rei de Israel?',
+        opcoes: ['Davi', 'Saul', 'Salomão', 'Samuel'],
+        resposta: 'Saul'
+      },
+      {
+        pergunta: 'Qual rei construiu o templo em Jerusalém?',
+        opcoes: ['Davi', 'Salomão', 'Ezequias', 'Josias'],
+        resposta: 'Salomão'
+      },
+      {
+        pergunta: 'Quantas esposas Salomão teve?',
+        opcoes: ['100', '300', '700', '1000'],
+        resposta: '700'
+      },
+      {
+        pergunta: 'Qual rei restaurou a Páscoa em Israel?',
+        opcoes: ['Ezequias', 'Josias', 'Asa', 'Josafá'],
+        resposta: 'Josias'
+      },
+      {
+        pergunta: 'Quem foi o rei mais jovem de Judá?',
+        opcoes: ['João', 'Joas', 'Josias', 'Manassés'],
+        resposta: 'Joas'
+      }
+    ]
+  },
+  {
+    id: 21,
+    categoria: 'Parábolas de Jesus',
+    dificuldade: 'Fácil',
+    perguntas: [
+      {
+        pergunta: 'Na parábola do filho pródigo, o que o filho pediu ao pai?',
+        opcoes: ['Sua herança', 'Uma casa', 'Um emprego', 'Comida'],
+        resposta: 'Sua herança'
+      },
+      {
+        pergunta: 'Na parábola do bom samaritano, quem ajudou o homem ferido?',
+        opcoes: ['Um sacerdote', 'Um levita', 'Um samaritano', 'Um fariseu'],
+        resposta: 'Um samaritano'
+      },
+      {
+        pergunta: 'Sobre o que Jesus falou na parábola do semeador?',
+        opcoes: ['Sementes', 'Peixes', 'Pães', 'Moedas'],
+        resposta: 'Sementes'
+      },
+      {
+        pergunta: 'Quantas virgens havia na parábola das virgens?',
+        opcoes: ['5', '7', '10', '12'],
+        resposta: '10'
+      },
+      {
+        pergunta: 'Na parábola dos talentos, quantos talentos o servo preguiçoso recebeu?',
+        opcoes: ['1', '2', '5', '10'],
+        resposta: '1'
+      }
+    ]
+  },
+  {
+    id: 22,
+    categoria: 'Livro de Gênesis',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quantos filhos Jacó teve?',
+        opcoes: ['10', '12', '14', '16'],
+        resposta: '12'
+      },
+      {
+        pergunta: 'Quem era a esposa favorita de Jacó?',
+        opcoes: ['Lia', 'Raquel', 'Bila', 'Zilpa'],
+        resposta: 'Raquel'
+      },
+      {
+        pergunta: 'Quantos anos Noé tinha quando o dilúvio começou?',
+        opcoes: ['500 anos', '600 anos', '700 anos', '800 anos'],
+        resposta: '600 anos'
+      },
+      {
+        pergunta: 'Qual foi o sinal da aliança de Deus com Noé?',
+        opcoes: ['Uma estrela', 'Um arco-íris', 'Uma pomba', 'Uma oliveira'],
+        resposta: 'Um arco-íris'
+      },
+      {
+        pergunta: 'Onde Abraão quase sacrificou Isaque?',
+        opcoes: ['Monte Sinai', 'Monte Moriá', 'Monte Carmelo', 'Monte Nebo'],
+        resposta: 'Monte Moriá'
+      }
+    ]
+  },
+  {
+    id: 23,
+    categoria: 'Livro de Êxodo',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quantas pragas Deus enviou ao Egito?',
+        opcoes: ['7', '10', '12', '15'],
+        resposta: '10'
+      },
+      {
+        pergunta: 'Qual foi a primeira praga do Egito?',
+        opcoes: ['Água em sangue', 'Rãs', 'Piolhos', 'Moscas'],
+        resposta: 'Água em sangue'
+      },
+      {
+        pergunta: 'Quantos mandamentos Deus deu a Moisés?',
+        opcoes: ['7', '10', '12', '15'],
+        resposta: '10'
+      },
+      {
+        pergunta: 'Em que monte Deus deu os Dez Mandamentos?',
+        opcoes: ['Monte Sinai', 'Monte Carmelo', 'Monte Sion', 'Monte Nebo'],
+        resposta: 'Monte Sinai'
+      },
+      {
+        pergunta: 'Quantos anos os israelitas vagaram no deserto?',
+        opcoes: ['20 anos', '30 anos', '40 anos', '50 anos'],
+        resposta: '40 anos'
+      }
+    ]
+  },
+  {
+    id: 24,
+    categoria: 'Livro de Atos',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quem foi escolhido para substituir Judas Iscariotes?',
+        opcoes: ['Matias', 'Paulo', 'Barnabé', 'Silas'],
+        resposta: 'Matias'
+      },
+      {
+        pergunta: 'Em que dia o Espírito Santo desceu sobre os discípulos?',
+        opcoes: ['Páscoa', 'Pentecostes', 'Tabernáculos', 'Purim'],
+        resposta: 'Pentecostes'
+      },
+      {
+        pergunta: 'Quem foi o primeiro mártir cristão?',
+        opcoes: ['Pedro', 'Tiago', 'Estêvão', 'Paulo'],
+        resposta: 'Estêvão'
+      },
+      {
+        pergunta: 'Qual era o nome original de Paulo?',
+        opcoes: ['Saulo', 'Simão', 'Samuel', 'Salomão'],
+        resposta: 'Saulo'
+      },
+      {
+        pergunta: 'Quantas viagens missionárias Paulo fez?',
+        opcoes: ['2', '3', '4', '5'],
+        resposta: '3'
+      }
+    ]
+  },
+  {
+    id: 25,
+    categoria: 'Salmos e Provérbios',
+    dificuldade: 'Fácil',
+    perguntas: [
+      {
+        pergunta: 'Qual é o salmo mais longo da Bíblia?',
+        opcoes: ['Salmo 23', 'Salmo 91', 'Salmo 119', 'Salmo 150'],
+        resposta: 'Salmo 119'
+      },
+      {
+        pergunta: 'Qual salmo começa com "O Senhor é o meu pastor"?',
+        opcoes: ['Salmo 1', 'Salmo 23', 'Salmo 91', 'Salmo 100'],
+        resposta: 'Salmo 23'
+      },
+      {
+        pergunta: 'Quem escreveu a maioria dos Salmos?',
+        opcoes: ['Moisés', 'Davi', 'Salomão', 'Asafe'],
+        resposta: 'Davi'
+      },
+      {
+        pergunta: 'Quem escreveu a maioria dos Provérbios?',
+        opcoes: ['Davi', 'Salomão', 'Agur', 'Lemuel'],
+        resposta: 'Salomão'
+      },
+      {
+        pergunta: 'Segundo Provérbios, o que é o princípio da sabedoria?',
+        opcoes: ['O amor', 'O temor do Senhor', 'A justiça', 'A humildade'],
+        resposta: 'O temor do Senhor'
+      }
+    ]
+  },
+  {
+    id: 26,
+    categoria: 'Anjos e Demônios',
+    dificuldade: 'Difícil',
+    perguntas: [
+      {
+        pergunta: 'Qual é o nome do arcanjo mencionado na Bíblia?',
+        opcoes: ['Gabriel', 'Miguel', 'Rafael', 'Uriel'],
+        resposta: 'Miguel'
+      },
+      {
+        pergunta: 'Qual anjo anunciou o nascimento de Jesus a Maria?',
+        opcoes: ['Miguel', 'Gabriel', 'Rafael', 'Uriel'],
+        resposta: 'Gabriel'
+      },
+      {
+        pergunta: 'Quantos anjos caíram com Lúcifer segundo Apocalipse?',
+        opcoes: ['Um terço', 'Metade', 'Dois terços', 'Todos'],
+        resposta: 'Um terço'
+      },
+      {
+        pergunta: 'Qual era o nome de Lúcifer antes da queda?',
+        opcoes: ['Estrela da manhã', 'Filho da alva', 'Querubim ungido', 'Todas as anteriores'],
+        resposta: 'Todas as anteriores'
+      },
+      {
+        pergunta: 'Quantos anjos guardavam o jardim do Éden?',
+        opcoes: ['1', '2', '4', '7'],
+        resposta: '2'
+      }
+    ]
+  },
+  {
+    id: 27,
+    categoria: 'Criação e Natureza',
+    dificuldade: 'Fácil',
+    perguntas: [
+      {
+        pergunta: 'O que Deus criou no primeiro dia?',
+        opcoes: ['Luz', 'Terra', 'Animais', 'Água'],
+        resposta: 'Luz'
+      },
+      {
+        pergunta: 'O que Deus criou no quarto dia?',
+        opcoes: ['Plantas', 'Animais', 'Sol, lua e estrelas', 'Homem'],
+        resposta: 'Sol, lua e estrelas'
+      },
+      {
+        pergunta: 'Em que dia Deus criou o homem?',
+        opcoes: ['Quinto dia', 'Sexto dia', 'Sétimo dia', 'Primeiro dia'],
+        resposta: 'Sexto dia'
+      },
+      {
+        pergunta: 'O que Deus fez no sétimo dia?',
+        opcoes: ['Criou os animais', 'Descansou', 'Criou o homem', 'Criou as plantas'],
+        resposta: 'Descansou'
+      },
+      {
+        pergunta: 'De que Deus formou o homem?',
+        opcoes: ['Do pó da terra', 'Da água', 'Do fogo', 'Do ar'],
+        resposta: 'Do pó da terra'
+      }
+    ]
+  },
+  {
+    id: 28,
+    categoria: 'Mandamentos e Leis',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Qual é o primeiro mandamento?',
+        opcoes: ['Não matarás', 'Não terás outros deuses', 'Honrar pai e mãe', 'Lembrar do sábado'],
+        resposta: 'Não terás outros deuses'
+      },
+      {
+        pergunta: 'Qual é o quarto mandamento?',
+        opcoes: ['Não matarás', 'Lembrar do sábado', 'Não roubarás', 'Honrar pai e mãe'],
+        resposta: 'Lembrar do sábado'
+      },
+      {
+        pergunta: 'Segundo Jesus, qual é o maior mandamento?',
+        opcoes: ['Amar a Deus', 'Amar o próximo', 'Não matar', 'Guardar o sábado'],
+        resposta: 'Amar a Deus'
+      },
+      {
+        pergunta: 'Qual é o segundo maior mandamento segundo Jesus?',
+        opcoes: ['Amar a Deus', 'Amar o próximo', 'Não matar', 'Guardar o sábado'],
+        resposta: 'Amar o próximo'
+      },
+      {
+        pergunta: 'Em quantas tábuas de pedra foram escritos os Dez Mandamentos?',
+        opcoes: ['1', '2', '3', '4'],
+        resposta: '2'
+      }
+    ]
+  },
+  {
+    id: 29,
+    categoria: 'Geografia Bíblica',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Qual é a cidade santa do cristianismo?',
+        opcoes: ['Belém', 'Jerusalém', 'Nazaré', 'Cafarnaum'],
+        resposta: 'Jerusalém'
+      },
+      {
+        pergunta: 'Em que rio Jesus foi batizado?',
+        opcoes: ['Rio Nilo', 'Rio Jordão', 'Rio Eufrates', 'Rio Tigre'],
+        resposta: 'Rio Jordão'
+      },
+      {
+        pergunta: 'Onde Jesus cresceu?',
+        opcoes: ['Belém', 'Jerusalém', 'Nazaré', 'Cafarnaum'],
+        resposta: 'Nazaré'
+      },
+      {
+        pergunta: 'Em que monte Jesus foi transfigurado?',
+        opcoes: ['Monte Sinai', 'Monte Tabor', 'Monte das Oliveiras', 'Monte Carmelo'],
+        resposta: 'Monte Tabor'
+      },
+      {
+        pergunta: 'Qual era a capital do Império Romano nos tempos de Jesus?',
+        opcoes: ['Atenas', 'Jerusalém', 'Roma', 'Alexandria'],
+        resposta: 'Roma'
+      }
+    ]
+  },
+  {
+    id: 30,
+    categoria: 'Doutrina Adventista',
+    dificuldade: 'Médio',
+    perguntas: [
+      {
+        pergunta: 'Quantas crenças fundamentais a Igreja Adventista possui?',
+        opcoes: ['20', '25', '28', '30'],
+        resposta: '28'
+      },
+      {
+        pergunta: 'Qual dia é o sábado bíblico?',
+        opcoes: ['Domingo', 'Sexta-feira', 'Sábado', 'Qualquer dia'],
+        resposta: 'Sábado'
+      },
+      {
+        pergunta: 'Quem foi a cofundadora da Igreja Adventista?',
+        opcoes: ['Ellen G. White', 'Maria White', 'Ana Smith', 'Sara Bates'],
+        resposta: 'Ellen G. White'
+      },
+      {
+        pergunta: 'Em que ano a Igreja Adventista foi oficialmente organizada?',
+        opcoes: ['1844', '1863', '1888', '1900'],
+        resposta: '1863'
+      },
+      {
+        pergunta: 'Qual é o lema dos Desbravadores?',
+        opcoes: ['Sempre alerta', 'Firmes na fé', 'O amor de Cristo nos constrange', 'Avante com Cristo'],
+        resposta: 'O amor de Cristo nos constrange'
+      }
+    ]
   }
 ]
 

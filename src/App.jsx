@@ -31,7 +31,8 @@ import {
   Mail,
   Phone,
   Trophy,
-  Calendar
+  Calendar,
+  Newspaper
 } from 'lucide-react'
 import './App.css'
 import './styles/dark-mode.css'
@@ -175,7 +176,10 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/desbravadores" icon={<Star className="h-4 w-4" />}>Desbravadores</NavLink>
             <NavLink to="/oracao" icon={<Heart className="h-4 w-4" />}>Oração</NavLink>
             {user && <NavLink to="/conquistas" icon={<Trophy className="h-4 w-4" />}>Conquistas</NavLink>}
-            <NavLink to="/contato" icon={<MessageSquare className="h-4 w-4" />}>Contato</NavLink>
+            <NavLink to="/feliz7play" icon={<Play className="h-4 w-4" />}>Feliz7 Play</NavLink>
+            <NavLink to="/noticias-desbravadores" icon={<Newspaper className="h-4 w-4" />}>Notícias</NavLink>
+            <NavLink to="/feedback" icon={<MessageSquare className="h-4 w-4" />}>Feedback</NavLink>
+            <NavLink to="/contato" icon={<Phone className="h-4 w-4" />}>Contato</NavLink>
             
             {user ? (
               <div className="flex items-center space-x-4">
@@ -233,6 +237,9 @@ function Navigation({ user, onLogout }) {
               <Link to="/cursos" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Cursos</Link>
               <Link to="/desbravadores" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Desbravadores</Link>
               <Link to="/oracao" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Oração</Link>
+              <Link to="/feliz7play" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Feliz7 Play</Link>
+              <Link to="/noticias-desbravadores" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Notícias</Link>
+              <Link to="/feedback" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Feedback</Link>
               <Link to="/contato" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-gray-700 hover:text-primary transition-colors font-medium">Contato</Link>
               {user ? (
                 <>

@@ -1,0 +1,371 @@
+/* Dark Mode Global Styles */
+
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --accent-color: #2563eb;
+  --accent-hover: #1d4ed8;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+}
+
+.dark {
+  /* Dark Mode Colors */
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border-color: #374151;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --success-color: #34d399;
+  --error-color: #f87171;
+  --warning-color: #fbbf24;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Cards */
+.card,
+.bg-white {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.bg-gray-50,
+.bg-gray-100 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-gray-200 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Text */
+.text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-600,
+.text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-400,
+.text-gray-500 {
+  color: var(--text-tertiary) !important;
+}
+
+/* Borders */
+.border-gray-200,
+.border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-tertiary) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent-color) !important;
+  background-color: var(--bg-primary) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--accent-color) !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover) !important;
+}
+
+.btn-secondary {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Modals */
+.modal,
+.dialog {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Navigation */
+.nav,
+.navbar,
+.header {
+  background-color: var(--bg-primary) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-color) !important;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: var(--bg-secondary) !important;
+  border-right-color: var(--border-color) !important;
+}
+
+/* Tables */
+table {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+thead {
+  background-color: var(--bg-secondary) !important;
+}
+
+tbody tr {
+  border-bottom-color: var(--border-color) !important;
+}
+
+tbody tr:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Lists */
+ul, ol {
+  color: var(--text-primary) !important;
+}
+
+li {
+  border-bottom-color: var(--border-color) !important;
+}
+
+/* Dividers */
+hr {
+  border-color: var(--border-color) !important;
+}
+
+/* Shadows */
+.shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+.dark .shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Alerts */
+.alert-success {
+  background-color: var(--success-color) !important;
+  color: white !important;
+}
+
+.alert-error {
+  background-color: var(--error-color) !important;
+  color: white !important;
+}
+
+.alert-warning {
+  background-color: var(--warning-color) !important;
+  color: white !important;
+}
+
+/* Code */
+code,
+pre {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Specific Components */
+
+/* Quiz */
+.quiz-option {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.quiz-option:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.quiz-option.correct {
+  background-color: var(--success-color) !important;
+  color: white !important;
+}
+
+.quiz-option.incorrect {
+  background-color: var(--error-color) !important;
+  color: white !important;
+}
+
+/* Devocional */
+.devocional-card {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.devocional-card:hover {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Hinário */
+.hino-card {
+  background-color: var(--bg-secondary) !important;
+}
+
+.hino-lyrics {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Bíblia */
+.bible-verse {
+  background-color: var(--bg-secondary) !important;
+  border-left-color: var(--accent-color) !important;
+}
+
+.bible-chapter {
+  color: var(--text-primary) !important;
+}
+
+/* Desbravadores */
+.classe-card {
+  background-color: var(--bg-secondary) !important;
+}
+
+.especialidade-badge {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Perfil */
+.profile-card {
+  background-color: var(--bg-primary) !important;
+}
+
+.profile-stat {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Escola Sabatina */
+.licao-card {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.licao-content {
+  color: var(--text-primary) !important;
+}
+
+/* Mobile Bottom Nav */
+.mobile-nav {
+  background-color: var(--bg-primary) !important;
+  border-top-color: var(--border-color) !important;
+}
+
+.mobile-nav-item {
+  color: var(--text-secondary) !important;
+}
+
+.mobile-nav-item.active {
+  color: var(--accent-color) !important;
+}
+
+/* Loading */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    var(--bg-tertiary) 50%,
+    var(--bg-secondary) 75%
+  ) !important;
+}
+
+/* Transitions */
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Disable transitions on theme change for instant switch */
+.theme-transitioning * {
+  transition: none !important;
+}
+

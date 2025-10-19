@@ -36,8 +36,10 @@ import {
   getBookmarks,
   getNotes
 } from '../services/authService.js'
+import { useTheme } from '../contexts/ThemeContext'
 
 export function PerfilPage() {
+  const { theme, toggleTheme, isDark } = useTheme()
   const [searchParams, setSearchParams] = useSearchParams()
   const [user, setUser] = useState(null)
   const [stats, setStats] = useState(null)
@@ -90,13 +92,14 @@ export function PerfilPage() {
   }
 
   const handleToggleTheme = () => {
-    if (!user.preferences) {
-      user.preferences = { theme: 'light' }
-    }
-    const newTheme = user.preferences.theme === 'light' ? 'dark' : 'light'
-    const result = updatePreferences({ theme: newTheme })
-    if (result.success) {
-      setUser(result.user)
+    toggleTheme()
+    // Também atualiza no perfil do usuário
+    if (user && user.preferences) {
+      const newTheme = theme === 'light' ? 'dark' : 'light'
+      const result = updatePreferences({ theme: newTheme })
+      if (result.success) {
+        setUser(result.user)
+      }
     }
   }
 
@@ -539,20 +542,20 @@ export function PerfilPage() {
                 <CardContent className="space-y-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      {user.preferences.theme === 'light' ? (
-                        <Sun className="h-5 w-5 text-primary" />
-                      ) : (
+                      {isDark ? (
                         <Moon className="h-5 w-5 text-primary" />
+                      ) : (
+                        <Sun className="h-5 w-5 text-primary" />
                       )}
                       <div>
-                        <div className="font-semibold">Tema</div>
+                        <div className="font-semibold">Modo Noturno</div>
                         <div className="text-sm text-muted-foreground">
-                          {user.preferences.theme === 'light' ? 'Claro' : 'Escuro'}
+                          {isDark ? 'Ativado' : 'Desativado'}
                         </div>
                       </div>
                     </div>
                     <Button variant="outline" onClick={handleToggleTheme}>
-                      Alternar
+                      {isDark ? '🌙 Escuro' : '☀️ Claro'}
                     </Button>
                   </div>
 

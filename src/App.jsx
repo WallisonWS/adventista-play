@@ -34,6 +34,8 @@ import {
   Calendar
 } from 'lucide-react'
 import './App.css'
+import './styles/dark-mode.css'
+import { ThemeProvider } from './contexts/ThemeContext'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { BibliaPage } from './components/BibliaPage.jsx'
 import { PerfilPage } from './components/PerfilPage.jsx'
@@ -1439,7 +1441,7 @@ function ProjetosPage() {
 }
 
 // Componente Principal
-function App() {
+function AppContent() {
   const [user, setUser] = useState(null)
 
   // Verificar se há usuário logado ao carregar
@@ -1562,6 +1564,14 @@ function App() {
         </motion.footer>
       </div>
     </Router>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 

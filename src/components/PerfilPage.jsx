@@ -58,15 +58,26 @@ export function PerfilPage() {
   }, [])
 
   const handleSaveProfile = () => {
+    // Validar campos obrigatórios
+    if (!formData.nome || formData.nome.trim() === '') {
+      alert('Por favor, preencha o nome')
+      return
+    }
+    
     const result = updateUserProfile(formData)
     if (result.success) {
       setUser(result.user)
       setEditing(false)
-      alert(result.message)
+      alert('✅ ' + result.message)
+    } else {
+      alert('❌ ' + result.message)
     }
   }
 
   const handleToggleTheme = () => {
+    if (!user.preferences) {
+      user.preferences = { theme: 'light' }
+    }
     const newTheme = user.preferences.theme === 'light' ? 'dark' : 'light'
     const result = updatePreferences({ theme: newTheme })
     if (result.success) {
@@ -77,7 +88,14 @@ export function PerfilPage() {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p>Carregando perfil...</p>
+        <Card className="max-w-md mx-auto">
+          <CardContent className="pt-6 text-center">
+            <User className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-lg font-medium mb-2">Perfil não encontrado</p>
+            <p className="text-sm text-muted-foreground mb-4">Você precisa fazer login para acessar seu perfil.</p>
+            <Button onClick={() => window.location.href = '/login'}>Fazer Login</Button>
+          </CardContent>
+        </Card>
       </div>
     )
   }

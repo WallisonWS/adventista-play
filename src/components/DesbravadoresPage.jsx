@@ -171,18 +171,174 @@ const cursosDesbravadores = [
 
 // Especialidades populares com logos oficiais
 const especialidades = [
-  { id: 1, nome: "Acampamento", categoria: "Atividades Recreativas", icone: Tent, cor: "bg-green-500" },
-  { id: 2, nome: "Primeiros Socorros", categoria: "Habilidades Domésticas", icone: Heart, cor: "bg-red-500" },
-  { id: 3, nome: "Nós e Amarras", categoria: "Atividades Recreativas", icone: Target, cor: "bg-green-500" },
-  { id: 4, nome: "Natação", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-blue-500" },
-  { id: 5, nome: "Cozinha", categoria: "Habilidades Domésticas", icone: Flame, cor: "bg-orange-500" },
-  { id: 6, nome: "Orientação", categoria: "Atividades Recreativas", icone: Compass, cor: "bg-green-500" },
-  { id: 7, nome: "Excursionismo", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-green-600" },
-  { id: 8, nome: "Segurança Básica", categoria: "Habilidades Domésticas", icone: Shield, cor: "bg-yellow-500" },
-  { id: 9, nome: "Fotografia", categoria: "Artes e Habilidades", icone: Target, cor: "bg-blue-600" },
-  { id: 10, nome: "Ciclismo", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-green-500" },
-  { id: 11, nome: "Canoagem", categoria: "Atividades Recreativas", icone: Mountain, cor: "bg-blue-600" },
-  { id: 12, nome: "Ordem Unida", categoria: "Atividades Recreativas", icone: Target, cor: "bg-red-600" }
+  { 
+    id: 1, 
+    nome: "Acampamento", 
+    categoria: "Atividades Recreativas", 
+    icone: Tent, 
+    cor: "bg-green-500",
+    requisitos: [
+      "Participar de um acampamento de fim de semana",
+      "Montar e desmontar uma barraca corretamente",
+      "Conhecer 5 regras de segurança em acampamentos",
+      "Fazer uma fogueira e apagá-la com segurança",
+      "Preparar uma refeição ao ar livre"
+    ]
+  },
+  { 
+    id: 2, 
+    nome: "Primeiros Socorros", 
+    categoria: "Habilidades Domésticas", 
+    icone: Heart, 
+    cor: "bg-red-500",
+    requisitos: [
+      "Conhecer e demonstrar RCP básico",
+      "Saber tratar queimaduras, cortes e fraturas",
+      "Montar um kit de primeiros socorros",
+      "Conhecer sinais vitais e como medi-los",
+      "Demonstrar a posição lateral de segurança"
+    ]
+  },
+  { 
+    id: 3, 
+    nome: "Nós e Amarras", 
+    categoria: "Atividades Recreativas", 
+    icone: Target, 
+    cor: "bg-green-500",
+    requisitos: [
+      "Fazer 10 nós diferentes e explicar seu uso",
+      "Fazer 3 tipos de amarras",
+      "Construir um projeto usando nós e amarras",
+      "Conhecer a história dos nós",
+      "Ensinar 5 nós para outra pessoa"
+    ]
+  },
+  { 
+    id: 4, 
+    nome: "Natação", 
+    categoria: "Atividades Recreativas", 
+    icone: Mountain, 
+    cor: "bg-blue-500",
+    requisitos: [
+      "Nadar 50 metros estilo livre",
+      "Nadar 25 metros de costas",
+      "Demonstrar 3 tipos de nado",
+      "Conhecer regras de segurança aquática",
+      "Fazer um salvamento básico"
+    ]
+  },
+  { 
+    id: 5, 
+    nome: "Cozinha", 
+    categoria: "Habilidades Domésticas", 
+    icone: Flame, 
+    cor: "bg-orange-500",
+    requisitos: [
+      "Preparar 5 refeições completas",
+      "Conhecer nutrição básica",
+      "Fazer um bolo e um pão",
+      "Conhecer segurança na cozinha",
+      "Planejar um cardápio saudável"
+    ]
+  },
+  { 
+    id: 6, 
+    nome: "Orientação", 
+    categoria: "Atividades Recreativas", 
+    icone: Compass, 
+    cor: "bg-green-500",
+    requisitos: [
+      "Usar bússola e mapa topográfico",
+      "Encontrar direções sem bússola",
+      "Completar uma trilha de orientação",
+      "Conhecer sinais de trilha",
+      "Usar GPS básico"
+    ]
+  },
+  { 
+    id: 7, 
+    nome: "Excursionismo", 
+    categoria: "Atividades Recreativas", 
+    icone: Mountain, 
+    cor: "bg-green-600",
+    requisitos: [
+      "Fazer uma caminhada de 10km",
+      "Conhecer equipamentos de trilha",
+      "Planejar uma excursão",
+      "Conhecer sinais de tempo",
+      "Fazer um relatório de trilha"
+    ]
+  },
+  { 
+    id: 8, 
+    nome: "Segurança Básica", 
+    categoria: "Habilidades Domésticas", 
+    icone: Shield, 
+    cor: "bg-yellow-500",
+    requisitos: [
+      "Conhecer números de emergência",
+      "Fazer um plano de evacuação",
+      "Conhecer segurança contra incêndio",
+      "Demonstrar segurança elétrica",
+      "Ensinar segurança para crianças"
+    ]
+  },
+  { 
+    id: 9, 
+    nome: "Fotografia", 
+    categoria: "Artes e Habilidades", 
+    icone: Target, 
+    cor: "bg-blue-600",
+    requisitos: [
+      "Conhecer partes de uma câmera",
+      "Tirar 20 fotos temáticas",
+      "Editar fotos básicas",
+      "Conhecer composição fotográfica",
+      "Fazer uma exposição de fotos"
+    ]
+  },
+  { 
+    id: 10, 
+    nome: "Ciclismo", 
+    categoria: "Atividades Recreativas", 
+    icone: Mountain, 
+    cor: "bg-green-500",
+    requisitos: [
+      "Pedalar 25km em terreno variado",
+      "Fazer manutenção básica de bicicleta",
+      "Conhecer sinais de trânsito",
+      "Usar equipamentos de segurança",
+      "Planejar um passeio ciclístico"
+    ]
+  },
+  { 
+    id: 11, 
+    nome: "Canoagem", 
+    categoria: "Atividades Recreativas", 
+    icone: Mountain, 
+    cor: "bg-blue-600",
+    requisitos: [
+      "Remar 1km em canoa",
+      "Conhecer segurança em canoagem",
+      "Fazer manobras básicas",
+      "Conhecer tipos de embarcações",
+      "Participar de um passeio de canoa"
+    ]
+  },
+  { 
+    id: 12, 
+    nome: "Ordem Unida", 
+    categoria: "Atividades Recreativas", 
+    icone: Target, 
+    cor: "bg-red-600",
+    requisitos: [
+      "Conhecer 15 comandos de ordem unida",
+      "Marchar em formação",
+      "Apresentar bandeiras corretamente",
+      "Liderar uma equipe em ordem unida",
+      "Participar de uma cerimônia oficial"
+    ]
+  }
 ]
 
 // Links úteis
@@ -237,37 +393,100 @@ const estudosBiblicos = [
     id: 1,
     titulo: "Voto e Lei do Desbravador",
     descricao: "Estudo profundo sobre o significado do voto e da lei",
-    licoes: 8
+    licoes: 8,
+    topicos: [
+      "O significado do Voto do Desbravador",
+      "Pela graça de Deus - Entendendo a salvação",
+      "Serei puro - Pureza em pensamentos e ações",
+      "Serei leal - Lealdade a Deus e aos outros",
+      "A Lei do Desbravador - Princípios de vida",
+      "Atencioso, Obediente e Puro",
+      "Bondoso, Leal e Respeitoso",
+      "Vivendo o Voto e a Lei no dia a dia"
+    ]
   },
   {
     id: 2,
     titulo: "Heróis da Bíblia",
     descricao: "Conhecendo os grandes heróis da fé",
-    licoes: 12
+    licoes: 12,
+    topicos: [
+      "Noé - Fé em meio à zombaria",
+      "Abraão - Obediência radical",
+      "José - Integridade na adversidade",
+      "Moisés - Liderança humilde",
+      "Davi - Coração segundo Deus",
+      "Daniel - Fidelidade inabalável",
+      "Ester - Coragem para salvar",
+      "Pedro - Transformação pelo perdão",
+      "Paulo - Dedicação missionária",
+      "Maria - Submissão à vontade de Deus",
+      "Estêvão - Primeiro mártir cristão",
+      "Timóteo - Jovem líder fiel"
+    ]
   },
   {
     id: 3,
     titulo: "Criação vs Evolução",
     descricao: "Evidências científicas da criação",
-    licoes: 6
+    licoes: 6,
+    topicos: [
+      "O relato bíblico da criação",
+      "Evidências fósseis e geológicas",
+      "Design inteligente na natureza",
+      "Complexidade irredutível",
+      "A idade da Terra - Perspectiva bíblica",
+      "Fé e ciência em harmonia"
+    ]
   },
   {
     id: 4,
     titulo: "Profecia e História",
     descricao: "Como a profecia se cumpre na história",
-    licoes: 10
+    licoes: 10,
+    topicos: [
+      "Introdução à profecia bíblica",
+      "Daniel 2 - A estátua de Nabucodonosor",
+      "Daniel 7 - As quatro bestas",
+      "Daniel 8 e 9 - As 70 semanas",
+      "Apocalipse - Visão geral",
+      "As 7 igrejas do Apocalipse",
+      "Os selos e as trombetas",
+      "O tempo do fim",
+      "A segunda vinda de Cristo",
+      "O novo céu e a nova terra"
+    ]
   },
   {
     id: 5,
     titulo: "Liderança Cristã",
     descricao: "Princípios bíblicos de liderança",
-    licoes: 8
+    licoes: 8,
+    topicos: [
+      "O que é liderança cristã?",
+      "Jesus como modelo de líder",
+      "Liderança servidora",
+      "Comunicação eficaz",
+      "Trabalho em equipe",
+      "Resolução de conflitos",
+      "Tomada de decisões sábias",
+      "Desenvolvendo novos líderes"
+    ]
   },
   {
     id: 6,
     titulo: "Família e Relacionamentos",
     descricao: "Valores cristãos para a vida familiar",
-    licoes: 7
+    licoes: 7,
+    topicos: [
+      "O plano de Deus para a família",
+      "Honrando pai e mãe",
+      "Relacionamentos saudáveis",
+      "Pureza e namoro cristão",
+      "Amizades que edificam",
+      "Resolvendo conflitos familiares",
+      "Preparando-se para o futuro"
+    ]
   }
 ]
 
@@ -694,14 +913,39 @@ export function DesbravadoresPage() {
             <p className="text-muted-foreground">
               Esta especialidade faz parte da categoria <strong>{especialidadeSelecionada?.categoria}</strong> e é uma ótima oportunidade para desenvolver novas habilidades e conhecimentos.
             </p>
+            
+            {especialidadeSelecionada?.requisitos && (
+              <div className="space-y-2">
+                <h4 className="font-semibold text-lg flex items-center gap-2">
+                  <Trophy className="h-5 w-5 text-primary" />
+                  Requisitos para Conclusão:
+                </h4>
+                <ul className="space-y-2">
+                  {especialidadeSelecionada.requisitos.map((req, index) => (
+                    <li key={index} className="flex items-start gap-2 text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
             <div className="bg-primary/5 p-4 rounded-lg">
               <p className="text-sm">
-                📌 Para obter esta especialidade, você precisará completar uma série de requisitos práticos e teóricos sob a orientação de um instrutor qualificado.
+                📌 Para obter esta especialidade, você precisará completar todos os requisitos acima sob a orientação de um instrutor qualificado.
               </p>
             </div>
-            <Button className="w-full" onClick={() => setEspecialidadeSelecionada(null)}>
-              Entendido
-            </Button>
+            
+            <div className="flex gap-2">
+              <Button className="flex-1" variant="outline" onClick={() => setEspecialidadeSelecionada(null)}>
+                Fechar
+              </Button>
+              <Button className="flex-1">
+                <Star className="h-4 w-4 mr-2" />
+                Iniciar Especialidade
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
@@ -718,24 +962,42 @@ export function DesbravadoresPage() {
               <BookOpen className="h-5 w-5 text-primary" />
               <span className="font-semibold">{estudoSelecionado?.licoes} lições disponíveis</span>
             </div>
+            
+            {estudoSelecionado?.topicos && (
+              <div className="space-y-2">
+                <h4 className="font-semibold text-lg flex items-center gap-2">
+                  <BookOpen className="h-5 w-5 text-primary" />
+                  Tópicos do Estudo:
+                </h4>
+                <div className="max-h-60 overflow-y-auto">
+                  <ul className="space-y-2">
+                    {estudoSelecionado.topicos.map((topico, index) => (
+                      <li key={index} className="flex items-start gap-2 text-sm">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">
+                          {index + 1}
+                        </span>
+                        <span className="pt-0.5">{topico}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+            
             <div className="bg-primary/5 p-4 rounded-lg">
               <p className="text-sm">
                 📖 Este estudo bíblico foi desenvolvido especialmente para Desbravadores, com linguagem acessível e aplicações práticas para o dia a dia.
               </p>
             </div>
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                O conteúdo completo estará disponível em breve. Enquanto isso, você pode explorar outros recursos da plataforma.
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <Link to="/estudos" className="flex-1">
-                <Button className="w-full">
-                  <BookOpen className="h-4 w-4 mr-2" />
-                  Ver Estudos Disponíveis
-                </Button>
-              </Link>
-              <Button variant="outline" onClick={() => setEstudoSelecionado(null)}>Fechar</Button>
+            
+            <div className="flex gap-2">
+              <Button variant="outline" className="flex-1" onClick={() => setEstudoSelecionado(null)}>
+                Fechar
+              </Button>
+              <Button className="flex-1">
+                <Play className="h-4 w-4 mr-2" />
+                Iniciar Estudo
+              </Button>
             </div>
           </div>
         </DialogContent>

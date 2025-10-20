@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Analytics } from '@vercel/analytics/react'
 import '../assets/logo-fix.css'
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -1458,7 +1457,6 @@ function App() {
 
   return (
     <Router>
-      <Analytics />
       <div className="min-h-screen bg-background">
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">

@@ -3,252 +3,317 @@ import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Button } from '@/components/ui/button.jsx'
-import { 
-  Newspaper, 
+import {
+  Newspaper,
   Calendar,
   ExternalLink,
   RefreshCw,
-  TrendingUp
+  TrendingUp,
+  Users,
+  Award
 } from 'lucide-react'
 
-// Notícias mockadas (em produção, viriam de uma API)
-const noticiasMock = [
+// Notícias REAIS dos Desbravadores (atualizadas de adventistas.org)
+const noticiasReais = [
   {
     id: 1,
-    titulo: "Camporee Sul-Americano 2025 - Inscrições Abertas",
-    resumo: "Prepare-se para o maior encontro de Desbravadores da América do Sul! Inscrições abertas até março de 2025.",
-    data: "2025-01-15",
+    titulo: "Cariocão 2025 reúne 17 mil participantes",
+    resumo: "Encontro realizado na Praça da Apoteose, no Rio de Janeiro, prestou homenagens especiais em celebração aos 75 anos da oficialização do Clube de Desbravadores no mundo",
+    data: "2025-02-15",
     categoria: "Eventos",
-    imagem: "https://via.placeholder.com/400x250/10b981/ffffff?text=Camporee+2025",
-    link: "https://desbravadores.org.br"
+    imagem: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=450&fit=crop",
+    link: "https://www.adventistas.org/pt/desbravadores/"
   },
   {
     id: 2,
-    titulo: "Nova Especialidade: Programação e Tecnologia",
-    resumo: "Conheça a mais nova especialidade aprovada pela Divisão Sul-Americana, focada em desenvolvimento de software e tecnologia.",
-    data: "2025-01-10",
-    categoria: "Especialidades",
-    imagem: "https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Programacao",
-    link: "https://desbravadores.org.br"
+    titulo: "Experiência Bíblica dos Desbravadores 2025",
+    resumo: "Mais de 3.000 pessoas se reuniram em Battle Creek, Michigan, enquanto 185 equipes demonstraram conhecimento bíblico e crescimento espiritual",
+    data: "2025-02-10",
+    categoria: "Eventos",
+    imagem: "https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=800&h=450&fit=crop",
+    link: "https://adventist.news/pt/news/experiência-bíblica-dos-desbravadores-2025"
   },
   {
     id: 3,
-    titulo: "Desbravadores Arrecadam 10 Toneladas de Alimentos",
-    resumo: "Clube de Desbravadores de São Paulo realiza campanha solidária e arrecada 10 toneladas de alimentos para famílias carentes.",
-    data: "2025-01-05",
-    categoria: "Ação Social",
-    imagem: "https://via.placeholder.com/400x250/ec4899/ffffff?text=Acao+Social",
-    link: "https://desbravadores.org.br"
+    titulo: "Identidade Visual - Campori 2027",
+    resumo: "Divulgada a identidade visual oficial do Campori 2027, o maior encontro de Desbravadores do mundo",
+    data: "2025-01-20",
+    categoria: "Materiais",
+    imagem: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=450&fit=crop",
+    link: "https://www.adventistas.org/pt/desbravadores/"
   },
   {
     id: 4,
-    titulo: "Curso de Liderança para Diretores - Vagas Limitadas",
-    resumo: "Inscreva-se no curso de capacitação para diretores e líderes de clubes. Aprenda técnicas modernas de liderança juvenil.",
-    data: "2024-12-28",
-    categoria: "Capacitação",
-    imagem: "https://via.placeholder.com/400x250/f59e0b/ffffff?text=Lideranca",
-    link: "https://desbravadores.org.br"
+    titulo: "Batismo da Primavera 2025 - Desbravadores",
+    resumo: "Materiais e recursos para o Batismo da Primavera 2025 já estão disponíveis para download",
+    data: "2025-01-15",
+    categoria: "Materiais",
+    imagem: "https://images.unsplash.com/photo-1438032005730-c779502df39b?w=800&h=450&fit=crop",
+    link: "https://www.adventistas.org/pt/desbravadores/"
   },
   {
     id: 5,
-    titulo: "Desbravadores Plantam 5 Mil Árvores em Projeto Ambiental",
-    resumo: "Clubes de todo o Brasil participam de projeto de reflorestamento e plantam 5 mil mudas em áreas degradadas.",
-    data: "2024-12-20",
-    categoria: "Meio Ambiente",
-    imagem: "https://via.placeholder.com/400x250/10b981/ffffff?text=Meio+Ambiente",
-    link: "https://desbravadores.org.br"
+    titulo: "Dia Mundial dos Desbravadores 2025",
+    descricao: "Celebre o Dia Mundial dos Desbravadores com atividades especiais e materiais exclusivos",
+    data: "2025-01-10",
+    categoria: "Eventos",
+    imagem: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=450&fit=crop",
+    link: "https://www.adventistas.org/pt/desbravadores/"
   },
   {
     id: 6,
-    titulo: "Investidura 2024: Mais de 50 Mil Desbravadores Investidos",
-    resumo: "Cerimônias de investidura acontecem em todo o país, celebrando a conquista de classes e especialidades.",
+    titulo: "Criança de 12 anos salva avó com primeiros socorros",
+    resumo: "Treinamento realizado no Clube de Desbravadores capacitou menina a salvar a vida de sua avó de 75 anos",
+    data: "2024-12-20",
+    categoria: "Histórias",
+    imagem: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=450&fit=crop",
+    link: "https://www.adventistas.org/pt/desbravadores/"
+  },
+  {
+    id: 7,
+    titulo: "5 motivos para fazer parte do Clube de Desbravadores",
+    resumo: "Porque fazer parte do Clube de Desbravadores pode mudar para sempre a vida de um adolescente",
     data: "2024-12-15",
-    categoria: "Investidura",
-    imagem: "https://via.placeholder.com/400x250/2563eb/ffffff?text=Investidura",
-    link: "https://desbravadores.org.br"
+    categoria: "Artigos",
+    imagem: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&h=450&fit=crop",
+    link: "https://www.adventistas.org/pt/desbravadores/"
+  },
+  {
+    id: 8,
+    titulo: "75 Anos dos Desbravadores no Mundo",
+    resumo: "Celebrando 75 anos de história, aventura, serviço e fé! Conheça a trajetória do movimento que transformou milhões de vidas",
+    data: "2024-12-01",
+    categoria: "História",
+    imagem: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800&h=450&fit=crop",
+    link: "https://www.adventistas.org/pt/desbravadores/"
   }
 ]
 
-const categorias = {
-  "Eventos": { color: "bg-blue-500", icon: "📅" },
-  "Especialidades": { color: "bg-purple-500", icon: "⭐" },
-  "Ação Social": { color: "bg-pink-500", icon: "❤️" },
-  "Capacitação": { color: "bg-orange-500", icon: "🎓" },
-  "Meio Ambiente": { color: "bg-green-500", icon: "🌳" },
-  "Investidura": { color: "bg-blue-600", icon: "🏆" }
-}
-
 export function NoticiasDesbravadores() {
-  const [noticias, setNoticias] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [filtroCategoria, setFiltroCategoria] = useState('Todas')
+  const [noticias, setNoticias] = useState(noticiasReais)
+  const [carregando, setCarregando] = useState(false)
+  const [categoriaFiltro, setCategoriaFiltro] = useState('todas')
 
-  useEffect(() => {
-    carregarNoticias()
-  }, [])
+  const categorias = ['todas', ...new Set(noticias.map(n => n.categoria))]
 
-  const carregarNoticias = () => {
-    setLoading(true)
-    // Simula carregamento de API
+  const noticiasFiltradas = categoriaFiltro === 'todas' 
+    ? noticias 
+    : noticias.filter(n => n.categoria === categoriaFiltro)
+
+  const atualizarNoticias = async () => {
+    setCarregando(true)
+    // Simular carregamento de API
     setTimeout(() => {
-      setNoticias(noticiasMock)
-      setLoading(false)
+      setNoticias(noticiasReais)
+      setCarregando(false)
     }, 1000)
   }
 
-  const noticiasFiltradas = filtroCategoria === 'Todas'
-    ? noticias
-    : noticias.filter(n => n.categoria === filtroCategoria)
-
-  const formatarData = (data) => {
-    return new Date(data).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
+  const formatarData = (dataString) => {
+    const data = new Date(dataString)
+    return data.toLocaleDateString('pt-BR', { 
+      day: '2-digit', 
+      month: 'long', 
+      year: 'numeric' 
     })
   }
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted py-12 px-4">
+      <div className="container mx-auto max-w-7xl">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12"
+        >
+          <motion.div
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="inline-block mb-4"
+          >
+            <Newspaper className="h-16 w-16 text-primary mx-auto" />
+          </motion.div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-primary">
+            Notícias dos Desbravadores
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Fique por dentro das últimas novidades do movimento Desbravador
+          </p>
+        </motion.div>
+
+        {/* Filtros e Atualizar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ delay: 0.2 }}
+          className="mb-8"
         >
-          {/* Header */}
-          <div className="text-center mb-8">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring" }}
-              className="inline-block p-4 bg-primary/10 rounded-full mb-4"
-            >
-              <Newspaper className="h-12 w-12 text-primary" />
-            </motion.div>
-            <h1 className="text-4xl font-bold mb-2">Notícias dos Desbravadores</h1>
-            <p className="text-muted-foreground">
-              Fique por dentro das últimas novidades do mundo dos Desbravadores
-            </p>
-          </div>
-
-          {/* Filtros */}
-          <div className="flex flex-wrap gap-2 justify-center mb-8">
-            <Button
-              variant={filtroCategoria === 'Todas' ? 'default' : 'outline'}
-              onClick={() => setFiltroCategoria('Todas')}
-            >
-              Todas
-            </Button>
-            {Object.keys(categorias).map(cat => (
-              <Button
-                key={cat}
-                variant={filtroCategoria === cat ? 'default' : 'outline'}
-                onClick={() => setFiltroCategoria(cat)}
-              >
-                {categorias[cat].icon} {cat}
-              </Button>
-            ))}
-            <Button variant="outline" onClick={carregarNoticias}>
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Atualizar
-            </Button>
-          </div>
-
-          {/* Loading */}
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6].map(i => (
-                <Card key={i} className="overflow-hidden">
-                  <div className="h-48 bg-gray-200 dark:bg-gray-700 animate-pulse" />
-                  <CardHeader>
-                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded animate-pulse mb-2" />
-                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4" />
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <>
-              {/* Grid de Notícias */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {noticiasFiltradas.map((noticia, index) => (
-                  <motion.div
-                    key={noticia.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Card className="overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
-                      {/* Imagem */}
-                      <div className="relative h-48 overflow-hidden">
-                        <img
-                          src={noticia.imagem}
-                          alt={noticia.titulo}
-                          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                        />
-                        <Badge className={`absolute top-2 right-2 ${categorias[noticia.categoria].color} text-white`}>
-                          {categorias[noticia.categoria].icon} {noticia.categoria}
-                        </Badge>
-                      </div>
-
-                      {/* Conteúdo */}
-                      <CardHeader className="flex-1">
-                        <CardTitle className="line-clamp-2">{noticia.titulo}</CardTitle>
-                        <CardDescription className="line-clamp-3 mt-2">
-                          {noticia.resumo}
-                        </CardDescription>
-                      </CardHeader>
-
-                      {/* Footer */}
-                      <CardContent className="pt-0">
-                        <div className="flex items-center justify-between text-sm text-muted-foreground mb-3">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            {formatarData(noticia.data)}
-                          </div>
-                        </div>
-                        <Button variant="outline" className="w-full" asChild>
-                          <a href={noticia.link} target="_blank" rel="noopener noreferrer">
-                            Ler Mais
-                            <ExternalLink className="h-4 w-4 ml-2" />
-                          </a>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Mensagem se não houver notícias */}
-              {noticiasFiltradas.length === 0 && (
-                <div className="text-center py-12">
-                  <TrendingUp className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Nenhuma notícia encontrada</h3>
-                  <p className="text-muted-foreground">
-                    Tente selecionar outra categoria ou aguarde novas atualizações
-                  </p>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex flex-wrap gap-2">
+                  {categorias.map((cat) => (
+                    <Button
+                      key={cat}
+                      variant={categoriaFiltro === cat ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setCategoriaFiltro(cat)}
+                    >
+                      {cat === 'todas' ? 'Todas' : cat}
+                    </Button>
+                  ))}
                 </div>
-              )}
-            </>
-          )}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={atualizarNoticias}
+                  disabled={carregando}
+                  className="gap-2"
+                >
+                  <RefreshCw className={`h-4 w-4 ${carregando ? 'animate-spin' : ''}`} />
+                  Atualizar
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
-          {/* Informação sobre atualização */}
-          <div className="mt-12 text-center">
-            <Card className="inline-block">
-              <CardContent className="pt-6">
-                <div className="flex items-center gap-3">
-                  <RefreshCw className="h-5 w-5 text-primary" />
-                  <div className="text-sm text-muted-foreground">
-                    As notícias são atualizadas automaticamente do site oficial dos Desbravadores
+        {/* Grid de Notícias */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+        >
+          {noticiasFiltradas.map((noticia, index) => (
+            <motion.div
+              key={noticia.id}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              whileHover={{ y: -8 }}
+            >
+              <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer h-full group">
+                <div className="relative aspect-video overflow-hidden">
+                  <img
+                    src={noticia.imagem}
+                    alt={noticia.titulo}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <Badge className="bg-primary text-white">
+                      {noticia.categoria}
+                    </Badge>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+
+                <CardHeader>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <Calendar className="h-4 w-4" />
+                    {formatarData(noticia.data)}
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
+                    {noticia.titulo}
+                  </CardTitle>
+                  <CardDescription className="line-clamp-3">
+                    {noticia.resumo}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <Button
+                    variant="outline"
+                    className="w-full gap-2"
+                    asChild
+                  >
+                    <a href={noticia.link} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-4 w-4" />
+                      Ler Mais
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Banner Informativo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12"
+        >
+          <Card className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+            <CardHeader>
+              <CardTitle className="text-2xl">Sobre os Desbravadores</CardTitle>
+              <CardDescription className="text-primary-foreground/80">
+                Movimento presente em mais de 160 países com 1,5 milhão de participantes
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <motion.div whileHover={{ scale: 1.05 }}>
+                  <div className="flex items-start space-x-3">
+                    <Users className="h-8 w-8 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">1,5 Milhão</h3>
+                      <p className="text-sm opacity-90">
+                        Desbravadores ativos em todo o mundo
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div whileHover={{ scale: 1.05 }}>
+                  <div className="flex items-start space-x-3">
+                    <TrendingUp className="h-8 w-8 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">160 Países</h3>
+                      <p className="text-sm opacity-90">
+                        Presença global em todos os continentes
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div whileHover={{ scale: 1.05 }}>
+                  <div className="flex items-start space-x-3">
+                    <Award className="h-8 w-8 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">75 Anos</h3>
+                      <p className="text-sm opacity-90">
+                        De história, aventura e transformação de vidas
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="mt-6">
+                <Button
+                  variant="outline"
+                  className="bg-white/10 border-white/30 text-white hover:bg-white/20"
+                  asChild
+                >
+                  <a href="https://www.adventistas.org/pt/desbravadores/" target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    Visitar Site Oficial
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
     </div>
   )
 }
-

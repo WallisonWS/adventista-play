@@ -85,63 +85,99 @@ export function VersiculoDoDia({ compact = false }) {
   }
 
   const generateVerseImage = async () => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
         const canvas = document.createElement('canvas');
         canvas.width = 1080;
         canvas.height = 1920;
         const ctx = canvas.getContext('2d');
 
-        // Gradiente de fundo (azul para roxo)
-        const gradient = ctx.createLinearGradient(0, 0, 0, 1920);
-        gradient.addColorStop(0, '#1e3a8a');
-        gradient.addColorStop(0.5, '#7c3aed');
-        gradient.addColorStop(1, '#2563eb');
-        ctx.fillStyle = gradient;
+        // Buscar imagem de fundo cristã do Unsplash
+        const temasBusca = ['jesus christ', 'christian cross', 'church', 'bible', 'prayer', 'faith'];
+        const temaSelecionado = temasBusca[Math.floor(Math.random() * temasBusca.length)];
+        
+        try {
+          // Carregar imagem de fundo
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          
+          await new Promise((resolveImg, rejectImg) => {
+            img.onload = () => resolveImg();
+            img.onerror = () => rejectImg();
+            // Usar Unsplash API para imagens cristãs de alta qualidade
+            img.src = `https://source.unsplash.com/1080x1920/?${temaSelecionado},spiritual,religious`;
+          });
+
+          // Desenhar imagem de fundo
+          ctx.drawImage(img, 0, 0, 1080, 1920);
+        } catch (imgError) {
+          // Fallback: gradiente se a imagem falhar
+          const gradient = ctx.createLinearGradient(0, 0, 0, 1920);
+          gradient.addColorStop(0, '#1e3a8a');
+          gradient.addColorStop(0.5, '#7c3aed');
+          gradient.addColorStop(1, '#2563eb');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, 1080, 1920);
+        }
+
+        // Overlay escuro para melhor legibilidade
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
         ctx.fillRect(0, 0, 1080, 1920);
 
-        // Overlay
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-        ctx.fillRect(0, 0, 1080, 1920);
-
-        // Título
-        ctx.textAlign = 'center';
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 60px Arial, sans-serif';
-        ctx.fillText('Versículo do Dia', 540, 200);
-
-        // Linha decorativa
+        // Adicionar borda decorativa
         ctx.strokeStyle = '#7BB342';
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 8;
+        ctx.strokeRect(40, 40, 1000, 1840);
+
+        // Título com sombra
+        ctx.textAlign = 'center';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+        ctx.shadowBlur = 20;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 4;
+        
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 70px Arial, sans-serif';
+        ctx.fillText('Versículo do Dia', 540, 250);
+
+        // Linha decorativa com gradiente
+        const lineGradient = ctx.createLinearGradient(300, 300, 780, 300);
+        lineGradient.addColorStop(0, 'rgba(123, 179, 66, 0)');
+        lineGradient.addColorStop(0.5, '#7BB342');
+        lineGradient.addColorStop(1, 'rgba(123, 179, 66, 0)');
+        ctx.strokeStyle = lineGradient;
+        ctx.lineWidth = 6;
         ctx.beginPath();
-        ctx.moveTo(340, 240);
-        ctx.lineTo(740, 240);
+        ctx.moveTo(300, 300);
+        ctx.lineTo(780, 300);
         ctx.stroke();
 
-        // Texto do versículo (GRANDE)
-        ctx.font = 'bold 56px Arial, sans-serif';
+        // Reset shadow para o texto
+        ctx.shadowBlur = 15;
+        ctx.shadowOffsetY = 3;
+
+        // Texto do versículo (GRANDE e legível)
+        ctx.font = 'bold 58px Arial, sans-serif';
         const maxWidth = 900;
-        const lineHeight = 80;
+        const lineHeight = 85;
         const words = versiculo.texto.split(' ');
         let line = '';
-        let y = 500;
+        let y = 600;
 
-        // Aspas de abertura
-        ctx.font = 'bold 80px Georgia, serif';
+        // Aspas de abertura decorativas
+        ctx.font = 'bold 100px Georgia, serif';
         ctx.fillStyle = '#7BB342';
-        ctx.fillText('\u201C', 540, y - 60);
+        ctx.fillText('"', 540, y - 80);
+        
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 56px Arial, sans-serif';
+        ctx.font = 'bold 58px Arial, sans-serif';
 
-        // Quebrar texto
+        // Quebrar texto com melhor espaçamento
         for (let i = 0; i < words.length; i++) {
           const testLine = line + words[i] + ' ';
           const metrics = ctx.measureText(testLine);
-          
+
           if (metrics.width > maxWidth && i > 0) {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            ctx.fillText(line, 542, y + 2);
-            ctx.fillStyle = '#ffffff';
             ctx.fillText(line, 540, y);
             line = words[i] + ' ';
             y += lineHeight;
@@ -149,28 +185,40 @@ export function VersiculoDoDia({ compact = false }) {
             line = testLine;
           }
         }
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-        ctx.fillText(line, 542, y + 2);
-        ctx.fillStyle = '#ffffff';
         ctx.fillText(line, 540, y);
 
-        // Aspas de fechamento
-        ctx.font = 'bold 80px Georgia, serif';
+        // Aspas de fechamento decorativas
+        ctx.font = 'bold 100px Georgia, serif';
         ctx.fillStyle = '#7BB342';
-        ctx.fillText('\u201D', 540, y + 100);
+        ctx.fillText('"', 540, y + 120);
 
-        // Referência
-        y += 200;
-        ctx.font = 'bold 52px Arial, sans-serif';
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-        ctx.fillText(versiculo.referencia, 542, y + 2);
+        // Referência com destaque
+        y += 220;
+        ctx.font = 'bold 60px Arial, sans-serif';
         ctx.fillStyle = '#7BB342';
         ctx.fillText(versiculo.referencia, 540, y);
 
-        // Marca d'água
-        ctx.font = 'bold 40px Arial, sans-serif';
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.fillText('www.adventistaplay.online', 540, 1800);
+        // Tema do versículo
+        y += 80;
+        ctx.font = '40px Arial, sans-serif';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillText(`Tema: ${versiculo.tema}`, 540, y);
+
+        // Reset shadow
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetY = 0;
+
+        // Logo/Marca d'água com fundo
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.fillRect(0, 1750, 1080, 170);
+        
+        ctx.font = 'bold 45px Arial, sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('Adventista Play', 540, 1820);
+        
+        ctx.font = '35px Arial, sans-serif';
+        ctx.fillStyle = '#7BB342';
+        ctx.fillText('www.adventistaplay.online', 540, 1870);
 
         canvas.toBlob((blob) => {
           if (blob) {
@@ -395,4 +443,3 @@ export function VersiculoDoDia({ compact = false }) {
     </motion.div>
   )
 }
-

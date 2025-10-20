@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge.jsx'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog.jsx'
-import { TextToSpeechBackground } from './TextToSpeechBackground.jsx'
+import { TextToSpeech } from './TextToSpeech.jsx'
 import {
   Award,
   BookOpen,
@@ -965,9 +965,8 @@ export function DesbravadoresPage() {
           {/* Text-to-Speech para ouvir o estudo */}
           {estudoSelecionado?.topicos && (
             <div className="mb-4">
-              <TextToSpeechBackground 
+              <TextToSpeech 
                 text={`${estudoSelecionado.titulo}. ${estudoSelecionado.descricao}. Este estudo possui ${estudoSelecionado.licoes} lições. Os tópicos são: ${estudoSelecionado.topicos.join('. ')}`}
-                title={estudoSelecionado.titulo}
                 compact={true}
               />
             </div>

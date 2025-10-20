@@ -297,6 +297,8 @@ export function BibliaPage() {
                   <option value="ARC">Almeida RC</option>
                   <option value="ACF">Almeida CF</option>
                   <option value="NVI">Nova VI</option>
+                  <option value="NAA">Nova Almeida Atualizada</option>
+                  <option value="NTLH">Nova Tradução (Linguagem de Hoje)</option>
                 </select>
 
                 <Button variant="outline" size="sm" onClick={() => setTamanhoFonte(Math.max(14, tamanhoFonte - 2))}>
@@ -326,7 +328,7 @@ export function BibliaPage() {
                   {livroSelecionado.nome} - Capítulo {capituloSelecionado}
                 </CardTitle>
                 <CardDescription className={modoNoturno ? 'text-gray-400' : ''}>
-                  Versão: {versao === 'ARC' ? 'Almeida Revista e Corrigida' : versao === 'ACF' ? 'Almeida Corrigida Fiel' : 'Nova Versão Internacional'}
+                  Versão: {versao === 'ARC' ? 'Almeida Revista e Corrigida' : versao === 'ACF' ? 'Almeida Corrigida Fiel' : versao === 'NVI' ? 'Nova Versão Internacional' : versao === 'NAA' ? 'Nova Almeida Atualizada' : 'Nova Tradução na Linguagem de Hoje'}
                 </CardDescription>
               </CardHeader>
               

@@ -12,6 +12,7 @@
   # Variáveis de ambiente do build
   [build.environment]
     NODE_VERSION = "18"
+    NPM_FLAGS = "--legacy-peer-deps"
 
 # Configuração para SPA (Single Page Application)
 # Redireciona todas as rotas para index.html

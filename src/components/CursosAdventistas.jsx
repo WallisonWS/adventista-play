@@ -1,226 +1,209 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
+import { Button } from '@/components/ui/button.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx'
-import { 
-  GraduationCap, 
-  BookOpen, 
-  Video, 
-  FileText, 
-  Clock,
+import {
+  GraduationCap,
+  BookOpen,
   Users,
-  Star,
-  Search,
-  ChevronRight,
+  Clock,
   Award,
-  Heart,
-  Globe,
-  Sparkles
+  Search,
+  ExternalLink,
+  Play,
+  CheckCircle,
+  Star,
+  TrendingUp
 } from 'lucide-react'
 
-const cursosData = [
+const categorias = [
+  { id: 'todos', nome: 'Todos', icon: GraduationCap },
+  { id: 'teologia', nome: 'Teologia', icon: BookOpen },
+  { id: 'lideranca', nome: 'Liderança', icon: Users },
+  { id: 'evangelismo', nome: 'Evangelismo', icon: TrendingUp },
+  { id: 'familia', nome: 'Família', icon: Users },
+  { id: 'jovens', nome: 'Jovens', icon: Star }
+]
+
+const cursosDisponiveis = [
   {
     id: 1,
-    titulo: "Fundamentos da Fé Adventista",
-    descricao: "Aprenda os pilares da fé adventista do sétimo dia",
+    titulo: "Teologia Adventista Básica",
+    descricao: "Fundamentos da fé adventista e doutrinas essenciais",
     categoria: "teologia",
     nivel: "Iniciante",
     duracao: "8 semanas",
     aulas: 24,
-    alunos: 1250,
-    rating: 4.9,
-    imagem: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-    tags: ["Doutrina", "Bíblia", "História"],
-    instrutor: "Pr. João Silva",
-    conteudo: [
-      "As 28 Crenças Fundamentais",
-      "História da Igreja Adventista",
-      "O Santuário e o Juízo Investigativo",
-      "O Sábado e sua Importância",
-      "O Estado dos Mortos",
-      "A Segunda Vinda de Cristo"
-    ]
+    instrutor: "Pastor Marcos Silva",
+    imagem: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=450&fit=crop",
+    destaque: true,
+    gratuito: true,
+    certificado: true
   },
   {
     id: 2,
-    titulo: "Liderança Jovem Adventista",
-    descricao: "Desenvolva habilidades de liderança cristã",
+    titulo: "Liderança Cristã Eficaz",
+    descricao: "Princípios bíblicos de liderança para líderes de igreja",
     categoria: "lideranca",
     nivel: "Intermediário",
     duracao: "6 semanas",
     aulas: 18,
-    alunos: 890,
-    rating: 4.8,
-    imagem: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400",
-    tags: ["Liderança", "Jovens", "Ministério"],
-    instrutor: "Dra. Maria Santos",
-    conteudo: [
-      "Princípios Bíblicos de Liderança",
-      "Comunicação Efetiva",
-      "Trabalho em Equipe",
-      "Gestão de Conflitos",
-      "Mentoria e Discipulado",
-      "Planejamento Estratégico"
-    ]
+    instrutor: "Pr. João Santos",
+    imagem: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=450&fit=crop",
+    destaque: true,
+    gratuito: true,
+    certificado: true
   },
   {
     id: 3,
-    titulo: "Evangelismo Digital",
-    descricao: "Aprenda a compartilhar a fé nas redes sociais",
+    titulo: "Evangelismo Pessoal",
+    descricao: "Como compartilhar sua fé de forma natural e eficaz",
     categoria: "evangelismo",
     nivel: "Iniciante",
     duracao: "4 semanas",
     aulas: 12,
-    alunos: 2100,
-    rating: 4.7,
-    imagem: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400",
-    tags: ["Evangelismo", "Redes Sociais", "Tecnologia"],
-    instrutor: "Pr. Carlos Mendes",
-    conteudo: [
-      "Estratégias de Conteúdo Cristão",
-      "Instagram e Facebook para Evangelismo",
-      "Criação de Vídeos Inspiradores",
-      "Engajamento e Comunidade Online",
-      "Ética Digital Cristã"
-    ]
+    instrutor: "Evangelista Maria Costa",
+    imagem: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: true
   },
   {
     id: 4,
-    titulo: "Saúde e Estilo de Vida",
-    descricao: "Princípios adventistas para uma vida saudável",
-    categoria: "saude",
-    nivel: "Iniciante",
+    titulo: "Família Cristã Feliz",
+    descricao: "Construindo relacionamentos saudáveis baseados em princípios bíblicos",
+    categoria: "familia",
+    nivel: "Todos",
     duracao: "5 semanas",
     aulas: 15,
-    alunos: 1680,
-    rating: 4.9,
-    imagem: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400",
-    tags: ["Saúde", "Nutrição", "Bem-estar"],
     instrutor: "Dra. Ana Paula",
-    conteudo: [
-      "Os 8 Remédios Naturais",
-      "Alimentação Vegetariana",
-      "Exercícios Físicos e Espiritualidade",
-      "Controle do Estresse",
-      "Sono Reparador",
-      "Temperança e Equilíbrio"
-    ]
+    imagem: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: false
   },
   {
     id: 5,
+    titulo: "Ministério Jovem Dinâmico",
+    descricao: "Estratégias para engajar jovens na igreja",
+    categoria: "jovens",
+    nivel: "Intermediário",
+    duracao: "6 semanas",
+    aulas: 18,
+    instrutor: "Pr. Lucas Oliveira",
+    imagem: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=450&fit=crop",
+    destaque: true,
+    gratuito: true,
+    certificado: true
+  },
+  {
+    id: 6,
     titulo: "Profecia Bíblica",
-    descricao: "Estudo profundo das profecias de Daniel e Apocalipse",
+    descricao: "Estudo aprofundado de Daniel e Apocalipse",
     categoria: "teologia",
     nivel: "Avançado",
     duracao: "12 semanas",
     aulas: 36,
-    alunos: 950,
-    rating: 5.0,
-    imagem: "https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=400",
-    tags: ["Profecia", "Daniel", "Apocalipse"],
-    instrutor: "Pr. Roberto Lima",
-    conteudo: [
-      "Introdução à Profecia",
-      "As Profecias de Daniel",
-      "Os Sete Selos do Apocalipse",
-      "As Sete Trombetas",
-      "As Sete Pragas",
-      "A Nova Terra"
-    ]
-  },
-  {
-    id: 6,
-    titulo: "Música Sacra e Adoração",
-    descricao: "Desenvolva seu ministério musical",
-    categoria: "musica",
-    nivel: "Intermediário",
-    duracao: "8 semanas",
-    aulas: 24,
-    alunos: 720,
-    rating: 4.8,
-    imagem: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400",
-    tags: ["Música", "Adoração", "Ministério"],
-    instrutor: "Maestro Pedro Costa",
-    conteudo: [
-      "Teologia da Adoração",
-      "Técnicas Vocais",
-      "Regência de Coral",
-      "Instrumentos na Igreja",
-      "Composição de Hinos",
-      "Ministério de Louvor"
-    ]
+    instrutor: "Dr. Roberto Almeida",
+    imagem: "https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: true
   },
   {
     id: 7,
-    titulo: "Família Cristã",
-    descricao: "Fortalecendo os laços familiares à luz da Bíblia",
-    categoria: "familia",
-    nivel: "Iniciante",
-    duracao: "6 semanas",
-    aulas: 18,
-    alunos: 1420,
-    rating: 4.9,
-    imagem: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400",
-    tags: ["Família", "Casamento", "Filhos"],
-    instrutor: "Pr. Marcos e Dra. Juliana",
-    conteudo: [
-      "O Plano de Deus para a Família",
-      "Comunicação no Casamento",
-      "Educação de Filhos",
-      "Finanças Familiares",
-      "Culto Familiar",
-      "Resolução de Conflitos"
-    ]
+    titulo: "Pregação Expositiva",
+    descricao: "Como preparar e apresentar sermões bíblicos",
+    categoria: "lideranca",
+    nivel: "Avançado",
+    duracao: "10 semanas",
+    aulas: 30,
+    instrutor: "Pr. Fernando Lima",
+    imagem: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: true
   },
   {
     id: 8,
+    titulo: "Pequenos Grupos",
+    descricao: "Como liderar e multiplicar pequenos grupos",
+    categoria: "lideranca",
+    nivel: "Intermediário",
+    duracao: "4 semanas",
+    aulas: 12,
+    instrutor: "Líder Paulo Mendes",
+    imagem: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: false
+  },
+  {
+    id: 9,
+    titulo: "Música Sacra",
+    descricao: "Fundamentos de música para o culto adventista",
+    categoria: "jovens",
+    nivel: "Iniciante",
+    duracao: "8 semanas",
+    aulas: 24,
+    instrutor: "Maestro Carlos Souza",
+    imagem: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: true
+  },
+  {
+    id: 10,
+    titulo: "Aconselhamento Cristão",
+    descricao: "Princípios bíblicos para aconselhar e ajudar pessoas",
+    categoria: "lideranca",
+    nivel: "Avançado",
+    duracao: "10 semanas",
+    aulas: 30,
+    instrutor: "Psicóloga Dra. Juliana",
+    imagem: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: true
+  },
+  {
+    id: 11,
     titulo: "Missões Urbanas",
-    descricao: "Estratégias para alcançar as grandes cidades",
+    descricao: "Estratégias de evangelismo para grandes cidades",
     categoria: "evangelismo",
     nivel: "Intermediário",
-    duracao: "7 semanas",
-    aulas: 21,
-    alunos: 580,
-    rating: 4.7,
-    imagem: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400",
-    tags: ["Missões", "Evangelismo", "Urbano"],
-    instrutor: "Pr. Felipe Oliveira",
-    conteudo: [
-      "Desafios das Grandes Cidades",
-      "Grupos Pequenos Urbanos",
-      "Ministério de Compaixão",
-      "Plantio de Igrejas",
-      "Evangelismo Público",
-      "Discipulado Urbano"
-    ]
+    duracao: "6 semanas",
+    aulas: 18,
+    instrutor: "Missionário Pedro Rocha",
+    imagem: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: true
+  },
+  {
+    id: 12,
+    titulo: "Educação Cristã",
+    descricao: "Princípios de educação adventista para pais e professores",
+    categoria: "familia",
+    nivel: "Todos",
+    duracao: "5 semanas",
+    aulas: 15,
+    instrutor: "Profª. Sandra Lima",
+    imagem: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=450&fit=crop",
+    gratuito: true,
+    certificado: false
   }
 ]
 
-const categorias = [
-  { id: 'todos', nome: 'Todos', icone: BookOpen },
-  { id: 'teologia', nome: 'Teologia', icone: BookOpen },
-  { id: 'lideranca', nome: 'Liderança', icone: Users },
-  { id: 'evangelismo', nome: 'Evangelismo', icone: Heart },
-  { id: 'saude', nome: 'Saúde', icone: Heart },
-  { id: 'musica', nome: 'Música', icone: Sparkles },
-  { id: 'familia', nome: 'Família', icone: Heart }
-]
-
 export function CursosAdventistas() {
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState('todos')
+  const [categoriaAtiva, setCategoriaAtiva] = useState('todos')
   const [busca, setBusca] = useState('')
   const [cursoSelecionado, setCursoSelecionado] = useState(null)
 
-  const cursosFiltrados = cursosData.filter(curso => {
-    const matchCategoria = categoriaSelecionada === 'todos' || curso.categoria === categoriaSelecionada
-    const matchBusca = curso.titulo.toLowerCase().includes(busca.toLowerCase()) ||
-                       curso.descricao.toLowerCase().includes(busca.toLowerCase()) ||
-                       curso.tags.some(tag => tag.toLowerCase().includes(busca.toLowerCase()))
+  const cursosFiltrados = cursosDisponiveis.filter(c => {
+    const matchCategoria = categoriaAtiva === 'todos' || c.categoria === categoriaAtiva
+    const matchBusca = c.titulo.toLowerCase().includes(busca.toLowerCase()) ||
+                       c.descricao.toLowerCase().includes(busca.toLowerCase()) ||
+                       c.instrutor.toLowerCase().includes(busca.toLowerCase())
     return matchCategoria && matchBusca
   })
+
+  const cursosDestaque = cursosDisponiveis.filter(c => c.destaque)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted py-12 px-4">
@@ -232,17 +215,17 @@ export function CursosAdventistas() {
           className="text-center mb-12"
         >
           <motion.div
-            className="flex justify-center mb-4"
-            animate={{ rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="inline-block mb-4"
           >
-            <GraduationCap className="h-20 w-20 text-primary" />
+            <GraduationCap className="h-16 w-16 text-primary mx-auto" />
           </motion.div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Cursos <span className="text-primary">Adventistas</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-primary">
+            Cursos Adventistas
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Desenvolva seu conhecimento e ministério com cursos de qualidade
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Capacitação e crescimento espiritual através de cursos online gratuitos
           </p>
         </motion.div>
 
@@ -253,16 +236,19 @@ export function CursosAdventistas() {
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <div className="relative max-w-2xl mx-auto">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Buscar cursos..."
-              value={busca}
-              onChange={(e) => setBusca(e.target.value)}
-              className="pl-12 py-6 text-lg"
-            />
-          </div>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  placeholder="Buscar cursos por título, descrição ou instrutor..."
+                  className="pl-10 text-lg"
+                  value={busca}
+                  onChange={(e) => setBusca(e.target.value)}
+                />
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
 
         {/* Categorias */}
@@ -270,121 +256,377 @@ export function CursosAdventistas() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="mb-12"
+          className="mb-8"
         >
-          <div className="flex flex-wrap justify-center gap-3">
-            {categorias.map((cat) => {
-              const Icone = cat.icone
+          <div className="flex flex-wrap gap-3 justify-center">
+            {categorias.map((cat, index) => {
+              const Icon = cat.icon
               return (
-                <Button
+                <motion.div
                   key={cat.id}
-                  variant={categoriaSelecionada === cat.id ? 'default' : 'outline'}
-                  onClick={() => setCategoriaSelecionada(cat.id)}
-                  className="flex items-center space-x-2"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Icone className="h-4 w-4" />
-                  <span>{cat.nome}</span>
-                </Button>
+                  <Button
+                    variant={categoriaAtiva === cat.id ? "default" : "outline"}
+                    className="gap-2"
+                    onClick={() => setCategoriaAtiva(cat.id)}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {cat.nome}
+                  </Button>
+                </motion.div>
               )
             })}
           </div>
         </motion.div>
 
-        {/* Grid de Cursos */}
+        {/* Cursos em Destaque */}
+        {categoriaAtiva === 'todos' && !busca && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-12"
+          >
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <Star className="h-6 w-6 text-yellow-500" />
+              Cursos em Destaque
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {cursosDestaque.map((curso, index) => (
+                <motion.div
+                  key={curso.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer h-full group border-2 border-yellow-500/50">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img
+                        src={curso.imagem}
+                        alt={curso.titulo}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute top-3 right-3">
+                        <Badge className="bg-yellow-500 text-white">
+                          <Star className="h-3 w-3 mr-1" />
+                          Destaque
+                        </Badge>
+                      </div>
+                      {curso.gratuito && (
+                        <div className="absolute top-3 left-3">
+                          <Badge className="bg-green-500 text-white">
+                            GRÁTIS
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+
+                    <CardHeader>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Badge variant="secondary">{curso.nivel}</Badge>
+                        {curso.certificado && (
+                          <Badge variant="outline" className="gap-1">
+                            <Award className="h-3 w-3" />
+                            Certificado
+                          </Badge>
+                        )}
+                      </div>
+                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                        {curso.titulo}
+                      </CardTitle>
+                      <CardDescription className="line-clamp-2">
+                        {curso.descricao}
+                      </CardDescription>
+                    </CardHeader>
+
+                    <CardContent className="space-y-3">
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-4 w-4" />
+                          {curso.duracao}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Play className="h-4 w-4" />
+                          {curso.aulas} aulas
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Por: {curso.instrutor}
+                      </p>
+                      <Button className="w-full" onClick={() => setCursoSelecionado(curso)}>
+                        <Play className="h-4 w-4 mr-2" />
+                        Começar Curso
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Todos os Cursos */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
         >
-          {cursosFiltrados.map((curso, index) => (
-            <motion.div
-              key={curso.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-            >
-              <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer" onClick={() => setCursoSelecionado(curso)}>
-                <div className="relative h-48 overflow-hidden rounded-t-lg">
-                  <img 
-                    src={curso.imagem} 
-                    alt={curso.titulo}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-primary text-white">
-                      {curso.nivel}
-                    </Badge>
-                  </div>
-                </div>
-
-                <CardHeader>
-                  <CardTitle className="text-xl">{curso.titulo}</CardTitle>
-                  <CardDescription>{curso.descricao}</CardDescription>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {curso.tags.map(tag => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
+          <h2 className="text-2xl font-bold mb-6">
+            {categoriaAtiva === 'todos' ? 'Todos os Cursos' : `Cursos de ${categorias.find(c => c.id === categoriaAtiva)?.nome}`}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {cursosFiltrados.map((curso, index) => (
+              <motion.div
+                key={curso.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ y: -8 }}
+              >
+                <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer h-full group">
+                  <div className="relative aspect-video overflow-hidden">
+                    <img
+                      src={curso.imagem}
+                      alt={curso.titulo}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    {curso.gratuito && (
+                      <div className="absolute top-3 left-3">
+                        <Badge className="bg-green-500 text-white">
+                          GRÁTIS
+                        </Badge>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Informações */}
-                  <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4" />
-                      <span>{curso.duracao}</span>
+                  <CardHeader>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="secondary">{curso.nivel}</Badge>
+                      {curso.certificado && (
+                        <Badge variant="outline" className="gap-1">
+                          <Award className="h-3 w-3" />
+                        </Badge>
+                      )}
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Video className="h-4 w-4" />
-                      <span>{curso.aulas} aulas</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Users className="h-4 w-4" />
-                      <span>{curso.alunos} alunos</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span>{curso.rating}</span>
-                    </div>
-                  </div>
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors line-clamp-2">
+                      {curso.titulo}
+                    </CardTitle>
+                    <CardDescription className="line-clamp-2">
+                      {curso.descricao}
+                    </CardDescription>
+                  </CardHeader>
 
-                  {/* Instrutor */}
-                  <div className="pt-4 border-t">
-                    <p className="text-sm font-semibold">{curso.instrutor}</p>
-                  </div>
-
-                  <Button className="w-full" variant="default">
-                    <Award className="h-4 w-4 mr-2" />
-                    Iniciar Curso
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                  <CardContent className="space-y-3">
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {curso.duracao}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Play className="h-4 w-4" />
+                        {curso.aulas} aulas
+                      </div>
+                    </div>
+                    <Button className="w-full" size="sm" onClick={() => setCursoSelecionado(curso)}>
+                      Ver Detalhes
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Nenhum resultado */}
         {cursosFiltrados.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-12"
+            className="text-center py-20"
           >
-            <BookOpen className="h-24 w-24 mx-auto text-muted-foreground mb-4" />
-            <h3 className="text-2xl font-bold mb-2">Nenhum curso encontrado</h3>
+            <GraduationCap className="h-20 w-20 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold mb-2">Nenhum curso encontrado</h3>
             <p className="text-muted-foreground">
-              Tente ajustar seus filtros ou busca
+              Tente buscar por outro termo ou selecione outra categoria
             </p>
           </motion.div>
         )}
+
+        {/* Banner Informativo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12"
+        >
+          <Card className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+            <CardHeader>
+              <CardTitle className="text-2xl">Por que fazer nossos cursos?</CardTitle>
+              <CardDescription className="text-primary-foreground/80">
+                Capacitação de qualidade para servir melhor na igreja e comunidade
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <motion.div whileHover={{ scale: 1.05 }}>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-8 w-8 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">100% Gratuitos</h3>
+                      <p className="text-sm opacity-90">
+                        Todos os cursos são oferecidos gratuitamente pela igreja
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div whileHover={{ scale: 1.05 }}>
+                  <div className="flex items-start space-x-3">
+                    <Award className="h-8 w-8 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">Certificados</h3>
+                      <p className="text-sm opacity-90">
+                        Receba certificado de conclusão reconhecido pela igreja
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div whileHover={{ scale: 1.05 }}>
+                  <div className="flex items-start space-x-3">
+                    <Users className="h-8 w-8 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">Instrutores Qualificados</h3>
+                      <p className="text-sm opacity-90">
+                        Aprenda com pastores, professores e líderes experientes
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
+
+      {/* Modal de Detalhes do Curso */}
+      {cursoSelecionado && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+          onClick={() => setCursoSelecionado(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.9, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.9, y: 20 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-background rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+          >
+            <Card>
+              <div className="relative aspect-video overflow-hidden">
+                <img
+                  src={cursoSelecionado.imagem}
+                  alt={cursoSelecionado.titulo}
+                  className="w-full h-full object-cover"
+                />
+                {cursoSelecionado.gratuito && (
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-green-500 text-white text-lg px-4 py-2">
+                      GRÁTIS
+                    </Badge>
+                  </div>
+                )}
+              </div>
+
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-3">
+                  <Badge variant="secondary" className="text-base px-3 py-1">{cursoSelecionado.nivel}</Badge>
+                  {cursoSelecionado.certificado && (
+                    <Badge variant="outline" className="gap-1 text-base px-3 py-1">
+                      <Award className="h-4 w-4" />
+                      Certificado
+                    </Badge>
+                  )}
+                  {cursoSelecionado.destaque && (
+                    <Badge className="bg-yellow-500 text-white gap-1 text-base px-3 py-1">
+                      <Star className="h-4 w-4" />
+                      Destaque
+                    </Badge>
+                  )}
+                </div>
+                <CardTitle className="text-3xl mb-3">{cursoSelecionado.titulo}</CardTitle>
+                <CardDescription className="text-lg">
+                  {cursoSelecionado.descricao}
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent className="space-y-6">
+                {/* Informações do Curso */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="text-center p-4 bg-primary/5 rounded-lg">
+                    <Clock className="h-6 w-6 text-primary mx-auto mb-2" />
+                    <p className="text-sm font-semibold">{cursoSelecionado.duracao}</p>
+                    <p className="text-xs text-muted-foreground">Duração</p>
+                  </div>
+                  <div className="text-center p-4 bg-primary/5 rounded-lg">
+                    <Play className="h-6 w-6 text-primary mx-auto mb-2" />
+                    <p className="text-sm font-semibold">{cursoSelecionado.aulas} aulas</p>
+                    <p className="text-xs text-muted-foreground">Conteúdo</p>
+                  </div>
+                  <div className="text-center p-4 bg-primary/5 rounded-lg">
+                    <Users className="h-6 w-6 text-primary mx-auto mb-2" />
+                    <p className="text-sm font-semibold">{cursoSelecionado.instrutor}</p>
+                    <p className="text-xs text-muted-foreground">Instrutor</p>
+                  </div>
+                  <div className="text-center p-4 bg-primary/5 rounded-lg">
+                    <Award className="h-6 w-6 text-primary mx-auto mb-2" />
+                    <p className="text-sm font-semibold">{cursoSelecionado.certificado ? 'Sim' : 'Não'}</p>
+                    <p className="text-xs text-muted-foreground">Certificado</p>
+                  </div>
+                </div>
+
+                {/* O que você vai aprender */}
+                <div>
+                  <h3 className="font-bold text-xl mb-4">O que você vai aprender:</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {[
+                      "Fundamentos bíblicos sólidos",
+                      "Aplicação prática no dia a dia",
+                      "Ferramentas para ministério",
+                      "Crescimento espiritual",
+                      "Networking com outros alunos",
+                      "Materiais de apoio"
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Botões de Ação */}
+                <div className="flex gap-3 pt-4">
+                  <Button className="flex-1" size="lg">
+                    <Play className="h-5 w-5 mr-2" />
+                    Começar Agora
+                  </Button>
+                  <Button variant="outline" size="lg" onClick={() => setCursoSelecionado(null)}>
+                    Fechar
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   )
 }
-

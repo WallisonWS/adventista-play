@@ -23,7 +23,6 @@ import {
   LogOut,
   Sparkles,
   Star,
-  BookMarked,
   Play,
   Volume2,
   MessageSquare,
@@ -59,6 +58,7 @@ import { DesbravadoresPage } from './components/DesbravadoresPage.jsx'
 import { NosDesbravadores } from './components/NosDesbravadores.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
+import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -275,6 +275,11 @@ function HomePage() {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       {/* Hero Section */}
       <section className="py-20 px-4 relative overflow-hidden">
+        {/* Animações Cristãs no Background */}
+        <ChristianAnimations />
+        <DivineLightEffect />
+        <TwinklingStars count={100} />
+        
         <motion.div 
           className="container mx-auto text-center relative z-10"
           initial={{ opacity: 0 }}
@@ -1327,7 +1332,7 @@ function ProjetosPage() {
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer h-full"
                 onClick={() => setSelectedProjeto(projeto)}
               >
-                <div className="aspect-video overflow-hidden relative group">
+                <div className="aspect-video lg:aspect-auto overflow-hidden relative group">
                   <motion.img 
                     src={projeto.imagem} 
                     alt={projeto.titulo}

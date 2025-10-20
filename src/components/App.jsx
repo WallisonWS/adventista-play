@@ -32,7 +32,8 @@ import {
   Mail,
   Phone,
   Trophy,
-  Calendar
+  Calendar,
+  Newspaper
 } from 'lucide-react'
 import './App.css'
 import { ContatoPage } from './components/ContatoPage.jsx'
@@ -55,6 +56,8 @@ import { DesbravadoresPage } from './components/DesbravadoresPage.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { EllenWhitePage } from './components/EllenWhitePage.jsx'
+import { Feliz7Play } from './components/Feliz7Play.jsx'
+import { NoticiasDesbravadores } from './components/NoticiasDesbravadores.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -66,6 +69,7 @@ import { planosLeitura } from './data/planos-leitura.js'
 
 // Importar imagens
 import logo from '../assets/logo-adventista-play-nova.png'
+import logoIcon from '../../public/logo-icon-only.png'
 import mission1 from './assets/06ODUmgeXDAv.jpg'
 import mission2 from './assets/ceVxJtPGZzDg.jpeg'
 import mission3 from './assets/1jBZXZ4E8jtT.jpg'
@@ -136,7 +140,7 @@ function Navigation({ user, onLogout }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="bg-white shadow-lg sticky top-0 z-50 backdrop-blur-sm"
@@ -144,11 +148,19 @@ function Navigation({ user, onLogout }) {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo removida do cabeçalho */}
-          <div className="w-4"></div>
+          {/* Logo Icon no canto esquerdo */}
+          <Link to="/" className="flex items-center">
+            <motion.img 
+              src={logoIcon} 
+              alt="Adventista Play" 
+              className="h-10 w-10 object-contain"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            />
+          </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <NavLink to="/" icon={<HomeIcon className="h-4 w-4" />}>Início</NavLink>
             <NavLink to="/devocional" icon={<Heart className="h-4 w-4" />}>Devocional</NavLink>
             <NavLink to="/hinario" icon={<Music className="h-4 w-4" />}>Hinário</NavLink>
@@ -160,6 +172,8 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/cursos" icon={<GraduationCap className="h-4 w-4" />}>Cursos</NavLink>
             <NavLink to="/desbravadores" icon={<Star className="h-4 w-4" />}>Desbravadores</NavLink>
             <NavLink to="/oracao" icon={<Heart className="h-4 w-4" />}>Oração</NavLink>
+            <NavLink to="/feliz7play" icon={<Play className="h-4 w-4" />}>Feliz7 Play</NavLink>
+            <NavLink to="/noticias" icon={<Newspaper className="h-4 w-4" />}>Notícias</NavLink>
             {user && <NavLink to="/conquistas" icon={<Trophy className="h-4 w-4" />}>Conquistas</NavLink>}
             <NavLink to="/contato" icon={<MessageSquare className="h-4 w-4" />}>Contato</NavLink>
             
@@ -1298,7 +1312,7 @@ function ProjetosPage() {
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer h-full"
                 onClick={() => setSelectedProjeto(projeto)}
               >
-                <div className="aspect-video overflow-hidden relative group">
+                <div className="aspect-video lg:aspect-auto overflow-hidden relative group">
                   <motion.img 
                     src={projeto.imagem} 
                     alt={projeto.titulo}
@@ -1472,6 +1486,8 @@ function App() {
             <Route path="/contato" element={<ContatoPage />} />
             <Route path="/perfil" element={<PerfilPage />} />
             <Route path="/conquistas" element={<ConquistasPage />} />
+            <Route path="/feliz7play" element={<Feliz7Play />} />
+            <Route path="/noticias" element={<NoticiasDesbravadores />} />
           </Routes>
         </AnimatePresence>
         
@@ -1545,4 +1561,3 @@ function App() {
 }
 
 export default App
-

@@ -7,10 +7,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge.jsx'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog.jsx'
-import { 
-  Award, 
-  BookOpen, 
-  Compass, 
+import { TextToSpeech } from './TextToSpeech.jsx'
+import {
+  Award,
+  BookOpen,
+  Compass,
   Map,
   Users,
   ExternalLink,
@@ -24,7 +25,10 @@ import {
   Shield,
   Target,
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Volume2,
+  CheckCircle,
+  Play
 } from 'lucide-react'
 
 // Dados dos cursos de Desbravadores
@@ -952,11 +956,22 @@ export function DesbravadoresPage() {
 
       {/* Modal de Estudo */}
       <Dialog open={!!estudoSelecionado} onOpenChange={() => setEstudoSelecionado(null)}>
-        <DialogContent>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{estudoSelecionado?.titulo}</DialogTitle>
             <DialogDescription>{estudoSelecionado?.descricao}</DialogDescription>
           </DialogHeader>
+          
+          {/* Text-to-Speech para ouvir o estudo */}
+          {estudoSelecionado?.topicos && (
+            <div className="mb-4">
+              <TextToSpeech 
+                text={`${estudoSelecionado.titulo}. ${estudoSelecionado.descricao}. Este estudo possui ${estudoSelecionado.licoes} lições. Os tópicos são: ${estudoSelecionado.topicos.join('. ')}`}
+                compact={true}
+              />
+            </div>
+          )}
+          
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-primary" />
@@ -1005,4 +1020,3 @@ export function DesbravadoresPage() {
     </div>
   )
 }
-

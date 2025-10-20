@@ -6,7 +6,7 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Badge } from './ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
-import { TextToSpeech } from './TextToSpeech.jsx'
+import { TextToSpeechBackground } from './TextToSpeechBackground.jsx'
 import {
   BookOpen,
   Search,
@@ -335,8 +335,9 @@ export function BibliaPage() {
               {/* Text-to-Speech para ouvir o capítulo */}
               {versiculos.length > 0 && (
                 <div className="p-6 border-b">
-                  <TextToSpeech 
+                  <TextToSpeechBackground 
                     text={versiculos.map(v => `Versículo ${v.number}. ${v.text}`).join(' ')}
+                    title={`${livroAtual?.nome} ${capituloAtual}`}
                   />
                 </div>
               )}

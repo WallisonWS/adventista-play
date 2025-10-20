@@ -30,17 +30,34 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
     const loadVoices = () => {
       const availableVoices = window.speechSynthesis.getVoices()
       
-      // Filtrar vozes em português
+      // Filtrar e priorizar vozes em português brasileiro
       const portugueseVoices = availableVoices.filter(voice => 
         voice.lang.startsWith('pt')
       )
       
-      setVoices(portugueseVoices.length > 0 ? portugueseVoices : availableVoices)
+      // Ordenar vozes por qualidade (priorizar vozes do Google e Microsoft)
+      const sortedVoices = portugueseVoices.sort((a, b) => {
+        // Priorizar vozes do Google (mais naturais)
+        if (a.name.includes('Google') && !b.name.includes('Google')) return -1
+        if (!a.name.includes('Google') && b.name.includes('Google')) return 1
+        
+        // Depois vozes da Microsoft
+        if (a.name.includes('Microsoft') && !b.name.includes('Microsoft')) return -1
+        if (!a.name.includes('Microsoft') && b.name.includes('Microsoft')) return 1
+        
+        // Priorizar pt-BR sobre pt-PT
+        if (a.lang === 'pt-BR' && b.lang !== 'pt-BR') return -1
+        if (a.lang !== 'pt-BR' && b.lang === 'pt-BR') return 1
+        
+        return 0
+      })
       
-      // Selecionar voz padrão em português brasileiro
-      const defaultVoice = portugueseVoices.find(voice => 
-        voice.lang === 'pt-BR'
-      ) || portugueseVoices[0] || availableVoices[0]
+      setVoices(sortedVoices.length > 0 ? sortedVoices : availableVoices)
+      
+      // Selecionar a melhor voz disponível
+      const defaultVoice = sortedVoices.find(voice => 
+        voice.lang === 'pt-BR' && (voice.name.includes('Google') || voice.name.includes('Microsoft'))
+      ) || sortedVoices.find(voice => voice.lang === 'pt-BR') || sortedVoices[0] || availableVoices[0]
       
       setSelectedVoice(defaultVoice)
     }

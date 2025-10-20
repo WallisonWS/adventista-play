@@ -1,0 +1,393 @@
+import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/button.jsx'
+import { 
+  Play, 
+  Pause, 
+  Square, 
+  Volume2, 
+  VolumeX,
+  FastForward,
+  Rewind
+} from 'lucide-react'
+import { Slider } from '@/components/ui/slider.jsx'
+
+/**
+ * Componente de Text-to-Speech usando Web Speech API nativa do navegador
+ * Totalmente gratuito e funciona offline!
+ */
+export function TextToSpeech({ text, autoPlay = false, compact = false }) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+  const [rate, setRate] = useState(1) // Velocidade: 0.5 a 2
+  const [volume, setVolume] = useState(1) // Volume: 0 a 1
+  const [voices, setVoices] = useState([])
+  const [selectedVoice, setSelectedVoice] = useState(null)
+  const utteranceRef = useRef(null)
+
+  // Carregar vozes disponíveis
+  useEffect(() => {
+    const loadVoices = () => {
+      const availableVoices = window.speechSynthesis.getVoices()
+      
+      // Filtrar vozes em português
+      const portugueseVoices = availableVoices.filter(voice => 
+        voice.lang.startsWith('pt')
+      )
+      
+      setVoices(portugueseVoices.length > 0 ? portugueseVoices : availableVoices)
+      
+      // Selecionar voz padrão em português brasileiro
+      const defaultVoice = portugueseVoices.find(voice => 
+        voice.lang === 'pt-BR'
+      ) || portugueseVoices[0] || availableVoices[0]
+      
+      setSelectedVoice(defaultVoice)
+    }
+
+    loadVoices()
+    
+    // Algumas vezes as vozes demoram para carregar
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = loadVoices
+    }
+  }, [])
+
+  // Auto play se solicitado
+  useEffect(() => {
+    if (autoPlay && text && selectedVoice) {
+      handlePlay()
+    }
+    
+    return () => {
+      // Limpar ao desmontar
+      window.speechSynthesis.cancel()
+    }
+  }, [autoPlay, text, selectedVoice])
+
+  const handlePlay = () => {
+    if (!text || !selectedVoice) return
+
+    // Se estava pausado, retomar
+    if (isPaused) {
+      window.speechSynthesis.resume()
+      setIsPaused(false)
+      setIsPlaying(true)
+      return
+    }
+
+    // Cancelar qualquer fala anterior
+    window.speechSynthesis.cancel()
+
+    // Criar nova utterance
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.voice = selectedVoice
+    utterance.rate = rate
+    utterance.volume = volume
+    utterance.lang = 'pt-BR'
+
+    // Eventos
+    utterance.onstart = () => {
+      setIsPlaying(true)
+      setIsPaused(false)
+    }
+
+    utterance.onend = () => {
+      setIsPlaying(false)
+      setIsPaused(false)
+    }
+
+    utterance.onerror = (event) => {
+      console.error('Erro no Text-to-Speech:', event)
+      setIsPlaying(false)
+      setIsPaused(false)
+    }
+
+    utteranceRef.current = utterance
+    window.speechSynthesis.speak(utterance)
+  }
+
+  const handlePause = () => {
+    window.speechSynthesis.pause()
+    setIsPaused(true)
+    setIsPlaying(false)
+  }
+
+  const handleStop = () => {
+    window.speechSynthesis.cancel()
+    setIsPlaying(false)
+    setIsPaused(false)
+  }
+
+  const handleRateChange = (newRate) => {
+    setRate(newRate[0])
+    
+    // Se estiver tocando, reiniciar com nova velocidade
+    if (isPlaying || isPaused) {
+      handleStop()
+      setTimeout(() => handlePlay(), 100)
+    }
+  }
+
+  const handleVolumeChange = (newVolume) => {
+    setVolume(newVolume[0])
+    
+    // Se estiver tocando, reiniciar com novo volume
+    if (isPlaying || isPaused) {
+      handleStop()
+      setTimeout(() => handlePlay(), 100)
+    }
+  }
+
+  // Versão compacta (apenas botão play)
+  if (compact) {
+    return (
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={isPlaying ? handlePause : handlePlay}
+          className="gap-2"
+        >
+          {isPlaying ? (
+            <>
+              <Pause className="h-4 w-4" />
+              Pausar
+            </>
+          ) : (
+            <>
+              <Volume2 className="h-4 w-4" />
+              Ouvir
+            </>
+          )}
+        </Button>
+      </motion.div>
+    )
+  }
+
+  // Versão completa com controles
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-gradient-to-r from-primary/5 to-secondary/5 p-4 rounded-lg border space-y-4"
+    >
+      {/* Título */}
+      <div className="flex items-center gap-2">
+        <Volume2 className="h-5 w-5 text-primary" />
+        <h3 className="font-semibold text-lg">Ouvir Texto</h3>
+      </div>
+
+      {/* Controles principais */}
+      <div className="flex items-center gap-2">
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            variant={isPlaying ? "default" : "outline"}
+            size="lg"
+            onClick={handlePlay}
+            disabled={!text || !selectedVoice}
+            className="gap-2"
+          >
+            <Play className="h-5 w-5" />
+            {isPaused ? 'Continuar' : 'Reproduzir'}
+          </Button>
+        </motion.div>
+
+        {(isPlaying || isPaused) && (
+          <>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handlePause}
+                className="gap-2"
+              >
+                <Pause className="h-5 w-5" />
+                Pausar
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleStop}
+                className="gap-2"
+              >
+                <Square className="h-5 w-5" />
+                Parar
+              </Button>
+            </motion.div>
+          </>
+        )}
+      </div>
+
+      {/* Controle de velocidade */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <label className="text-sm font-medium flex items-center gap-2">
+            <FastForward className="h-4 w-4" />
+            Velocidade: {rate.toFixed(1)}x
+          </label>
+        </div>
+        <Slider
+          value={[rate]}
+          onValueChange={handleRateChange}
+          min={0.5}
+          max={2}
+          step={0.1}
+          className="w-full"
+        />
+        <div className="flex justify-between text-xs text-muted-foreground">
+          <span>0.5x (Lento)</span>
+          <span>1.0x (Normal)</span>
+          <span>2.0x (Rápido)</span>
+        </div>
+      </div>
+
+      {/* Controle de volume */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <label className="text-sm font-medium flex items-center gap-2">
+            {volume === 0 ? (
+              <VolumeX className="h-4 w-4" />
+            ) : (
+              <Volume2 className="h-4 w-4" />
+            )}
+            Volume: {Math.round(volume * 100)}%
+          </label>
+        </div>
+        <Slider
+          value={[volume]}
+          onValueChange={handleVolumeChange}
+          min={0}
+          max={1}
+          step={0.1}
+          className="w-full"
+        />
+      </div>
+
+      {/* Seletor de voz (opcional) */}
+      {voices.length > 1 && (
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Voz:</label>
+          <select
+            value={selectedVoice?.name || ''}
+            onChange={(e) => {
+              const voice = voices.find(v => v.name === e.target.value)
+              setSelectedVoice(voice)
+            }}
+            className="w-full p-2 rounded-md border bg-background"
+          >
+            {voices.map((voice) => (
+              <option key={voice.name} value={voice.name}>
+                {voice.name} ({voice.lang})
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {/* Status */}
+      {isPlaying && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex items-center gap-2 text-sm text-primary"
+        >
+          <motion.div
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ repeat: Infinity, duration: 1 }}
+          >
+            <Volume2 className="h-4 w-4" />
+          </motion.div>
+          <span>Reproduzindo...</span>
+        </motion.div>
+      )}
+
+      {/* Dica */}
+      <p className="text-xs text-muted-foreground">
+        💡 Dica: Use fones de ouvido para uma melhor experiência!
+      </p>
+    </motion.div>
+  )
+}
+
+/**
+ * Hook personalizado para usar Text-to-Speech
+ */
+export function useTextToSpeech() {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+
+  const speak = (text, options = {}) => {
+    const {
+      rate = 1,
+      volume = 1,
+      lang = 'pt-BR',
+      onEnd = () => {},
+      onError = () => {}
+    } = options
+
+    window.speechSynthesis.cancel()
+
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.rate = rate
+    utterance.volume = volume
+    utterance.lang = lang
+
+    utterance.onstart = () => setIsPlaying(true)
+    utterance.onend = () => {
+      setIsPlaying(false)
+      setIsPaused(false)
+      onEnd()
+    }
+    utterance.onerror = (event) => {
+      setIsPlaying(false)
+      setIsPaused(false)
+      onError(event)
+    }
+
+    window.speechSynthesis.speak(utterance)
+  }
+
+  const pause = () => {
+    window.speechSynthesis.pause()
+    setIsPaused(true)
+    setIsPlaying(false)
+  }
+
+  const resume = () => {
+    window.speechSynthesis.resume()
+    setIsPaused(false)
+    setIsPlaying(true)
+  }
+
+  const stop = () => {
+    window.speechSynthesis.cancel()
+    setIsPlaying(false)
+    setIsPaused(false)
+  }
+
+  return {
+    speak,
+    pause,
+    resume,
+    stop,
+    isPlaying,
+    isPaused
+  }
+}

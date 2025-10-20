@@ -6,11 +6,12 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Badge } from './ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
-import { 
-  BookOpen, 
-  Search, 
-  BookMarked, 
-  ChevronLeft, 
+import { TextToSpeech } from './TextToSpeech.jsx'
+import {
+  BookOpen,
+  Search,
+  BookMarked,
+  ChevronLeft,
   ChevronRight,
   Settings,
   Heart,
@@ -21,7 +22,8 @@ import {
   ZoomOut,
   Sun,
   Moon,
-  Loader2
+  Loader2,
+  Volume2
 } from 'lucide-react'
 import { bibliaApiService, historicoService, marcadoresService } from '../services/bibliaApiService'
 import { bibliaExemplo } from '../data/biblia-exemplo'
@@ -328,6 +330,15 @@ export function BibliaPage() {
                 </CardDescription>
               </CardHeader>
               
+              {/* Text-to-Speech para ouvir o capítulo */}
+              {versiculos.length > 0 && (
+                <div className="p-6 border-b">
+                  <TextToSpeech 
+                    text={versiculos.map(v => `Versículo ${v.number}. ${v.text}`).join(' ')}
+                  />
+                </div>
+              )}
+              
               <CardContent className="p-8">
                 {carregando ? (
                   <div className="text-center py-12">
@@ -617,4 +628,3 @@ export function BibliaPage() {
     </div>
   )
 }
-

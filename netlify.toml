@@ -1,0 +1,68 @@
+# Configuração do Netlify para Adventista Play
+# Projeto: Vite + React + Tailwind CSS
+# Migrado do Vercel para Netlify
+
+[build]
+  # Comando de build do Vite
+  command = "npm run build"
+  
+  # Diretório de publicação (onde o Vite gera os arquivos)
+  publish = "dist"
+  
+  # Variáveis de ambiente do build
+  [build.environment]
+    NODE_VERSION = "18"
+
+# Configuração para SPA (Single Page Application)
+# Redireciona todas as rotas para index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Headers de cache otimizados
+[[headers]]
+  # Cache para assets estáticos (imagens, fontes, etc)
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # Cache para arquivos de mídia
+  for = "/*.@(png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot)"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # Sem cache para HTML
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  # Headers de segurança
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Configurações adicionais
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true

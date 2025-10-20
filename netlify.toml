@@ -3,14 +3,11 @@
 # Migrado do Vercel para Netlify
 
 [build]
-  # Comando de instalação customizado
-  command = "bash netlify-install.sh && npm run build"
+  # Comando de build simples e direto
+  command = "npm install --legacy-peer-deps && npm run build"
   
   # Diretório de publicação (onde o Vite gera os arquivos)
   publish = "dist"
-  
-  # Ignorar comando de instalação padrão do Netlify
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF"
   
   # Variáveis de ambiente do build
   [build.environment]

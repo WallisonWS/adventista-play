@@ -13,6 +13,10 @@
   [build.environment]
     NODE_VERSION = "18"
     NPM_FLAGS = "--legacy-peer-deps"
+    # Desabilitar pnpm explicitamente
+    NETLIFY_USE_PNPM = "false"
+    # Forçar uso do npm
+    NPM_VERSION = "10"
 
 # Configuração para SPA (Single Page Application)
 # Redireciona todas as rotas para index.html

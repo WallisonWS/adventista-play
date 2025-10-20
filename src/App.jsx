@@ -278,7 +278,7 @@ function HomePage() {
         {/* Animações Cristãs no Background */}
         <ChristianAnimations />
         <DivineLightEffect />
-        <TwinklingStars count={100} />
+        <TwinklingStars count={30} />
         
         <motion.div 
           className="container mx-auto text-center relative z-10"

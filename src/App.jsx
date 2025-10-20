@@ -36,6 +36,7 @@ import './App.css'
 import './styles/dark-mode.css'
 import './styles/themes.css'
 import { ThemeProvider } from './contexts/ThemeContext'
+import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext.jsx'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { FeedbackPage } from './components/FeedbackPage.jsx'
 import { NoticiasDesbravadores } from './components/NoticiasDesbravadores.jsx'
@@ -138,13 +139,14 @@ const scaleIn = {
 // Componente de Navegação
 function Navigation({ user, onLogout }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
 
   return (
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="bg-white shadow-lg sticky top-0 z-50 backdrop-blur-sm"
-      style={{ borderBottom: '3px solid #2E3192' }}
+      className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} shadow-lg sticky top-0 z-50 backdrop-blur-sm`}
+      style={{ borderBottom: isDarkMode ? '3px solid #4B5563' : '3px solid #2E3192' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -162,29 +164,39 @@ function Navigation({ user, onLogout }) {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <NavLink to="/" icon={<HomeIcon className="h-4 w-4" />}>Início</NavLink>
-            <NavLink to="/devocional" icon={<Heart className="h-4 w-4" />}>Devocional</NavLink>
-            <NavLink to="/hinario" icon={<Music className="h-4 w-4" />}>Hinário</NavLink>
-            <NavLink to="/biblia" icon={<BookText className="h-4 w-4" />}>Bíblia</NavLink>
-            <NavLink to="/estudos" icon={<GraduationCap className="h-4 w-4" />}>Estudos</NavLink>
-            <NavLink to="/ellen-white" icon={<BookOpen className="h-4 w-4" />}>Ellen White</NavLink>
-            <NavLink to="/planos" icon={<Calendar className="h-4 w-4" />}>Planos</NavLink>
-            <NavLink to="/quiz" icon={<Trophy className="h-4 w-4" />}>Quiz</NavLink>
-            <NavLink to="/projetos" icon={<Globe className="h-4 w-4" />}>Projetos</NavLink>
-            <NavLink to="/cursos" icon={<GraduationCap className="h-4 w-4" />}>Cursos</NavLink>
-            <NavLink to="/desbravadores" icon={<Star className="h-4 w-4" />}>Desbravadores</NavLink>
-            <NavLink to="/oracao" icon={<Heart className="h-4 w-4" />}>Oração</NavLink>
-            {user && <NavLink to="/conquistas" icon={<Trophy className="h-4 w-4" />}>Conquistas</NavLink>}
-            <NavLink to="/feliz7play" icon={<Play className="h-4 w-4" />}>Feliz7 Play</NavLink>
-            <NavLink to="/noticias-desbravadores" icon={<Newspaper className="h-4 w-4" />}>Notícias</NavLink>
-            <NavLink to="/feedback" icon={<MessageSquare className="h-4 w-4" />}>Feedback</NavLink>
-            <NavLink to="/contato" icon={<Phone className="h-4 w-4" />}>Contato</NavLink>
+            <NavLink to="/" icon={<HomeIcon className="h-4 w-4" />} isDarkMode={isDarkMode}>Início</NavLink>
+            <NavLink to="/devocional" icon={<Heart className="h-4 w-4" />} isDarkMode={isDarkMode}>Devocional</NavLink>
+            <NavLink to="/hinario" icon={<Music className="h-4 w-4" />} isDarkMode={isDarkMode}>Hinário</NavLink>
+            <NavLink to="/biblia" icon={<BookText className="h-4 w-4" />} isDarkMode={isDarkMode}>Bíblia</NavLink>
+            <NavLink to="/estudos" icon={<GraduationCap className="h-4 w-4" />} isDarkMode={isDarkMode}>Estudos</NavLink>
+            <NavLink to="/ellen-white" icon={<BookOpen className="h-4 w-4" />} isDarkMode={isDarkMode}>Ellen White</NavLink>
+            <NavLink to="/planos" icon={<Calendar className="h-4 w-4" />} isDarkMode={isDarkMode}>Planos</NavLink>
+            <NavLink to="/quiz" icon={<Trophy className="h-4 w-4" />} isDarkMode={isDarkMode}>Quiz</NavLink>
+            <NavLink to="/projetos" icon={<Globe className="h-4 w-4" />} isDarkMode={isDarkMode}>Projetos</NavLink>
+            <NavLink to="/cursos" icon={<GraduationCap className="h-4 w-4" />} isDarkMode={isDarkMode}>Cursos</NavLink>
+            <NavLink to="/desbravadores" icon={<Star className="h-4 w-4" />} isDarkMode={isDarkMode}>Desbravadores</NavLink>
+            <NavLink to="/oracao" icon={<Heart className="h-4 w-4" />} isDarkMode={isDarkMode}>Oração</NavLink>
+            {user && <NavLink to="/conquistas" icon={<Trophy className="h-4 w-4" />} isDarkMode={isDarkMode}>Conquistas</NavLink>}
+            <NavLink to="/feliz7play" icon={<Play className="h-4 w-4" />} isDarkMode={isDarkMode}>Feliz7 Play</NavLink>
+            <NavLink to="/noticias-desbravadores" icon={<Newspaper className="h-4 w-4" />} isDarkMode={isDarkMode}>Notícias</NavLink>
+            <NavLink to="/feedback" icon={<MessageSquare className="h-4 w-4" />} isDarkMode={isDarkMode}>Feedback</NavLink>
+            <NavLink to="/contato" icon={<Phone className="h-4 w-4" />} isDarkMode={isDarkMode}>Contato</NavLink>
+            
+            {/* Toggle Modo Noturno */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleDarkMode}
+              className={`p-2 rounded-full ${isDarkMode ? 'bg-yellow-400 text-gray-900' : 'bg-gray-200 text-gray-700'}`}
+            >
+              {isDarkMode ? '☀️' : '🌙'}
+            </motion.button>
             
             {user ? (
               <div className="flex items-center space-x-4">
                 <Link to="/perfil">
                   <motion.span 
-                    className="flex items-center space-x-1 cursor-pointer text-gray-700 hover:text-primary transition-colors font-medium"
+                    className={`flex items-center space-x-1 cursor-pointer ${isDarkMode ? 'text-gray-300 hover:text-primary' : 'text-gray-700 hover:text-primary'} transition-colors font-medium`}
                     whileHover={{ scale: 1.05 }}
                   >
                     <User className="h-4 w-4" />
@@ -207,7 +219,7 @@ function Navigation({ user, onLogout }) {
 
           {/* Mobile Menu Button */}
           <motion.button 
-            className="md:hidden text-gray-700"
+            className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >
@@ -258,9 +270,9 @@ function Navigation({ user, onLogout }) {
   )
 }
 
-function NavLink({ to, icon, children }) {
+function NavLink({ to, icon, children, isDarkMode }) {
   return (
-    <Link to={to} className="text-gray-700 hover:text-primary transition-colors flex items-center space-x-1 group font-medium">
+    <Link to={to} className={`${isDarkMode ? 'text-gray-300 hover:text-primary' : 'text-gray-700 hover:text-primary'} transition-colors flex items-center space-x-1 group font-medium`}>
       <motion.div whileHover={{ scale: 1.2, rotate: 5 }}>
         {icon}
       </motion.div>
@@ -1586,9 +1598,11 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <DarkModeProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </DarkModeProvider>
   )
 }
 

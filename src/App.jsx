@@ -61,6 +61,8 @@ import { EspecialidadeTutorial } from './components/EspecialidadeTutorial.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
+import { NewHomePage } from './components/NewHomePage.jsx'
+import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -1519,13 +1521,13 @@ function AppContent() {
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<NewHomePage user={user} />} />
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />
             <Route path="/biblia" element={<BibliaPage />} />
             <Route path="/biblia/:livro/:capitulo" element={<BibliaPage />} />
-            <Route path="/estudos" element={<EstudosPage />} />
+            <Route path="/estudos" element={<NewEstudosPage />} />
             <Route path="/escola-sabatina" element={<EscolaSabatinaCompleta />} />
             <Route path="/ellen-white" element={<LivrosEllenWhite />} />
             <Route path="/dicionario" element={<DicionarioBiblico />} />

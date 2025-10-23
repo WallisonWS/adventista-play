@@ -730,6 +730,438 @@ export const especialidadesCompletas = [
         "Tempo de conclusão da trilha"
       ]
     }
+  },
+  {
+    id: 7,
+    nome: "Excursionismo",
+    categoria: "Atividades Recreativas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Fazer uma caminhada de 10km",
+        descricao: "Completar uma trilha de 10 quilômetros em terreno variado (plano, subida e descida).",
+        dicas: [
+          "Use calçados adequados e amaciados",
+          "Leve água e lanches energéticos",
+          "Faça alongamento antes e depois da caminhada",
+          "Mantenha um ritmo constante"
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer equipamentos de trilha",
+        descricao: "Saber a função e como usar os equipamentos essenciais.",
+        equipamentos: [
+          { nome: "Mochila de Ataque", uso: "Para caminhadas curtas, leve e confortável" },
+          { nome: "Cantil/Bolsa de Hidratação", uso: "Manter-se hidratado" },
+          { nome: "Kit de Primeiros Socorros Individual", uso: "Para pequenos ferimentos" },
+          { nome: "Lanterna com pilhas extras", uso: "Para emergências ou caminhada noturna" },
+          { nome: "Capa de Chuva/Anorak", uso: "Proteção contra chuva e vento" }
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Planejar uma excursão",
+        descricao: "Elaborar um plano detalhado para uma trilha de 1 dia.",
+        plano: [
+          "Definir o objetivo e o local da trilha",
+          "Estudar o mapa e o perfil de elevação",
+          "Calcular o tempo estimado de caminhada",
+          "Preparar a lista de equipamentos e alimentação",
+          "Definir um plano de emergência e rota de fuga"
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Conhecer 5 sinais de tempo",
+        descricao: "Observar a natureza para prever mudanças no clima.",
+        sinais: [
+          { sinal: "Nuvens escuras e baixas", previsao: "Chuva ou tempestade próxima" },
+          { sinal: "Céu vermelho ao pôr do sol", previsao: "Tempo bom no dia seguinte" },
+          { sinal: "Vento forte e constante", previsao: "Mudança brusca no clima" },
+          { sinal: "Animais agitados ou escondidos", previsao: "Mudança no clima" },
+          { sinal: "Anel em volta do sol/lua", previsao: "Chuva ou neve em 24-48 horas" }
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Mochila",
+      "Água",
+      "Lanches",
+      "Mapa e Bússola",
+      "Calçados de trilha"
+    ],
+    avaliacaoPratica: {
+      descricao: "Participar de uma trilha de 10km e apresentar o plano de excursão.",
+      criterios: [
+        "Completar a trilha no tempo estipulado",
+        "Uso correto dos equipamentos",
+        "Apresentação do plano de excursão",
+        "Identificação correta dos sinais de tempo"
+      ]
+    }
+  },
+  {
+    id: 8,
+    nome: "Segurança Básica",
+    categoria: "Habilidades Domésticas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer números de emergência",
+        descricao: "Saber para quem ligar em diferentes situações de emergência.",
+        numeros: [
+          { servico: "SAMU (Ambulância)", telefone: "192" },
+          { servico: "Corpo de Bombeiros", telefone: "193" },
+          { servico: "Polícia Militar", telefone: "190" },
+          { servico: "Defesa Civil", telefone: "199" },
+          { servico: "Emergência de Energia", telefone: "0800..." }
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Fazer um plano de evacuação familiar",
+        descricao: "Criar um plano para sair de casa rapidamente em caso de incêndio ou emergência.",
+        passos: [
+          "Desenhe um mapa da casa com 2 rotas de fuga por cômodo",
+          "Defina um ponto de encontro seguro fora de casa",
+          "Pratique o plano com a família (simulação de incêndio)",
+          "Verifique se janelas e portas abrem facilmente"
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Conhecer segurança contra incêndio",
+        descricao: "Saber como prevenir e como agir em caso de fogo.",
+        prevencao: [
+          "Nunca deixe panelas no fogo sem supervisão",
+          "Mantenha fósforos e isqueiros longe do alcance de crianças",
+          "Não sobrecarregue tomadas com muitos aparelhos",
+          "Verifique vazamentos de gás regularmente"
+        ],
+        acao: [
+          "Mantenha a calma e chame os bombeiros",
+          "Use extintor (se souber usar) para fogo pequeno",
+          "Se a roupa pegar fogo, pare, deite e role",
+          "Não use elevadores",
+          "Rasteje para sair (fumaça sobe)"
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Demonstrar segurança elétrica",
+        descricao: "Conhecer os riscos e como evitar acidentes elétricos.",
+        dicas: [
+          "Nunca toque em fios desencapados",
+          "Não use aparelhos elétricos molhado",
+          "Não tente consertar aparelhos ligados na tomada",
+          "Use protetores nas tomadas com crianças em casa"
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Telefone",
+      "Mapa da casa",
+      "Extintor (para demonstração)"
+    ],
+    avaliacaoPratica: {
+      descricao: "Demonstração do plano de evacuação e simulação de chamada de emergência.",
+      criterios: [
+        "Apresentação do plano de evacuação",
+        "Conhecimento dos números de emergência",
+        "Demonstração de como usar um extintor",
+        "Conhecimento das regras de segurança"
+      ]
+    }
+  },
+  {
+    id: 9,
+    nome: "Fotografia",
+    categoria: "Artes e Habilidades",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer as partes básicas de uma câmera",
+        descricao: "Saber a função do obturador, abertura (diafragma) e ISO.",
+        termos: [
+          { termo: "Obturador", definicao: "Tempo que o sensor fica exposto à luz (velocidade)" },
+          { termo: "Abertura (Diafragma)", definicao: "Tamanho da abertura da lente (controla a profundidade de campo)" },
+          { termo: "ISO", definicao: "Sensibilidade do sensor à luz (controla o ruído)" },
+          { termo: "Lente", definicao: "Parte que capta a imagem" },
+          { termo: "Visor", definicao: "Onde o fotógrafo vê a cena" }
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Tirar 20 fotos temáticas",
+        descricao: "Produzir um portfólio com fotos em diferentes temas (ex: natureza, retrato, ação).",
+        temas: [
+          "Retrato (pessoa)",
+          "Paisagem (natureza)",
+          "Macro (detalhe)",
+          "Ação (esporte, movimento)",
+          "Arquitetura (prédios)",
+          "Pôr do Sol/Nascer do Sol"
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Conhecer composição fotográfica",
+        descricao: "Aplicar técnicas para tornar a foto mais agradável e interessante.",
+        tecnicas: [
+          { tecnica: "Regra dos Terços", detalhes: "Dividir a cena em 9 partes iguais e posicionar o objeto de interesse nas linhas ou interseções" },
+          { tecnica: "Linhas Guias", detalhes: "Usar linhas naturais (estrada, rio) para guiar o olhar" },
+          { tecnica: "Simetria e Padrões", detalhes: "Usar elementos repetitivos ou espelhados" },
+          { tecnica: "Espaço Negativo", detalhes: "Deixar espaço vazio ao redor do objeto para destacá-lo" }
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Fazer edição básica de fotos",
+        descricao: "Usar um software (ou app) para ajustar brilho, contraste e cor.",
+        passos: [
+          "Ajustar o balanço de branco (cor)",
+          "Corrigir a exposição (brilho)",
+          "Aumentar o contraste",
+          "Recortar e endireitar a imagem"
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Câmera (pode ser celular)",
+      "Software de edição (Lightroom, Snapseed)",
+      "Caderno para anotações"
+    ],
+    avaliacaoPratica: {
+      descricao: "Apresentação do portfólio de 20 fotos e explicação das técnicas usadas.",
+      criterios: [
+        "Qualidade técnica das fotos",
+        "Aplicação das regras de composição",
+        "Variedade de temas",
+        "Edição básica bem feita"
+      ]
+    }
+  },
+  {
+    id: 10,
+    nome: "Ciclismo",
+    categoria: "Atividades Recreativas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Pedalar 25km em terreno variado",
+        descricao: "Completar um percurso de 25 quilômetros, demonstrando resistência e controle.",
+        dicas: [
+          "Use capacete sempre",
+          "Verifique os freios e pneus antes de sair",
+          "Leve kit de reparo de pneu",
+          "Mantenha-se hidratado"
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Fazer manutenção básica de bicicleta",
+        descricao: "Saber como cuidar da bicicleta e fazer pequenos reparos.",
+        manutencao: [
+          "Calibrar pneus corretamente",
+          "Ajustar a altura do selim",
+          "Lubrificar a corrente",
+          "Trocar um pneu furado",
+          "Ajustar o freio"
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Conhecer 10 sinais de trânsito para ciclistas",
+        descricao: "Saber as regras de circulação e sinalização manual.",
+        sinais: [
+          "Parar (braço esquerdo esticado para baixo)",
+          "Virar à esquerda (braço esquerdo esticado para a esquerda)",
+          "Virar à direita (braço esquerdo dobrado para cima)",
+          "Reduzir a velocidade (mão aberta para baixo, balançando)",
+          "Sinalização de buraco/obstáculo (apontar para o chão)",
+          "Sinalização de 'siga em frente'",
+          "Sinalização de 'passar por mim'",
+          "Sinalização de 'cuidado'",
+          "Sinalização de 'pare'",
+          "Sinalização de 'mantenha a linha'"
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Usar equipamentos de segurança",
+        descricao: "Conhecer e usar corretamente os equipamentos de proteção.",
+        equipamentos: [
+          "Capacete (obrigatório)",
+          "Luvas",
+          "Óculos de proteção",
+          "Luzes (dianteira branca, traseira vermelha)",
+          "Roupas refletivas"
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Bicicleta em bom estado",
+      "Capacete",
+      "Kit de reparo de pneu",
+      "Água"
+    ],
+    avaliacaoPratica: {
+      descricao: "Completar a trilha de 25km e demonstrar a manutenção básica.",
+      criterios: [
+        "Conclusão da trilha",
+        "Uso correto dos equipamentos de segurança",
+        "Demonstração dos sinais de trânsito",
+        "Reparo de pneu furado"
+      ]
+    }
+  },
+  {
+    id: 11,
+    nome: "Canoagem",
+    categoria: "Atividades Recreativas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Remar 1km em canoa",
+        descricao: "Completar um percurso de 1 quilômetro em canoa ou caiaque, demonstrando controle.",
+        dicas: [
+          "Mantenha o remo na vertical",
+          "Use o corpo, não apenas os braços",
+          "Remar em linha reta é mais eficiente",
+          "Mantenha o equilíbrio do corpo"
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer segurança em canoagem",
+        descricao: "Saber como prevenir acidentes e como agir em caso de emborque.",
+        regras: [
+          "Usar colete salva-vidas sempre",
+          "Nunca remar sozinho",
+          "Verificar previsão do tempo",
+          "Saber como desvirar a canoa (emborque)",
+          "Manter-se afastado de áreas de correnteza forte"
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Fazer manobras básicas",
+        descricao: "Demonstrar manobras essenciais para controle da embarcação.",
+        manobras: [
+          "Remada para frente (propulsão)",
+          "Remada para trás (freio)",
+          "Remada em J (direção)",
+          "Apoio alto e baixo (equilíbrio)"
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Conhecer tipos de embarcações",
+        descricao: "Diferenciar canoa, caiaque e bote.",
+        tipos: [
+          { tipo: "Canoa", detalhes: "Aberta, geralmente com 2 lugares, usa remo de uma pá" },
+          { tipo: "Caiaque", detalhes: "Fechado, 1 ou 2 lugares, usa remo de duas pás" },
+          { tipo: "Bote Inflável", detalhes: "Inflável, usado para águas mais agitadas ou resgate" }
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Canoa/Caiaque",
+      "Remo",
+      "Colete salva-vidas",
+      "Água"
+    ],
+    avaliacaoPratica: {
+      descricao: "Completar o percurso de 1km e demonstrar as manobras básicas.",
+      criterios: [
+        "Conclusão do percurso",
+        "Uso correto do colete salva-vidas",
+        "Execução das manobras",
+        "Conhecimento das regras de segurança"
+      ]
+    }
+  },
+  {
+    id: 12,
+    nome: "Ordem Unida",
+    categoria: "Atividades Recreativas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer 15 comandos de ordem unida",
+        descricao: "Saber o significado e a execução de comandos básicos.",
+        comandos: [
+          "Sentido",
+          "Descansar",
+          "À Vontade",
+          "Cobrir",
+          "Frente para a Direita/Esquerda",
+          "Meia Volta, Volver",
+          "Direita/Esquerda, Volver",
+          "Olhar à Direita/Esquerda",
+          "Em Frente, Marche",
+          "Alto",
+          "Passo Ordinário",
+          "Passo Sem Cadência",
+          "Atenção, Olhar à Direita/Esquerda, Volver",
+          "Apresentar Arma (com bastão)",
+          "Ombro Arma (com bastão)"
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Demonstrar a execução correta de 5 comandos",
+        descricao: "Executar 5 comandos de sua escolha com precisão e vigor.",
+        dicas: [
+          "Mantenha a postura ereta",
+          "Movimentos devem ser rápidos e precisos",
+          "O pé esquerdo é o pé de marcha",
+          "O calcanhar deve bater no chão com energia"
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Liderar uma equipe em ordem unida",
+        descricao: "Comandar um pequeno grupo (pelo menos 4 pessoas) em 5 comandos diferentes.",
+        passos: [
+          "Posicione-se corretamente",
+          "Dê os comandos com voz alta e clara",
+          "Corrija os erros da equipe",
+          "Mantenha a cadência e o ritmo"
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Participar de uma cerimônia oficial",
+        descricao: "Participar de uma formatura ou cerimônia do clube, demonstrando disciplina.",
+        cerimonia: [
+          "Hasteamento da Bandeira",
+          "Baixamento da Bandeira",
+          "Desfile",
+          "Formação em 'U' ou em Coluna"
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Uniforme de Desbravador",
+      "Bastão (para comandos com arma)"
+    ],
+    avaliacaoPratica: {
+      descricao: "Demonstração prática dos comandos e liderança de uma pequena equipe.",
+      criterios: [
+        "Execução correta dos comandos individuais",
+        "Voz de comando clara e forte",
+        "Capacidade de liderar a equipe",
+        "Postura e disciplina"
+      ]
+    }
   }
 ]
 

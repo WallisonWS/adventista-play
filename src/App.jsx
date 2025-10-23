@@ -152,22 +152,22 @@ function Navigation({ user, onLogout }) {
       className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} shadow-lg sticky top-0 z-50 backdrop-blur-sm`}
       style={{ borderBottom: isDarkMode ? '3px solid #4B5563' : '3px solid #2E3192' }}
     >
-      <div className="w-full px-6">
-        <div className="flex items-center justify-center gap-8 h-20">
-          {/* Logo no cabeçalho */}
-          <Link to="/" className="flex items-center flex-shrink-0">
+      <div className="w-full px-6 relative">
+        <div className="flex items-center justify-center h-20">
+          {/* Logo no cabeçalho - Fixo no canto esquerdo */}
+          <Link to="/" className="absolute left-6 flex items-center">
             <motion.img 
               src="/logo-adventista-simbolo.png" 
               alt="Adventista Play" 
-              className="h-10 w-10 cursor-pointer"
+              className="h-12 w-12 cursor-pointer"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             />
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-3 flex-1 justify-center max-w-6xl">
+          {/* Desktop Menu - Centralizado */}
+          <div className="hidden lg:flex items-center space-x-4">
             <NavLink to="/" icon={<HomeIcon className="h-4 w-4" />} isDarkMode={isDarkMode}>Início</NavLink>
             <NavLink to="/devocional" icon={<Heart className="h-4 w-4" />} isDarkMode={isDarkMode}>Devocional</NavLink>
             <NavLink to="/hinario" icon={<Music className="h-4 w-4" />} isDarkMode={isDarkMode}>Hinário</NavLink>
@@ -276,9 +276,9 @@ function Navigation({ user, onLogout }) {
 
 function NavLink({ to, icon, children, isDarkMode }) {
   return (
-    <Link to={to} className={`${isDarkMode ? 'text-gray-300 hover:text-primary' : 'text-gray-700 hover:text-primary'} transition-colors flex items-center space-x-1 group font-medium whitespace-nowrap text-sm`}>
-      <motion.div whileHover={{ scale: 1.2, rotate: 5 }}>
-        {icon}
+    <Link to={to} className={`${isDarkMode ? 'text-gray-300 hover:text-primary' : 'text-gray-700 hover:text-primary'} transition-colors flex items-center space-x-1.5 group font-medium whitespace-nowrap text-base`}>
+      <motion.div whileHover={{ scale: 1.2, rotate: 5 }} className="flex items-center">
+        <span className="scale-125">{icon}</span>
       </motion.div>
       <span>{children}</span>
     </Link>

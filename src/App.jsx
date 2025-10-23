@@ -938,11 +938,24 @@ function HinarioPage() {
                   </div>
                 </CardHeader>
               </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {filteredHinos.length === 0 && (
+</motion.div>
+	          ))}
+	        </motion.div>
+	
+	        <motion.div
+	          initial={{ opacity: 0, y: 20 }}
+	          animate={{ opacity: 1, y: 0 }}
+	          className="mt-8 text-center"
+	        >
+	          <a href="/hinario-completo.pdf" download="Hinario_Adventista_Completo.pdf">
+	            <Button size="lg" className="text-lg">
+	              <BookText className="mr-2 h-5 w-5" />
+	              Baixar Hinário Adventista Completo (PDF)
+	            </Button>
+	          </a>
+	        </motion.div>
+	
+	        {filteredHinos.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -998,18 +1011,29 @@ function HinarioPage() {
                       <p className="text-muted-foreground italic">Letra em breve...</p>
                     )}
                   </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </div>
-  )
-}
-
-
-// Continua na próxima parte...
+	                  <div className="p-6 pt-0 flex gap-3">
+	                    {selectedHino.url && (
+	                      <a href={selectedHino.url} target="_blank" rel="noopener noreferrer" className="w-full">
+	                        <Button className="w-full">
+	                          <Play className="mr-2 h-4 w-4" />
+	                          Ouvir Hino (YouTube)
+	                        </Button>
+	                      </a>
+	                    )}
+	                    <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`Hino ${selectedHino.numero}: ${selectedHino.titulo}\n\n${selectedHino.letra}`)}`} download={`hino-${selectedHino.numero}.txt`} className="w-full">
+	                      <Button variant="outline" className="w-full">
+	                        <BookText className="mr-2 h-4 w-4" />
+	                        Baixar Letra
+	                      </Button>
+	                    </a>
+	                  </div>
+	                </Card>
+	              </motion.div>
+	            </motion.div>
+	          )}
+	        </AnimatePresence>
+	
+	        {filteredHinos.length === 0 && (róxima parte...
 
 
 

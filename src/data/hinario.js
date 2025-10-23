@@ -89,3 +89,10 @@ export const categorias = [
   ...new Set(hinos.map(h => h.categoria))
 ]
 
+
+
+  { numero: 605, titulo: "O Rei Vem Vindo", categoria: "Segunda Vinda", letra: "O mercado está vazio, o trabalho já cessou;\nOs martelos não ressoam, toda a lida já findou;\nOs ceifeiros terminaram seu trabalho terreal,\nE os obreiros da cidade foram para o lar final.\n\nO Rei vem vindo! O Rei vem vindo!\nCom a trombeta soando, o meu nome a chamar;\nSim, o Rei vem vindo! O Rei vem vindo!\nAleluia! Ele vem me buscar!", url: "https://www.youtube.com/watch?v=example1" },
+  
+  { numero: 606, titulo: "Quando o Jordão Passarmos", categoria: "Esperança", letra: "Quando o Jordão passarmos unidos,\nE entrarmos no céu, veremos lá,\nComo areia da praia, os remidos,\nQue Jesus com Seu sangue comprou.\n\nCantaremos no céu o hino da vitória,\nDeus mesmo enxugará nossos olhos;\nE ali não haverá mais noite ou pranto,\nNem dor, nem morte, nem clamor.", url: "https://www.youtube.com/watch?v=example2" },
+  
+  { numero: 607, titulo: "Jerusalém, Meu Lar", categoria: "Esperança", letra: "Jerusalém, meu lar, de Jeová mansão,\nCidade santa, cujo autor é Deus;\nOh! quando em ti entrarei, e em ti habitarei,\nE com os santos gozarei dos céus?\n\nJerusalém, Jerusalém, de Deus cidade real;\nEm ti, Jerusalém, desejo descansar;\nJerusalém, Jerusalém, meu lar celestial.", url: "https://www.youtube.com/watch?v=example3" }

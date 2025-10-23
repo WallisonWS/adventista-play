@@ -153,7 +153,7 @@ function Navigation({ user, onLogout }) {
       style={{ borderBottom: isDarkMode ? '3px solid #4B5563' : '3px solid #2E3192' }}
     >
       <div className="w-full px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-center gap-8 h-20">
           {/* Logo no cabeçalho */}
           <Link to="/" className="flex items-center flex-shrink-0">
             <motion.img 
@@ -167,7 +167,7 @@ function Navigation({ user, onLogout }) {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
+          <div className="hidden lg:flex items-center space-x-3 flex-1 justify-center max-w-6xl">
             <NavLink to="/" icon={<HomeIcon className="h-4 w-4" />} isDarkMode={isDarkMode}>Início</NavLink>
             <NavLink to="/devocional" icon={<Heart className="h-4 w-4" />} isDarkMode={isDarkMode}>Devocional</NavLink>
             <NavLink to="/hinario" icon={<Music className="h-4 w-4" />} isDarkMode={isDarkMode}>Hinário</NavLink>

@@ -4,7 +4,7 @@
 
 [build]
   # Comando de build simples e direto
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "rm -f pnpm-lock.yaml && npm install --legacy-peer-deps && npm run build"
   
   # Diretório de publicação (onde o Vite gera os arquivos)
   publish = "dist"

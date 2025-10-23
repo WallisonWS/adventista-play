@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Heart, Music, BookText, GraduationCap, Globe, Volume2, Gift, ChevronRight } from 'lucide-react'
+import { Heart, Music, BookText, GraduationCap, Globe, Volume2, Gift, ChevronRight, DollarSign, Users, Sparkles } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card'
 import { Button } from './ui/button'
+import { BottomNav } from './BottomNav'
 
 // Componente da Nova Página Inicial
 export function NewHomePage({ user }) {
@@ -18,7 +19,7 @@ export function NewHomePage({ user }) {
   const nomeUsuario = user?.nome || 'Visitante'
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-20">
       {/* Hero Section com Imagem de Fundo */}
       <section 
         className="relative h-80 bg-cover bg-center"
@@ -34,7 +35,16 @@ export function NewHomePage({ user }) {
           >
             <p className="text-lg mb-2">{saudacao.texto} {saudacao.emoji}</p>
             <h1 className="text-4xl font-bold mb-4">Olá, {nomeUsuario}</h1>
-            <p className="text-lg opacity-90">Vamos passar tempo com Deus? 🙏</p>
+            <p className="text-lg opacity-90 mb-4">Vamos passar tempo com Deus? 🙏</p>
+            
+            {/* Botão Criar Conta - Apenas para visitantes */}
+            {!user && (
+              <Link to="/login">
+                <Button className="bg-white text-primary hover:bg-gray-100 font-semibold">
+                  Criar Conta
+                </Button>
+              </Link>
+            )}
           </motion.div>
         </div>
       </section>
@@ -110,91 +120,123 @@ export function NewHomePage({ user }) {
         </div>
       </section>
 
-      {/* Seção de Recursos */}
+      {/* Categorias */}
       <section className="px-4 py-8">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Recursos</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Categorias</h2>
           
-          <div className="grid grid-cols-2 gap-4">
-            {/* Áudio Bíblia */}
+          <div className="space-y-4">
+            {/* Estudos Bíblicos */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <Link to="/biblia">
-                <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800">
-                  <CardHeader className="text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-purple-500 flex items-center justify-center mx-auto mb-3">
-                      <Volume2 className="h-8 w-8 text-white" />
+              <Link to="/estudos">
+                <Card className="hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
+                  <CardHeader className="flex flex-row items-center justify-between">
+                    <div className="flex items-center space-x-4 flex-1">
+                      <div className="w-20 h-20 rounded-2xl bg-blue-600 flex items-center justify-center flex-shrink-0">
+                        <BookText className="h-10 w-10 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg mb-1">Estudos Bíblicos</CardTitle>
+                        <CardDescription className="text-sm mb-2">
+                          Aprofunde-se na Palavra de Deus
+                        </CardDescription>
+                        <p className="text-sm text-green-600 dark:text-green-400 font-semibold">
+                          28 cursos disponíveis
+                        </p>
+                      </div>
+                      <ChevronRight className="h-6 w-6 text-gray-400 flex-shrink-0" />
                     </div>
-                    <CardTitle className="text-base">Áudio Bíblia</CardTitle>
-                    <CardDescription className="text-sm">
-                      Ouça com voz humanizada
-                    </CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
             </motion.div>
 
-            {/* Louvores */}
+            {/* Finanças */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <Link to="/hinario">
-                <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800">
-                  <CardHeader className="text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-green-500 flex items-center justify-center mx-auto mb-3">
-                      <Music className="h-8 w-8 text-white" />
+              <Link to="/cursos">
+                <Card className="hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
+                  <CardHeader className="flex flex-row items-center justify-between">
+                    <div className="flex items-center space-x-4 flex-1">
+                      <div className="w-20 h-20 rounded-2xl bg-green-600 flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="h-10 w-10 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg mb-1">Finanças</CardTitle>
+                        <CardDescription className="text-sm mb-2">
+                          Princípios bíblicos de mordomia
+                        </CardDescription>
+                        <p className="text-sm text-green-600 dark:text-green-400 font-semibold">
+                          12 cursos disponíveis
+                        </p>
+                      </div>
+                      <ChevronRight className="h-6 w-6 text-gray-400 flex-shrink-0" />
                     </div>
-                    <CardTitle className="text-base">Louvores</CardTitle>
-                    <CardDescription className="text-sm">
-                      Hinos e cânticos
-                    </CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
             </motion.div>
 
-            {/* Estudos */}
+            {/* Relacionamentos */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Link to="/estudos">
-                <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800">
-                  <CardHeader className="text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-orange-500 flex items-center justify-center mx-auto mb-3">
-                      <GraduationCap className="h-8 w-8 text-white" />
+              <Link to="/cursos">
+                <Card className="hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20">
+                  <CardHeader className="flex flex-row items-center justify-between">
+                    <div className="flex items-center space-x-4 flex-1">
+                      <div className="w-20 h-20 rounded-2xl bg-pink-600 flex items-center justify-center flex-shrink-0">
+                        <Users className="h-10 w-10 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg mb-1">Relacionamentos</CardTitle>
+                        <CardDescription className="text-sm mb-2">
+                          Família, amizade e comunidade
+                        </CardDescription>
+                        <p className="text-sm text-green-600 dark:text-green-400 font-semibold">
+                          15 cursos disponíveis
+                        </p>
+                      </div>
+                      <ChevronRight className="h-6 w-6 text-gray-400 flex-shrink-0" />
                     </div>
-                    <CardTitle className="text-base">Estudos</CardTitle>
-                    <CardDescription className="text-sm">
-                      Cursos aprofundados
-                    </CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
             </motion.div>
 
-            {/* Papéis de parede */}
+            {/* Vida Espiritual */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <Link to="/projetos">
-                <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800">
-                  <CardHeader className="text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-pink-500 flex items-center justify-center mx-auto mb-3">
-                      <Globe className="h-8 w-8 text-white" />
+              <Link to="/devocional">
+                <Card className="hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
+                  <CardHeader className="flex flex-row items-center justify-between">
+                    <div className="flex items-center space-x-4 flex-1">
+                      <div className="w-20 h-20 rounded-2xl bg-purple-600 flex items-center justify-center flex-shrink-0">
+                        <Sparkles className="h-10 w-10 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg mb-1">Vida Espiritual</CardTitle>
+                        <CardDescription className="text-sm mb-2">
+                          Crescimento e maturidade cristã
+                        </CardDescription>
+                        <p className="text-sm text-green-600 dark:text-green-400 font-semibold">
+                          20 cursos disponíveis
+                        </p>
+                      </div>
+                      <ChevronRight className="h-6 w-6 text-gray-400 flex-shrink-0" />
                     </div>
-                    <CardTitle className="text-base">Projetos</CardTitle>
-                    <CardDescription className="text-sm">
-                      Missões globais
-                    </CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
@@ -271,6 +313,9 @@ export function NewHomePage({ user }) {
           </div>
         </div>
       </section>
+
+      {/* Bottom Navigation */}
+      <BottomNav />
     </div>
   )
 }

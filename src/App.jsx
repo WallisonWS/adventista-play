@@ -63,6 +63,7 @@ import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
+import { useIsMobile } from './hooks/useIsMobile.js'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -1497,6 +1498,7 @@ function ProjetosPage() {
 // Componente Principal
 function AppContent() {
   const [user, setUser] = useState(null)
+  const isMobile = useIsMobile()
 
   // Verificar se há usuário logado ao carregar
   useEffect(() => {
@@ -1521,13 +1523,13 @@ function AppContent() {
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<NewHomePage user={user} />} />
+            <Route path="/" element={isMobile ? <NewHomePage user={user} /> : <HomePage />} />
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />
             <Route path="/biblia" element={<BibliaPage />} />
             <Route path="/biblia/:livro/:capitulo" element={<BibliaPage />} />
-            <Route path="/estudos" element={<NewEstudosPage />} />
+            <Route path="/estudos" element={isMobile ? <NewEstudosPage /> : <EstudosPage />} />
             <Route path="/escola-sabatina" element={<EscolaSabatinaCompleta />} />
             <Route path="/ellen-white" element={<LivrosEllenWhite />} />
             <Route path="/dicionario" element={<DicionarioBiblico />} />

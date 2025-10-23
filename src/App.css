@@ -118,3 +118,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* Zoom de 80% para desktop */
+@media (min-width: 1024px) {
+  body {
+    zoom: 0.8;
+  }
+}
+

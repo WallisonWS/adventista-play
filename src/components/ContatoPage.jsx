@@ -9,12 +9,9 @@ import {
   Mail, 
   Phone, 
   Send, 
-  User, 
   MessageSquare,
   CheckCircle,
-  Github,
-  Linkedin,
-  Globe
+  LaptopMinimal
 } from 'lucide-react'
 
 const fadeInUp = {
@@ -154,11 +151,9 @@ export function ContatoPage() {
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     className="bg-primary/20 p-3 rounded-full"
                   >
-                    <User className="h-6 w-6 text-primary" />
+                    <LaptopMinimal className="h-6 w-6 text-primary" />
                   </motion.div>
                   <div>
                     <CardTitle className="text-lg">Desenvolvedor</CardTitle>
@@ -167,39 +162,9 @@ export function ContatoPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-muted-foreground">
                   Desenvolvedor Full Stack especializado em criar soluções web modernas e responsivas.
                 </p>
-                <div className="flex gap-2">
-                  <motion.a
-                    href="https://github.com/wallisonpereira"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors"
-                  >
-                    <Github className="h-5 w-5 text-primary" />
-                  </motion.a>
-                  <motion.a
-                    href="https://linkedin.com/in/wallisonpereira"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors"
-                  >
-                    <Linkedin className="h-5 w-5 text-primary" />
-                  </motion.a>
-                  <motion.a
-                    href="#"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors"
-                  >
-                    <Globe className="h-5 w-5 text-primary" />
-                  </motion.a>
-                </div>
               </CardContent>
             </Card>
 

@@ -191,7 +191,7 @@ export function NewHomePage({ user }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          <Link to="/projetos">
+          <Link to="/doacao">
             <Card className="bg-gradient-to-r from-blue-700 to-blue-900 text-white hover:shadow-xl transition-all duration-300 border-0 shadow-md">
               <CardHeader className="p-4">
                 <div className="flex items-center justify-between">

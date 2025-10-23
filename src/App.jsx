@@ -60,6 +60,7 @@ import { NosDesbravadores } from './components/NosDesbravadores.jsx'
 import { EspecialidadeTutorial } from './components/EspecialidadeTutorial.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
+import { DoacaoPage } from './components/DoacaoPage.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
@@ -1550,6 +1551,7 @@ function AppContent() {
             <Route path="/feliz7play" element={<Feliz7Play />} />
             <Route path="/perfil" element={<PerfilPage />} />
             <Route path="/conquistas" element={<ConquistasPage />} />
+            <Route path="/doacao" element={<DoacaoPage />} />
           </Routes>
         </AnimatePresence>
         

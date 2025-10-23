@@ -153,13 +153,13 @@ function Navigation({ user, onLogout }) {
       style={{ borderBottom: isDarkMode ? '3px solid #4B5563' : '3px solid #2E3192' }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo no cabeçalho */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center flex-shrink-0">
             <motion.img 
-              src="/logo-adventista-play-novo.png" 
+              src="/logo-adventista-simbolo.png" 
               alt="Adventista Play" 
-              className="h-12 w-12 cursor-pointer"
+              className="h-10 w-10 cursor-pointer"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
@@ -167,7 +167,7 @@ function Navigation({ user, onLogout }) {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-2 flex-wrap gap-y-2">
+          <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
             <NavLink to="/" icon={<HomeIcon className="h-4 w-4" />} isDarkMode={isDarkMode}>Início</NavLink>
             <NavLink to="/devocional" icon={<Heart className="h-4 w-4" />} isDarkMode={isDarkMode}>Devocional</NavLink>
             <NavLink to="/hinario" icon={<Music className="h-4 w-4" />} isDarkMode={isDarkMode}>Hinário</NavLink>
@@ -223,7 +223,7 @@ function Navigation({ user, onLogout }) {
 
           {/* Mobile Menu Button */}
           <motion.button 
-            className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
+            className={`lg:hidden ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >
@@ -276,7 +276,7 @@ function Navigation({ user, onLogout }) {
 
 function NavLink({ to, icon, children, isDarkMode }) {
   return (
-    <Link to={to} className={`${isDarkMode ? 'text-gray-300 hover:text-primary' : 'text-gray-700 hover:text-primary'} transition-colors flex items-center space-x-1 group font-medium`}>
+    <Link to={to} className={`${isDarkMode ? 'text-gray-300 hover:text-primary' : 'text-gray-700 hover:text-primary'} transition-colors flex items-center space-x-1 group font-medium whitespace-nowrap text-sm`}>
       <motion.div whileHover={{ scale: 1.2, rotate: 5 }}>
         {icon}
       </motion.div>

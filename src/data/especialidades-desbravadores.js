@@ -1162,6 +1162,181 @@ export const especialidadesCompletas = [
         "Postura e disciplina"
       ]
     }
+  },
+  {
+    id: 13,
+    nome: "Costura",
+    categoria: "Habilidades Domésticas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar diferentes tipos de tecidos",
+        descricao: "Conhecer pelo menos 5 tipos de tecidos e suas características.",
+        tecidos: [
+          { nome: "Algodão", caracteristicas: "Natural, respirável, absorvente" },
+          { nome: "Linho", caracteristicas: "Natural, fresco, amassa fácil" },
+          { nome: "Seda", caracteristicas: "Natural, luxuosa, delicada" },
+          { nome: "Poliéster", caracteristicas: "Sintético, durável, não amassa" },
+          { nome: "Lã", caracteristicas: "Natural, quente, elástica" }
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Fazer 3 tipos de pontos à mão",
+        descricao: "Demonstrar habilidade em costura manual.",
+        pontos: ["Ponto Reto", "Ponto Atrás", "Ponto Caseado"]
+      },
+      {
+        numero: 3,
+        titulo: "Pregar um botão",
+        descricao: "Saber pregar botões de 2 e 4 furos corretamente."
+      },
+      {
+        numero: 4,
+        titulo: "Fazer uma bainha",
+        descricao: "Fazer bainha em uma peça de roupa."
+      }
+    ]
+  },
+  {
+    id: 14,
+    nome: "Jardinagem",
+    categoria: "Habilidades Domésticas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Plantar e cuidar de 3 tipos de plantas",
+        descricao: "Cultivar plantas por pelo menos 2 meses.",
+        cuidados: ["Regar regularmente", "Adubar mensalmente", "Controlar pragas", "Podar quando necessário"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer tipos de solo",
+        descricao: "Identificar 3 tipos de solo e suas características.",
+        solos: [
+          { tipo: "Arenoso", caracteristicas: "Leve, drena rápido, pobre em nutrientes" },
+          { tipo: "Argiloso", caracteristicas: "Pesado, retém água, rico em nutrientes" },
+          { tipo: "Humoso", caracteristicas: "Rico em matéria orgânica, fértil" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 15,
+    nome: "Marcenaria",
+    categoria: "Habilidades Domésticas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer 10 ferramentas de marcenaria",
+        descricao: "Identificar ferramentas e seus usos.",
+        ferramentas: ["Martelo", "Serrote", "Plaina", "Formão", "Esquadro", "Trena", "Nível", "Furadeira", "Lixa", "Grampo"]
+      },
+      {
+        numero: 2,
+        titulo: "Construir um objeto simples de madeira",
+        descricao: "Fazer um porta-lápis, caixa ou prateleira pequena."
+      }
+    ]
+  },
+  {
+    id: 16,
+    nome: "Astronomia",
+    categoria: "Ciência e Saúde",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar 10 constelações",
+        descricao: "Reconhecer constelações no céu noturno.",
+        constelacoes: ["Cruzeiro do Sul", "Orion", "Escorpião", "Ursa Maior", "Ursa Menor", "Cão Maior", "Cão Menor", "Leão", "Virgo", "Centauro"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer os planetas do Sistema Solar",
+        descricao: "Saber a ordem e características dos 8 planetas.",
+        planetas: ["Mercúrio", "Vênus", "Terra", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"]
+      }
+    ]
+  },
+  {
+    id: 17,
+    nome: "Geologia",
+    categoria: "Ciência e Saúde",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar 10 tipos de rochas e minerais",
+        descricao: "Conhecer rochas ígneas, sedimentares e metamórficas.",
+        tipos: ["Granito", "Basalto", "Arenito", "Calcário", "Mármore", "Quartzo", "Feldspato", "Mica", "Ardósia", "Gnaisse"]
+      },
+      {
+        numero: 2,
+        titulo: "Fazer uma coleção de 15 rochas",
+        descricao: "Coletar, identificar e catalogar rochas da sua região."
+      }
+    ]
+  },
+  {
+    id: 18,
+    nome: "Nutrição",
+    categoria: "Ciência e Saúde",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer os grupos alimentares",
+        descricao: "Entender a pirâmide alimentar e porções diárias.",
+        grupos: ["Cereais", "Frutas", "Vegetais", "Proteínas", "Laticínios", "Gorduras"]
+      },
+      {
+        numero: 2,
+        titulo: "Planejar um cardápio saudável",
+        descricao: "Criar cardápio balanceado para uma semana."
+      }
+    ]
+  },
+  {
+    id: 19,
+    nome: "Temperança",
+    categoria: "Ciência e Saúde",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer os 8 remédios naturais",
+        descricao: "Entender os benefícios de cada remédio natural.",
+        remedios: ["Sol", "Água", "Ar Puro", "Exercício", "Repouso", "Alimentação", "Temperança", "Confiança em Deus"]
+      },
+      {
+        numero: 2,
+        titulo: "Fazer um compromisso de vida saudável",
+        descricao: "Comprometer-se a evitar substâncias nocivas."
+      }
+    ]
+  },
+  {
+    id: 20,
+    nome: "Saúde",
+    categoria: "Ciência e Saúde",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer hábitos de higiene pessoal",
+        descricao: "Praticar higiene diária adequada.",
+        habitos: ["Escovar dentes 3x ao dia", "Banho diário", "Lavar mãos", "Cortar unhas", "Cuidar do cabelo"]
+      },
+      {
+        numero: 2,
+        titulo: "Entender importância do sono",
+        descricao: "Saber quantas horas de sono são necessárias por idade."
+      }
+    ]
   }
 ]
 

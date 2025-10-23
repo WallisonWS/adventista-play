@@ -164,7 +164,7 @@ function Navigation({ user, onLogout }) {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-2 flex-wrap gap-y-2">
             <NavLink to="/" icon={<HomeIcon className="h-4 w-4" />} isDarkMode={isDarkMode}>Início</NavLink>
             <NavLink to="/devocional" icon={<Heart className="h-4 w-4" />} isDarkMode={isDarkMode}>Devocional</NavLink>
             <NavLink to="/hinario" icon={<Music className="h-4 w-4" />} isDarkMode={isDarkMode}>Hinário</NavLink>

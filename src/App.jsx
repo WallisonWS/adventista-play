@@ -152,7 +152,7 @@ function Navigation({ user, onLogout }) {
       className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} shadow-lg sticky top-0 z-50 backdrop-blur-sm`}
       style={{ borderBottom: isDarkMode ? '3px solid #4B5563' : '3px solid #2E3192' }}
     >
-      <div className="container mx-auto px-4">
+      <div className="w-full px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo no cabeçalho */}
           <Link to="/" className="flex items-center flex-shrink-0">
@@ -1566,11 +1566,11 @@ function AppContent() {
               <div>
                 <Link to="/" className="flex items-center space-x-3 mb-4 group">
                   <motion.img 
-                    src="/logo-adventista-play-novo.png" 
-                    alt="Adventista Play" 
+                    src="/logo-adventista-simbolo.png" 
+                    alt="Igreja Adventista do Sétimo Dia" 
                     className="h-16 w-16"
-                    whileHover={{ scale: 1.1, rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
                   />
                   <div>
                     <span className="font-bold text-2xl block group-hover:text-yellow-300 transition-colors">Adventista Play</span>

@@ -61,6 +61,7 @@ import { EspecialidadeTutorial } from './components/EspecialidadeTutorial.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { DoacaoPage } from './components/DoacaoPage.jsx'
+import { ConnectionStatus } from './components/ConnectionStatus.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
@@ -1528,6 +1529,7 @@ function AppContent() {
   return (
     <Router>
       <div className="min-h-screen bg-background">
+        <ConnectionStatus />
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>

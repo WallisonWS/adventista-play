@@ -6,7 +6,7 @@
   "scripts": {
 
     "dev": "vite",
-    "build": "rm -f pnpm-lock.yaml && npm install --legacy-peer-deps && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

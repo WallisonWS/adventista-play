@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
@@ -707,6 +707,7 @@ function LoginPage({ onLogin }) {
 function DevocionalPage() {
   const [selectedDevocional, setSelectedDevocional] = useState(devocionais[0])
   const [favoritos, setFavoritos] = useState([])
+  const conteudoRef = useRef(null)
 
   const toggleFavorito = (id) => {
     setFavoritos(prev => 
@@ -749,7 +750,13 @@ function DevocionalPage() {
                   className={`cursor-pointer transition-all hover:shadow-lg ${
                     selectedDevocional.id === dev.id ? 'ring-2 ring-primary' : ''
                   }`}
-                  onClick={() => setSelectedDevocional(dev)}
+                  onClick={() => {
+                    setSelectedDevocional(dev)
+                    // Scroll automático para o conteúdo do devocional
+                    setTimeout(() => {
+                      conteudoRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }, 100)
+                  }}
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -782,7 +789,7 @@ function DevocionalPage() {
           </div>
 
           {/* Devocional Selecionado */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2" ref={conteudoRef}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedDevocional.id}

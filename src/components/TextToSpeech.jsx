@@ -19,16 +19,23 @@ import { Slider } from '@/components/ui/slider.jsx'
 export function TextToSpeech({ text, autoPlay = false, compact = false }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [rate, setRate] = useState(1) // Velocidade: 0.5 a 2
   const [volume, setVolume] = useState(1) // Volume: 0 a 1
   const [voices, setVoices] = useState([])
   const [selectedVoice, setSelectedVoice] = useState(null)
   const utteranceRef = useRef(null)
+  const voicesLoadedRef = useRef(false)
 
   // Carregar vozes disponíveis
   useEffect(() => {
     const loadVoices = () => {
+      if (voicesLoadedRef.current) return
+      
       const availableVoices = window.speechSynthesis.getVoices()
+      
+      // Se não há vozes ainda, aguardar
+      if (availableVoices.length === 0) return
       
       // Filtrar e priorizar vozes em português brasileiro
       const portugueseVoices = availableVoices.filter(voice => 
@@ -60,14 +67,30 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
       ) || sortedVoices.find(voice => voice.lang === 'pt-BR') || sortedVoices[0] || availableVoices[0]
       
       setSelectedVoice(defaultVoice)
+      voicesLoadedRef.current = true
+      setIsLoading(false)
     }
 
+    setIsLoading(true)
+    
+    // Tentar carregar imediatamente
     loadVoices()
+    
+    // Fallback: se após 1 segundo não carregou, usar voz padrão do sistema
+    const fallbackTimer = setTimeout(() => {
+      if (!voicesLoadedRef.current) {
+        console.log('⚠️ Usando voz padrão do sistema (fallback)')
+        voicesLoadedRef.current = true
+        setIsLoading(false)
+      }
+    }, 1000)
     
     // Algumas vezes as vozes demoram para carregar
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
       window.speechSynthesis.onvoiceschanged = loadVoices
     }
+    
+    return () => clearTimeout(fallbackTimer)
   }, [])
 
   // Auto play se solicitado
@@ -83,7 +106,9 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
   }, [autoPlay, text, selectedVoice])
 
   const handlePlay = () => {
-    if (!text || !selectedVoice) return
+    if (!text) return
+    
+    setIsLoading(true)
 
     // Se estava pausado, retomar
     if (isPaused) {
@@ -121,7 +146,12 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
     }
 
     utteranceRef.current = utterance
-    window.speechSynthesis.speak(utterance)
+    
+    // Pequeno delay para garantir que tudo está pronto
+    setTimeout(() => {
+      window.speechSynthesis.speak(utterance)
+      setIsLoading(false)
+    }, 100)
   }
 
   const handlePause = () => {
@@ -163,24 +193,35 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={isPlaying ? handlePause : handlePlay}
-          className="gap-2"
-        >
-          {isPlaying ? (
-            <>
-              <Pause className="h-4 w-4" />
-              Pausar
-            </>
-          ) : (
-            <>
-              <Volume2 className="h-4 w-4" />
-              Ouvir
-            </>
-          )}
-        </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={isPlaying ? handlePause : handlePlay}
+            disabled={isLoading}
+            className="gap-2"
+          >
+            {isLoading ? (
+              <>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                >
+                  <Volume2 className="h-4 w-4" />
+                </motion.div>
+                Carregando...
+              </>
+            ) : isPlaying ? (
+              <>
+                <Pause className="h-4 w-4" />
+                Pausar
+              </>
+            ) : (
+              <>
+                <Volume2 className="h-4 w-4" />
+                Ouvir
+              </>
+            )}
+          </Button>
       </motion.div>
     )
   }
@@ -205,11 +246,25 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
             variant={isPlaying ? "default" : "outline"}
             size="lg"
             onClick={handlePlay}
-            disabled={!text || !selectedVoice}
+            disabled={!text || isLoading}
             className="gap-2"
           >
-            <Play className="h-5 w-5" />
-            {isPaused ? 'Continuar' : 'Reproduzir'}
+            {isLoading ? (
+              <>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                >
+                  <Volume2 className="h-5 w-5" />
+                </motion.div>
+                Carregando...
+              </>
+            ) : (
+              <>
+                <Play className="h-5 w-5" />
+                {isPaused ? 'Continuar' : 'Reproduzir'}
+              </>
+            )}
           </Button>
         </motion.div>
 

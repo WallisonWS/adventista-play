@@ -173,3 +173,49 @@ export const planosLeitura = [
 
 // Total: 10 planos com centenas de dias de leitura!
 
+
+,
+  {
+    id: '7-dias-fe',
+    titulo: '7 Dias de Fé e Esperança',
+    descricao: 'Um plano rápido para fortalecer sua fé em uma semana',
+    duracao: '7 dias',
+    categoria: 'Fé',
+    tipo: 'Plano de Leitura',
+    nivel: 'Iniciante',
+    diasPorSemana: 7,
+    tempoMedioDiario: '5 minutos',
+    licoes: [
+      { dia: 1, leitura: 'Salmos 23', reflexao: 'O Senhor é meu pastor' },
+      { dia: 2, leitura: 'João 14:1-6', reflexao: 'Não se turbe o vosso coração' },
+      { dia: 3, leitura: 'Romanos 8:28-39', reflexao: 'Mais que vencedores' },
+      { dia: 4, leitura: 'Filipenses 4:4-7', reflexao: 'A paz que excede todo o entendimento' },
+      { dia: 5, leitura: 'Hebreus 11:1-6', reflexao: 'A essência da fé' },
+      { dia: 6, leitura: 'Isaías 41:10', reflexao: 'Não temas, eu sou contigo' },
+      { dia: 7, leitura: 'Apocalipse 21:1-7', reflexao: 'Nova Terra e Novo Céu' }
+    ]
+  },
+  {
+    id: '10-dias-oracao',
+    titulo: '10 Dias de Oração e Consagração',
+    descricao: 'Um desafio para aprofundar sua vida de oração',
+    duracao: '10 dias',
+    categoria: 'Oração',
+    tipo: 'Plano de Leitura',
+    nivel: 'Todos',
+    diasPorSemana: 7,
+    tempoMedioDiario: '10 minutos',
+    licoes: [
+      { dia: 1, leitura: 'Mateus 6:5-15', reflexao: 'O Pai Nosso como modelo' },
+      { dia: 2, leitura: 'Lucas 11:1-13', reflexao: 'A Parábola do Amigo Importuno' },
+      { dia: 3, leitura: 'Tiago 5:13-18', reflexao: 'A oração eficaz do justo' },
+      { dia: 4, leitura: '1 João 5:14-15', reflexao: 'Orar segundo a vontade de Deus' },
+      { dia: 5, leitura: 'Salmos 51', reflexao: 'Oração de arrependimento' },
+      { dia: 6, leitura: 'Salmos 100', reflexao: 'Oração de louvor' },
+      { dia: 7, leitura: 'Salmos 27', reflexao: 'Oração de confiança' },
+      { dia: 8, leitura: 'Efésios 6:18', reflexao: 'Orando em todo tempo' },
+      { dia: 9, leitura: 'Atos 4:23-31', reflexao: 'A oração da igreja primitiva' },
+      { dia: 10, leitura: 'Marcos 11:24', reflexao: 'O poder da oração com fé' }
+    ]
+  }
+]

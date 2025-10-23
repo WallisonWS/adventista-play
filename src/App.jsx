@@ -57,6 +57,7 @@ import { CompartilharOracao } from './components/CompartilharOracao.jsx'
 import { CursosAdventistas } from './components/CursosAdventistas.jsx'
 import { DesbravadoresPage } from './components/DesbravadoresPage.jsx'
 import { NosDesbravadores } from './components/NosDesbravadores.jsx'
+import { EspecialidadeTutorial } from './components/EspecialidadeTutorial.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
@@ -1535,6 +1536,7 @@ function AppContent() {
             <Route path="/cursos" element={<CursosAdventistas />} />
             <Route path="/desbravadores" element={<DesbravadoresPage />} />
             <Route path="/nos-desbravadores" element={<NosDesbravadores />} />
+            <Route path="/desbravadores/especialidade/:id" element={<EspecialidadeTutorial />} />
             <Route path="/progresso-desbravador" element={<ProgressoDesbravador />} />
             <Route path="/certificado" element={<CertificadoCurso />} />
             <Route path="/oracao" element={<CompartilharOracao />} />

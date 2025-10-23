@@ -745,7 +745,7 @@ export function DesbravadoresPage() {
                       Tutorial completo com 10 nós essenciais, amarrações, dicas de segurança e desafios práticos. 
                       Aprenda passo a passo como fazer cada nó e suas aplicações.
                     </p>
-                    <Link to="/nos-desbravadores">
+                    <Link to="/desbravadores/especialidade/3">
                       <Button className="bg-primary hover:bg-primary/90">
                         <ChevronRight className="h-4 w-4 mr-2" />
                         Começar Tutorial de Nós
@@ -945,10 +945,12 @@ export function DesbravadoresPage() {
               <Button className="flex-1" variant="outline" onClick={() => setEspecialidadeSelecionada(null)}>
                 Fechar
               </Button>
-              <Button className="flex-1">
-                <Star className="h-4 w-4 mr-2" />
-                Iniciar Especialidade
-              </Button>
+              <Link to={`/desbravadores/especialidade/${especialidadeSelecionada?.id}`} className="flex-1">
+                <Button className="w-full">
+                  <Star className="h-4 w-4 mr-2" />
+                  Iniciar Especialidade
+                </Button>
+              </Link>
             </div>
           </div>
         </DialogContent>

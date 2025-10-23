@@ -1033,10 +1033,10 @@ function HinarioPage() {
 	            </motion.div>
 	          )}
 	        </AnimatePresence>
-	
-	        {filteredHinos.length === 0 && (róxima parte...
-
-
+      </div>
+    </div>
+  )
+}
 
 // Página de Estudos
 function EstudosPage() {

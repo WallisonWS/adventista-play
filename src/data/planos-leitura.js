@@ -162,9 +162,7 @@ export const planosLeitura = [
 ]
 
 // Total: 10 planos com centenas de dias de leitura!
-
-
-,
+/*
   {
     id: '7-dias-fe',
     titulo: '7 Dias de Fé e Esperança',
@@ -208,4 +206,4 @@ export const planosLeitura = [
       { dia: 10, leitura: 'Marcos 11:24', reflexao: 'O poder da oração com fé' }
     ]
   }
-]
+]*/

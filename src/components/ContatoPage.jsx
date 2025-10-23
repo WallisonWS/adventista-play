@@ -11,7 +11,8 @@ import {
   Send, 
   MessageSquare,
   CheckCircle,
-  LaptopMinimal
+  LaptopMinimal,
+  User
 } from 'lucide-react'
 
 const fadeInUp = {

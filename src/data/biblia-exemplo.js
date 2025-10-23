@@ -13,6 +13,27 @@ export const bibliaExemplo = {
       { number: 5, text: 'E Deus chamou à luz dia, e às trevas noite. E foi a tarde e a manhã, o dia primeiro.' }
     ]
   },
+  'mt-1': {
+    book: { name: 'Mateus', abbrev: 'mt' },
+    chapter: { number: 1 },
+    verses: [
+      { number: 1, text: 'Livro da genealogia de Jesus Cristo, filho de Davi, filho de Abraão.' },
+      { number: 2, text: 'Abraão gerou a Isaque; Isaque gerou a Jacó; Jacó gerou a Judá e a seus irmãos;' },
+      { number: 3, text: 'Judá gerou a Perez e a Zerá, de Tamar; Perez gerou a Esrom; Esrom gerou a Arão;' },
+      { number: 4, text: 'Arão gerou a Aminadabe; Aminadabe gerou a Naassom; Naassom gerou a Salmom;' },
+      { number: 5, text: 'Salmom gerou a Boaz, de Raabe; Boaz gerou a Obede, de Rute; Obede gerou a Jessé;' },
+      { number: 16, text: 'e Jacó gerou a José, marido de Maria, da qual nasceu Jesus, que se chama Cristo.' },
+      { number: 17, text: 'De sorte que todas as gerações, desde Abraão até Davi, são catorze gerações; e desde Davi até a deportação para Babilônia, catorze gerações; e desde a deportação para Babilônia até o Cristo, catorze gerações.' },
+      { number: 18, text: 'Ora, o nascimento de Jesus Cristo foi assim: Estando Maria, sua mãe, desposada com José, antes de se ajuntarem, ela se achou ter concebido do Espírito Santo.' },
+      { number: 19, text: 'E José, seu marido, sendo justo, e não a querendo infamar, intentou deixá-la secretamente.' },
+      { number: 20, text: 'E, projetando ele isso, eis que em sonho lhe apareceu um anjo do Senhor, dizendo: José, filho de Davi, não temas receber a Maria, tua mulher, pois o que nela se gerou é do Espírito Santo;' },
+      { number: 21, text: 'ela dará à luz um filho, e lhe porás o nome de Jesus; porque ele salvará o seu povo dos seus pecados.' },
+      { number: 22, text: 'Ora, tudo isso aconteceu para que se cumprisse o que fora dito da parte do Senhor pelo profeta:' },
+      { number: 23, text: 'Eis que a virgem conceberá e dará à luz um filho, o qual será chamado EMANUEL, que traduzido é: Deus conosco.' },
+      { number: 24, text: 'E José, tendo despertado do sono, fez como o anjo do Senhor lhe ordenara, e recebeu sua mulher;' },
+      { number: 25, text: 'e não a conheceu enquanto ela não deu à luz um filho; e pôs-lhe o nome de JESUS.' }
+    ]
+  },
   'jo-3': {
     book: { name: 'João', abbrev: 'jo' },
     chapter: { number: 3 },

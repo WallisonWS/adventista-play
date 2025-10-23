@@ -1337,6 +1337,323 @@ export const especialidadesCompletas = [
         descricao: "Saber quantas horas de sono são necessárias por idade."
       }
     ]
+  },
+  {
+    id: 21,
+    nome: "Música",
+    categoria: "Artes e Habilidades",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer 5 instrumentos musicais",
+        descricao: "Identificar instrumentos e suas famílias (cordas, sopro, percussão).",
+        instrumentos: [
+          { nome: "Violão", familia: "Cordas" },
+          { nome: "Flauta", familia: "Sopro" },
+          { nome: "Bateria", familia: "Percussão" },
+          { nome: "Piano", familia: "Cordas/Percussão" },
+          { nome: "Trompete", familia: "Sopro" }
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Cantar ou tocar um hino",
+        descricao: "Apresentar um hino do Hinário Adventista em público."
+      },
+      {
+        numero: 3,
+        titulo: "Conhecer as notas musicais",
+        descricao: "Saber as 7 notas musicais e suas posições na pauta.",
+        notas: ["Dó", "Ré", "Mi", "Fá", "Sol", "Lá", "Si"]
+      }
+    ]
+  },
+  {
+    id: 22,
+    nome: "Desenho",
+    categoria: "Artes e Habilidades",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Fazer 5 desenhos diferentes",
+        descricao: "Desenhar paisagem, retrato, natureza morta, animal e objeto.",
+        tecnicas: ["Lápis", "Carvão", "Grafite", "Caneta"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer técnicas de sombreamento",
+        descricao: "Aplicar luz e sombra em desenhos para dar volume.",
+        tipos: ["Hachura", "Esfumado", "Pontilhismo", "Hachura Cruzada"]
+      },
+      {
+        numero: 3,
+        titulo: "Desenhar em perspectiva",
+        descricao: "Fazer um desenho usando perspectiva de 1 ou 2 pontos de fuga."
+      }
+    ]
+  },
+  {
+    id: 23,
+    nome: "Pintura",
+    categoria: "Artes e Habilidades",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer cores primárias e secundárias",
+        descricao: "Entender a teoria das cores e como misturá-las.",
+        primarias: ["Vermelho", "Amarelo", "Azul"],
+        secundarias: ["Laranja", "Verde", "Roxo"]
+      },
+      {
+        numero: 2,
+        titulo: "Fazer 3 pinturas",
+        descricao: "Pintar usando aquarela, guache ou tinta acrílica.",
+        temas: ["Paisagem", "Natureza", "Abstrato"]
+      },
+      {
+        numero: 3,
+        titulo: "Conhecer técnicas de pintura",
+        descricao: "Aplicar pelo menos 2 técnicas diferentes.",
+        tecnicas: ["Aquarela", "Guache", "Acrílica", "Pintura a óleo"]
+      }
+    ]
+  },
+  {
+    id: 24,
+    nome: "Artesanato",
+    categoria: "Artes e Habilidades",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Fazer 3 trabalhos artesanais",
+        descricao: "Criar objetos usando diferentes técnicas.",
+        opcoes: ["Crochê", "Tricô", "Macramê", "Origami", "Bijuterias", "Decoupage"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer materiais de artesanato",
+        descricao: "Identificar 10 materiais e suas aplicações.",
+        materiais: ["Linha", "Lã", "Feltro", "EVA", "Papelão", "Tecido", "Fitas", "Botões", "Missangas", "Cola"]
+      }
+    ]
+  },
+  {
+    id: 25,
+    nome: "Aves",
+    categoria: "Estudo da Natureza",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar 20 espécies de aves",
+        descricao: "Reconhecer aves da sua região pelo canto ou aparência.",
+        exemplos: ["Bem-te-vi", "Saá", "Pardal", "Pomba", "Coruja", "Beija-flor", "Papagaio", "Arara", "Tucano", "Gavião"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer anatomia das aves",
+        descricao: "Entender as partes do corpo e suas funções.",
+        partes: ["Bico", "Asas", "Penas", "Garras", "Cauda"]
+      },
+      {
+        numero: 3,
+        titulo: "Observar aves em habitat natural",
+        descricao: "Fazer pelo menos 3 saídas para observação de aves."
+      }
+    ]
+  },
+  {
+    id: 26,
+    nome: "Mamíferos",
+    categoria: "Estudo da Natureza",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar 15 mamíferos",
+        descricao: "Conhecer mamíferos silvestres e domésticos.",
+        exemplos: ["Cachorro", "Gato", "Cavalo", "Vaca", "Macaco", "Onça", "Veado", "Capivara", "Tatu", "Morcego"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer características dos mamíferos",
+        descricao: "Entender o que define um animal como mamífero.",
+        caracteristicas: ["Pelos", "Glândulas mamárias", "Sangue quente", "Respiração pulmonar"]
+      }
+    ]
+  },
+  {
+    id: 27,
+    nome: "Árvores",
+    categoria: "Estudo da Natureza",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar 15 árvores",
+        descricao: "Reconhecer árvores pelas folhas, casca e frutos.",
+        exemplos: ["Ipê", "Jacarandá", "Mangueira", "Jaqueira", "Palmeira", "Pinheiro", "Eucalipto", "Cedro", "Mogno", "Pau-brasil"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer partes da árvore",
+        descricao: "Entender funções de raiz, tronco, galhos, folhas.",
+        partes: ["Raiz", "Tronco", "Galhos", "Folhas", "Flores", "Frutos"]
+      },
+      {
+        numero: 3,
+        titulo: "Fazer um herbário",
+        descricao: "Coletar, prensar e catalogar 10 folhas diferentes."
+      }
+    ]
+  },
+  {
+    id: 28,
+    nome: "Flores",
+    categoria: "Estudo da Natureza",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar 15 flores",
+        descricao: "Reconhecer flores comuns e ornamentais.",
+        exemplos: ["Rosa", "Margarida", "Orquídea", "Lírio", "Girassol", "Cravo", "Tulipa", "Hortência", "Azaléia", "Violeta"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer partes da flor",
+        descricao: "Entender anatomia e função de cada parte.",
+        partes: ["Pétalas", "Sépalas", "Estames", "Pistilo", "Ovario"]
+      },
+      {
+        numero: 3,
+        titulo: "Cultivar 3 tipos de flores",
+        descricao: "Plantar e cuidar de flores por pelo menos 2 meses."
+      }
+    ]
+  },
+  {
+    id: 29,
+    nome: "Insetos",
+    categoria: "Estudo da Natureza",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Identificar 20 insetos",
+        descricao: "Reconhecer insetos comuns e suas características.",
+        exemplos: ["Formiga", "Abelha", "Borboleta", "Libélula", "Grilo", "Gafanhoto", "Joaninha", "Besouro", "Mosca", "Mosquito"]
+      },
+      {
+        numero: 2,
+        titulo: "Conhecer metamorfose",
+        descricao: "Entender as fases de desenvolvimento dos insetos.",
+        fases: ["Ovo", "Larva", "Pupa", "Adulto"]
+      },
+      {
+        numero: 3,
+        titulo: "Fazer uma coleção de insetos",
+        descricao: "Coletar, preservar e catalogar 10 insetos diferentes."
+      }
+    ]
+  },
+  {
+    id: 30,
+    nome: "Evangelismo",
+    categoria: "Atividades Missionárias",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Participar de 5 atividades evangelísticas",
+        descricao: "Envolver-se ativamente em projetos de evangelismo.",
+        atividades: ["Distribuição de folhetos", "Visitação", "Estudos bíblicos", "Programa de rádio/TV", "Evangelismo público"]
+      },
+      {
+        numero: 2,
+        titulo: "Dar um estudo bíblico",
+        descricao: "Ministrar pelo menos 1 estudo bíblico completo."
+      },
+      {
+        numero: 3,
+        titulo: "Conhecer métodos de evangelismo",
+        descricao: "Entender diferentes abordagens evangelísticas.",
+        metodos: ["Pessoal", "Público", "Literário", "Mídia", "Serviço"]
+      }
+    ]
+  },
+  {
+    id: 31,
+    nome: "Amigo Atencioso",
+    categoria: "Atividades Missionárias",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Visitar 5 pessoas necessitadas",
+        descricao: "Fazer visitas regulares a idosos, doentes ou carentes.",
+        atividades: ["Conversar", "Orar", "Ler a Bíblia", "Ajudar em tarefas", "Levar alimentos"]
+      },
+      {
+        numero: 2,
+        titulo: "Participar de projeto social",
+        descricao: "Envolver-se em ação social da igreja ou comunidade.",
+        projetos: ["Distribuição de alimentos", "Roupas", "Mutirão de limpeza", "Aulas de reforço"]
+      }
+    ]
+  },
+  {
+    id: 32,
+    nome: "Testemunho Juvenil",
+    categoria: "Atividades Missionárias",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Compartilhar seu testemunho",
+        descricao: "Contar sua experiência com Jesus em público.",
+        ocasioes: ["Culto jovem", "Escola Sabatina", "Programa de desbravadores", "Rede social"]
+      },
+      {
+        numero: 2,
+        titulo: "Convidar 5 amigos para a igreja",
+        descricao: "Trazer amigos para conhecer sua igreja e seus valores."
+      },
+      {
+        numero: 3,
+        titulo: "Participar de campanha evangelística",
+        descricao: "Envolver-se ativamente em semana de oração ou evangelismo."
+      }
+    ]
+  },
+  {
+    id: 33,
+    nome: "Mordomia",
+    categoria: "Atividades Missionárias",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Entender o conceito de mordomia",
+        descricao: "Conhecer o que a Bíblia ensina sobre mordomia.",
+        areas: ["Tempo", "Talentos", "Tesouro", "Corpo", "Meio ambiente"]
+      },
+      {
+        numero: 2,
+        titulo: "Praticar devolução de dízimos e ofertas",
+        descricao: "Ser fiel na devolução por pelo menos 3 meses."
+      },
+      {
+        numero: 3,
+        titulo: "Participar de projeto de mordomia ambiental",
+        descricao: "Envolver-se em ação de preservação da natureza.",
+        projetos: ["Plantio de árvores", "Reciclagem", "Limpeza de praias/rios", "Horta comunitária"]
+      }
+    ]
   }
 ]
 

@@ -1,4 +1,6 @@
 // Planos de Leitura Bíblica
+import { bibliaEmUmAno } from './planos-leitura-completos/biblia-em-1-ano.js'
+import { novoTestamento90Dias } from './planos-leitura-completos/novo-testamento-90-dias.js'
 
 export const planosLeitura = [
   {
@@ -11,14 +13,7 @@ export const planosLeitura = [
     nivel: 'Todos',
     diasPorSemana: 7,
     tempoMedioDiario: '15-20 minutos',
-    licoes: [
-      { dia: 1, leitura: 'Gênesis 1-3', reflexao: 'A criação e a queda' },
-      { dia: 2, leitura: 'Gênesis 4-7', reflexao: 'Caim e Abel, Noé' },
-      { dia: 3, leitura: 'Gênesis 8-11', reflexao: 'O dilúvio e Babel' },
-      { dia: 4, leitura: 'Gênesis 12-15', reflexao: 'O chamado de Abraão' },
-      { dia: 5, leitura: 'Gênesis 16-19', reflexao: 'Agar e Sodoma' },
-      // ... continua até dia 365
-    ]
+    licoes: bibliaEmUmAno
   },
   {
     id: 'novo-testamento-90',
@@ -30,12 +25,7 @@ export const planosLeitura = [
     nivel: 'Iniciante',
     diasPorSemana: 7,
     tempoMedioDiario: '20-25 minutos',
-    licoes: [
-      { dia: 1, leitura: 'Mateus 1-4', reflexao: 'Nascimento e batismo de Jesus' },
-      { dia: 2, leitura: 'Mateus 5-7', reflexao: 'O Sermão do Monte' },
-      { dia: 3, leitura: 'Mateus 8-10', reflexao: 'Milagres e missão' },
-      // ... continua até dia 90
-    ]
+    licoes: novoTestamento90Dias
   },
   {
     id: 'salmos-30',

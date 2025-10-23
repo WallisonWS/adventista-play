@@ -153,7 +153,7 @@ function Navigation({ user, onLogout }) {
       style={{ borderBottom: isDarkMode ? '3px solid #4B5563' : '3px solid #2E3192' }}
     >
       <div className="w-full px-6 relative">
-        <div className="flex items-center justify-center h-20">
+        <div className="flex items-center justify-center h-16">
           {/* Logo no cabeçalho - Fixo no canto esquerdo */}
           <Link to="/" className="absolute left-6 flex items-center">
             <motion.img 
@@ -221,9 +221,9 @@ function Navigation({ user, onLogout }) {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Fixo no canto direito */}
           <motion.button 
-            className={`lg:hidden ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
+            className={`lg:hidden absolute right-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >

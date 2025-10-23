@@ -74,7 +74,7 @@ import { personagensBiblicos } from './data/personagens-biblicos.js'
 import { planosLeitura } from './data/planos-leitura.js'
 
 // Importar imagens
-import logo from './assets/logo-adventista-play.png'
+import logo from './assets/logo-adventista-play-transparent.png'
 import mission1 from './assets/06ODUmgeXDAv.jpg'
 import mission2 from './assets/ceVxJtPGZzDg.jpeg'
 import mission3 from './assets/1jBZXZ4E8jtT.jpg'

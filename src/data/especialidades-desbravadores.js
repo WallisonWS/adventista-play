@@ -292,212 +292,66 @@ export const especialidadesCompletas = [
         descricao: "Demonstrar cuidados com cortes, arranhões e escoriações.",
         procedimento: [
           "Lave as mãos antes de tocar no ferimento",
-          "Limpe o ferimento com água corrente e sabão neutro",
-          "Remova sujeira visível com gaze limpa",
-          "Aplique antisséptico (álcool 70% ou iodo)",
-          "Cubra com curativo ou band-aid se necessário",
-          "Troque o curativo diariamente",
-          "Observe sinais de infecção (vermelhidão, inchaço, pus)"
+          "Limpe o ferimento com água e sabão neutro",
+          "Aplique antisséptico",
+          "Cubra com curativo estéril",
+          "Troque o curativo diariamente"
         ],
         cuidados: [
-          "Nunca use algodão diretamente no ferimento",
-          "Não sopre o ferimento",
-          "Não use pomadas sem orientação médica",
-          "Procure médico se o ferimento for profundo ou extenso"
+          "Não assopre o ferimento",
+          "Não use algodão diretamente no ferimento",
+          "Não use produtos caseiros (café, pó de sapato)"
         ]
       },
       {
         numero: 3,
-        titulo: "Saber fazer bandagens",
-        descricao: "Aplicar diferentes tipos de bandagens corretamente.",
+        titulo: "Saber tratar queimaduras",
+        descricao: "Conhecer os tipos de queimadura e como tratar cada uma.",
         tipos: [
           {
-            nome: "Bandagem em Espiral",
-            uso: "Braços e pernas",
-            passos: [
-              "Comece na parte mais fina do membro",
-              "Dê duas voltas fixas",
-              "Suba em espiral, cobrindo metade da volta anterior",
-              "Finalize com duas voltas fixas",
-              "Prenda com esparadrapo ou nó"
-            ]
+            grau: "1º Grau",
+            caracteristicas: "Vermelhidão, dor, inchaço leve",
+            tratamento: "Água fria por 10 minutos, pomada para queimadura, não estourar bolhas"
           },
           {
-            nome: "Bandagem em Oito",
-            uso: "Articulações (joelho, cotovelo)",
-            passos: [
-              "Faça voltas cruzadas formando um 8",
-              "Mantenha articulação levemente flexionada",
-              "Não aperte demais para não cortar circulação"
-            ]
+            grau: "2º Grau",
+            caracteristicas: "Bolhas, dor intensa, vermelhidão",
+            tratamento: "Água fria, cobrir com gaze estéril, procurar ajuda médica"
           },
           {
-            nome: "Tipoia",
-            uso: "Sustentar braço ou ombro machucado",
-            passos: [
-              "Use lenço triangular ou pedaço de tecido",
-              "Coloque braço dobrado em 90°",
-              "Amarre atrás do pescoço",
-              "Verifique circulação nos dedos"
-            ]
+            grau: "3º Grau",
+            caracteristicas: "Pele carbonizada, indolor (nervos destruídos)",
+            tratamento: "Chamar emergência, cobrir com pano limpo, não remover roupas grudadas"
           }
         ]
       },
       {
         numero: 4,
-        titulo: "Conhecer tratamento para queimaduras",
-        descricao: "Saber classificar e tratar diferentes graus de queimaduras.",
-        classificacao: [
-          {
-            grau: "1º Grau",
-            caracteristicas: "Vermelhidão, dor, sem bolhas",
-            tratamento: [
-              "Resfrie com água corrente por 10-15 minutos",
-              "Não use gelo diretamente",
-              "Aplique pomada para queimaduras se disponível",
-              "Não estoure bolhas se aparecerem"
-            ],
-            exemplos: "Queimadura de sol leve"
-          },
-          {
-            grau: "2º Grau",
-            caracteristicas: "Bolhas, muita dor, vermelhidão intensa",
-            tratamento: [
-              "Resfrie com água corrente",
-              "NÃO estoure as bolhas",
-              "Cubra com gaze limpa e úmida",
-              "Procure atendimento médico",
-              "Não aplique pasta de dente, manteiga ou outros"
-            ],
-            exemplos: "Queimadura com água fervente"
-          },
-          {
-            grau: "3º Grau",
-            caracteristicas: "Pele esbranquiçada ou carbonizada, pouca dor",
-            tratamento: [
-              "NÃO retire roupas grudadas",
-              "Cubra com pano limpo e úmido",
-              "Chame emergência imediatamente (192/193)",
-              "Mantenha vítima aquecida",
-              "Não aplique nada sobre a queimadura"
-            ],
-            exemplos: "Queimadura com fogo, eletricidade"
-          }
+        titulo: "Demonstrar RCP (Ressuscitação Cardiopulmonar) básica",
+        descricao: "Saber como agir em caso de parada cardiorrespiratória.",
+        passos: [
+          "Verifique a segurança da cena",
+          "Cheque a responsividade da vítima (chame)",
+          "Ligue para a emergência (192 ou 193)",
+          "Faça 30 compressões torácicas (5-6cm de profundidade)",
+          "Faça 2 ventilações (se treinado)",
+          "Continue até a chegada da ajuda ou a vítima reagir"
+        ],
+        dicas: [
+          "Use as duas mãos no centro do peito",
+          "Mantenha os braços esticados",
+          "Ritmo de 100 a 120 compressões por minuto"
         ]
       },
       {
         numero: 5,
-        titulo: "Saber fazer RCP (Reanimação Cardiopulmonar)",
-        descricao: "Realizar manobras de reanimação em caso de parada cardíaca.",
-        importante: "Esta é uma habilidade que salva vidas! Pratique com instrutor qualificado.",
-        passos: [
-          {
-            etapa: "Verificar Consciência",
-            acao: "Chame a pessoa, toque no ombro. Se não responder, prossiga"
-          },
-          {
-            etapa: "Chamar Ajuda",
-            acao: "Grite por ajuda, peça para alguém ligar 192"
-          },
-          {
-            etapa: "Posicionar",
-            acao: "Coloque vítima de costas em superfície firme"
-          },
-          {
-            etapa: "Compressões Torácicas",
-            acao: "30 compressões no centro do peito, 5cm de profundidade, ritmo de 100-120/min"
-          },
-          {
-            etapa: "Ventilações",
-            acao: "2 ventilações boca-a-boca (se treinado)"
-          },
-          {
-            etapa: "Continuar",
-            acao: "Ciclos de 30:2 até chegada do socorro ou vítima voltar"
-          }
-        ],
-        observacoes: [
-          "Em crianças, use apenas uma mão",
-          "Em bebês, use apenas dois dedos",
-          "Se não souber fazer ventilação, faça apenas compressões",
-          "Não pare até a chegada do socorro"
-        ]
-      },
-      {
-        numero: 6,
-        titulo: "Conhecer sinais de choque e tratamento",
-        descricao: "Identificar e tratar estado de choque.",
-        sinais: [
-          "Pele pálida, fria e úmida",
-          "Pulso rápido e fraco",
-          "Respiração rápida e superficial",
-          "Confusão mental",
-          "Náusea ou vômito",
-          "Sede intensa"
-        ],
-        tratamento: [
-          "Deite a vítima de costas",
-          "Eleve as pernas cerca de 30cm (exceto se suspeitar de fratura)",
-          "Mantenha vítima aquecida com cobertor",
-          "Afrouxe roupas apertadas",
-          "NÃO dê nada para beber ou comer",
-          "Vire a cabeça de lado se vomitar",
-          "Chame emergência (192)"
-        ]
-      },
-      {
-        numero: 7,
-        titulo: "Saber tratar picadas de insetos e animais peçonhentos",
-        descricao: "Identificar e tratar picadas venenosas.",
-        tipos: [
-          {
-            animal: "Abelhas e Vespas",
-            tratamento: [
-              "Retire o ferrão raspando (não puxe)",
-              "Lave com água e sabão",
-              "Aplique gelo por 10 minutos",
-              "Observe reação alérgica",
-              "Procure médico se inchaço grave ou dificuldade respirar"
-            ]
-          },
-          {
-            animal: "Cobras",
-            tratamento: [
-              "Mantenha vítima calma e deitada",
-              "Imobilize o membro afetado",
-              "Lave com água e sabão",
-              "NÃO faça torniquete",
-              "NÃO corte o local",
-              "NÃO chupe o veneno",
-              "Leve ao hospital URGENTE",
-              "Tente identificar a cobra (foto de longe)"
-            ]
-          },
-          {
-            animal: "Aranhas e Escorpiões",
-            tratamento: [
-              "Lave com água e sabão",
-              "Aplique gelo",
-              "Procure atendimento médico",
-              "Leve o animal se possível (morto, em frasco)"
-            ]
-          }
-        ]
-      },
-      {
-        numero: 8,
-        titulo: "Montar kit de primeiros socorros",
-        descricao: "Preparar kit completo para emergências.",
-        itensBasicos: [
-          "Luvas descartáveis (2 pares)",
-          "Gaze estéril (vários tamanhos)",
-          "Ataduras (5cm e 10cm)",
-          "Esparadrapo",
-          "Band-aids variados",
-          "Tesoura sem ponta",
-          "Pinça",
-          "Termômetro",
-          "Álcool 70%",
+        titulo: "Montar um kit de primeiros socorros",
+        descricao: "Organizar um kit completo para emergências.",
+        itens: [
+          "Curativos e gazes estéreis",
+          "Esparadrapo ou fita micropore",
+          "Tesoura e pinça",
+          "Luvas descartáveis",
           "Soro fisiológico",
           "Antisséptico (iodo)",
           "Analgésico (paracetamol)",
@@ -514,13 +368,14 @@ export const especialidadesCompletas = [
         ]
       }
     ],
-    telefones_emergencia: {
-      "SAMU": "192",
-      "Bombeiros": "193",
-      "Polícia": "190",
-      "Defesa Civil": "199",
-      "Centro de Intoxicações": "0800 722 6001"
-    },
+    materiaisNecessarios: [
+      "Kit de Primeiros Socorros",
+      "Luvas",
+      "Máscara de RCP",
+      "Gaze e ataduras",
+      "Antisséptico",
+      "Telefone de emergência"
+    ],
     avaliacaoPratica: {
       descricao: "Demonstração prática de todas as habilidades aprendidas.",
       simulacoes: [
@@ -647,7 +502,234 @@ export const especialidadesCompletas = [
           "Varal resistente"
         ]
       }
-    ]
+    ],
+    materiaisNecessarios: [
+      "Corda de 6mm a 10mm",
+      "Bastões de madeira (30cm a 1m)",
+      "Canivete ou faca",
+      "Manual de nós",
+      "Luvas"
+    ],
+    avaliacaoPratica: {
+      descricao: "Demonstração prática de 10 nós e realização de uma amarração completa.",
+      criterios: [
+        "Execução correta dos 10 nós",
+        "Explicação do uso de cada nó",
+        "Construção de um projeto de amarração (ex: tripé)",
+        "Cuidados e armazenamento da corda"
+      ]
+    }
+  },
+  {
+    id: 4,
+    nome: "Natação",
+    categoria: "Atividades Recreativas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Saber nadar 50 metros ininterruptamente",
+        descricao: "Demonstrar a capacidade de nadar 50 metros em qualquer estilo, sem parar.",
+        dicas: [
+          "Mantenha a respiração rítmica",
+          "Use um estilo que você domine (crawl ou peito)",
+          "Não force demais no início"
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Demonstrar 3 estilos de nado diferentes",
+        descricao: "Executar pelo menos 3 estilos de nado (ex: crawl, costas, peito, borboleta).",
+        estilos: [
+          "Crawl (nado livre)",
+          "Costas",
+          "Peito"
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Conhecer 5 regras de segurança aquática",
+        descricao: "Saber como se comportar em piscinas, rios e praias.",
+        regras: [
+          { regra: "Nunca nade sozinho", detalhes: "Sempre tenha um amigo ou salva-vidas por perto" },
+          { regra: "Não pule em água rasa", detalhes: "Pode causar ferimentos graves" },
+          { regra: "Respeite a sinalização", detalhes: "Bandeiras e placas indicam perigos" },
+          { regra: "Não superestime sua capacidade", detalhes: "Se estiver cansado, saia da água" },
+          { regra: "Evite nadar após comer", detalhes: "Espere pelo menos 1 hora" }
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Demonstrar um salvamento básico",
+        descricao: "Simular o resgate de uma vítima sem entrar na água (salvamento de alcance).",
+        passos: [
+          "Grite por ajuda e chame o salva-vidas",
+          "Use um objeto flutuante (boia, corda, galho) para alcançar a vítima",
+          "Deite-se no chão para manter o equilíbrio",
+          "Puxe a vítima com calma para a borda"
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Traje de banho",
+      "Óculos de natação",
+      "Protetor solar",
+      "Piscina ou local seguro para nado"
+    ],
+    avaliacaoPratica: {
+      descricao: "Demonstração prática dos estilos de nado e do salvamento básico.",
+      criterios: [
+        "Nadar 50m sem parar",
+        "Executar 3 estilos corretamente",
+        "Demonstrar salvamento de alcance",
+        "Responder sobre as regras de segurança"
+      ]
+    }
+  },
+  {
+    id: 5,
+    nome: "Cozinha",
+    categoria: "Habilidades Domésticas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer 5 regras de segurança na cozinha",
+        descricao: "Saber como evitar acidentes com fogo, facas e eletricidade.",
+        regras: [
+          { regra: "Mantenha cabos de panelas para dentro", detalhes: "Evita que sejam puxados ou derrubados" },
+          { regra: "Use luvas para forno", detalhes: "Protege contra queimaduras" },
+          { regra: "Não use água em fogo de óleo", detalhes: "Use bicarbonato de sódio ou abafador" },
+          { regra: "Mantenha facas afiadas", detalhes: "Facas cegas são mais perigosas" },
+          { regra: "Desligue aparelhos após uso", detalhes: "Evita superaquecimento e choque" }
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Preparar 3 refeições completas (café, almoço e jantar)",
+        descricao: "Cozinhar um menu completo e balanceado.",
+        refeicoes: [
+          {
+            tipo: "Café da Manhã",
+            exemplo: "Pão integral, frutas, suco natural, ovos mexidos"
+          },
+          {
+            tipo: "Almoço",
+            exemplo: "Arroz, feijão, salada colorida, proteína vegetal (lentilha, grão de bico)"
+          },
+          {
+            tipo: "Jantar",
+            exemplo: "Sopa de legumes, sanduíche natural, salada de frutas"
+          }
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Fazer um pão e um bolo",
+        descricao: "Demonstrar habilidades básicas de panificação e confeitaria.",
+        dicas: [
+          "Use ingredientes frescos",
+          "Siga a receita com precisão",
+          "Pré-aqueça o forno",
+          "Não abra o forno durante o cozimento do bolo"
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Conhecer a pirâmide alimentar e nutrição básica",
+        descricao: "Saber a importância de cada grupo alimentar.",
+        grupos: [
+          "Carboidratos (base da energia)",
+          "Frutas e Vegetais (vitaminas e fibras)",
+          "Proteínas (construção e reparo)",
+          "Laticínios/Alternativas (cálcio)",
+          "Gorduras e Açúcares (uso moderado)"
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Utensílios de cozinha",
+      "Ingredientes",
+      "Receitas",
+      "Avental"
+    ],
+    avaliacaoPratica: {
+      descricao: "Apresentação e degustação das refeições e produtos de panificação.",
+      criterios: [
+        "Sabor e apresentação dos pratos",
+        "Higiene e segurança durante o preparo",
+        "Conhecimento sobre nutrição",
+        "Qualidade do pão e do bolo"
+      ]
+    }
+  },
+  {
+    id: 6,
+    nome: "Orientação",
+    categoria: "Atividades Recreativas",
+    nivel: "1",
+    requisitos: [
+      {
+        numero: 1,
+        titulo: "Conhecer e usar uma bússola e um mapa topográfico",
+        descricao: "Saber identificar direções e ler mapas.",
+        passos: [
+          "Identifique o Norte magnético na bússola",
+          "Alinhe a bússola com o mapa",
+          "Calcule o azimute (direção) para um ponto",
+          "Siga a direção mantendo o azimute",
+          "Identifique símbolos básicos do mapa (curvas de nível, rios, estradas)"
+        ]
+      },
+      {
+        numero: 2,
+        titulo: "Encontrar direções sem bússola",
+        descricao: "Usar métodos naturais para se orientar.",
+        metodos: [
+          { nome: "Sol e Relógio", detalhes: "Aponte o ponteiro das horas para o sol. O Sul estará no meio do ângulo entre o ponteiro das horas e o número 12." },
+          { nome: "Estrelas", detalhes: "Use o Cruzeiro do Sul para encontrar o Sul (4,5 vezes o braço maior)." },
+          { nome: "Sombra", detalhes: "Marque a ponta da sombra de um bastão no chão em dois momentos. A linha entre as marcas aponta Leste-Oeste." }
+        ]
+      },
+      {
+        numero: 3,
+        titulo: "Completar uma trilha de orientação",
+        descricao: "Participar de uma atividade prática de orientação com mapa e bússola.",
+        dicas: [
+          "Planeje a rota antes de começar",
+          "Mantenha o mapa sempre orientado",
+          "Use pontos de referência para confirmar a posição",
+          "Caminhe no ritmo do mais lento do grupo"
+        ]
+      },
+      {
+        numero: 4,
+        titulo: "Conhecer 5 sinais de trilha",
+        descricao: "Saber como marcar e seguir trilhas.",
+        sinais: [
+          { sinal: "Seguir em frente", descricao: "Três pedras empilhadas ou dois riscos paralelos" },
+          { sinal: "Virar à direita", descricao: "Uma pedra grande à direita ou uma seta no chão" },
+          { sinal: "Virar à esquerda", descricao: "Uma pedra grande à esquerda ou uma seta no chão" },
+          { sinal: "Perigo", descricao: "Um X grande no chão ou três pedras em triângulo" },
+          { sinal: "Água", descricao: "Um círculo com um ponto no centro ou um W" }
+        ]
+      }
+    ],
+    materiaisNecessarios: [
+      "Bússola",
+      "Mapa topográfico da área",
+      "Caderno e lápis",
+      "Relógio (para método do sol)"
+    ],
+    avaliacaoPratica: {
+      descricao: "Realização de uma prova de orientação no campo.",
+      criterios: [
+        "Leitura correta do mapa e bússola",
+        "Encontrar todos os pontos de controle",
+        "Usar um método de orientação natural",
+        "Tempo de conclusão da trilha"
+      ]
+    }
   }
 ]
 
@@ -658,14 +740,14 @@ export const categoriasEspecialidades = [
     nome: "Atividades Recreativas",
     descricao: "Especialidades relacionadas a atividades ao ar livre e recreação",
     icone: "🏕️",
-    especialidades: ["Acampamento", "Nós e Amarras", "Orientação", "Excursionismo", "Natação"]
+    especialidades: ["Acampamento", "Nós e Amarras", "Natação", "Orientação", "Excursionismo", "Ciclismo", "Canoagem", "Ordem Unida"]
   },
   {
     id: 2,
     nome: "Habilidades Domésticas",
     descricao: "Especialidades práticas para o dia a dia",
     icone: "🏠",
-    especialidades: ["Primeiros Socorros", "Cozinha", "Costura", "Jardinagem", "Marcenaria"]
+    especialidades: ["Primeiros Socorros", "Cozinha", "Segurança Básica", "Costura", "Jardinagem", "Marcenaria"]
   },
   {
     id: 3,

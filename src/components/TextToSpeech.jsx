@@ -115,14 +115,31 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
       window.speechSynthesis.resume()
       setIsPaused(false)
       setIsPlaying(true)
+      setIsLoading(false)
       return
     }
 
     // Cancelar qualquer fala anterior
     window.speechSynthesis.cancel()
 
+    // Limitar tamanho do texto para evitar travamentos
+    // Web Speech API tem limite de ~32KB em alguns navegadores
+    const MAX_LENGTH = 5000 // Aproximadamente 1000 palavras
+    let textToSpeak = text
+    
+    if (text.length > MAX_LENGTH) {
+      // Pegar apenas os primeiros parágrafos
+      textToSpeak = text.substring(0, MAX_LENGTH)
+      // Tentar cortar em uma frase completa
+      const lastPeriod = textToSpeak.lastIndexOf('.')
+      if (lastPeriod > 0) {
+        textToSpeak = textToSpeak.substring(0, lastPeriod + 1)
+      }
+      textToSpeak += ' ... (texto muito longo, reproduzindo apenas o início)'
+    }
+
     // Criar nova utterance
-    const utterance = new SpeechSynthesisUtterance(text)
+    const utterance = new SpeechSynthesisUtterance(textToSpeak)
     utterance.voice = selectedVoice
     utterance.rate = rate
     utterance.volume = volume
@@ -132,26 +149,42 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
     utterance.onstart = () => {
       setIsPlaying(true)
       setIsPaused(false)
+      setIsLoading(false)
     }
 
     utterance.onend = () => {
       setIsPlaying(false)
       setIsPaused(false)
+      setIsLoading(false)
     }
 
     utterance.onerror = (event) => {
       console.error('Erro no Text-to-Speech:', event)
       setIsPlaying(false)
       setIsPaused(false)
+      setIsLoading(false)
+      alert('Erro ao reproduzir áudio. Tente novamente.')
     }
 
     utteranceRef.current = utterance
     
-    // Pequeno delay para garantir que tudo está pronto
-    setTimeout(() => {
+    // Iniciar reprodução imediatamente
+    try {
       window.speechSynthesis.speak(utterance)
+      
+      // Timeout de segurança: se não começar em 3 segundos, mostrar erro
+      setTimeout(() => {
+        if (isLoading) {
+          setIsLoading(false)
+          setIsPlaying(false)
+          alert('Tempo esgotado. Tente novamente ou use um texto menor.')
+        }
+      }, 3000)
+    } catch (error) {
+      console.error('Erro ao iniciar Text-to-Speech:', error)
       setIsLoading(false)
-    }, 100)
+      alert('Erro ao iniciar reprodução. Seu navegador pode não suportar esta funcionalidade.')
+    }
   }
 
   const handlePause = () => {

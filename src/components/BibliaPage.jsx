@@ -147,17 +147,17 @@ export function BibliaPage() {
     
     try {
       // Tentar buscar da API primeiro
-      const dados = await bibliaApiService.buscarCapitulo(
-        versao, 
-        livroSelecionado.id, 
-        capituloSelecionado
-      )
-      console.log('📖 Dados recebidos da API:', dados)
+      // const dados = await bibliaApiService.buscarCapitulo(
+      //   versao, 
+      //   livroSelecionado.id, 
+      //   capituloSelecionado
+      // )
+      // console.log('📖 Dados recebidos da API:', dados)
       
-      if (dados && dados.verses) {
-        setVersiculos(dados.verses)
-        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
-      } else {
+      // if (dados && dados.verses) {
+      //   setVersiculos(dados.verses)
+      //   historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+      // } else {
         // Se API falhar, tentar versões locais
         const chave = `${livroSelecionado.id}-${capituloSelecionado}`
         
@@ -190,40 +190,6 @@ export function BibliaPage() {
           setErro('Não foi possível carregar os versículos')
           setVersiculos([])
         }
-      }
-    } catch (error) {
-      console.error('❌ Erro ao carregar versículos:', error)
-      
-      // Fallback para versões locais
-      const chave = `${livroSelecionado.id}-${capituloSelecionado}`
-      
-      // Tentar versão específica primeiro
-      let dadosVersao = null
-      if (versao === 'ACF' && bibliaVersoes.ACF && bibliaVersoes.ACF[chave]) {
-        dadosVersao = bibliaVersoes.ACF[chave]
-        console.log('✅ Usando Almeida CF (fallback):', chave)
-      } else if (versao === 'NVI' && bibliaVersoes.NVI && bibliaVersoes.NVI[chave]) {
-        dadosVersao = bibliaVersoes.NVI[chave]
-        console.log('✅ Usando Nova VI (fallback):', chave)
-      }
-      
-      const dadosCompletos = bibliaCompleta[chave]
-      const dadosExemplo = bibliaExemplo[chave]
-      
-      if (dadosVersao) {
-        setVersiculos(dadosVersao.verses)
-        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
-      } else if (dadosCompletos) {
-        console.log('✅ Usando dados completos (fallback):', chave)
-        setVersiculos(dadosCompletos.verses)
-        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
-      } else if (dadosExemplo) {
-        console.log('✅ Usando dados de exemplo (fallback):', chave)
-        setVersiculos(dadosExemplo.verses)
-        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
-      } else {
-        setErro('Erro ao carregar os versículos. Tente novamente.')
-        setVersiculos([])
       }
     } finally {
       setCarregando(false)

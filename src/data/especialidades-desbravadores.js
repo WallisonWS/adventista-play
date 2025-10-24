@@ -6,6 +6,8 @@ export const especialidadesCompletas = [
     nome: "Acampamento",
     categoria: "Atividades Recreativas",
     nivel: "1",
+    videoId: "V1myHP63y_c",
+    videoTitulo: "Especialidade de Acampamento I",
     requisitos: [
       {
         numero: 1,
@@ -258,6 +260,8 @@ export const especialidadesCompletas = [
     nome: "Primeiros Socorros",
     categoria: "Habilidades Domésticas",
     nivel: "1",
+    videoId: "Came2k3qsmo",
+    videoTitulo: "ESPECIALIDADE DE PRIMEIROS SOCORROS BÁSICO",
     requisitos: [
       {
         numero: 1,
@@ -391,7 +395,9 @@ export const especialidadesCompletas = [
     id: 3,
     nome: "Nós e Amarras",
     categoria: "Atividades Recreativas",
-    nivel: "1",
+    nivel: "2",
+    videoId: "d_v-gBMmAPo",
+    videoTitulo: "Especialidade - Nós e Amarras",
     requisitos: [
       {
         numero: 1,
@@ -525,6 +531,8 @@ export const especialidadesCompletas = [
     nome: "Natação",
     categoria: "Atividades Recreativas",
     nivel: "1",
+    videoId: "Lmak1Nqg-Ek",
+    videoTitulo: "Especialidade de Natação Principiante 1",
     requisitos: [
       {
         numero: 1,
@@ -591,6 +599,8 @@ export const especialidadesCompletas = [
     nome: "Cozinha",
     categoria: "Habilidades Domésticas",
     nivel: "1",
+    videoId: "rQFtcVSHDCo",
+    videoTitulo: "Especialidade Arte Culinária - Desbravadores",
     requisitos: [
       {
         numero: 1,
@@ -667,7 +677,9 @@ export const especialidadesCompletas = [
     id: 6,
     nome: "Orientação",
     categoria: "Atividades Recreativas",
-    nivel: "1",
+    nivel: "2",
+    videoId: "47Iop2eitbQ",
+    videoTitulo: "Orientação II - Mapa e Bússola - (como tirar o azimute de um mapa)",
     requisitos: [
       {
         numero: 1,
@@ -807,6 +819,8 @@ export const especialidadesCompletas = [
     nome: "Segurança Básica",
     categoria: "Habilidades Domésticas",
     nivel: "1",
+    videoId: "Ix-exz5wkoc",
+    videoTitulo: "Segurança básica na água - Especialidade Atividade Recreativa",
     requisitos: [
       {
         numero: 1,
@@ -881,6 +895,8 @@ export const especialidadesCompletas = [
     nome: "Fotografia",
     categoria: "Artes e Habilidades",
     nivel: "1",
+    videoId: "IV0CN0Yec3k",
+    videoTitulo: "Especialidade de Fotografia - Desbravador nota 10",
     requisitos: [
       {
         numero: 1,
@@ -950,6 +966,8 @@ export const especialidadesCompletas = [
     nome: "Ciclismo",
     categoria: "Atividades Recreativas",
     nivel: "1",
+    videoId: "dOE4YCK2fkA",
+    videoTitulo: "Especialidade de Ciclismo Respondida",
     requisitos: [
       {
         numero: 1,
@@ -1024,7 +1042,9 @@ export const especialidadesCompletas = [
     id: 11,
     nome: "Canoagem",
     categoria: "Atividades Recreativas",
-    nivel: "1",
+    nivel: "2",
+    videoId: "cQHEOqxT9Wk",
+    videoTitulo: "APRENDENDO ESPECIALIDADE DE SEGURANÇA BÁSICA NA ÁGUA, DESBRAVADORES!!",
     requisitos: [
       {
         numero: 1,

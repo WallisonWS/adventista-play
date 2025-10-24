@@ -867,30 +867,30 @@ function HinarioPage() {
   })
 
   return (
-    <div className="min-h-screen bg-background py-8 px-4">
+    <div className="min-h-screen bg-background pt-4 pb-8 px-4">
       <div className="container mx-auto max-w-6xl">
         <motion.div 
-          className="mb-8"
+          className="mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-4xl font-bold text-primary mb-2 flex items-center gap-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2 flex items-center gap-2">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-              <Music className="h-8 w-8" />
+              <Music className="h-7 w-7 md:h-8 md:w-8" />
             </motion.div>
             Hinário Adventista
           </h1>
-          <p className="text-muted-foreground">Explore e cante os hinos da nossa fé</p>
+          <p className="text-sm md:text-base text-muted-foreground">Explore e cante os hinos da nossa fé</p>
         </motion.div>
 
         {/* Busca e Filtros */}
         <Card className="mb-6">
-          <CardContent className="pt-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 relative">
+          <CardContent className="p-4">
+            <div className="space-y-4">
+              <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input 
                   placeholder="Buscar por número ou título..." 
@@ -899,13 +899,23 @@ function HinarioPage() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full md:w-auto">
-                <TabsList className="grid grid-cols-3 md:grid-cols-6">
-                  {categories.map(cat => (
-                    <TabsTrigger key={cat} value={cat}>{cat}</TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
+              
+              {/* Grid de categorias */}
+              <div className="grid grid-cols-3 gap-2">
+                {categories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      selectedCategory === cat
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
           </CardContent>
         </Card>

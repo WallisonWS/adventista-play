@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 /**
  * Hook para detectar status de conexão online/offline
  * Monitora mudanças na conexão e tenta reconectar automaticamente
+ * Quando offline, tenta reconectar a cada 5 segundos
+ * Quando online, verifica a cada 30 segundos
  */
 export function useOnlineStatus() {
   const [isOnline, setIsOnline] = useState(navigator.onLine)
   const [wasOffline, setWasOffline] = useState(false)
+  const intervalRef = useRef(null)
 
   useEffect(() => {
     // Handlers para eventos de conexão
@@ -34,7 +37,7 @@ export function useOnlineStatus() {
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
 
-    // Verificar conexão periodicamente (a cada 30 segundos)
+    // Verificar conexão periodicamente
     const checkConnection = async () => {
       try {
         // Tentar fazer uma requisição simples
@@ -44,6 +47,7 @@ export function useOnlineStatus() {
         })
         
         if (!isOnline) {
+          console.log('🔄 Tentativa de reconexão bem-sucedida')
           handleOnline()
         }
       } catch (error) {
@@ -53,15 +57,30 @@ export function useOnlineStatus() {
       }
     }
 
-    const intervalId = setInterval(checkConnection, 30000)
+    // Configurar intervalo baseado no status
+    const setupInterval = () => {
+      // Limpar intervalo anterior se existir
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+      
+      // Intervalo dinâmico: 5s quando offline, 30s quando online
+      const interval = isOnline ? 30000 : 5000
+      console.log(`🔄 Verificando conexão a cada ${interval/1000}s (${isOnline ? 'online' : 'offline'})`)
+      intervalRef.current = setInterval(checkConnection, interval)
+    }
+
+    setupInterval()
 
     // Cleanup
     return () => {
       window.removeEventListener('online', handleOnline)
       window.removeEventListener('offline', handleOffline)
-      clearInterval(intervalId)
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
     }
-  }, [isOnline, wasOffline])
+  }, [isOnline, wasOffline]) // Reconfigurar quando o status mudar
 
   return {
     isOnline,

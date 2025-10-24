@@ -25,7 +25,8 @@ import {
   Save,
   Camera,
   Edit,
-  BookMarked
+  BookMarked,
+  LogOut
 } from 'lucide-react'
 import { 
   getCurrentUser, 
@@ -34,7 +35,8 @@ import {
   getUserStats,
   getReadingHistory,
   getBookmarks,
-  getNotes
+  getNotes,
+  logoutUser
 } from '../services/authService.js'
 import { useTheme } from '../contexts/ThemeContext'
 
@@ -148,6 +150,16 @@ export function PerfilPage() {
     if (result.success) {
       setUser(result.user)
       alert(`✅ Versão alterada para: ${versionNames[nextVersion]}`)
+    }
+  }
+
+  const handleLogout = () => {
+    if (window.confirm('Deseja realmente sair?')) {
+      const result = logoutUser()
+      if (result.success) {
+        alert('✅ ' + result.message)
+        window.location.href = '/'
+      }
     }
   }
 
@@ -613,6 +625,18 @@ export function PerfilPage() {
                         </button>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Botão de Logout */}
+                  <div className="pt-6 border-t">
+                    <Button 
+                      variant="destructive" 
+                      onClick={handleLogout}
+                      className="w-full gap-2"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      Sair da Conta
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

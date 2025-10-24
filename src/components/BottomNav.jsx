@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Home, BookOpen, GraduationCap, Star, Trophy } from 'lucide-react'
+import { Home, BookOpen, GraduationCap, Star, Trophy, User } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function BottomNav() {
@@ -10,7 +10,8 @@ export function BottomNav() {
     { path: '/biblia', icon: BookOpen, label: 'Bíblia' },
     { path: '/estudos', icon: GraduationCap, label: 'Estudos' },
     { path: '/desbravadores', icon: Star, label: 'Desbravadores' },
-    { path: '/cursos', icon: Trophy, label: 'Cursos' }
+    { path: '/cursos', icon: Trophy, label: 'Cursos' },
+    { path: '/perfil', icon: User, label: 'Perfil' }
   ]
   
   return (

@@ -243,12 +243,22 @@ export function TextToSpeechBackground({ text, title = "Leitura Bíblica", autoP
   }
 
   const handlePlay = () => {
-    if (!text || !selectedVoice) return
+    console.log('handlePlay chamado', { text: !!text, selectedVoice: !!selectedVoice, backgroundMode, audioBlob: !!audioBlob })
+    
+    if (!text || !selectedVoice) {
+      console.error('Texto ou voz não disponível')
+      toast.error('Texto ou voz não disponível')
+      return
+    }
 
     // Modo segundo plano
     if (backgroundMode && audioBlob) {
+      console.log('Reproduzindo em modo segundo plano')
       if (isPaused && audioRef.current) {
-        audioRef.current.play()
+        audioRef.current.play().catch(error => {
+          console.error('Erro ao retomar reprodução:', error)
+          toast.error('Erro ao retomar reprodução')
+        })
       } else {
         playAudioBlob(audioBlob)
       }
@@ -257,12 +267,14 @@ export function TextToSpeechBackground({ text, title = "Leitura Bíblica", autoP
 
     // Modo primeiro plano (Web Speech API)
     if (isPaused) {
+      console.log('Retomando reprodução')
       window.speechSynthesis.resume()
       setIsPaused(false)
       setIsPlaying(true)
       return
     }
 
+    console.log('Iniciando nova reprodução')
     window.speechSynthesis.cancel()
 
     const utterance = new SpeechSynthesisUtterance(text)
@@ -272,23 +284,33 @@ export function TextToSpeechBackground({ text, title = "Leitura Bíblica", autoP
     utterance.lang = 'pt-BR'
 
     utterance.onstart = () => {
+      console.log('Reprodução iniciada')
       setIsPlaying(true)
       setIsPaused(false)
     }
 
     utterance.onend = () => {
+      console.log('Reprodução finalizada')
       setIsPlaying(false)
       setIsPaused(false)
     }
 
     utterance.onerror = (event) => {
       console.error('Erro no Text-to-Speech:', event)
+      toast.error('Erro ao reproduzir áudio: ' + event.error)
       setIsPlaying(false)
       setIsPaused(false)
     }
 
     utteranceRef.current = utterance
-    window.speechSynthesis.speak(utterance)
+    
+    try {
+      window.speechSynthesis.speak(utterance)
+      console.log('Comando speak executado')
+    } catch (error) {
+      console.error('Erro ao executar speak:', error)
+      toast.error('Erro ao iniciar reprodução')
+    }
   }
 
   const handlePause = () => {

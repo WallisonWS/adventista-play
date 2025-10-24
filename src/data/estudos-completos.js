@@ -97,45 +97,8 @@ export const estudosCompletos = {
     }
   ],
 
-  // ESTUDOS TEMÁTICOS - 30+ estudos
-    {
-      titulo: 'Doutrina Cristã Essencial',
-      id: 'doutrina-crista',
-      categoria: 'Doutrina',
-      descricao: 'Os fundamentos da fé cristã, explorando temas como a Trindade, a Salvação e o Santuário.',
-      tipo: 'Estudos Temáticos',
-      videoaulas: [
-        { numero: 1, titulo: 'A Trindade e a Divindade', videoId: 'ekf46Kpnvlc', duracao: '15 min' },
-        { numero: 2, titulo: 'A Justificação pela Fé', videoId: 'PVWHRMIyElA', duracao: '12 min' },
-        { numero: 3, titulo: 'O Santuário e a Obra de Cristo', videoId: 'hDpkr_JNvIU', duracao: '18 min' },
-        { numero: 4, titulo: 'O Dom de Profecia', videoId: 'KmpucxGB1jA', duracao: '10 min' },
-        { numero: 5, titulo: 'A Lei de Deus e a Graça', videoId: 'Gx2umy6p8xQ', duracao: '14 min' },
-        { numero: 6, titulo: 'O Batismo e a Nova Vida', videoId: 'ekf46Kpnvlc', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'O Caráter de Deus', conteudo: 'Estudo sobre os atributos divinos.' },
-        { numero: 2, titulo: 'A Natureza Humana', conteudo: 'Criação, queda e redenção.' },
-      ],
-    },
-    {
-      titulo: 'Doutrinas Fundamentais',
-      id: 'doutrinas-fundamentais',
-      categoria: 'Doutrina',
-      descricao: 'Estudo das 28 Crenças Fundamentais da Igreja Adventista do Sétimo Dia.',
-      tipo: 'Estudos Temáticos',
-      videoaulas: [
-        { numero: 1, titulo: 'A Bíblia e a Palavra de Deus', videoId: 'N53mrt5K7Tc', duracao: '15 min' },
-        { numero: 2, titulo: 'A Trindade e a Divindade', videoId: 'D8HL7tjwgrQ', duracao: '12 min' },
-        { numero: 3, titulo: 'O Sábado e a Lei de Deus', videoId: 'mCcI3oE-86E', duracao: '18 min' },
-        { numero: 4, titulo: 'A Volta de Cristo', videoId: 'M8fyFcYcZbc', duracao: '10 min' },
-        { numero: 5, titulo: 'O Juízo Investigativo', videoId: '0KGDgbYNuWE', duracao: '14 min' },
-        { numero: 6, titulo: 'O Estado do Homem na Morte', videoId: 'D8HL7tjwgrQ', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'As Escrituras Sagradas', conteudo: 'A Bíblia como única regra de fé e prática.' },
-        { numero: 2, titulo: 'O Deus Trino', conteudo: 'Pai, Filho e Espírito Santo.' },
-      ],
-    },
+  
+
     {
       titulo: 'A Vida de Cristo',
       id: 'vida-cristo',

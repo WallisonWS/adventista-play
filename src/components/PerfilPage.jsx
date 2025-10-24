@@ -233,14 +233,27 @@ export function PerfilPage() {
                   </div>
                 </div>
 
-                {/* Botão de Editar */}
-                <div>
+                {/* Botões de Ação */}
+                <div className="flex gap-2">
                   <Button
                     variant="secondary"
                     onClick={() => setEditing(!editing)}
                     className="bg-white text-primary hover:bg-white/90"
                   >
                     {editing ? 'Cancelar' : 'Editar Perfil'}
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => {
+                      if (window.confirm('Tem certeza que deseja sair?')) {
+                        logoutUser()
+                        window.location.href = '/login'
+                      }
+                    }}
+                    className="bg-red-600 text-white hover:bg-red-700"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sair
                   </Button>
                 </div>
               </div>

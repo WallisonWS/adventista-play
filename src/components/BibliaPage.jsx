@@ -279,7 +279,7 @@ export function BibliaPage() {
           >
             <div className="flex flex-col gap-3">
               {/* Linha 1: Botão Voltar e Título */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <Button variant="outline" size="sm" onClick={() => { setCapituloSelecionado(null); setLivroSelecionado(null) }}>
                   <ChevronLeft className="h-4 w-4 mr-1" />
                   Voltar

@@ -63,21 +63,18 @@ export function PerfilPage() {
       setNotes(getNotes())
     }
     
-    // Verificar parâmetro de aba na URL
     const tab = searchParams.get('tab')
     if (tab && ['info', 'history', 'bookmarks', 'notes', 'settings'].includes(tab)) {
       setActiveTab(tab)
     }
   }, [])
   
-  // Atualizar URL quando aba mudar
   const handleTabChange = (tab) => {
     setActiveTab(tab)
     setSearchParams({ tab })
   }
 
   const handleSaveProfile = () => {
-    // Validar campos obrigatórios
     if (!formData.nome || formData.nome.trim() === '') {
       alert('Por favor, preencha o nome')
       return
@@ -95,7 +92,6 @@ export function PerfilPage() {
 
   const handleToggleTheme = () => {
     toggleTheme()
-    // Também atualiza no perfil do usuário
     if (user && user.preferences) {
       const newTheme = theme === 'light' ? 'dark' : 'light'
       const result = updatePreferences({ theme: newTheme })
@@ -291,25 +287,26 @@ export function PerfilPage() {
           <Card>
             <CardContent className="pt-6 text-center">
               <Heart className="h-8 w-8 text-primary mx-auto mb-2" />
-              <div className="text-3xl font-bold text-primary">{stats?.devotionalsRead || 0}</div>
-              <div className="text-sm text-muted-foreground">Devocionais Lidos</div>
+              <div className="text-3xl font-bold text-primary">{stats?.devotionalsCompleted || 0}</div>
+              <div className="text-sm text-muted-foreground">Devocionais</div>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Tabs de Conteúdo */}
+        {/* Abas de Navegação */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 gap-1">
-              <TabsTrigger value="info" className="text-xs md:text-sm">Info</TabsTrigger>
-              <TabsTrigger value="history" className="text-xs md:text-sm">Histórico</TabsTrigger>
-              <TabsTrigger value="bookmarks" className="text-xs md:text-sm">Marcados</TabsTrigger>
-              <TabsTrigger value="notes" className="text-xs md:text-sm">Notas</TabsTrigger>
-              <TabsTrigger value="settings" className="text-xs md:text-sm">Config</TabsTrigger>
+            {/* CORREÇÃO AQUI: Usando flex e overflow-x-auto para mobile */}
+            <TabsList className="flex w-full justify-start overflow-x-auto gap-1 p-1 bg-muted/50 rounded-lg">
+              <TabsTrigger value="info" className="flex-shrink-0 px-4 py-2 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:shadow-sm">Info</TabsTrigger>
+              <TabsTrigger value="history" className="flex-shrink-0 px-4 py-2 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:shadow-sm">Histórico</TabsTrigger>
+              <TabsTrigger value="bookmarks" className="flex-shrink-0 px-4 py-2 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:shadow-sm">Marcados</TabsTrigger>
+              <TabsTrigger value="notes" className="flex-shrink-0 px-4 py-2 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:shadow-sm">Notas</TabsTrigger>
+              <TabsTrigger value="settings" className="flex-shrink-0 px-4 py-2 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:shadow-sm">Config</TabsTrigger>
             </TabsList>
 
             {/* Aba de Informações */}
@@ -553,88 +550,41 @@ export function PerfilPage() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      {isDark ? (
-                        <Moon className="h-5 w-5 text-primary" />
-                      ) : (
-                        <Sun className="h-5 w-5 text-primary" />
-                      )}
-                      <div>
-                        <div className="font-semibold">Modo Noturno</div>
-                        <div className="text-sm text-muted-foreground">
-                          {isDark ? 'Ativado' : 'Desativado'}
-                        </div>
-                      </div>
+                    <Label htmlFor="theme-toggle" className="flex items-center gap-2">
+                      {isDark ? <Moon /> : <Sun />} Tema Escuro
+                    </Label>
+                    <div 
+                      id="theme-toggle"
+                      onClick={handleToggleTheme} 
+                      className={`relative inline-flex items-center h-6 rounded-full w-11 cursor-pointer transition-colors ${isDark ? 'bg-primary' : 'bg-gray-200'}`}>
+                      <span className={`inline-block w-4 h-4 transform bg-white rounded-full transition-transform ${isDark ? 'translate-x-6' : 'translate-x-1'}`} />
                     </div>
-                    <Button variant="outline" onClick={handleToggleTheme}>
-                      {isDark ? '🌙 Escuro' : '☀️ Claro'}
-                    </Button>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Bell className="h-5 w-5 text-primary" />
-                      <div>
-                        <div className="font-semibold">Notificações</div>
-                        <div className="text-sm text-muted-foreground">
-                          Receber lembretes e atualizações
-                        </div>
-                      </div>
+                    <Label htmlFor="notifications-toggle" className="flex items-center gap-2">
+                      <Bell /> Notificações
+                    </Label>
+                    <div 
+                      id="notifications-toggle"
+                      onClick={handleToggleNotifications} 
+                      className={`relative inline-flex items-center h-6 rounded-full w-11 cursor-pointer transition-colors ${user.preferences?.notifications ? 'bg-primary' : 'bg-gray-200'}`}>
+                      <span className={`inline-block w-4 h-4 transform bg-white rounded-full transition-transform ${user.preferences?.notifications ? 'translate-x-6' : 'translate-x-1'}`} />
                     </div>
-                    <Button variant="outline" onClick={handleToggleNotifications}>
-                      {user.preferences?.notifications ? 'Ativado' : 'Desativado'}
-                    </Button>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <Settings className="h-5 w-5 text-primary" />
-                      <div>
-                        <div className="font-semibold">Versão da Bíblia Padrão</div>
-                        <div className="text-sm text-muted-foreground">
-                          {user.preferences.bibleVersion.toUpperCase()}
-                        </div>
-                      </div>
-                    </div>
-                    <Button variant="outline" onClick={handleChangeBibleVersion}>Alterar</Button>
+                    <Label className="flex items-center gap-2">
+                      <BookOpen /> Versão da Bíblia
+                    </Label>
+                    <Button variant="outline" onClick={handleChangeBibleVersion}>
+                      {user.preferences?.bibleVersion?.toUpperCase() || 'ARC'}
+                    </Button>
                   </div>
-
-                  <div>
-                    <div className="font-semibold mb-3">Tema de Cores</div>
-                    <div className="grid grid-cols-3 gap-3">
-                      {[
-                        { name: 'blue', label: 'Azul', color: '#2563eb' },
-                        { name: 'green', label: 'Verde', color: '#10b981' },
-                        { name: 'purple', label: 'Roxo', color: '#8b5cf6' },
-                        { name: 'pink', label: 'Rosa', color: '#ec4899' },
-                        { name: 'orange', label: 'Laranja', color: '#f59e0b' },
-                        { name: 'red', label: 'Vermelho', color: '#ef4444' }
-                      ].map(t => (
-                        <button
-                          key={t.name}
-                          onClick={() => setColorTheme(t.name)}
-                          className={`p-3 rounded-lg border-2 transition-all ${
-                            colorTheme === t.name ? 'border-primary scale-105' : 'border-gray-200'
-                          }`}
-                          style={{ backgroundColor: t.color }}
-                        >
-                          <div className="text-white font-semibold text-sm">{t.label}</div>
-                          {colorTheme === t.name && (
-                            <div className="text-white text-xs mt-1">✓ Ativo</div>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Botão de Logout */}
-                  <div className="pt-6 border-t">
-                    <Button 
-                      variant="destructive" 
-                      onClick={handleLogout}
-                      className="w-full gap-2"
-                    >
-                      <LogOut className="h-4 w-4" />
+                  
+                  <div className="border-t pt-6 mt-6">
+                    <Button variant="destructive" onClick={handleLogout} className="w-full">
+                      <LogOut className="mr-2 h-4 w-4" />
                       Sair da Conta
                     </Button>
                   </div>

@@ -99,6 +99,25 @@ export const estudosCompletos = {
 
   // ESTUDOS TEMÁTICOS - 30+ estudos
     {
+      titulo: 'Doutrina Cristã Essencial',
+      id: 'doutrina-crista',
+      categoria: 'Doutrina',
+      descricao: 'Os fundamentos da fé cristã, explorando temas como a Trindade, a Salvação e o Santuário.',
+      tipo: 'Estudos Temáticos',
+      videoaulas: [
+        { numero: 1, titulo: 'A Trindade e a Divindade', videoId: 'ekf46Kpnvlc', duracao: '15 min' },
+        { numero: 2, titulo: 'A Justificação pela Fé', videoId: 'PVWHRMIyElA', duracao: '12 min' },
+        { numero: 3, titulo: 'O Santuário e a Obra de Cristo', videoId: 'hDpkr_JNvIU', duracao: '18 min' },
+        { numero: 4, titulo: 'O Dom de Profecia', videoId: 'KmpucxGB1jA', duracao: '10 min' },
+        { numero: 5, titulo: 'A Lei de Deus e a Graça', videoId: 'Gx2umy6p8xQ', duracao: '14 min' },
+        { numero: 6, titulo: 'O Batismo e a Nova Vida', videoId: 'ekf46Kpnvlc', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'O Caráter de Deus', conteudo: 'Estudo sobre os atributos divinos.' },
+        { numero: 2, titulo: 'A Natureza Humana', conteudo: 'Criação, queda e redenção.' },
+      ],
+    },
+    {
       titulo: 'Doutrinas Fundamentais',
       id: 'doutrinas-fundamentais',
       categoria: 'Doutrina',
@@ -313,6 +332,25 @@ export const estudosCompletos = {
 
  // PERSONAGENS BÍBLICOS - 10+ estudos
     {
+      titulo: 'Reis de Israel e Judá',
+      id: 'reis-israel-juda',
+      categoria: 'Reis',
+      descricao: 'Estudo da história dos reis, a divisão do reino e as lições de liderança e obediência.',
+      tipo: 'Personagens Bíblicos',
+      videoaulas: [
+        { numero: 1, titulo: 'O Reino Unido e a Monarquia', videoId: 'gKDyYn9wLH8', duracao: '10 min' },
+        { numero: 2, titulo: 'A Divisão dos Reinos', videoId: '-KMqo9_l8mI', duracao: '15 min' },
+        { numero: 3, titulo: 'Reis de Israel: Lições de Desobediência', videoId: 'yIfCJW3o9gU', duracao: '12 min' },
+        { numero: 4, titulo: 'Reis de Judá: Entre a Reforma e a Apostasia', videoId: '9uDlhYHGdLc', duracao: '18 min' },
+        { numero: 5, titulo: 'O Profeta Elias e a Crise', videoId: '-KMqo9_l8mI', duracao: '14 min' },
+        { numero: 6, titulo: 'O Cativeiro e a Restauração', videoId: 'yIfCJW3o9gU', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'O Papel do Rei', conteudo: 'O conceito bíblico de realeza.' },
+        { numero: 2, titulo: 'A Influência Profética', conteudo: 'Os profetas e os reis.' },
+      ],
+    },
+    {
       titulo: 'Mulheres da Bíblia',
       id: 'mulheres-biblia',
       categoria: 'Mulheres da Bíblia',
@@ -409,6 +447,25 @@ export const estudosCompletos = {
   ],
 
   // LIVROS DA BÍBLIA - 10+ estudos
+    {
+      titulo: 'Romanos: O Evangelho da Justiça de Deus',
+      id: 'romanos-justica',
+      categoria: 'Novo Testamento',
+      descricao: 'Estudo profundo da Carta de Paulo aos Romanos, o tratado mais completo sobre a justificação pela fé.',
+      tipo: 'Livros da Bíblia',
+      videoaulas: [
+        { numero: 1, titulo: 'Introdução e o Poder do Evangelho', videoId: '5YRE4NapWAY', duracao: '15 min' },
+        { numero: 2, titulo: 'A Condenação Universal (Cap. 1-3)', videoId: 'IPPceI_vQo8', duracao: '12 min' },
+        { numero: 3, titulo: 'Justificação pela Fé (Cap. 3-5)', videoId: 'IFrEUNTYvno', duracao: '18 min' },
+        { numero: 4, titulo: 'Mortos para o Pecado (Cap. 6)', videoId: 'dQFYh6C1LaE', duracao: '10 min' },
+        { numero: 5, titulo: 'A Luta Interior (Cap. 7)', videoId: '5YRE4NapWAY', duracao: '14 min' },
+        { numero: 6, titulo: 'A Vida no Espírito (Cap. 8)', videoId: 'IPPceI_vQo8', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'A Doutrina da Salvação', conteudo: 'Justificação, santificação e glorificação.' },
+        { numero: 2, titulo: 'Israel e o Plano de Deus', conteudo: 'O papel de Israel na história da salvação.' },
+      ],
+    },
     {
       titulo: 'Gênesis: O Livro das Origens',
       id: 'genesis',

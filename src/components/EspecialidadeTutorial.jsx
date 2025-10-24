@@ -217,6 +217,40 @@ export function EspecialidadeTutorial() {
           </p>
         </motion.div>
 
+        {/* Vídeo-aula do YouTube */}
+        {especialidade.videoId && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mb-8"
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Play className="h-5 w-5 text-primary" />
+                  Vídeo-aula
+                </CardTitle>
+                <CardDescription>{especialidade.videoTitulo || 'Aprenda com este vídeo tutorial'}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="aspect-video w-full rounded-lg overflow-hidden">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${especialidade.videoId}`}
+                    title={especialidade.videoTitulo || 'Vídeo-aula da especialidade'}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
         <Tabs value={tabSelecionada} onValueChange={setTabSelecionada} className="space-y-6">
           <TabsList className="flex flex-wrap w-full gap-2 h-auto p-2">
             {abas.map(aba => (

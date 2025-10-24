@@ -240,14 +240,14 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
       </div>
 
       {/* Controles principais */}
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Button
             variant={isPlaying ? "default" : "outline"}
-            size="lg"
+            size="default"
             onClick={handlePlay}
             disabled={!text || isLoading}
-            className="gap-2"
+            className="gap-2 text-sm"
           >
             {isLoading ? (
               <>
@@ -278,9 +278,9 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
             >
               <Button
                 variant="outline"
-                size="lg"
+                size="default"
                 onClick={handlePause}
-                className="gap-2"
+                className="gap-2 text-sm"
               >
                 <Pause className="h-5 w-5" />
                 Pausar
@@ -295,9 +295,9 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
             >
               <Button
                 variant="outline"
-                size="lg"
+                size="default"
                 onClick={handleStop}
-                className="gap-2"
+                className="gap-2 text-sm"
               >
                 <Square className="h-5 w-5" />
                 Parar

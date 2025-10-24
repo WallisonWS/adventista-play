@@ -190,7 +190,6 @@ export function BibliaPage() {
           setErro('Não foi possível carregar os versículos')
           setVersiculos([])
         }
-      }
     } finally {
       setCarregando(false)
     }

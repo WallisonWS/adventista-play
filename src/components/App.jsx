@@ -1053,7 +1053,18 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => {
+                      if (estudo.videoaulas && estudo.videoaulas.length > 0) {
+                        // Mapeamento de categoria para URL
+                        const urlCategoria = estudo.categoria === 'Profecia' ? 'estudos-tematicos' :
+                                             estudo.categoria === 'Patriarcas' ? 'personagens' :
+                                             estudo.categoria === 'Novo Testamento' ? 'livros' :
+                                             'biblicos' // Default
+                        navigate(`/videoaula/${urlCategoria}/${estudo.id}`)
+                      } else {
+                        setSelectedEstudo(estudo)
+                      }
+                    }}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 text-sm text-primary mb-2">
                         <motion.div
@@ -1102,7 +1113,18 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => {
+                      if (estudo.videoaulas && estudo.videoaulas.length > 0) {
+                        // Mapeamento de categoria para URL
+                        const urlCategoria = estudo.categoria === 'Profecia' ? 'estudos-tematicos' :
+                                             estudo.categoria === 'Patriarcas' ? 'personagens' :
+                                             estudo.categoria === 'Novo Testamento' ? 'livros' :
+                                             'biblicos' // Default
+                        navigate(`/videoaula/${urlCategoria}/${estudo.id}`)
+                      } else {
+                        setSelectedEstudo(estudo)
+                      }
+                    }}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 mb-2">
                         <motion.div
@@ -1155,7 +1177,18 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => {
+                      if (estudo.videoaulas && estudo.videoaulas.length > 0) {
+                        // Mapeamento de categoria para URL
+                        const urlCategoria = estudo.categoria === 'Profecia' ? 'estudos-tematicos' :
+                                             estudo.categoria === 'Patriarcas' ? 'personagens' :
+                                             estudo.categoria === 'Novo Testamento' ? 'livros' :
+                                             'biblicos' // Default
+                        navigate(`/videoaula/${urlCategoria}/${estudo.id}`)
+                      } else {
+                        setSelectedEstudo(estudo)
+                      }
+                    }}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 mb-2">
                         <Badge variant="secondary">{estudo.categoria}</Badge>
@@ -1193,7 +1226,18 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => {
+                      if (estudo.videoaulas && estudo.videoaulas.length > 0) {
+                        // Mapeamento de categoria para URL
+                        const urlCategoria = estudo.categoria === 'Profecia' ? 'estudos-tematicos' :
+                                             estudo.categoria === 'Patriarcas' ? 'personagens' :
+                                             estudo.categoria === 'Novo Testamento' ? 'livros' :
+                                             'biblicos' // Default
+                        navigate(`/videoaula/${urlCategoria}/${estudo.id}`)
+                      } else {
+                        setSelectedEstudo(estudo)
+                      }
+                    }}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 mb-2">
                         <Badge>{estudo.categoria}</Badge>

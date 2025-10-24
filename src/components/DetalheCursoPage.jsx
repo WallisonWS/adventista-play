@@ -27,14 +27,7 @@ export function DetalheCursoPage() {
   const cursos = estudosCompletos[chaveCat] || []
   const curso = cursos.find(c => c.id === cursoId)
 
-  // Redireciona para a página de videoaula se o curso tiver videoaulas
-  useEffect(() => {
-    if (curso && curso.videoaulas && curso.videoaulas.length > 0) {
-      navigate(`/videoaula/${categoria}/${cursoId}`)
-    }
-  }, [curso, categoria, cursoId, navigate])
-  
-  if (!curso || (curso.videoaulas && curso.videoaulas.length > 0)) {
+  if (!curso) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <Card className="max-w-md w-full">

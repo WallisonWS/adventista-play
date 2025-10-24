@@ -1,7 +1,40 @@
-import { videoAulasCursos, cursosRelacionados } from './video-aulas-cursos'
+import { bibliaExemplo } from './biblia-exemplo'
+import { videoAulasCursos } from './video-aulas-cursos'
+
+// Função auxiliar para injetar videoaulas nos cursos
+const injetarVideoAulas = (cursos, categoria) => {
+  return cursos.map(curso => {
+    const videoAulas = videoAulasCursos[categoria]
+    if (videoAulas) {
+      return {
+        ...curso,
+        videoaulas: videoAulas,
+        capitulos: videoAulas.length
+      }
+    }
+    return curso
+  })
+}
 
 export const estudosCompletos = {
-  escolaSabatina: [
+  // Cursos da Escola Sabatina (usando Estudos Bíblicos)
+  escolaSabatina: injetarVideoAulas([
+    {
+      id: 'escola-sabatina-adultos',
+      titulo: 'Lição da Escola Sabatina',
+      descricao: 'Estudo aprofundado da Bíblia, trimestralmente.',
+      capitulos: 13,
+      videoaulas: videoAulasCursos.estudosBiblicos,
+      // ... outros campos
+    },
+    {
+      id: 'escola-sabatina-jovens',
+      titulo: 'Lição da Escola Sabatina Jovem',
+      descricao: 'Estudo da Bíblia focado em temas relevantes para a juventude.',
+      capitulos: 13,
+      videoaulas: videoAulasCursos.estudosBiblicos,
+      // ... outros campos
+    },
     {
       id: 'josue',
       titulo: 'Fé no Livro de Josué',
@@ -76,268 +109,152 @@ export const estudosCompletos = {
     }
   ],
 
-  estudosTematicos: [
+  // Estudos Temáticos
+  estudosTematicos: injetarVideoAulas([
     {
-      titulo: 'A Vida de Cristo',
-      id: 'vida-cristo',
-      categoria: 'Vida de Cristo',
-      descricao: 'Um estudo aprofundado sobre o ministério, os ensinamentos e a obra de Jesus Cristo.',
-      tipo: 'Estudos Temáticos',
-      videoaulas: [
-        { numero: 1, titulo: 'A Divindade de Cristo', videoId: '6-ZeZVog1Ig', duracao: '15 min' },
-        { numero: 2, titulo: 'O Nascimento e a Infância', videoId: 'veDz4rYQDcI', duracao: '12 min' },
-        { numero: 3, titulo: 'O Batismo e a Tentação', videoId: 'PVWHRMIyElA', duracao: '18 min' },
-        { numero: 4, titulo: 'Os Ensinamentos de Jesus', videoId: 'VaLiCMwemYU', duracao: '10 min' },
-        { numero: 5, titulo: 'Os Milagres e a Compaixão', videoId: 'vi6pv5yTJiQ', duracao: '14 min' },
-        { numero: 6, titulo: 'A Morte e a Ressurreição', videoId: 'SgAijm_NXcA', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'O Verbo que se Fez Carne', conteudo: 'A preexistência e encarnação de Jesus.' },
-        { numero: 2, titulo: 'O Exemplo de Serviço', conteudo: 'O ministério de Cristo como modelo.' },
-      ],
-    },
-    {
-      titulo: 'Profecias de Daniel',
       id: 'profecias-daniel',
-      categoria: 'Profecia',
-      descricao: 'Um estudo detalhado das profecias de Daniel e seu cumprimento histórico.',
-      tipo: 'Estudos Temáticos',
-      videoaulas: [
-        { numero: 1, titulo: 'A Estátua e os Reinos', videoId: 'bwZW8scYt3g', duracao: '15 min' },
-        { numero: 2, titulo: 'As 70 Semanas', videoId: 'rURhzzBRdAE', duracao: '12 min' },
-        { numero: 3, titulo: 'O Santuário e a Purificação', videoId: 'iJy_wStI0RI', duracao: '18 min' },
-        { numero: 4, titulo: 'O Chifre Pequeno', videoId: 'Wto3csK-nw8', duracao: '10 min' },
-        { numero: 5, titulo: 'O Tempo do Fim', videoId: 'p_KW206p7eA', duracao: '14 min' },
-        { numero: 6, titulo: 'A Ressurreição', videoId: 'MUQH7h9AgSk', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'A Estátua de Nabucodonosor', conteudo: 'Os quatro grandes impérios mundiais.' },
-        { numero: 2, titulo: 'As Setenta Semanas', conteudo: 'A profecia sobre a vinda do Messias.' },
-      ],
+      titulo: 'Profecias de Daniel',
+      descricao: 'Desvende as profecias do livro de Daniel e sua relevância para os dias atuais.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.profeciasDaniel,
+      // ... outros campos
     },
     {
-      titulo: 'Doutrinas Fundamentais',
-      id: 'doutrinas-fundamentais',
-      categoria: 'Doutrina',
-      descricao: 'Estudo das 28 Crenças Fundamentais da Igreja Adventista do Sétimo Dia.',
-      tipo: 'Estudos Temáticos',
-      videoaulas: [
-        { numero: 1, titulo: 'A Bíblia e a Palavra de Deus', videoId: 'N53mrt5K7Tc', duracao: '15 min' },
-        { numero: 2, titulo: 'A Trindade e a Divindade', videoId: 'D8HL7tjwgrQ', duracao: '12 min' },
-        { numero: 3, titulo: 'O Sábado e a Lei de Deus', videoId: 'mCcI3oE-86E', duracao: '18 min' },
-        { numero: 4, titulo: 'A Volta de Cristo', videoId: 'M8fyFcYcZbc', duracao: '10 min' },
-        { numero: 5, titulo: 'O Juízo Investigativo', videoId: '0KGDgbYNuWE', duracao: '14 min' },
-        { numero: 6, titulo: 'O Estado do Homem na Morte', videoId: 'D8HL7tjwgrQ', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'As Escrituras Sagradas', conteudo: 'A Bíblia como única regra de fé e prática.' },
-        { numero: 2, titulo: 'O Deus Trino', conteudo: 'Pai, Filho e Espírito Santo.' },
-      ],
+      id: 'vida-cristo',
+      titulo: 'A Vida de Cristo',
+      descricao: 'Um estudo detalhado sobre a vida, ministério e ensinamentos de Jesus.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.vidaCristo,
+      // ... outros campos
+    },
+    {
+      id: 'doutrina-essencial',
+      titulo: 'Doutrina Cristã Essencial',
+      descricao: 'Fundamentos da fé cristã e crenças distintivas da Igreja Adventista.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.doutrinaEssencial,
+      // ... outros campos
     }
-  ],
+  ], 'estudosBiblicos'),
 
-  personagensBiblicos: [
+  // Personagens Bíblicos
+  personagensBiblicos: injetarVideoAulas([
     {
-      titulo: 'O Apóstolo Paulo',
-      id: 'apostolo-paulo',
-      categoria: 'Líderes',
-      descricao: 'Estudo sobre a vida, conversão e as viagens missionárias do Apóstolo Paulo.',
-      tipo: 'Personagens Bíblicos',
-      videoaulas: [
-        { numero: 1, titulo: 'A Conversão de Saulo', videoId: '5MNAkKKRx4M', duracao: '10 min' },
-        { numero: 2, titulo: 'Cronologia da Vida de Paulo', videoId: 'Y5tHHpgoY7c', duracao: '15 min' },
-        { numero: 3, titulo: 'Paulo no Poder do Espírito', videoId: 'jS16ICNOrLo', duracao: '12 min' },
-        { numero: 4, titulo: 'A Segunda Viagem Missionária', videoId: 'Kw4LSfc0s44', duracao: '18 min' },
-        { numero: 5, titulo: 'As Aflições de um Apóstolo', videoId: 'bqhBoPKFhHE', duracao: '14 min' },
-        { numero: 6, titulo: 'Instruções Finais aos Gálatas', videoId: 'Kw4LSfc0s44', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'De Perseguidor a Apóstolo', conteudo: 'O impacto da conversão de Paulo.' },
-        { numero: 2, titulo: 'O Evangelho da Graça', conteudo: 'A mensagem central das cartas paulinas.' },
-      ],
-    },
-    {
-      titulo: 'José do Egito: Lições de Fé e Perdão',
       id: 'jose-egito',
-      categoria: 'Patriarcas',
-      descricao: 'A história de José, desde a cisterna até o palácio, e suas lições de fidelidade e perdão.',
-      tipo: 'Personagens Bíblicos',
-      videoaulas: [
-        { numero: 1, titulo: 'O Sonhador e a Túnica', videoId: 'bwZW8scYt3g', duracao: '15 min' },
-        { numero: 2, titulo: 'Vendido como Escravo', videoId: 'rURhzzBRdAE', duracao: '12 min' },
-        { numero: 3, titulo: 'Fidelidade na Prisão', videoId: 'iJy_wStI0RI', duracao: '18 min' },
-        { numero: 4, titulo: 'Do Cárcere ao Palácio', videoId: 'Wto3csK-nw8', duracao: '10 min' },
-        { numero: 5, titulo: 'O Reencontro com os Irmãos', videoId: 'p_KW206p7eA', duracao: '14 min' },
-        { numero: 6, titulo: 'O Perdão e a Provisão', videoId: 'MUQH7h9AgSk', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'Sonhos e Inveja', conteudo: 'Os sonhos de José e a reação de seus irmãos.' },
-        { numero: 2, titulo: 'Fidelidade em Meio à Provação', conteudo: 'A integridade de José na casa de Potifar e na prisão.' },
-      ],
+      titulo: 'José do Egito',
+      descricao: 'A história de fé, perdão e providência de José, filho de Jacó.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.joseEgito,
+      // ... outros campos
     },
     {
-      titulo: 'Mulheres da Bíblia',
+      id: 'apostolo-paulo',
+      titulo: 'O Apóstolo Paulo',
+      descricao: 'A vida e o legado do maior missionário do cristianismo primitivo.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.apostoloPaulo,
+      // ... outros campos
+    },
+    {
       id: 'mulheres-biblia',
-      categoria: 'Mulheres da Bíblia',
-      descricao: 'Histórias inspiradoras de fé, coragem e liderança de mulheres na Bíblia.',
-      tipo: 'Personagens Bíblicos',
-      videoaulas: [
-        { numero: 1, titulo: 'Miriã: Uma Líder Nata', videoId: 'DIyEwXrELHc', duracao: '10 min' },
-        { numero: 2, titulo: 'Ester: Coragem e Propósito', videoId: 'rDLwnL8ePAc', duracao: '15 min' },
-        { numero: 3, titulo: 'A Mulher de Noé: Lições de Obediência', videoId: 'TtaxuBNCDQY', duracao: '12 min' },
-        { numero: 4, titulo: 'Maria: A Serva do Senhor', videoId: 'BuLOkQdLA70', duracao: '18 min' },
-        { numero: 5, titulo: 'Débora: Juíza e Profetisa', videoId: 'rDLwnL8ePAc', duracao: '14 min' },
-        { numero: 6, titulo: 'Ana: O Poder da Oração', videoId: 'DIyEwXrELHc', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'Liderança Feminina', conteudo: 'O papel das mulheres na história da salvação.' },
-        { numero: 2, titulo: 'Fé em Meio à Adversidade', conteudo: 'Exemplos de perseverança.' },
-      ],
+      titulo: 'Mulheres da Bíblia',
+      descricao: 'Estudo sobre a vida e o impacto de mulheres importantes nas Escrituras.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.mulheresBiblia,
+      // ... outros campos
+    },
+    {
+      id: 'reis-israel',
+      titulo: 'Reis de Israel e Judá',
+      descricao: 'Análise do reinado e das lições dos reis do Antigo Testamento.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.reisIsrael,
+      // ... outros campos
     }
-  ],
+  ], 'estudosBiblicos'),
 
-  livrosBiblia: [
+  // Livros da Bíblia
+  livrosBiblia: injetarVideoAulas([
     {
-      titulo: 'Gênesis: O Livro das Origens',
-      id: 'genesis',
-      categoria: 'Antigo Testamento',
-      descricao: 'Estudo detalhado do livro de Gênesis, explorando a Criação, a Queda e o início da história da salvação.',
-      tipo: 'Livros da Bíblia',
-      videoaulas: [
-        { numero: 1, titulo: 'A Criação e o Éden (Cap. 1-2)', videoId: 'N3l8IghjBZE', duracao: '15 min' },
-        { numero: 2, titulo: 'A Queda e a Promessa (Cap. 3)', videoId: '1jWBAGGBYGE', duracao: '12 min' },
-        { numero: 3, titulo: 'Noé e o Dilúvio (Cap. 6-9)', videoId: 'BHznFyJLTn0', duracao: '18 min' },
-        { numero: 4, titulo: 'A Torre de Babel (Cap. 11)', videoId: '8Ufbn5ePcj0', duracao: '10 min' },
-        { numero: 5, titulo: 'O Chamado de Abraão (Cap. 12)', videoId: 'N3l8IghjBZE', duracao: '14 min' },
-        { numero: 6, titulo: 'A História de José (Cap. 37-50)', videoId: '1jWBAGGBYGE', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'As Origens', conteudo: 'O relato da Criação e sua importância.' },
-        { numero: 2, titulo: 'As Alianças de Deus', conteudo: 'A aliança com Noé e Abraão.' },
-      ],
-    },
-    {
-      titulo: 'Apocalipse: A Revelação de Jesus Cristo',
-      id: 'apocalipse',
-      categoria: 'Profecia',
-      descricao: 'Desvende o último livro da Bíblia e compreenda o plano de Deus para o fim dos tempos.',
-      tipo: 'Livros da Bíblia',
-      videoaulas: [
-        { numero: 1, titulo: 'A Visão do Trono (Cap. 4 e 5)', videoId: '7Xyy6uxZQt8', duracao: '15 min' },
-        { numero: 2, titulo: 'Os Sete Selos (Cap. 6)', videoId: '4RcB48ER5j4', duracao: '12 min' },
-        { numero: 3, titulo: 'As Sete Trombetas', videoId: '7wpDynHx1yM', duracao: '18 min' },
-        { numero: 4, titulo: 'A Mulher e o Dragão (Cap. 12)', videoId: '7Xyy6uxZQt8', duracao: '10 min' },
-        { numero: 5, titulo: 'A Marca da Besta (Cap. 13)', videoId: '4RcB48ER5j4', duracao: '14 min' },
-        { numero: 6, titulo: 'A Nova Terra (Cap. 21 e 22)', videoId: '7wpDynHx1yM', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'O Propósito do Apocalipse', conteudo: 'Entendendo a mensagem central do livro.' },
-        { numero: 2, titulo: 'As Sete Igrejas', conteudo: 'Mensagens para a igreja em todas as eras.' },
-      ],
-    },
-    {
-      titulo: 'Evangelho de João: A Divindade de Cristo',
       id: 'evangelho-joao',
-      categoria: 'Novo Testamento',
-      descricao: 'Estudo do Evangelho que mais enfatiza a divindade de Jesus.',
-      tipo: 'Livros da Bíblia',
-      videoaulas: [
-        { numero: 1, titulo: 'O Verbo se Fez Carne', videoId: 'bwZW8scYt3g', duracao: '15 min' },
-        { numero: 2, titulo: 'As Bodas de Caná', videoId: 'rURhzzBRdAE', duracao: '12 min' },
-        { numero: 3, titulo: 'O Encontro com Nicodemos', videoId: 'iJy_wStI0RI', duracao: '18 min' },
-        { numero: 4, titulo: 'A Mulher Samaritana', videoId: 'Wto3csK-nw8', duracao: '10 min' },
-        { numero: 5, titulo: 'A Ressurreição de Lázaro', videoId: 'p_KW206p7eA', duracao: '14 min' },
-        { numero: 6, titulo: 'A Última Ceia e o Lava-pés', videoId: 'MUQH7h9AgSk', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'Eu Sou o Pão da Vida', conteudo: 'Jesus como sustento espiritual.' },
-        { numero: 2, titulo: 'Eu Sou a Luz do Mundo', conteudo: 'Jesus como guia na escuridão.' },
-      ],
+      titulo: 'Evangelho de João',
+      descricao: 'O Evangelho que revela a divindade de Cristo e o caminho para a vida eterna.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.evangelhoJoao,
+      // ... outros campos
+    },
+    {
+      id: 'apocalipse',
+      titulo: 'Apocalipse',
+      descricao: 'Desvendando as mensagens de esperança e o futuro revelado no último livro da Bíblia.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.apocalipse,
+      // ... outros campos
+    },
+    {
+      id: 'genesis',
+      titulo: 'Gênesis: O Livro das Origens',
+      descricao: 'Estudo dos primeiros capítulos da Bíblia: criação, queda e o início da história da salvação.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.genesis,
+      // ... outros campos
+    },
+    {
+      id: 'romanos-justica',
+      titulo: 'Romanos: O Evangelho da Justiça de Deus',
+      descricao: 'Estudo da epístola de Paulo que define a doutrina da justificação pela fé.',
+      capitulos: 6,
+      videoaulas: videoAulasCursos.romanos,
+      // ... outros campos
     }
-  ],
+  ], 'estudosBiblicos'),
 
-  financas: [
+  // Finanças
+  financas: injetarVideoAulas([
     {
-      titulo: 'Mordomia Financeira Cristã',
       id: 'mordomia-financeira',
-      categoria: 'Finanças',
+      titulo: 'Mordomia Financeira',
       descricao: 'Princípios bíblicos de mordomia e gestão financeira para uma vida de contentamento e generosidade.',
-      tipo: 'Finanças',
-      videoaulas: [
-        { numero: 1, titulo: 'O Princípio da Mordomia', videoId: 'bwZW8scYt3g', duracao: '15 min' },
-        { numero: 2, titulo: 'Dízimos e Ofertas', videoId: 'rURhzzBRdAE', duracao: '12 min' },
-        { numero: 3, titulo: 'Como Sair das Dívidas', videoId: 'iJy_wStI0RI', duracao: '18 min' },
-        { numero: 4, titulo: 'Planejamento Financeiro Familiar', videoId: 'Wto3csK-nw8', duracao: '10 min' },
-        { numero: 5, titulo: 'Investindo com Propósito', videoId: 'p_KW206p7eA', duracao: '14 min' },
-        { numero: 6, titulo: 'O Contentamento', videoId: 'MUQH7h9AgSk', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'Tudo é de Deus', conteudo: 'Reconhecendo a soberania de Deus sobre nossos bens.' },
-        { numero: 2, titulo: 'O Dízimo como Teste de Fidelidade', conteudo: 'A importância de devolver a Deus o que Lhe pertence.' },
-      ],
+      capitulos: 6,
+      videoaulas: videoAulasCursos.financas,
+      // ... outros campos
     }
-  ],
-  relacionamentos: [
+  ], 'financas'),
+
+  // Relacionamentos
+  relacionamentos: injetarVideoAulas([
     {
-      titulo: 'Construindo Vínculos Saudáveis',
       id: 'vinculos-saudaveis',
-      categoria: 'Relacionamentos',
+      titulo: 'Construindo Vínculos Saudáveis',
       descricao: 'Aprenda a estabelecer e manter relacionamentos saudáveis e duradouros, baseados em princípios cristãos.',
-      tipo: 'Relacionamentos',
-      videoaulas: [
-        { numero: 1, titulo: 'A Arte de Ouvir', videoId: 'dUcZsSPd-tE', duracao: '15 min' },
-        { numero: 2, titulo: 'Comunicação Não-Violenta', videoId: 'JMuBcroTObI', duracao: '12 min' },
-        { numero: 3, titulo: 'Perdão e Reconciliação', videoId: 'x_SvR0EVnSs', duracao: '18 min' },
-        { numero: 4, titulo: 'Lidando com Conflitos', videoId: 'C3jbaOGFu0M', duracao: '10 min' },
-        { numero: 5, titulo: 'O Amor Ágape', videoId: 'ribK2mhXPIo', duracao: '14 min' },
-        { numero: 6, titulo: 'Amizades com Propósito', videoId: 'qtUD2gpWt5k', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'O Fundamento do Amor', conteudo: 'O amor de Deus como base de todo relacionamento.' },
-        { numero: 2, titulo: 'O Poder da Empatia', conteudo: 'Colocando-se no lugar do outro.' },
-      ],
+      capitulos: 6,
+      videoaulas: videoAulasCursos.relacionamentos,
+      // ... outros campos
     }
-  ],
-  familia: [
+  ], 'relacionamentos'),
+
+  // Família
+  familia: injetarVideoAulas([
     {
+      id: 'lacos-familiares',
       titulo: 'Fortalecendo os Laços Familiares',
-      id: 'fortalecendo-familia',
-      categoria: 'Família',
       descricao: 'Estratégias e princípios para construir um lar sólido e feliz, seguindo o modelo bíblico.',
-      tipo: 'Família',
-      videoaulas: [
-        { numero: 1, titulo: 'O Propósito do Casamento', videoId: '9hyPGG0I-jY', duracao: '15 min' },
-        { numero: 2, titulo: 'Educação de Filhos com Princípios', videoId: 'xBj6xa7zc-M', duracao: '12 min' },
-        { numero: 3, titulo: 'A Comunicação no Lar', videoId: 'NR-WZRoXzvk', duracao: '18 min' },
-        { numero: 4, titulo: 'O Culto Familiar', videoId: 'DrgsL8qLf7M', duracao: '10 min' },
-        { numero: 5, titulo: 'Gerenciando as Finanças Familiares', videoId: 'a2NpLzxXGCY', duracao: '14 min' },
-        { numero: 6, titulo: 'Tempo de Qualidade', videoId: 'u6BQmYsWuw4', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'O Plano Original de Deus', conteudo: 'O casamento como instituição divina.' },
-        { numero: 2, titulo: 'A Responsabilidade dos Pais', conteudo: 'Criando filhos no caminho do Senhor.' },
-      ],
+      capitulos: 6,
+      videoaulas: videoAulasCursos.familia,
+      // ... outros campos
     }
-  ],
-  vidaCrista: [
+  ], 'familia'),
+
+  // Vida Cristã
+  vidaCrista: injetarVideoAulas([
     {
-      titulo: 'Cresça em sua Jornada Espiritual',
       id: 'jornada-espiritual',
-      categoria: 'Vida Cristã',
+      titulo: 'Cresça em sua Jornada Espiritual',
       descricao: 'Aprofunde sua fé e desenvolva hábitos espirituais que o levarão a um relacionamento mais íntimo com Deus.',
-      tipo: 'Vida Cristã',
-      videoaulas: [
-        { numero: 1, titulo: 'O Poder da Oração', videoId: 'XNkRMawqz2U', duracao: '15 min' },
-        { numero: 2, titulo: 'Estudo Diário da Bíblia', videoId: 'Wl1jH1I3AAY', duracao: '12 min' },
-        { numero: 3, titulo: 'Testemunho e Missão', videoId: 'tydhn5tHgUY', duracao: '18 min' },
-        { numero: 4, titulo: 'Como Vencer a Tentação', videoId: 'aXeGsN1Sd-8', duracao: '10 min' },
-        { numero: 5, titulo: 'O Fruto do Espírito', videoId: '9u50OZfSMoU', duracao: '14 min' },
-        { numero: 6, titulo: 'A Esperança da Volta de Jesus', videoId: '5_B9ZVV_tvo', duracao: '16 min' },
-      ],
-      licoes: [
-        { numero: 1, titulo: 'A Disciplina Espiritual', conteudo: 'A importância de hábitos regulares de devoção.' },
-        { numero: 2, titulo: 'O Poder do Espírito Santo', conteudo: 'Vivendo uma vida cheia do Espírito.' },
-      ],
+      capitulos: 6,
+      videoaulas: videoAulasCursos.vidaCrista,
+      // ... outros campos
     }
-  ]
+  ], 'vidaCrista')
 }
+

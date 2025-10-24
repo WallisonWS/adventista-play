@@ -695,7 +695,7 @@ export function DesbravadoresPage() {
                         className="text-center hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 hover:border-primary group overflow-hidden h-full"
                         onClick={() => setEspecialidadeSelecionada(esp)}
                       >
-                        <CardContent className="pt-6 pb-4 space-y-3 relative">
+                        <CardContent className="pt-6 pb-4 space-y-3 relative flex flex-col items-center">
                           {/* Efeito de brilho no hover */}
                           <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           
@@ -715,8 +715,8 @@ export function DesbravadoresPage() {
                             </motion.div>
                           </div>
                           
-                          <h3 className="font-bold text-sm md:text-base group-hover:text-primary transition-colors">{esp.nome}</h3>
-                          <Badge variant="secondary" className="text-xs">{esp.categoria}</Badge>
+                          <h3 className="font-bold text-sm md:text-base group-hover:text-primary transition-colors text-center">{esp.nome}</h3>
+                          <Badge variant="secondary" className="text-xs text-center w-full justify-center">{esp.categoria}</Badge>
                           
                           {/* Indicador de clique */}
                           <motion.div

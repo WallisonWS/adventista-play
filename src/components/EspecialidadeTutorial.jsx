@@ -16,7 +16,7 @@ import {
   Zap,
   BookOpen
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { especialidadesCompletas } from '../data/especialidades-desbravadores'
 
 // Mapeamento de ícones para os requisitos (pode ser expandido)
@@ -136,7 +136,8 @@ function RequisitoBloco({ titulo, dados, Icone, tipo }) {
 }
 
 // Componente principal
-export function EspecialidadeTutorial({ id }) {
+export function EspecialidadeTutorial() {
+  const { id } = useParams()
   const especialidade = especialidadesCompletas.find(e => e.id === parseInt(id))
   const [tabSelecionada, setTabSelecionada] = useState('requisitos')
 

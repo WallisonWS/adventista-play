@@ -236,7 +236,14 @@ export function NewEstudosPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
               >
-                <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden bg-white dark:bg-gray-800">
+                <Card 
+                  className="hover:shadow-xl transition-all duration-300 overflow-hidden bg-white dark:bg-gray-800 cursor-pointer"
+                  onClick={() => {
+                    // Navegar para a página de detalhes do curso
+                    // Por enquanto, vamos para a página de estudos bíblicos
+                    navigate('/estudos/biblicos')
+                  }}
+                >
                   <div className="flex">
                     {/* Imagem */}
                     <div 

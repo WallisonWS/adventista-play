@@ -614,7 +614,15 @@ export function CursosAdventistas() {
 
                 {/* Botões de Ação */}
                 <div className="flex gap-3 pt-4">
-                  <Button className="flex-1" size="lg">
+                  <Button 
+                    className="flex-1" 
+                    size="lg"
+                    onClick={() => {
+                      // Navegar para a página do curso ou iniciar primeira lição
+                      // Por enquanto, vamos para estudos bíblicos
+                      window.location.href = '/estudos/biblicos'
+                    }}
+                  >
                     <Play className="h-5 w-5 mr-2" />
                     Começar Agora
                   </Button>

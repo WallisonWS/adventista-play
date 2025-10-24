@@ -1,24 +1,11 @@
 import { bibliaExemplo } from './biblia-exemplo'
 import { videoAulasCursos } from './video-aulas-cursos'
 
-// Função auxiliar para injetar videoaulas nos cursos
-const injetarVideoAulas = (cursos, categoria) => {
-  return cursos.map(curso => {
-    const videoAulas = videoAulasCursos[categoria]
-    if (videoAulas) {
-      return {
-        ...curso,
-        videoaulas: videoAulas,
-        capitulos: videoAulas.length
-      }
-    }
-    return curso
-  })
-}
+
 
 export const estudosCompletos = {
   // Cursos da Escola Sabatina (usando Estudos Bíblicos)
-  escolaSabatina: injetarVideoAulas([
+  escolaSabatina: [
     {
       id: 'escola-sabatina-adultos',
       titulo: 'Lição da Escola Sabatina',
@@ -110,7 +97,7 @@ export const estudosCompletos = {
   ],
 
   // Estudos Temáticos
-  estudosTematicos: injetarVideoAulas([
+  estudosTematicos: [
     {
       id: 'profecias-daniel',
       titulo: 'Profecias de Daniel',
@@ -135,10 +122,10 @@ export const estudosCompletos = {
       videoaulas: videoAulasCursos.doutrinaEssencial,
       // ... outros campos
     }
-  ], 'estudosBiblicos'),
+  ],
 
   // Personagens Bíblicos
-  personagensBiblicos: injetarVideoAulas([
+  personagensBiblicos: [
     {
       id: 'jose-egito',
       titulo: 'José do Egito',
@@ -171,10 +158,10 @@ export const estudosCompletos = {
       videoaulas: videoAulasCursos.reisIsrael,
       // ... outros campos
     }
-  ], 'estudosBiblicos'),
+  ],
 
   // Livros da Bíblia
-  livrosBiblia: injetarVideoAulas([
+  livrosBiblia: [
     {
       id: 'evangelho-joao',
       titulo: 'Evangelho de João',
@@ -207,10 +194,10 @@ export const estudosCompletos = {
       videoaulas: videoAulasCursos.romanos,
       // ... outros campos
     }
-  ], 'estudosBiblicos'),
+  ],
 
   // Finanças
-  financas: injetarVideoAulas([
+  financas: [
     {
       id: 'mordomia-financeira',
       titulo: 'Mordomia Financeira',
@@ -219,10 +206,10 @@ export const estudosCompletos = {
       videoaulas: videoAulasCursos.financas,
       // ... outros campos
     }
-  ], 'financas'),
+  ],
 
   // Relacionamentos
-  relacionamentos: injetarVideoAulas([
+  relacionamentos: [
     {
       id: 'vinculos-saudaveis',
       titulo: 'Construindo Vínculos Saudáveis',
@@ -231,10 +218,10 @@ export const estudosCompletos = {
       videoaulas: videoAulasCursos.relacionamentos,
       // ... outros campos
     }
-  ], 'relacionamentos'),
+  ],
 
   // Família
-  familia: injetarVideoAulas([
+  familia: [
     {
       id: 'lacos-familiares',
       titulo: 'Fortalecendo os Laços Familiares',
@@ -243,10 +230,10 @@ export const estudosCompletos = {
       videoaulas: videoAulasCursos.familia,
       // ... outros campos
     }
-  ], 'familia'),
+  ],
 
   // Vida Cristã
-  vidaCrista: injetarVideoAulas([
+  vidaCrista: [
     {
       id: 'jornada-espiritual',
       titulo: 'Cresça em sua Jornada Espiritual',
@@ -255,6 +242,6 @@ export const estudosCompletos = {
       videoaulas: videoAulasCursos.vidaCrista,
       // ... outros campos
     }
-  ], 'vidaCrista')
+  ],
 }
 

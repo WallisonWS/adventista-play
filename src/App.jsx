@@ -928,9 +928,9 @@ function HinarioPage() {
                 className="hover:shadow-lg transition-all cursor-pointer"
                 onClick={() => setSelectedHino(hino)}
               >
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-2">
                         <motion.div
                           animate={{ scale: [1, 1.2, 1] }}
@@ -944,7 +944,7 @@ function HinarioPage() {
                       <Badge variant="secondary" className="mt-2">{hino.categoria}</Badge>
                     </div>
                     {hino.letra && (
-                      <motion.div whileHover={{ scale: 1.2 }}>
+                      <motion.div whileHover={{ scale: 1.2 }} className="flex-shrink-0 mt-1">
                         <Volume2 className="h-5 w-5 text-muted-foreground" />
                       </motion.div>
                     )}

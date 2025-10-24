@@ -59,7 +59,81 @@ export const hinos = [
   
   { numero: 603, titulo: "Firme nas Promessas", categoria: "Confiança", letra: "Firme nas promessas de Cristo, meu Senhor,\nEu cantarei louvores ao meu Redentor!\n\nFirme, firme, firme nas promessas de Jesus, meu Mestre!\nFirme, firme, sim, firme nas promessas de Jesus!\n\nFirme nas promessas, não posso vacilar,\nQuando o Espírito Santo vem meu coração renovar!" },
   
-  { numero: 604, titulo: "Em Jesus Amigo Temos", categoria: "Amizade", letra: "Em Jesus amigo temos, que por nós morreu na cruz;\nEm Jesus amigo temos, que nos leva para a luz!\n\nQue amigo, que amigo é Jesus!\nQue amigo, que amigo é Jesus!\nEle nos ama, Ele nos salva,\nQue amigo, que amigo é Jesus!" }
+  { numero: 604, titulo: "Em Jesus Amigo Temos", categoria: "Amizade", letra: "Em Jesus amigo temos, que por nós morreu na cruz;\nEm Jesus amigo temos, que nos leva para a luz!\n\nQue amigo, que amigo é Jesus!\nQue amigo, que amigo é Jesus!\nEle nos ama, Ele nos salva,\nQue amigo, que amigo é Jesus!" },
+  
+  // Hinos dos Desbravadores e Aventureiros
+  { numero: 276, titulo: "Hino dos Desbravadores", categoria: "Desbravadores", letra: "Nós somos os desbravadores, os servos do Rei dos reis..." },
+  { numero: 277, titulo: "Hino dos Aventureiros", categoria: "Aventureiros", letra: "Aventureiros somos nós, com Cristo vamos caminhar..." },
+  
+  // Hinos do Novo Hinário Adventista
+  { numero: 13, titulo: "Grande É o Senhor", categoria: "Adoração", letra: "Grande é o Senhor e mui digno de louvor..." },
+  { numero: 14, titulo: "Glória Seja ao Pai", categoria: "Adoração", letra: "Glória seja ao Pai, glória ao Filho..." },
+  { numero: 15, titulo: "Louvai ao Senhor", categoria: "Louvor", letra: "Louvai ao Senhor, louvai ao Senhor..." },
+  { numero: 16, titulo: "Deus É Tão Bom", categoria: "Louvor", letra: "Deus é tão bom, Deus é tão bom..." },
+  { numero: 17, titulo: "Aleluia", categoria: "Louvor", letra: "Aleluia, aleluia, aleluia, aleluia..." },
+  { numero: 18, titulo: "Cantai ao Senhor", categoria: "Louvor", letra: "Cantai ao Senhor um cântico novo..." },
+  { numero: 19, titulo: "Jubilosos Te Adoramos", categoria: "Adoração", letra: "Jubilosos te adoramos, Deus da nossa salvação..." },
+  { numero: 20, titulo: "Deus Cuida de Mim", categoria: "Confiança", letra: "Deus cuida de mim, onde quer que eu vá..." },
+  
+  { numero: 51, titulo: "Sou Feliz", categoria: "Alegria", letra: "Sou feliz, sou feliz com Jesus..." },
+  { numero: 52, titulo: "Cristo Ama as Criancinhas", categoria: "Crianças", letra: "Cristo ama as criancinhas, todas do mundo..." },
+  { numero: 53, titulo: "Meu Deus É Tão Grande", categoria: "Crianças", letra: "Meu Deus é tão grande, tão forte e poderoso..." },
+  { numero: 54, titulo: "Eu Tenho Um Amigo Que Me Ama", categoria: "Amizade", letra: "Eu tenho um amigo que me ama, seu nome é Jesus..." },
+  { numero: 55, titulo: "Deus É Amor", categoria: "Amor", letra: "Deus é amor, aleluia! Deus é amor, aleluia!..." },
+  
+  { numero: 101, titulo: "Jesus Me Ama", categoria: "Amor", letra: "Jesus me ama, bem o sei, pois a Bíblia diz..." },
+  { numero: 102, titulo: "Minha Luz", categoria: "Testemunho", letra: "Esta luzinha minha, vou deixá-la brilhar..." },
+  { numero: 103, titulo: "Confia em Jesus", categoria: "Confiança", letra: "Confia em Jesus, confia em Jesus..." },
+  { numero: 104, titulo: "Eu Vou Andar com Jesus", categoria: "Consagração", letra: "Eu vou andar com Jesus, eu vou andar com Jesus..." },
+  { numero: 105, titulo: "Seguirei a Cristo", categoria: "Consagração", letra: "Seguirei a Cristo, onde Ele for..." },
+  
+  { numero: 151, titulo: "Mais Amor Te Dou", categoria: "Consagração", letra: "Mais amor te dou, meu Senhor..." },
+  { numero: 152, titulo: "Toma Minha Vontade", categoria: "Consagração", letra: "Toma minha vontade, faze-a só Tua..." },
+  { numero: 153, titulo: "Entrego a Ti Meu Ser", categoria: "Consagração", letra: "Entrego a Ti meu ser, meu Rei e Salvador..." },
+  { numero: 154, titulo: "Tudo Entregarei", categoria: "Consagração", letra: "Tudo a Cristo eu entrego, tudo a Ele darei..." },
+  { numero: 155, titulo: "Sou de Jesus", categoria: "Testemunho", letra: "Sou de Jesus, Ele é meu Salvador..." },
+  
+  { numero: 201, titulo: "Maravilhosa Graça", categoria: "Graça", letra: "Maravilhosa graça de nosso amoroso Deus..." },
+  { numero: 202, titulo: "Graça Excelsa", categoria: "Graça", letra: "Graça excelsa de Jesus, que me salvou..." },
+  { numero: 203, titulo: "Pela Graça de Deus", categoria: "Graça", letra: "Pela graça de Deus sou o que sou..." },
+  { numero: 204, titulo: "Jesus Salva", categoria: "Salvação", letra: "Jesus salva, Jesus salva, proclamai..." },
+  { numero: 205, titulo: "Há Um Amigo Mui Chegado", categoria: "Amizade", letra: "Há um amigo mui chegado, mais que um irmão..." },
+  
+  { numero: 251, titulo: "Quando Eu Me Lembro", categoria: "Consagração", letra: "Quando eu me lembro do amor que me trouxe Jesus..." },
+  { numero: 252, titulo: "Eu Preciso de Ti", categoria: "Oração", letra: "Eu preciso de Ti, ó Senhor..." },
+  { numero: 253, titulo: "Fala Senhor", categoria: "Oração", letra: "Fala Senhor, teu servo escuta..." },
+  { numero: 254, titulo: "Fala, Jesus Querido", categoria: "Oração", letra: "Fala, Jesus querido, fala ao meu coração..." },
+  { numero: 255, titulo: "Escuta, Deus Está Chamando", categoria: "Convite", letra: "Escuta, Deus está chamando, chama por ti..." },
+  
+  { numero: 301, titulo: "Cristo, Meu Amigo", categoria: "Amizade", letra: "Cristo, meu amigo, sempre ao meu lado está..." },
+  { numero: 302, titulo: "Meu Amado É Jesus", categoria: "Amor", letra: "Meu amado é Jesus, meu amado é Jesus..." },
+  { numero: 303, titulo: "Jesus É Meu Pastor", categoria: "Confiança", letra: "Jesus é meu pastor, nada me faltará..." },
+  { numero: 304, titulo: "Guia-me Ó Salvador", categoria: "Confiança", letra: "Guia-me ó Salvador, pelos Teus caminhos..." },
+  { numero: 305, titulo: "Segura na Mão de Deus", categoria: "Confiança", letra: "Segura na mão de Deus e vai..." },
+  
+  { numero: 351, titulo: "Verei Jesus", categoria: "Esperança", letra: "Verei Jesus, meu Salvador, face a face..." },
+  { numero: 352, titulo: "Quando Eu Chegar ao Céu", categoria: "Esperança", letra: "Quando eu chegar ao céu, que alegria será..." },
+  { numero: 353, titulo: "Lá na Glória", categoria: "Esperança", letra: "Lá na glória, lá na glória, vou morar..." },
+  { numero: 354, titulo: "Vou ao Lar", categoria: "Esperança", letra: "Vou ao lar, vou ao lar, para o lar de meu Jesus..." },
+  { numero: 355, titulo: "Lar Feliz", categoria: "Esperança", letra: "Lar feliz, lar de amor, Cristo ali estará..." },
+  
+  { numero: 401, titulo: "Poder do Sangue", categoria: "Redenção", letra: "Poder do sangue de Jesus, poder sem igual..." },
+  { numero: 402, titulo: "Calvario", categoria: "Redenção", letra: "No calvário, Jesus morreu por mim..." },
+  { numero: 403, titulo: "Na Cruz", categoria: "Redenção", letra: "Na cruz, na cruz, sempre me glorio..." },
+  { numero: 404, titulo: "Rude Cruz", categoria: "Redenção", letra: "Numa cruz, meu Jesus padeceu..." },
+  { numero: 405, titulo: "Cristo Morreu Por Mim", categoria: "Redenção", letra: "Cristo morreu por mim, aleluia..." },
+  
+  { numero: 451, titulo: "Brilho Celeste", categoria: "Testemunho", letra: "Brilho celeste em minha alma resplandece..." },
+  { numero: 452, titulo: "Conta as Bênçãos", categoria: "Gratidão", letra: "Conta as bênçãos, dize quantas são..." },
+  { numero: 453, titulo: "Glória Sem Fim", categoria: "Esperança", letra: "Glória sem fim, glória sem fim..." },
+  { numero: 454, titulo: "Vou Seguir a Jesus", categoria: "Consagração", letra: "Vou seguir a Jesus, não volto atrás..." },
+  { numero: 455, titulo: "Firmes e Avante", categoria: "Coragem", letra: "Firmes e avante, eis a nossa divisão..." },
+  
+  { numero: 501, titulo: "Amigo Fiel", categoria: "Amizade", letra: "Amigo fiel é Jesus, meu Senhor..." },
+  { numero: 502, titulo: "Doce Comunhão", categoria: "Comunhão", letra: "Doce comunhão, santa união..." },
+  { numero: 503, titulo: "Paz Divina", categoria: "Paz", letra: "Paz divina, paz celeste, desce sobre mim..." },
+  { numero: 504, titulo: "Paz Perfeita", categoria: "Paz", letra: "Paz perfeita é o que tenho em Jesus..." },
+  { numero: 505, titulo: "Paz, Doce Paz", categoria: "Paz", letra: "Paz, doce paz, dom de Deus Pai..." }
 ]
 
 // Função para buscar hino por número

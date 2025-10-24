@@ -277,22 +277,24 @@ export function BibliaPage() {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-col gap-3">
+              {/* Linha 1: Botão Voltar e Título */}
               <div className="flex items-center gap-2">
                 <Button variant="outline" size="sm" onClick={() => { setCapituloSelecionado(null); setLivroSelecionado(null) }}>
                   <ChevronLeft className="h-4 w-4 mr-1" />
                   Voltar
                 </Button>
-                <Badge variant="secondary" className="text-lg px-4 py-2">
+                <Badge variant="secondary" className="text-base md:text-lg px-3 py-1.5">
                   {livroSelecionado.nome} {capituloSelecionado}
                 </Badge>
               </div>
 
-              <div className="flex items-center gap-2">
+              {/* Linha 2: Controles - Responsivo */}
+              <div className="flex flex-wrap items-center justify-center gap-2">
                 <select 
                   value={versao} 
                   onChange={(e) => setVersao(e.target.value)}
-                  className={`px-3 py-2 rounded-md border ${modoNoturno ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}
+                  className={`px-2 py-1.5 text-sm rounded-md border ${modoNoturno ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-300'}`}
                 >
                   <option value="ARC">Almeida RC</option>
                   <option value="ACF">Almeida CF</option>
@@ -301,13 +303,15 @@ export function BibliaPage() {
                   <option value="NTLH">Nova Tradução (Linguagem de Hoje)</option>
                 </select>
 
-                <Button variant="outline" size="sm" onClick={() => setTamanhoFonte(Math.max(14, tamanhoFonte - 2))}>
-                  <ZoomOut className="h-4 w-4" />
-                </Button>
-                <span className="text-sm font-medium">{tamanhoFonte}px</span>
-                <Button variant="outline" size="sm" onClick={() => setTamanhoFonte(Math.min(24, tamanhoFonte + 2))}>
-                  <ZoomIn className="h-4 w-4" />
-                </Button>
+                <div className="flex items-center gap-1 border rounded-md px-2 py-1">
+                  <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => setTamanhoFonte(Math.max(14, tamanhoFonte - 2))}>
+                    <ZoomOut className="h-4 w-4" />
+                  </Button>
+                  <span className="text-sm font-medium min-w-[45px] text-center">{tamanhoFonte}px</span>
+                  <Button variant="ghost" size="sm" className="h-7 w-7 p-0" onClick={() => setTamanhoFonte(Math.min(24, tamanhoFonte + 2))}>
+                    <ZoomIn className="h-4 w-4" />
+                  </Button>
+                </div>
 
                 <Button variant="outline" size="sm" onClick={() => setModoNoturno(!modoNoturno)}>
                   {modoNoturno ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}

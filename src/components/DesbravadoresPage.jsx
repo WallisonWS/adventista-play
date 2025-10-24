@@ -28,7 +28,12 @@ import {
   ChevronRight,
   Volume2,
   CheckCircle,
-  Play
+  Play,
+  Waves,
+  ChefHat,
+  Anchor,
+  Bike,
+  TreePine
 } from 'lucide-react'
 
 // Dados dos cursos de Desbravadores
@@ -207,7 +212,7 @@ const especialidades = [
     id: 3, 
     nome: "Nós e Amarras", 
     categoria: "Atividades Recreativas", 
-    icone: Target, 
+    icone: Anchor, 
     cor: "bg-green-500",
     requisitos: [
       "Fazer 10 nós diferentes e explicar seu uso",
@@ -221,7 +226,7 @@ const especialidades = [
     id: 4, 
     nome: "Natação", 
     categoria: "Atividades Recreativas", 
-    icone: Mountain, 
+    icone: Waves, 
     cor: "bg-blue-500",
     requisitos: [
       "Nadar 50 metros estilo livre",
@@ -235,7 +240,7 @@ const especialidades = [
     id: 5, 
     nome: "Cozinha", 
     categoria: "Habilidades Domésticas", 
-    icone: Flame, 
+    icone: ChefHat, 
     cor: "bg-orange-500",
     requisitos: [
       "Preparar 5 refeições completas",
@@ -263,7 +268,7 @@ const especialidades = [
     id: 7, 
     nome: "Excursionismo", 
     categoria: "Atividades Recreativas", 
-    icone: Mountain, 
+    icone: TreePine, 
     cor: "bg-green-600",
     requisitos: [
       "Fazer uma caminhada de 10km",

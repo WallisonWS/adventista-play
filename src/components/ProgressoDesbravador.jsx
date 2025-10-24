@@ -662,7 +662,6 @@ requisitos: [
 	}
 	
 	
-,
   {
     id: 3,
     titulo: "Pesquisador",

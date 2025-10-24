@@ -179,7 +179,7 @@ export function PerfilPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted py-8 px-4 pb-24">
       <div className="container mx-auto max-w-6xl">
         {/* Header do Perfil */}
         <motion.div
@@ -304,12 +304,12 @@ export function PerfilPage() {
           transition={{ delay: 0.2 }}
         >
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
-              <TabsTrigger value="info">Informações</TabsTrigger>
-              <TabsTrigger value="history">Histórico</TabsTrigger>
-              <TabsTrigger value="bookmarks">Marcadores</TabsTrigger>
-              <TabsTrigger value="notes">Anotações</TabsTrigger>
-              <TabsTrigger value="settings">Configurações</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 gap-1">
+              <TabsTrigger value="info" className="text-xs md:text-sm">Info</TabsTrigger>
+              <TabsTrigger value="history" className="text-xs md:text-sm">Histórico</TabsTrigger>
+              <TabsTrigger value="bookmarks" className="text-xs md:text-sm">Marcados</TabsTrigger>
+              <TabsTrigger value="notes" className="text-xs md:text-sm">Notas</TabsTrigger>
+              <TabsTrigger value="settings" className="text-xs md:text-sm">Config</TabsTrigger>
             </TabsList>
 
             {/* Aba de Informações */}

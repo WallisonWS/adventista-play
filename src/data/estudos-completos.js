@@ -96,9 +96,6 @@ export const estudosCompletos = {
       ]
     }
   ],
-
-  
-
     {
       titulo: 'A Vida de Cristo',
       id: 'vida-cristo',

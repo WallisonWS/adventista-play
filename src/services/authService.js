@@ -172,14 +172,6 @@ export function loginUser(email, senha) {
 // Logout
 export function logoutUser() {
   localStorage.removeItem(STORAGE_KEYS.USER)
-  
-  // Limpar atividades recentes ao fazer logout
-  try {
-    localStorage.removeItem('user_activities')
-  } catch (error) {
-    console.error('Erro ao limpar atividades:', error)
-  }
-  
   return { success: true, message: 'Logout realizado com sucesso!' }
 }
 

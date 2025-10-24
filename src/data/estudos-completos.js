@@ -99,6 +99,25 @@ export const estudosCompletos = {
 
   // ESTUDOS TEMÁTICOS - 30+ estudos
     {
+      titulo: 'A Vida de Cristo',
+      id: 'vida-cristo',
+      categoria: 'Vida de Cristo',
+      descricao: 'Um estudo aprofundado sobre o ministério, os ensinamentos e a obra de Jesus Cristo.',
+      tipo: 'Estudos Temáticos',
+      videoaulas: [
+        { numero: 1, titulo: 'A Divindade de Cristo', videoId: '6-ZeZVog1Ig', duracao: '15 min' },
+        { numero: 2, titulo: 'O Nascimento e a Infância', videoId: 'veDz4rYQDcI', duracao: '12 min' },
+        { numero: 3, titulo: 'O Batismo e a Tentação', videoId: 'PVWHRMIyElA', duracao: '18 min' },
+        { numero: 4, titulo: 'Os Ensinamentos de Jesus', videoId: 'VaLiCMwemYU', duracao: '10 min' },
+        { numero: 5, titulo: 'Os Milagres e a Compaixão', videoId: 'vi6pv5yTJiQ', duracao: '14 min' },
+        { numero: 6, titulo: 'A Morte e a Ressurreição', videoId: 'SgAijm_NXcA', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'O Verbo que se Fez Carne', conteudo: 'A preexistência e encarnação de Jesus.' },
+        { numero: 2, titulo: 'O Exemplo de Serviço', conteudo: 'O ministério de Cristo como modelo.' },
+      ],
+    },
+    {
       titulo: 'Profecias de Daniel',
       id: 'profecias-daniel',
       categoria: 'Profecia',
@@ -275,6 +294,25 @@ export const estudosCompletos = {
 
  // PERSONAGENS BÍBLICOS - 10+ estudos
     {
+      titulo: 'O Apóstolo Paulo',
+      id: 'apostolo-paulo',
+      categoria: 'Líderes',
+      descricao: 'Estudo sobre a vida, conversão e as viagens missionárias do Apóstolo Paulo.',
+      tipo: 'Personagens Bíblicos',
+      videoaulas: [
+        { numero: 1, titulo: 'A Conversão de Saulo', videoId: '5MNAkKKRx4M', duracao: '10 min' },
+        { numero: 2, titulo: 'Cronologia da Vida de Paulo', videoId: 'Y5tHHpgoY7c', duracao: '15 min' },
+        { numero: 3, titulo: 'Paulo no Poder do Espírito', videoId: 'jS16ICNOrLo', duracao: '12 min' },
+        { numero: 4, titulo: 'A Segunda Viagem Missionária', videoId: 'Kw4LSfc0s44', duracao: '18 min' },
+        { numero: 5, titulo: 'As Aflições de um Apóstolo', videoId: 'bqhBoPKFhHE', duracao: '14 min' },
+        { numero: 6, titulo: 'Instruções Finais aos Gálatas', videoId: 'Kw4LSfc0s44', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'De Perseguidor a Apóstolo', conteudo: 'O impacto da conversão de Paulo.' },
+        { numero: 2, titulo: 'O Evangelho da Graça', conteudo: 'A mensagem central das cartas paulinas.' },
+      ],
+    },
+    {
       titulo: 'José do Egito: Lições de Fé e Perdão',
       id: 'jose-egito',
       categoria: 'Patriarcas',
@@ -333,6 +371,25 @@ export const estudosCompletos = {
   ],
 
   // LIVROS DA BÍBLIA - 10+ estudos
+    {
+      titulo: 'Apocalipse: A Revelação de Jesus Cristo',
+      id: 'apocalipse',
+      categoria: 'Profecia',
+      descricao: 'Desvende o último livro da Bíblia e compreenda o plano de Deus para o fim dos tempos.',
+      tipo: 'Livros da Bíblia',
+      videoaulas: [
+        { numero: 1, titulo: 'A Visão do Trono (Cap. 4 e 5)', videoId: '7Xyy6uxZQt8', duracao: '15 min' },
+        { numero: 2, titulo: 'Os Sete Selos (Cap. 6)', videoId: '4RcB48ER5j4', duracao: '12 min' },
+        { numero: 3, titulo: 'As Sete Trombetas', videoId: '7wpDynHx1yM', duracao: '18 min' },
+        { numero: 4, titulo: 'A Mulher e o Dragão (Cap. 12)', videoId: '7Xyy6uxZQt8', duracao: '10 min' },
+        { numero: 5, titulo: 'A Marca da Besta (Cap. 13)', videoId: '4RcB48ER5j4', duracao: '14 min' },
+        { numero: 6, titulo: 'A Nova Terra (Cap. 21 e 22)', videoId: '7wpDynHx1yM', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'O Propósito do Apocalipse', conteudo: 'Entendendo a mensagem central do livro.' },
+        { numero: 2, titulo: 'As Sete Igrejas', conteudo: 'Mensagens para a igreja em todas as eras.' },
+      ],
+    },
     {
       titulo: 'Evangelho de João: A Divindade de Cristo',
       id: 'evangelho-joao',

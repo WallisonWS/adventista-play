@@ -147,17 +147,17 @@ export function BibliaPage() {
     
     try {
       // Tentar buscar da API primeiro
-      // const dados = await bibliaApiService.buscarCapitulo(
-      //   versao, 
-      //   livroSelecionado.id, 
-      //   capituloSelecionado
-      // )
-      // console.log('📖 Dados recebidos da API:', dados)
+      const dados = await bibliaApiService.buscarCapitulo(
+        versao, 
+        livroSelecionado.id, 
+        capituloSelecionado
+      )
+      console.log('📖 Dados recebidos da API:', dados)
       
-      // if (dados && dados.verses) {
-      //   setVersiculos(dados.verses)
-      //   historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
-      // } else {
+      if (dados && dados.verses && dados.verses.length > 0) {
+        setVersiculos(dados.verses)
+        historicoService.salvarLeitura(livroSelecionado.nome, capituloSelecionado)
+      } else {
         // Se API falhar, tentar versões locais
         const chave = `${livroSelecionado.id}-${capituloSelecionado}`
         
@@ -190,6 +190,11 @@ export function BibliaPage() {
           setErro('Não foi possível carregar os versículos')
           setVersiculos([])
         }
+      }
+    } catch (error) {
+      console.error('❌ Erro ao carregar versículos:', error)
+      setErro('Não foi possível carregar os versículos')
+      setVersiculos([])
     } finally {
       setCarregando(false)
     }

@@ -721,7 +721,7 @@ export function DesbravadoresPage() {
                           </div>
                           
                           <h3 className="font-bold text-sm md:text-base group-hover:text-primary transition-colors text-center">{esp.nome}</h3>
-                          <Badge variant="secondary" className="text-xs text-center w-full justify-center">{esp.categoria}</Badge>
+                          <Badge variant="secondary" className="text-xs text-center w-full justify-center whitespace-normal break-words px-2 py-1 min-h-[2rem] flex items-center">{esp.categoria}</Badge>
                           
                           {/* Indicador de clique */}
                           <motion.div

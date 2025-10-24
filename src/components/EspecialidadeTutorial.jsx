@@ -218,7 +218,7 @@ export function EspecialidadeTutorial() {
         </motion.div>
 
         <Tabs value={tabSelecionada} onValueChange={setTabSelecionada} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+          <TabsList className="flex flex-wrap w-full gap-2 h-auto p-2">
             {abas.map(aba => (
               <TabsTrigger key={aba.id} value={aba.id} className="flex items-center space-x-2">
                 <aba.icone className="h-4 w-4" />

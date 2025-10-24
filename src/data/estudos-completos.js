@@ -10,17 +10,51 @@ export const estudosCompletos = {
       id: 'escola-sabatina-adultos',
       titulo: 'Lição da Escola Sabatina',
       descricao: 'Estudo aprofundado da Bíblia, trimestralmente.',
+      trimestre: '4º Trimestre 2025',
+      categoria: 'Escola Sabatina',
+      tipo: 'Escola Sabatina',
       capitulos: 13,
       videoaulas: videoAulasCursos.estudosBiblicos,
-      // ... outros campos
+      licoes: [
+        { numero: 1, titulo: 'O Grande Conflito', texto: 'Apocalipse 12:7-9', conteudo: 'Entenda a origem do mal e o conflito cósmico entre Cristo e Satanás.', aplicacao: 'Reconheça que você está em um conflito espiritual e escolha o lado de Cristo.' },
+        { numero: 2, titulo: 'A Criação', texto: 'Gênesis 1-2', conteudo: 'Deus criou o mundo perfeito em seis dias e descansou no sétimo.', aplicacao: 'Guarde o sábado como memorial da criação.' },
+        { numero: 3, titulo: 'A Queda', texto: 'Gênesis 3', conteudo: 'O pecado entrou no mundo pela desobediência de Adão e Eva.', aplicacao: 'Reconheça sua necessidade de um Salvador.' },
+        { numero: 4, titulo: 'O Plano da Salvação', texto: 'João 3:16', conteudo: 'Deus enviou Seu Filho para salvar a humanidade.', aplicacao: 'Aceite o sacrifício de Jesus por você.' },
+        { numero: 5, titulo: 'A Vida de Cristo', texto: 'Lucas 2:1-20', conteudo: 'Jesus nasceu, viveu sem pecado e morreu por nós.', aplicacao: 'Siga o exemplo de Cristo em sua vida diária.' },
+        { numero: 6, titulo: 'A Ressurreição', texto: 'Lucas 24:1-12', conteudo: 'Cristo ressuscitou ao terceiro dia, vencendo a morte.', aplicacao: 'Viva com esperança da vida eterna.' },
+        { numero: 7, titulo: 'A Segunda Vinda', texto: 'Atos 1:9-11', conteudo: 'Jesus prometeu voltar para buscar Seu povo.', aplicacao: 'Prepare-se para o retorno de Cristo.' },
+        { numero: 8, titulo: 'O Juízo', texto: 'Apocalipse 14:6-7', conteudo: 'Deus julgará toda a humanidade com justiça.', aplicacao: 'Viva com integridade, sabendo que prestará contas a Deus.' },
+        { numero: 9, titulo: 'O Santuário', texto: 'Êxodo 25:8', conteudo: 'O santuário revela o plano da salvação.', aplicacao: 'Compreenda o ministério de Cristo no santuário celestial.' },
+        { numero: 10, titulo: 'A Lei de Deus', texto: 'Êxodo 20:1-17', conteudo: 'Os Dez Mandamentos são a expressão do caráter de Deus.', aplicacao: 'Obedeça aos mandamentos por amor a Deus.' },
+        { numero: 11, titulo: 'O Sábado', texto: 'Êxodo 20:8-11', conteudo: 'O sétimo dia é santo e deve ser guardado.', aplicacao: 'Santifique o sábado como dia de descanso e adoração.' },
+        { numero: 12, titulo: 'A Igreja', texto: 'Efésios 4:11-16', conteudo: 'A igreja é o corpo de Cristo na Terra.', aplicacao: 'Participe ativamente da comunidade da fé.' },
+        { numero: 13, titulo: 'A Nova Terra', texto: 'Apocalipse 21:1-5', conteudo: 'Deus criará novos céus e nova terra onde não haverá mais pecado.', aplicacao: 'Viva com a esperança da eternidade com Deus.' }
+      ]
     },
     {
       id: 'escola-sabatina-jovens',
       titulo: 'Lição da Escola Sabatina Jovem',
       descricao: 'Estudo da Bíblia focado em temas relevantes para a juventude.',
+      trimestre: '4º Trimestre 2025',
+      categoria: 'Escola Sabatina',
+      tipo: 'Escola Sabatina',
       capitulos: 13,
       videoaulas: videoAulasCursos.estudosBiblicos,
-      // ... outros campos
+      licoes: [
+        { numero: 1, titulo: 'Identidade em Cristo', texto: '2 Coríntios 5:17', conteudo: 'Descubra quem você é em Cristo e como isso transforma sua vida.', aplicacao: 'Viva conforme sua nova identidade em Cristo.' },
+        { numero: 2, titulo: 'Relacionamentos Saudáveis', texto: 'Provérbios 27:17', conteudo: 'Aprenda a construir amizades que edificam e honram a Deus.', aplicacao: 'Escolha amigos que te aproximam de Deus.' },
+        { numero: 3, titulo: 'Namoro Cristão', texto: '2 Coríntios 6:14', conteudo: 'Princípios bíblicos para relacionamentos românticos.', aplicacao: 'Busque um relacionamento que glorifique a Deus.' },
+        { numero: 4, titulo: 'Propósito de Vida', texto: 'Jeremias 29:11', conteudo: 'Deus tem um plano especial para sua vida.', aplicacao: 'Busque a vontade de Deus para seu futuro.' },
+        { numero: 5, titulo: 'Redes Sociais e Fé', texto: 'Mateus 5:14-16', conteudo: 'Como ser luz nas plataformas digitais.', aplicacao: 'Use as redes sociais para compartilhar sua fé.' },
+        { numero: 6, titulo: 'Vencendo Tentações', texto: '1 Coríntios 10:13', conteudo: 'Estratégias para vitória sobre o pecado.', aplicacao: 'Fuja das tentações e busque a Deus em oração.' },
+        { numero: 7, titulo: 'Vida de Oração', texto: '1 Tessalonicenses 5:17', conteudo: 'Desenvolva uma vida de oração constante.', aplicacao: 'Ore sem cessar, mantendo comunhão com Deus.' },
+        { numero: 8, titulo: 'Estudo da Bíblia', texto: '2 Timóteo 3:16-17', conteudo: 'A importância de estudar a Palavra de Deus.', aplicacao: 'Dedique tempo diário para ler a Bíblia.' },
+        { numero: 9, titulo: 'Testemunho Jovem', texto: 'Atos 1:8', conteudo: 'Como compartilhar sua fé com seus amigos.', aplicacao: 'Seja uma testemunha de Cristo na escola e trabalho.' },
+        { numero: 10, titulo: 'Talentos e Dons', texto: '1 Pedro 4:10', conteudo: 'Descubra e use seus talentos para Deus.', aplicacao: 'Sirva na igreja usando seus dons.' },
+        { numero: 11, titulo: 'Saúde Integral', texto: '1 Coríntios 6:19-20', conteudo: 'Cuide do seu corpo como templo do Espírito Santo.', aplicacao: 'Faça escolhas saudáveis em alimentação e exercícios.' },
+        { numero: 12, titulo: 'Finanças Pessoais', texto: 'Malaquias 3:10', conteudo: 'Princípios bíblicos de mordomia financeira.', aplicacao: 'Seja fiel nos dízimos e ofertas.' },
+        { numero: 13, titulo: 'Preparando para o Futuro', texto: 'Mateus 25:1-13', conteudo: 'Esteja preparado para a volta de Jesus.', aplicacao: 'Viva cada dia como se Jesus voltasse hoje.' }
+      ]
     },
     {
       id: 'josue',
@@ -238,9 +272,22 @@ export const estudosCompletos = {
       id: 'jornada-espiritual',
       titulo: 'Cresça em sua Jornada Espiritual',
       descricao: 'Aprofunde sua fé e desenvolva hábitos espirituais que o levarão a um relacionamento mais íntimo com Deus.',
-      capitulos: 6,
+      categoria: 'Vida Cristã',
+      tipo: 'Crescimento Espiritual',
+      capitulos: 10,
       videoaulas: videoAulasCursos.vidaCrista,
-      // ... outros campos
+      licoes: [
+        { numero: 1, titulo: 'Fundamentos da Fé', texto: 'Hebreus 11:1', conteudo: 'Compreenda o que é fé e como ela transforma sua vida.', aplicacao: 'Exercite sua fé confiando em Deus em todas as circunstâncias.' },
+        { numero: 2, titulo: 'Vida de Oração', texto: 'Mateus 6:5-15', conteudo: 'Aprenda a orar de forma eficaz e desenvolva uma vida de comunhão com Deus.', aplicacao: 'Estabeleça um horário diário para oração pessoal.' },
+        { numero: 3, titulo: 'Estudo da Palavra', texto: 'Josué 1:8', conteudo: 'Descubra como estudar a Bíblia de forma sistemática e proveitosa.', aplicacao: 'Leia e medite na Bíblia todos os dias.' },
+        { numero: 4, titulo: 'Jejum e Disciplina', texto: 'Mateus 6:16-18', conteudo: 'Entenda o propósito do jejum e outras disciplinas espirituais.', aplicacao: 'Pratique o jejum regularmente para fortalecer sua vida espiritual.' },
+        { numero: 5, titulo: 'Vencendo Tentações', texto: '1 Coríntios 10:13', conteudo: 'Estratégias bíblicas para vitória sobre o pecado.', aplicacao: 'Identifique suas fraquezas e desenvolva um plano de vitória.' },
+        { numero: 6, titulo: 'Frutos do Espírito', texto: 'Gálatas 5:22-23', conteudo: 'Desenvolvendo o caráter de Cristo em sua vida.', aplicacao: 'Permita que o Espírito Santo produza Seus frutos em você.' },
+        { numero: 7, titulo: 'Testemunho Cristão', texto: 'Atos 1:8', conteudo: 'Como compartilhar sua fé de forma natural e eficaz.', aplicacao: 'Compartilhe o evangelho com pelo menos uma pessoa esta semana.' },
+        { numero: 8, titulo: 'Mordomia Cristã', texto: '1 Coríntios 4:2', conteudo: 'Administrando tempo, talentos e recursos para Deus.', aplicacao: 'Avalie como você está usando seus recursos para o Reino de Deus.' },
+        { numero: 9, titulo: 'Relacionamentos Saudáveis', texto: 'João 13:34-35', conteudo: 'Vivendo em harmonia com outros cristãos.', aplicacao: 'Busque reconciliação com alguém com quem você tem conflito.' },
+        { numero: 10, titulo: 'Preparação para o Céu', texto: 'Apocalipse 21:1-4', conteudo: 'Vivendo com perspectiva eterna e esperança.', aplicacao: 'Viva cada dia preparado para o retorno de Jesus.' }
+      ]
     }
   ],
 }

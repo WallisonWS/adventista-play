@@ -44,24 +44,23 @@ const conteudosDestaque = [
   },
   {
     id: 2,
-    titulo: "Filmes Cristãos Completos",
-    descricao: "Coleção de filmes cristãos inspiradores e edificantes",
-    categoria: "filmes",
-    imagem: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=450&fit=crop",
-    duracao: "Vários",
-    tipo: "Filmes",
-    videoUrl: "https://www.youtube.com/embed/videoseries?list=PLjKPq-2UzQLqhxWvXhLqNvXqLqLqLqLqL",
-    playlist: true
+    titulo: "As 5 Marcas da Família Cristã",
+    descricao: "Palestra inspiradora sobre os pilares de uma família cristã",
+    categoria: "programas",
+    imagem: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=450&fit=crop",
+    duracao: "1:01:36",
+    tipo: "Palestra",
+    videoUrl: "https://www.youtube.com/embed/qCb63mHdQkU"
   },
   {
     id: 3,
-    titulo: "Fora de Série",
-    descricao: "Websérie cristã com histórias inspiradoras para jovens",
+    titulo: "Engajados - EP3",
+    descricao: "Série sobre relacionamentos e namoro cristão para jovens",
     categoria: "programas",
     imagem: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&h=450&fit=crop",
-    duracao: "25 min",
+    duracao: "19:56",
     tipo: "Série",
-    videoUrl: "https://www.youtube.com/embed/videoseries?list=PLjKPq-2UzQLqhxWvXhLqNvXqLqLqLqLqL"
+    videoUrl: "https://www.youtube.com/embed/yj7r1Tc8k20"
   },
   {
     id: 4,
@@ -75,43 +74,43 @@ const conteudosDestaque = [
   },
   {
     id: 5,
-    titulo: "Musicais Coreanos",
-    descricao: "Musicais cristãos coreanos legendados",
+    titulo: "Tudo Por Ele - Tema JA 2020",
+    descricao: "Música oficial do Ministério Jovem Adventista 2020",
     categoria: "musica",
     imagem: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&h=450&fit=crop",
-    duracao: "Vários",
-    tipo: "Musical",
-    videoUrl: "https://www.youtube.com/embed/videoseries?list=PLjKPq-2UzQLqhxWvXhLqNvXqLqLqLqLqL"
+    duracao: "4:54",
+    tipo: "Música",
+    videoUrl: "https://www.youtube.com/embed/R3Dv1Dftxn0"
   },
   {
     id: 6,
-    titulo: "Extraordinário",
-    descricao: "Série sobre histórias extraordinárias de fé",
-    categoria: "programas",
+    titulo: "Onde Estiver Seu Coração",
+    descricao: "Filme cristão completo sobre fé e relacionamentos",
+    categoria: "filmes",
     imagem: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=450&fit=crop",
-    duracao: "30 min",
-    tipo: "Série",
-    videoUrl: "https://www.youtube.com/embed/videoseries?list=PLjKPq-2UzQLqhxWvXhLqNvXqLqLqLqLqL"
+    duracao: "48:12",
+    tipo: "Filme",
+    videoUrl: "https://www.youtube.com/embed/videoid_placeholder"
   },
   {
     id: 7,
-    titulo: "Engajados",
-    descricao: "Série sobre relacionamentos e namoro cristão",
+    titulo: "Engajados - EP1",
+    descricao: "Primeira parte da série sobre relacionamentos cristãos",
     categoria: "programas",
     imagem: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=450&fit=crop",
-    duracao: "20 min",
+    duracao: "17:21",
     tipo: "Série",
-    videoUrl: "https://www.youtube.com/embed/videoseries?list=PLjKPq-2UzQLqhxWvXhLqNvXqLqLqLqLqL"
+    videoUrl: "https://www.youtube.com/embed/videoid_ep1"
   },
   {
     id: 8,
-    titulo: "Documentários",
-    descricao: "Documentários sobre fé, ciência e história",
+    titulo: "O Próximo Reino 1",
+    descricao: "Documentário sobre profecia bíblica e história",
     categoria: "documentarios",
     imagem: "https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=800&h=450&fit=crop",
-    duracao: "45 min",
+    duracao: "28:32",
     tipo: "Documentário",
-    videoUrl: "https://www.youtube.com/embed/videoseries?list=PLjKPq-2UzQLqhxWvXhLqNvXqLqLqLqLqL"
+    videoUrl: "https://www.youtube.com/embed/videoid_proximo_reino"
   }
 ]
 

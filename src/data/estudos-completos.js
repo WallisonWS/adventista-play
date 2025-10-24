@@ -256,9 +256,88 @@ export const estudosCompletos = {
     }
   ],
 
-  financas: [],
-  relacionamentos: [],
-  familia: [],
-  vidaCrista: []
+  financas: [
+    {
+      titulo: 'Mordomia Financeira Cristã',
+      id: 'mordomia-financeira',
+      categoria: 'Finanças',
+      descricao: 'Princípios bíblicos de mordomia e gestão financeira para uma vida de contentamento e generosidade.',
+      tipo: 'Finanças',
+      videoaulas: [
+        { numero: 1, titulo: 'O Princípio da Mordomia', videoId: 'VIDEO_ID_1', duracao: '15 min' },
+        { numero: 2, titulo: 'Dízimos e Ofertas', videoId: 'VIDEO_ID_2', duracao: '12 min' },
+        { numero: 3, titulo: 'Como Sair das Dívidas', videoId: 'VIDEO_ID_3', duracao: '18 min' },
+        { numero: 4, titulo: 'Planejamento Financeiro Familiar', videoId: 'VIDEO_ID_4', duracao: '10 min' },
+        { numero: 5, titulo: 'Investindo com Propósito', videoId: 'VIDEO_ID_5', duracao: '14 min' },
+        { numero: 6, titulo: 'O Contentamento', videoId: 'VIDEO_ID_6', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'Tudo é de Deus', conteudo: 'Reconhecendo a soberania de Deus sobre nossos bens.' },
+        { numero: 2, titulo: 'O Dízimo como Teste de Fidelidade', conteudo: 'A importância de devolver a Deus o que Lhe pertence.' },
+      ],
+    }
+  ],
+  relacionamentos: [
+    {
+      titulo: 'Construindo Vínculos Saudáveis',
+      id: 'vinculos-saudaveis',
+      categoria: 'Relacionamentos',
+      descricao: 'Aprenda a estabelecer e manter relacionamentos saudáveis e duradouros, baseados em princípios cristãos.',
+      tipo: 'Relacionamentos',
+      videoaulas: [
+        { numero: 1, titulo: 'A Arte de Ouvir', videoId: 'VIDEO_ID_1', duracao: '15 min' },
+        { numero: 2, titulo: 'Comunicação Não-Violenta', videoId: 'VIDEO_ID_2', duracao: '12 min' },
+        { numero: 3, titulo: 'Perdão e Reconciliação', videoId: 'VIDEO_ID_3', duracao: '18 min' },
+        { numero: 4, titulo: 'Lidando com Conflitos', videoId: 'VIDEO_ID_4', duracao: '10 min' },
+        { numero: 5, titulo: 'O Amor Ágape', videoId: 'VIDEO_ID_5', duracao: '14 min' },
+        { numero: 6, titulo: 'Amizades com Propósito', videoId: 'VIDEO_ID_6', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'O Fundamento do Amor', conteudo: 'O amor de Deus como base de todo relacionamento.' },
+        { numero: 2, titulo: 'O Poder da Empatia', conteudo: 'Colocando-se no lugar do outro.' },
+      ],
+    }
+  ],
+  familia: [
+    {
+      titulo: 'Fortalecendo os Laços Familiares',
+      id: 'fortalecendo-familia',
+      categoria: 'Família',
+      descricao: 'Estratégias e princípios para construir um lar sólido e feliz, seguindo o modelo bíblico.',
+      tipo: 'Família',
+      videoaulas: [
+        { numero: 1, titulo: 'O Propósito do Casamento', videoId: 'VIDEO_ID_1', duracao: '15 min' },
+        { numero: 2, titulo: 'Educação de Filhos com Princípios', videoId: 'VIDEO_ID_2', duracao: '12 min' },
+        { numero: 3, titulo: 'A Comunicação no Lar', videoId: 'VIDEO_ID_3', duracao: '18 min' },
+        { numero: 4, titulo: 'O Culto Familiar', videoId: 'VIDEO_ID_4', duracao: '10 min' },
+        { numero: 5, titulo: 'Gerenciando as Finanças Familiares', videoId: 'VIDEO_ID_5', duracao: '14 min' },
+        { numero: 6, titulo: 'Tempo de Qualidade', videoId: 'VIDEO_ID_6', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'O Plano Original de Deus', conteudo: 'O casamento como instituição divina.' },
+        { numero: 2, titulo: 'A Responsabilidade dos Pais', conteudo: 'Criando filhos no caminho do Senhor.' },
+      ],
+    }
+  ],
+  vidaCrista: [
+    {
+      titulo: 'Cresça em sua Jornada Espiritual',
+      id: 'jornada-espiritual',
+      categoria: 'Vida Cristã',
+      descricao: 'Aprofunde sua fé e desenvolva hábitos espirituais que o levarão a um relacionamento mais íntimo com Deus.',
+      tipo: 'Vida Cristã',
+      videoaulas: [
+        { numero: 1, titulo: 'O Poder da Oração', videoId: 'VIDEO_ID_1', duracao: '15 min' },
+        { numero: 2, titulo: 'Estudo Diário da Bíblia', videoId: 'VIDEO_ID_2', duracao: '12 min' },
+        { numero: 3, titulo: 'Testemunho e Missão', videoId: 'VIDEO_ID_3', duracao: '18 min' },
+        { numero: 4, titulo: 'Como Vencer a Tentação', videoId: 'VIDEO_ID_4', duracao: '10 min' },
+        { numero: 5, titulo: 'O Fruto do Espírito', videoId: 'VIDEO_ID_5', duracao: '14 min' },
+        { numero: 6, titulo: 'A Esperança da Volta de Jesus', videoId: 'VIDEO_ID_6', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'A Disciplina Espiritual', conteudo: 'A importância de hábitos regulares de devoção.' },
+        { numero: 2, titulo: 'O Poder do Espírito Santo', conteudo: 'Vivendo uma vida cheia do Espírito.' },
+      ],
+    }
+  ]
 }
-

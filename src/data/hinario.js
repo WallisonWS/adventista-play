@@ -62,7 +62,7 @@ export const hinos = [
   { numero: 604, titulo: "Em Jesus Amigo Temos", categoria: "Amizade", letra: "Em Jesus amigo temos, que por nós morreu na cruz;\nEm Jesus amigo temos, que nos leva para a luz!\n\nQue amigo, que amigo é Jesus!\nQue amigo, que amigo é Jesus!\nEle nos ama, Ele nos salva,\nQue amigo, que amigo é Jesus!" },
   
   // Hinos dos Desbravadores e Aventureiros
-  { numero: 276, titulo: "Hino dos Desbravadores", categoria: "Desbravadores", letra: "Nós somos os desbravadores, os servos do Rei dos reis..." },
+  { numero: 276, titulo: "Hino dos Desbravadores", categoria: "Desbravadores", letra: "Nós somos os Desbravadores\nOs servos do Rei dos reis\nSempre avante assim marchamos\nFiéis às Suas leis\nDevemos ao mundo anunciar\nAs novas da salvação\nQue Cristo virá em breve\nDar o galardão\n\nNós somos os Desbravadores\nOs servos do Rei dos reis\nSempre avante assim marchamos\nFiéis às Suas leis\nDevemos ao mundo anunciar\nAs novas da salvação\nQue Cristo virá em breve\nDar o galardão" },
   { numero: 277, titulo: "Hino dos Aventureiros", categoria: "Aventureiros", letra: "Aventureiros somos nós, com Cristo vamos caminhar..." },
   
   // Hinos do Novo Hinário Adventista

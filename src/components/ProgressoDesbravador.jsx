@@ -79,116 +79,116 @@ const classesDesbravadores = [
   {
 	    id: 2,
 	    titulo: "Companheiro",
-	    cor: "bg-blue-500",
-	    requisitos: [
-	      {
-	        area: "Descoberta Espiritual",
-	        itens: [
-	          "Ler o livro do Clube do Livro Juvenil",
-	          "Participar de um projeto missionário da igreja",
-	          "Estudar a Bíblia diariamente por 2 semanas",
-	          "Memorizar um Salmo",
-	          "Participar de um culto JA"
-	        ]
-	      },
-	      {
-	        area: "Servindo aos Outros",
-	        itens: [
-	          "Participar de 2 projetos comunitários",
-	          "Ajudar alguém em necessidade",
-	          "Fazer uma boa ação diária por 1 semana"
-	        ]
-	      },
-	      {
-	        area: "Desenvolvendo Amizade",
-	        itens: [
-	          "Conhecer os hinos do clube",
-	          "Participar de uma atividade social",
-	          "Fazer 2 novos amigos"
-	        ]
-	      },
-	      {
-	        area: "Saúde e Aptidão Física",
-	        itens: [
-	          "Completar uma caminhada de 5 km",
-	          "Aprender sobre os 8 remédios naturais",
-	          "Praticar exercícios 3x por semana"
-	        ]
-	      },
-	      {
-	        area: "Organização e Liderança",
-	        itens: [
-	          "Liderar uma atividade do clube",
-	          "Participar do conselho de unidade",
-	          "Ensinar algo para outro desbravador"
-	        ]
-	      },
-	      {
-	        area: "Estudo da Natureza",
-	        itens: [
-	          "Completar 2 especialidades de Natureza",
-	          "Fazer uma coleção de folhas",
-	          "Observar estrelas por uma noite"
-	        ]
-	      }
-	    ]
-	  },
+cor: "bg-blue-500",
+		    requisitos: [
+		      {
+		        area: "Descoberta Espiritual",
+		        itens: [
+		          "Ler o livro do Clube do Livro Juvenil",
+		          "Participar de um projeto missionário da igreja",
+		          "Estudar a Bíblia diariamente por 2 semanas",
+		          "Memorizar um Salmo",
+		          "Participar de um culto JA"
+		        ]
+		      },
+		      {
+		        area: "Servindo aos Outros",
+		        itens: [
+		          "Participar de 2 projetos comunitários",
+		          "Ajudar alguém em necessidade",
+		          "Fazer uma boa ação diária por 1 semana"
+		        ]
+		      },
+		      {
+		        area: "Desenvolvendo Amizade",
+		        itens: [
+		          "Conhecer os hinos do clube",
+		          "Participar de uma atividade social",
+		          "Fazer 2 novos amigos"
+		        ]
+		      },
+		      {
+		        area: "Saúde e Aptidão Física",
+		        itens: [
+		          "Completar uma caminhada de 5 km",
+		          "Aprender sobre os 8 remédios naturais",
+		          "Praticar exercícios 3x por semana"
+		        ]
+		      },
+		      {
+		        area: "Organização e Liderança",
+		        itens: [
+		          "Liderar uma atividade do clube",
+		          "Participar do conselho de unidade",
+		          "Ensinar algo para outro desbravador"
+		        ]
+		      },
+		      {
+		        area: "Estudo da Natureza",
+		        itens: [
+		          "Completar 2 especialidades de Natureza",
+		          "Fazer uma coleção de folhas",
+		          "Observar estrelas por uma noite"
+		        ]
+		      }
+		    ]
+		  },
 	  {
 	    id: 3,
 	    titulo: "Pesquisador",
 	    cor: "bg-green-500",
-	    requisitos: [
-	      {
-	        area: "Descoberta Espiritual",
-	        itens: [
-	          "Ler o livro do Clube do Livro Juvenil",
-	          "Participar de um projeto missionário da igreja",
-	          "Estudar a Bíblia diariamente por 3 semanas",
-	          "Memorizar um capítulo da Bíblia",
-	          "Participar de um acampamento espiritual"
-	        ]
-	      },
-	      {
-	        area: "Servindo aos Outros",
-	        itens: [
-	          "Participar de 3 projetos comunitários",
-	          "Ajudar um idoso ou deficiente",
-	          "Fazer um trabalho voluntário por 5 horas"
-	        ]
-	      },
-	      {
-	        area: "Desenvolvendo Amizade",
-	        itens: [
-	          "Conhecer a história do Clube de Desbravadores",
-	          "Participar de um evento regional",
-	          "Fazer 3 novos amigos"
-	        ]
-	      },
-	      {
-	        area: "Saúde e Aptidão Física",
-	        itens: [
-	          "Completar uma caminhada de 8 km",
-	          "Aprender sobre primeiros socorros básicos",
-	          "Praticar exercícios 4x por semana"
-	        ]
-	      },
-	      {
-	        area: "Organização e Liderança",
-	        itens: [
-	          "Liderar uma unidade em uma atividade",
-	          "Participar do planejamento de um evento",
-	          "Apresentar um relatório para o clube"
-	        ]
-	      },
-	      {
-	        area: "Estudo da Natureza",
-	        itens: [
-	          "Completar 3 especialidades de Natureza",
-	          "Montar um herbário",
-	          "Identificar 10 tipos de pássaros"
-	        ]
-	      }
-	    ]
+requisitos: [
+		      {
+		        area: "Descoberta Espiritual",
+		        itens: [
+		          "Ler o livro do Clube do Livro Juvenil",
+		          "Participar de um projeto missionário da igreja",
+		          "Estudar a Bíblia diariamente por 2 semanas",
+		          "Memorizar um Salmo",
+		          "Participar de um culto JA"
+		        ]
+		      },
+		      {
+		        area: "Servindo aos Outros",
+		        itens: [
+		          "Participar de 2 projetos comunitários",
+		          "Ajudar alguém em necessidade",
+		          "Fazer uma boa ação diária por 1 semana"
+		        ]
+		      },
+		      {
+		        area: "Desenvolvendo Amizade",
+		        itens: [
+		          "Conhecer os hinos do clube",
+		          "Participar de uma atividade social",
+		          "Fazer 2 novos amigos"
+		        ]
+		      },
+		      {
+		        area: "Saúde e Aptidão Física",
+		        itens: [
+		          "Completar uma caminhada de 5 km",
+		          "Aprender sobre os 8 remédios naturais",
+		          "Praticar exercícios 3x por semana"
+		        ]
+		      },
+		      {
+		        area: "Organização e Liderança",
+		        itens: [
+		          "Liderar uma atividade do clube",
+		          "Participar do conselho de unidade",
+		          "Ensinar algo para outro desbravador"
+		        ]
+		      },
+		      {
+		        area: "Estudo da Natureza",
+		        itens: [
+		          "Completar 2 especialidades de Natureza",
+		          "Fazer uma coleção de folhas",
+		          "Observar estrelas por uma noite"
+		        ]
+		      }
+		    ]
 	  },
 	  {
 	    id: 4,
@@ -662,60 +662,7 @@ const classesDesbravadores = [
 	}
 	
 	
-    cor: "bg-blue-500",
-    requisitos: [
-      {
-        area: "Descoberta Espiritual",
-        itens: [
-          "Ler o livro do Clube do Livro Juvenil",
-          "Participar de um projeto missionário da igreja",
-          "Estudar a Bíblia diariamente por 2 semanas",
-          "Memorizar um Salmo",
-          "Participar de um culto JA"
-        ]
-      },
-      {
-        area: "Servindo aos Outros",
-        itens: [
-          "Participar de 2 projetos comunitários",
-          "Ajudar alguém em necessidade",
-          "Fazer uma boa ação diária por 1 semana"
-        ]
-      },
-      {
-        area: "Desenvolvendo Amizade",
-        itens: [
-          "Conhecer os hinos do clube",
-          "Participar de uma atividade social",
-          "Fazer 2 novos amigos"
-        ]
-      },
-      {
-        area: "Saúde e Aptidão Física",
-        itens: [
-          "Completar uma caminhada de 5 km",
-          "Aprender sobre os 8 remédios naturais",
-          "Praticar exercícios 3x por semana"
-        ]
-      },
-      {
-        area: "Organização e Liderança",
-        itens: [
-          "Liderar uma atividade do clube",
-          "Participar do conselho de unidade",
-          "Ensinar algo para outro desbravador"
-        ]
-      },
-      {
-        area: "Estudo da Natureza",
-        itens: [
-          "Completar 2 especialidades de Natureza",
-          "Fazer uma coleção de folhas",
-          "Observar estrelas por uma noite"
-        ]
-      }
-    ]
-  },
+,
   {
     id: 3,
     titulo: "Pesquisador",

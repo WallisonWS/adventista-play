@@ -99,6 +99,25 @@ export const estudosCompletos = {
 
   // ESTUDOS TEMÁTICOS - 30+ estudos
     {
+      titulo: 'Doutrinas Fundamentais',
+      id: 'doutrinas-fundamentais',
+      categoria: 'Doutrina',
+      descricao: 'Estudo das 28 Crenças Fundamentais da Igreja Adventista do Sétimo Dia.',
+      tipo: 'Estudos Temáticos',
+      videoaulas: [
+        { numero: 1, titulo: 'A Bíblia e a Palavra de Deus', videoId: 'N53mrt5K7Tc', duracao: '15 min' },
+        { numero: 2, titulo: 'A Trindade e a Divindade', videoId: 'D8HL7tjwgrQ', duracao: '12 min' },
+        { numero: 3, titulo: 'O Sábado e a Lei de Deus', videoId: 'mCcI3oE-86E', duracao: '18 min' },
+        { numero: 4, titulo: 'A Volta de Cristo', videoId: 'M8fyFcYcZbc', duracao: '10 min' },
+        { numero: 5, titulo: 'O Juízo Investigativo', videoId: '0KGDgbYNuWE', duracao: '14 min' },
+        { numero: 6, titulo: 'O Estado do Homem na Morte', videoId: 'D8HL7tjwgrQ', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'As Escrituras Sagradas', conteudo: 'A Bíblia como única regra de fé e prática.' },
+        { numero: 2, titulo: 'O Deus Trino', conteudo: 'Pai, Filho e Espírito Santo.' },
+      ],
+    },
+    {
       titulo: 'A Vida de Cristo',
       id: 'vida-cristo',
       categoria: 'Vida de Cristo',
@@ -294,6 +313,25 @@ export const estudosCompletos = {
 
  // PERSONAGENS BÍBLICOS - 10+ estudos
     {
+      titulo: 'Mulheres da Bíblia',
+      id: 'mulheres-biblia',
+      categoria: 'Mulheres da Bíblia',
+      descricao: 'Histórias inspiradoras de fé, coragem e liderança de mulheres na Bíblia.',
+      tipo: 'Personagens Bíblicos',
+      videoaulas: [
+        { numero: 1, titulo: 'Miriã: Uma Líder Nata', videoId: 'DIyEwXrELHc', duracao: '10 min' },
+        { numero: 2, titulo: 'Ester: Coragem e Propósito', videoId: 'rDLwnL8ePAc', duracao: '15 min' },
+        { numero: 3, titulo: 'A Mulher de Noé: Lições de Obediência', videoId: 'TtaxuBNCDQY', duracao: '12 min' },
+        { numero: 4, titulo: 'Maria: A Serva do Senhor', videoId: 'BuLOkQdLA70', duracao: '18 min' },
+        { numero: 5, titulo: 'Débora: Juíza e Profetisa', videoId: 'rDLwnL8ePAc', duracao: '14 min' },
+        { numero: 6, titulo: 'Ana: O Poder da Oração', videoId: 'DIyEwXrELHc', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'Liderança Feminina', conteudo: 'O papel das mulheres na história da salvação.' },
+        { numero: 2, titulo: 'Fé em Meio à Adversidade', conteudo: 'Exemplos de perseverança.' },
+      ],
+    },
+    {
       titulo: 'O Apóstolo Paulo',
       id: 'apostolo-paulo',
       categoria: 'Líderes',
@@ -371,6 +409,25 @@ export const estudosCompletos = {
   ],
 
   // LIVROS DA BÍBLIA - 10+ estudos
+    {
+      titulo: 'Gênesis: O Livro das Origens',
+      id: 'genesis',
+      categoria: 'Antigo Testamento',
+      descricao: 'Estudo detalhado do livro de Gênesis, explorando a Criação, a Queda e o início da história da salvação.',
+      tipo: 'Livros da Bíblia',
+      videoaulas: [
+        { numero: 1, titulo: 'A Criação e o Éden (Cap. 1-2)', videoId: 'N3l8IghjBZE', duracao: '15 min' },
+        { numero: 2, titulo: 'A Queda e a Promessa (Cap. 3)', videoId: '1jWBAGGBYGE', duracao: '12 min' },
+        { numero: 3, titulo: 'Noé e o Dilúvio (Cap. 6-9)', videoId: 'BHznFyJLTn0', duracao: '18 min' },
+        { numero: 4, titulo: 'A Torre de Babel (Cap. 11)', videoId: '8Ufbn5ePcj0', duracao: '10 min' },
+        { numero: 5, titulo: 'O Chamado de Abraão (Cap. 12)', videoId: 'N3l8IghjBZE', duracao: '14 min' },
+        { numero: 6, titulo: 'A História de José (Cap. 37-50)', videoId: '1jWBAGGBYGE', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'As Origens', conteudo: 'O relato da Criação e sua importância.' },
+        { numero: 2, titulo: 'As Alianças de Deus', conteudo: 'A aliança com Noé e Abraão.' },
+      ],
+    },
     {
       titulo: 'Apocalipse: A Revelação de Jesus Cristo',
       id: 'apocalipse',

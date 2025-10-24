@@ -98,6 +98,25 @@ export const estudosCompletos = {
   ],
 
   // ESTUDOS TEMÁTICOS - 30+ estudos
+    {
+      titulo: 'Profecias de Daniel',
+      id: 'profecias-daniel',
+      categoria: 'Profecia',
+      descricao: 'Desvende as grandes profecias do livro de Daniel e entenda o plano de Deus para o futuro.',
+      tipo: 'Estudos Temáticos',
+      videoaulas: [
+        { numero: 1, titulo: 'A Estátua de Nabucodonosor (Daniel 2)', videoId: 'MM6tlvKduqc', duracao: '15 min' },
+        { numero: 2, titulo: 'O Mistério das 70 Semanas (Daniel 9)', videoId: 'k9KOw4KzCl4', duracao: '12 min' },
+        { numero: 3, titulo: 'O Leão, o Urso e o Leopardo (Daniel 7)', videoId: '2zKYalQfMvw', duracao: '18 min' },
+        { numero: 4, titulo: 'A Purificação do Santuário (Daniel 8)', videoId: 'BSLgmq7HTZ8', duracao: '10 min' },
+        { numero: 5, titulo: 'O Reino de Deus e a Pedra Cortada', videoId: 'q7XxK2jneOY', duracao: '14 min' },
+        { numero: 6, titulo: 'O Tempo do Fim e a Ressurreição (Daniel 12)', videoId: 'k9KOw4KzCl4', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'Introdução às Profecias', conteudo: 'Visão geral do livro de Daniel.' },
+        { numero: 2, titulo: 'O Sonho do Rei', conteudo: 'Estudo detalhado de Daniel 2.' },
+      ],
+    },
 
   // 2. FINANÇAS
   financas: [
@@ -254,7 +273,26 @@ export const estudosCompletos = {
     }
   ],
 
-  // PERSONAGENS BÍBLICOS - 15 estudos
+ // PERSONAGENS BÍBLICOS - 10+ estudos
+    {
+      titulo: 'José do Egito: Lições de Fé e Perdão',
+      id: 'jose-egito',
+      categoria: 'Patriarcas',
+      descricao: 'Estudo aprofundado da vida de José, o governador que perdoou seus irmãos.',
+      tipo: 'Personagens Bíblicos',
+      videoaulas: [
+        { numero: 1, titulo: 'O Filho Amado e os Sonhos', videoId: 'pjs3nVq_nvU', duracao: '10 min' },
+        { numero: 2, titulo: 'A Traição e a Escravidão', videoId: 'v_Pr-2qFb20', duracao: '15 min' },
+        { numero: 3, titulo: 'Na Casa de Potifar e a Tentação', videoId: 'mIThrblDuig', duracao: '12 min' },
+        { numero: 4, titulo: 'O Prisioneiro e o Intérprete de Sonhos', videoId: 'tRt50KrUwCQ', duracao: '18 min' },
+        { numero: 5, titulo: 'José se Torna Governador', videoId: 'ilQqsMfArz4', duracao: '14 min' },
+        { numero: 6, titulo: 'O Reencontro e o Perdão', videoId: 'pjs3nVq_nvU', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'A Promessa e o Chamado', conteudo: 'O início da jornada de José.' },
+        { numero: 2, titulo: 'Fidelidade na Adversidade', conteudo: 'As provações no Egito.' },
+      ],
+    },
   personagensBiblicos: [
     {
       id: 'abraao',
@@ -294,8 +332,26 @@ export const estudosCompletos = {
     }
   ],
 
-  // LIVROS DA BÍBLIA - 10 estudos
-  livrosBiblia: [
+  // LIVROS DA BÍBLIA - 10+ estudos
+    {
+      titulo: 'Evangelho de João: A Divindade de Cristo',
+      id: 'evangelho-joao',
+      categoria: 'Novo Testamento',
+      descricao: 'Um estudo profundo sobre o Evangelho de João, focado na natureza divina de Jesus.',
+      tipo: 'Livros da Bíblia',
+      videoaulas: [
+        { numero: 1, titulo: 'O Verbo se Fez Carne (João 1)', videoId: 'f_VsqY66eB4', duracao: '15 min' },
+        { numero: 2, titulo: 'O Milagre em Caná (João 2)', videoId: 'K5md0Sqm38g', duracao: '12 min' },
+        { numero: 3, titulo: 'Nicodemos e o Novo Nascimento (João 3)', videoId: 'vfA6H_gnHdU', duracao: '18 min' },
+        { numero: 4, titulo: 'A Mulher Samaritana (João 4)', videoId: 'f_VsqY66eB4', duracao: '10 min' },
+        { numero: 5, titulo: 'O Pão da Vida (João 6)', videoId: 'K5md0Sqm38g', duracao: '14 min' },
+        { numero: 6, titulo: 'Eu Sou o Bom Pastor (João 10)', videoId: 'vfA6H_gnHdU', duracao: '16 min' },
+      ],
+      licoes: [
+        { numero: 1, titulo: 'A Introdução de João', conteudo: 'O prólogo e a importância do livro.' },
+        { numero: 2, titulo: 'Os Sinais de Jesus', conteudo: 'A função dos milagres no Evangelho.' },
+      ],
+    },  livrosBiblia: [
     {
       id: 'romanos',
       titulo: 'Romanos - O Evangelho de Paulo',

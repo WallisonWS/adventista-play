@@ -10,6 +10,14 @@ export const estudosCompletos = {
       descricao: 'Lições sobre conquista, fé e obediência através do livro de Josué',
       categoria: 'Escola Sabatina',
       tipo: 'Escola Sabatina',
+      videoaulas: [
+        {
+          numero: 1,
+          titulo: 'Introdução ao Livro de Josué',
+          videoId: 'yf4SQxDDhOg',
+          duracao: '45:30'
+        }
+      ],
       licoes: [
         { numero: 1, titulo: 'Preparação para a Conquista', texto: 'Josué 1:1-9', conteudo: 'Deus chama Josué para liderar Israel após a morte de Moisés. A promessa divina de estar com ele em cada passo demonstra que Deus nunca abandona Seus servos. Josué recebe três comandos: ser forte, corajoso e meditar na lei. O sucesso vem da obediência à Palavra de Deus.', reflexao: 'Assim como Josué, somos chamados para grandes desafios. A chave do sucesso não está em nossa força, mas em nossa conexão com Deus através de Sua Palavra.', aplicacao: 'Dedique tempo diário para meditar na Palavra de Deus antes de enfrentar os desafios do dia.' },
         { numero: 2, titulo: 'Atravessando o Jordão', texto: 'Josué 3:1-17', conteudo: 'O milagre da travessia do Jordão demonstra o poder de Deus e fortalece a fé do povo. Os sacerdotes deram o primeiro passo de fé antes que as águas se abrissem. Isso ensina que Deus espera nossa obediência antes de manifestar Seu poder.', aplicacao: 'Dê o primeiro passo de fé, mesmo quando o caminho não está claro.' },
@@ -33,6 +41,14 @@ export const estudosCompletos = {
       descricao: 'Explorando as origens da humanidade e as promessas de Deus',
       categoria: 'Escola Sabatina',
       tipo: 'Escola Sabatina',
+      videoaulas: [
+        {
+          numero: 1,
+          titulo: 'A Criação - Gênesis 1 e 2',
+          videoId: '8onykLpP1sA',
+          duracao: '42:15'
+        }
+      ],
       licoes: [
         { numero: 1, titulo: 'A Criação', texto: 'Gênesis 1-2', conteudo: 'Deus cria o universo em seis dias e descansa no sétimo. Cada dia da criação revela o caráter ordenado e amoroso de Deus. O ser humano é criado à imagem de Deus, com dignidade e propósito.', aplicacao: 'Reconheça que você foi criado com propósito divino.' },
         { numero: 2, titulo: 'A Queda', texto: 'Gênesis 3', conteudo: 'O pecado entra no mundo através da desobediência. A serpente questiona a Palavra de Deus, e o casal cede à tentação. As consequências são imediatas e devastadoras.', aplicacao: 'Resista às tentações que questionam a Palavra de Deus.' },

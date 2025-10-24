@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, BookOpen, CheckCircle, Circle, ChevronDown, ChevronUp } from 'lucide-react'
+import { ArrowLeft, BookOpen, CheckCircle, Circle, ChevronDown, ChevronUp, Play } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card'
 import { Button } from './ui/button'
 import { estudosCompletos } from '../data/estudos-completos'
+import { YouTubePlayer, VideoCard } from './YouTubePlayer'
 
 export function DetalheCursoPage() {
   const { categoria, cursoId } = useParams()
   const navigate = useNavigate()
   const [licaoExpandida, setLicaoExpandida] = useState(null)
+  const [videoAtual, setVideoAtual] = useState(null)
   
   // Mapear categoria
   const categoriaMap = {
@@ -95,6 +97,30 @@ export function DetalheCursoPage() {
             </div>
           </CardContent>
         </Card>
+        
+        {/* Videoaulas */}
+        {curso.videoaulas && curso.videoaulas.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+              Videoaulas
+            </h2>
+            <div className="space-y-3">
+              {curso.videoaulas.map((video, index) => (
+                <motion.div
+                  key={video.numero}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <VideoCard
+                    video={video}
+                    onClick={() => setVideoAtual(video)}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
         
         {/* Lista de Lições */}
         <div className="space-y-3">
@@ -201,6 +227,15 @@ export function DetalheCursoPage() {
           )}
         </div>
       </div>
+      
+      {/* Player de Vídeo */}
+      {videoAtual && (
+        <YouTubePlayer
+          videoId={videoAtual.videoId}
+          titulo={videoAtual.titulo}
+          onClose={() => setVideoAtual(null)}
+        />
+      )}
     </div>
   )
 }

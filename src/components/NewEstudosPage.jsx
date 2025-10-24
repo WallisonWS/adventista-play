@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BookOpen, DollarSign, Heart, Users, Star, ChevronRight, Search, Filter, GraduationCap } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card'
 import { Button } from './ui/button'
+import { getProgressStats } from '../services/progressoService'
+import { getCurrentUser } from '../services/authService'
 
 // Componente da Nova Página de Estudos
 export function NewEstudosPage() {
@@ -68,32 +70,90 @@ export function NewEstudosPage() {
   const cursosDestaque = [
     {
       id: 1,
-      titulo: 'Profetas do Antigo Testamento',
+      titulo: 'Apocalipse: Revelações do Fim',
       instrutor: 'Pr. Mark Finley',
       avaliacao: 4.9,
-      estudantes: 12500,
-      horas: 8,
-      aulas: 24,
-      imagem: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=400'
+      estudantes: 15200,
+      horas: 12,
+      aulas: 32,
+      imagem: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=400',
+      descricao: 'Desvende as profecias do Apocalipse e compreenda os eventos finais'
     },
     {
       id: 2,
+      titulo: 'Daniel: Profecias para Hoje',
+      instrutor: 'Pr. Doug Batchelor',
+      avaliacao: 4.9,
+      estudantes: 13800,
+      horas: 10,
+      aulas: 28,
+      imagem: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+      descricao: 'Estudo profundo das profecias de Daniel e sua relevância atual'
+    },
+    {
+      id: 3,
+      titulo: 'Escola Sabatina - O Grande Conflito',
+      instrutor: 'Divisão Sul-Americana',
+      avaliacao: 4.8,
+      estudantes: 25000,
+      horas: 13,
+      aulas: 13,
+      imagem: 'https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=400',
+      descricao: 'Lições trimestrais da Escola Sabatina para adultos'
+    },
+    {
+      id: 4,
       titulo: 'Administração Financeira Cristã',
       instrutor: 'Pr. Alejandro Bullón',
-      avaliacao: 4.8,
-      estudantes: 8900,
+      avaliacao: 4.7,
+      estudantes: 9500,
       horas: 6,
       aulas: 18,
-      imagem: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400'
+      imagem: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400',
+      descricao: 'Princípios bíblicos de mordomia e gestão financeira'
+    },
+    {
+      id: 5,
+      titulo: 'Vida de Cristo',
+      instrutor: 'Pr. Erton Köhler',
+      avaliacao: 4.9,
+      estudantes: 18500,
+      horas: 15,
+      aulas: 40,
+      imagem: 'https://images.unsplash.com/photo-1501612780327-45045538702b?w=400',
+      descricao: 'Estudo completo sobre a vida, ministério e ensinamentos de Jesus'
+    },
+    {
+      id: 6,
+      titulo: 'Saúde e Estilo de Vida',
+      instrutor: 'Dr. Neil Nedley',
+      avaliacao: 4.8,
+      estudantes: 11200,
+      horas: 8,
+      aulas: 24,
+      imagem: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400',
+      descricao: 'Princípios de saúde integral baseados na Bíblia'
     }
   ]
 
-  // Progresso do usuário
-  const progressoUsuario = {
-    concluidos: 12,
-    emAndamento: 3,
-    horasEstudadas: 48
-  }
+  // Progresso do usuário (dinâmico)
+  const [progressoUsuario, setProgressoUsuario] = useState({
+    concluidos: 0,
+    emAndamento: 0,
+    horasEstudadas: 0
+  })
+  const [user, setUser] = useState(null)
+
+  // Carregar progresso do usuário ao montar componente
+  useEffect(() => {
+    const currentUser = getCurrentUser()
+    setUser(currentUser)
+    
+    if (currentUser) {
+      const stats = getProgressStats()
+      setProgressoUsuario(stats)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pb-24">
@@ -232,29 +292,57 @@ export function NewEstudosPage() {
           >
             <Card className="bg-gradient-to-br from-blue-600 to-blue-800 text-white">
               <CardHeader>
-                <div className="flex items-center justify-between mb-4">
-                  <GraduationCap className="h-10 w-10" />
-                  <span className="text-sm opacity-90">Estudos Concluídos</span>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <p className="text-3xl font-bold">{progressoUsuario.concluidos}</p>
-                    <p className="text-sm opacity-90">Concluídos</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-red-300">{progressoUsuario.emAndamento}</p>
-                    <p className="text-sm opacity-90">Em andamento</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-green-300">{progressoUsuario.horasEstudadas}h</p>
-                    <p className="text-sm opacity-90">Estudadas</p>
-                  </div>
-                </div>
-                
-                <Button className="w-full mt-4 bg-white text-blue-600 hover:bg-blue-50">
-                  Ver Meus Cursos
-                </Button>
+                {user ? (
+                  <>
+                    <div className="flex items-center justify-between mb-4">
+                      <GraduationCap className="h-10 w-10" />
+                      <span className="text-sm opacity-90">Estudos Concluídos</span>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-4 text-center">
+                      <div>
+                        <p className="text-3xl font-bold">{progressoUsuario.concluidos}</p>
+                        <p className="text-sm opacity-90">Concluídos</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-red-300">{progressoUsuario.emAndamento}</p>
+                        <p className="text-sm opacity-90">Em andamento</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-green-300">{progressoUsuario.horasEstudadas}h</p>
+                        <p className="text-sm opacity-90">Estudadas</p>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      className="w-full mt-4 bg-white text-blue-600 hover:bg-blue-50"
+                      onClick={() => navigate('/cursos')}
+                    >
+                      Ver Meus Cursos
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between mb-4">
+                      <GraduationCap className="h-10 w-10" />
+                      <span className="text-sm opacity-90">Faça login para acompanhar</span>
+                    </div>
+                    
+                    <div className="text-center py-6">
+                      <p className="text-lg mb-4">🔒 Entre para acompanhar seu progresso</p>
+                      <p className="text-sm opacity-90 mb-6">
+                        Faça login e tenha acesso ao seu histórico de estudos, cursos concluídos e muito mais!
+                      </p>
+                    </div>
+                    
+                    <Button 
+                      className="w-full bg-white text-blue-600 hover:bg-blue-50"
+                      onClick={() => navigate('/login')}
+                    >
+                      Fazer Login
+                    </Button>
+                  </>
+                )}
               </CardHeader>
             </Card>
           </motion.div>

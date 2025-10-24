@@ -57,6 +57,7 @@ import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { EllenWhitePage } from './components/EllenWhitePage.jsx'
 import { Feliz7Play } from './components/Feliz7Play.jsx'
 import { NoticiasDesbravadores } from './components/NoticiasDesbravadores.jsx'
+import { VideoAulaPage } from './components/VideoAulaPage.jsx'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
 import { devocionais } from './data/devocionais.js'
@@ -1052,7 +1053,7 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 text-sm text-primary mb-2">
                         <motion.div
@@ -1101,7 +1102,7 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 mb-2">
                         <motion.div
@@ -1154,7 +1155,7 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 mb-2">
                         <Badge variant="secondary">{estudo.categoria}</Badge>
@@ -1192,7 +1193,7 @@ function EstudosPage() {
                   variants={fadeInUp}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => setSelectedEstudo(estudo)}>
+                  <Card className="hover:shadow-lg transition-all cursor-pointer h-full" onClick={() => estudo.videoaulas && estudo.videoaulas.length > 0 ? navigate(`/videoaula/${estudo.categoria.toLowerCase().replace(' ', '-')}/${estudo.id}`) : setSelectedEstudo(estudo)}>
                     <CardHeader>
                       <div className="flex items-center space-x-2 mb-2">
                         <Badge>{estudo.categoria}</Badge>
@@ -1486,6 +1487,8 @@ function App() {
             <Route path="/conquistas" element={<ConquistasPage />} />
             <Route path="/feliz7play" element={<Feliz7Play />} />
             <Route path="/noticias" element={<NoticiasDesbravadores />} />
+            <Route path="/videoaula/:categoria/:cursoId" element={<VideoAulaPage />} />
+            <Route path="/videoaula/:categoria/:cursoId/:aulaId" element={<VideoAulaPage />} />
           </Routes>
         </AnimatePresence>
         

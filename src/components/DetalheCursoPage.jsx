@@ -5,6 +5,7 @@ import { ArrowLeft, BookOpen, CheckCircle, Circle, ChevronDown, ChevronUp, Play 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card'
 import { Button } from './ui/button'
 import { estudosCompletos } from '../data/estudos-completos'
+import { videoAulasCursos, cursosRelacionados } from '../data/video-aulas-cursos'
 import { YouTubePlayer, VideoCard } from './YouTubePlayer'
 
 export function DetalheCursoPage() {
@@ -25,8 +26,15 @@ export function DetalheCursoPage() {
   const chaveCat = categoriaMap[categoria] || 'escolaSabatina'
   const cursos = estudosCompletos[chaveCat] || []
   const curso = cursos.find(c => c.id === cursoId)
+
+  // Redireciona para a página de videoaula se o curso tiver videoaulas
+  useEffect(() => {
+    if (curso && curso.videoaulas && curso.videoaulas.length > 0) {
+      navigate(`/videoaula/${categoria}/${cursoId}`)
+    }
+  }, [curso, categoria, cursoId, navigate])
   
-  if (!curso) {
+  if (!curso || (curso.videoaulas && curso.videoaulas.length > 0)) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <Card className="max-w-md w-full">

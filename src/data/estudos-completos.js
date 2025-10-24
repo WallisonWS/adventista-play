@@ -1,5 +1,9 @@
 // Estudos Bíblicos Completos - 100+ estudos com centenas de lições
 
+import { videoAulasCursos, cursosRelacionados } from './video-aulas-cursos'
+
+
+
 export const estudosCompletos = {
   // ESCOLA SABATINA - 20 trimestres completos
   escolaSabatina: [
@@ -7,6 +11,7 @@ export const estudosCompletos = {
       id: 'josue',
       titulo: 'Fé no Livro de Josué',
       trimestre: '1º Trimestre 2024',
+      videoaulas: videoAulasCursos.biblicos,
       descricao: 'Lições sobre conquista, fé e obediência através do livro de Josué',
       categoria: 'Escola Sabatina',
       tipo: 'Escola Sabatina',
@@ -38,6 +43,7 @@ export const estudosCompletos = {
       id: 'genesis',
       titulo: 'Gênesis - O Livro dos Começos',
       trimestre: '2º Trimestre 2024',
+      videoaulas: videoAulasCursos.biblicos,
       descricao: 'Explorando as origens da humanidade e as promessas de Deus',
       categoria: 'Escola Sabatina',
       tipo: 'Escola Sabatina',
@@ -69,6 +75,7 @@ export const estudosCompletos = {
       id: 'salmos',
       titulo: 'Salmos - Canções de Fé',
       trimestre: '3º Trimestre 2024',
+      videoaulas: videoAulasCursos.biblicos,
       descricao: 'Adoração, louvor e oração através dos Salmos',
       categoria: 'Escola Sabatina',
       tipo: 'Escola Sabatina',
@@ -91,6 +98,89 @@ export const estudosCompletos = {
   ],
 
   // ESTUDOS TEMÁTICOS - 30+ estudos
+
+  // 2. FINANÇAS
+  financas: [
+    {
+      id: 'mordomia-financeira',
+      titulo: 'Mordomia Financeira Cristã',
+      descricao: 'Princípios bíblicos de mordomia e gestão financeira para uma vida de contentamento e generosidade.',
+      categoria: 'Finanças',
+      tipo: 'Estudos Temáticos',
+      videoaulas: videoAulasCursos.financas,
+      licoes: [
+        { numero: 1, titulo: 'O Dono de Tudo', texto: 'Salmo 24:1', conteudo: 'Reconhecer que Deus é o dono de tudo é o princípio da mordomia. Nossa função é administrar o que Ele nos confiou.', aplicacao: 'Comece a ver seus bens e dinheiro como recursos de Deus.' },
+        { numero: 2, titulo: 'O Dízimo e as Ofertas', texto: 'Malaquias 3:10', conteudo: 'O dízimo é a parte de Deus e a base de Sua bênção. As ofertas são a expressão de nossa gratidão e amor.', aplicacao: 'Seja fiel e alegre nas suas devoluções e ofertas.' },
+        { numero: 3, titulo: 'Planejamento e Orçamento', texto: 'Provérbios 21:5', conteudo: 'Planejar é essencial para evitar dívidas e alcançar a estabilidade financeira. O orçamento é a ferramenta do mordomo fiel.', aplicacao: 'Crie um orçamento mensal e siga-o rigorosamente.' },
+        { numero: 4, titulo: 'A Armadilha da Dívida', texto: 'Provérbios 22:7', conteudo: 'A dívida nos torna escravos. O cristão deve evitar o endividamento desnecessário e buscar a liberdade financeira.', aplicacao: 'Faça um plano para eliminar todas as suas dívidas.' },
+        { numero: 5, titulo: 'Investimento e Generosidade', texto: 'Eclesiastes 11:1-2', conteudo: 'Investir com sabedoria e ser generoso com o próximo são marcas da vida cristã. O dinheiro deve servir a um propósito maior.', aplicacao: 'Busque oportunidades de investimento ético e aumente sua generosidade.' },
+        { numero: 6, titulo: 'Contentamento', texto: 'Filipenses 4:11', conteudo: 'O contentamento é a chave para a paz financeira. A felicidade não está no que temos, mas em quem temos.', aplicacao: 'Pratique a gratidão pelo que você já possui.' },
+      ]
+    }
+  ],
+
+  // 3. RELACIONAMENTOS
+  relacionamentos: [
+    {
+      id: 'relacionamentos-saudaveis',
+      titulo: 'Relacionamentos Saudáveis',
+      descricao: 'Construa vínculos saudáveis baseados em princípios bíblicos, focando em amizade, namoro e casamento.',
+      categoria: 'Relacionamentos',
+      tipo: 'Estudos Temáticos',
+      videoaulas: videoAulasCursos.relacionamentos,
+      licoes: [
+        { numero: 1, titulo: 'O Amor Ágape', texto: '1 Coríntios 13', conteudo: 'O amor cristão é a base de todo relacionamento saudável. É um amor que se doa e busca o bem do outro.', aplicacao: 'Pratique o amor ágape em suas interações diárias.' },
+        { numero: 2, titulo: 'Amizades com Propósito', texto: 'Provérbios 17:17', conteudo: 'Amigos são essenciais para a jornada. Escolha amigos que o aproximem de Deus e de Seus propósitos.', aplicacao: 'Invista tempo em amizades que o edificam espiritualmente.' },
+        { numero: 3, titulo: 'Namoro Cristão', texto: '2 Coríntios 6:14', conteudo: 'O namoro deve ser um período de conhecimento mútuo, pureza e alinhamento de propósitos para o casamento.', aplicacao: 'Estabeleça limites claros e honre a Deus no seu namoro.' },
+        { numero: 4, titulo: 'Comunicação no Casamento', texto: 'Efésios 4:29', conteudo: 'A comunicação eficaz é o oxigênio do casamento. Fale a verdade em amor e evite palavras destrutivas.', aplicacao: 'Dedique tempo para ouvir e falar com seu cônjuge diariamente.' },
+        { numero: 5, titulo: 'Perdão e Reconciliação', texto: 'Colossenses 3:13', conteudo: 'O perdão é a ponte para a reconciliação. Relacionamentos saudáveis são construídos sobre a capacidade de perdoar.', aplicacao: 'Libere o perdão e busque a reconciliação ativamente.' },
+        { numero: 6, titulo: 'Lidando com Conflitos', texto: 'Tiago 1:19-20', conteudo: 'Conflitos são inevitáveis, mas a forma como lidamos com eles define a saúde do relacionamento. Busque a paz e a justiça.', aplicacao: 'Em momentos de conflito, seja rápido para ouvir e lento para falar.' },
+      ]
+    }
+  ],
+
+  // 4. FAMÍLIA
+  familia: [
+    {
+      id: 'fortalecendo-lacos-familiares',
+      titulo: 'Fortalecendo os Laços Familiares',
+      descricao: 'Princípios e práticas para construir uma família forte, unida e centrada em Cristo.',
+      categoria: 'Família',
+      tipo: 'Estudos Temáticos',
+      videoaulas: videoAulasCursos.familia,
+      licoes: [
+        { numero: 1, titulo: 'O Propósito da Família', texto: 'Gênesis 1:27-28', conteudo: 'A família é uma instituição divina com o propósito de refletir o amor de Deus e multiplicar Sua imagem na terra.', aplicacao: 'Defina o propósito de sua família baseado nos princípios de Deus.' },
+        { numero: 2, titulo: 'Adoração em Família', texto: 'Deuteronômio 6:6-7', conteudo: 'A adoração em família é essencial para transmitir a fé às novas gerações. Crie rituais espirituais em casa.', aplicacao: 'Estabeleça um horário para o culto familiar diário.' },
+        { numero: 3, titulo: 'Criação de Filhos', texto: 'Provérbios 22:6', conteudo: 'Educar os filhos no caminho do Senhor exige paciência, amor e disciplina. Seja o exemplo que você deseja que seus filhos sigam.', aplicacao: 'Seja intencional na educação espiritual de seus filhos.' },
+        { numero: 4, titulo: 'O Papel do Marido e da Esposa', texto: 'Efésios 5:22-33', conteudo: 'O casamento é uma metáfora do relacionamento de Cristo com a Igreja. O marido ama, a esposa respeita.', aplicacao: 'Cumpra seu papel no casamento com amor e dedicação.' },
+        { numero: 5, titulo: 'Lidando com Crises Familiares', texto: 'Salmo 46:1', conteudo: 'Toda família enfrenta crises. A fé em Deus é o refúgio seguro em meio às tempestades.', aplicacao: 'Busque a Deus em oração durante as crises familiares.' },
+        { numero: 6, titulo: 'O Legado da Família', texto: '3 João 1:4', conteudo: 'O maior legado que podemos deixar é uma herança de fé e um bom testemunho para as futuras gerações.', aplicacao: 'Viva de forma que seu legado honre a Deus.' },
+      ]
+    }
+  ],
+
+  // 5. VIDA CRISTÃ
+  vidaCrista: [
+    {
+      id: 'jornada-espiritual',
+      titulo: 'Crescimento na Jornada Espiritual',
+      descricao: 'Aprofunde sua fé, desenvolva hábitos espirituais e viva uma vida que agrada a Deus.',
+      categoria: 'Vida Cristã',
+      tipo: 'Estudos Temáticos',
+      videoaulas: videoAulasCursos.vidaCrista,
+      licoes: [
+        { numero: 1, titulo: 'O Devocional Diário', texto: 'Salmo 1:2', conteudo: 'O devocional é o tempo de comunhão íntima com Deus através da oração e do estudo da Bíblia. É o alimento da alma.', aplicacao: 'Comprometa-se com um devocional diário e consistente.' },
+        { numero: 2, titulo: 'A Vida de Oração', texto: '1 Tessalonicenses 5:17', conteudo: 'A oração é a respiração da alma. Deve ser um diálogo constante, não apenas um monólogo em momentos de necessidade.', aplicacao: 'Transforme sua vida em uma oração contínua.' },
+        { numero: 3, titulo: 'O Poder do Testemunho', texto: 'Atos 1:8', conteudo: 'Somos chamados a ser testemunhas de Cristo. Nosso estilo de vida e nossas palavras devem apontar para Ele.', aplicacao: 'Compartilhe sua fé com naturalidade e amor.' },
+        { numero: 4, titulo: 'Lidando com a Tentação', texto: 'Tiago 1:13-15', conteudo: 'A tentação é uma realidade, mas Deus provê o escape. A vigilância e a Palavra de Deus são nossas defesas.', aplicacao: 'Identifique seus pontos fracos e prepare-se para as tentações.' },
+        { numero: 5, titulo: 'O Fruto do Espírito', texto: 'Gálatas 5:22-23', conteudo: 'O crescimento espiritual é evidenciado pelo desenvolvimento do caráter de Cristo em nós, o Fruto do Espírito.', aplicacao: 'Peça ao Espírito Santo para produzir Seu fruto em sua vida.' },
+        { numero: 6, titulo: 'Serviço e Missão', texto: 'Mateus 20:28', conteudo: 'O cristão é chamado para servir, seguindo o exemplo de Jesus. O serviço é a expressão prática da fé.', aplicacao: 'Encontre uma forma de servir em sua igreja e comunidade.' },
+      ]
+    }
+  ],
+
+  // ... outras categorias
+
   estudosTematicos: [
     {
       id: 'profecias-daniel',

@@ -65,6 +65,8 @@ import { ConnectionStatus } from './components/ConnectionStatus.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
+import { CategoriaEstudosPage } from './components/CategoriaEstudosPage.jsx'
+import { DetalheCursoPage } from './components/DetalheCursoPage.jsx'
 import { useIsMobile } from './hooks/useIsMobile.js'
 import { loginUser, registerUser, logoutUser, getCurrentUser } from './services/authService.js'
 // Importar dados
@@ -1550,6 +1552,8 @@ function AppContent() {
             <Route path="/biblia" element={<BibliaPage />} />
             <Route path="/biblia/:livro/:capitulo" element={<BibliaPage />} />
             <Route path="/estudos" element={isMobile ? <NewEstudosPage /> : <EstudosPage />} />
+            <Route path="/estudos/:categoria" element={<CategoriaEstudosPage />} />
+            <Route path="/estudos/:categoria/:cursoId" element={<DetalheCursoPage />} />
             <Route path="/escola-sabatina" element={<EscolaSabatinaCompleta />} />
             <Route path="/ellen-white" element={<LivrosEllenWhite />} />
             <Route path="/dicionario" element={<DicionarioBiblico />} />

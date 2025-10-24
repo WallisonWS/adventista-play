@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BookOpen, DollarSign, Heart, Users, Star, ChevronRight, Search, Filter, GraduationCap } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card'
@@ -6,6 +7,7 @@ import { Button } from './ui/button'
 
 // Componente da Nova Página de Estudos
 export function NewEstudosPage() {
+  const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
 
   // Categorias de estudos com cores e ícones
@@ -128,7 +130,10 @@ export function NewEstudosPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className={`hover:shadow-xl transition-all duration-300 overflow-hidden ${categoria.corFundo}`}>
+                <Card 
+                  className={`hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer ${categoria.corFundo}`}
+                  onClick={() => navigate(categoria.rota)}
+                >
                   <div className="flex items-center">
                     {/* Ícone com gradiente */}
                     <div className={`w-32 h-32 flex items-center justify-center bg-gradient-to-br ${categoria.cor}`}>

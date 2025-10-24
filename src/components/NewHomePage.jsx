@@ -1,12 +1,21 @@
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Heart, BookText, ChevronRight, Volume2, Music, GraduationCap, Gift } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card'
 import { Button } from './ui/button'
 import { BottomNav } from './BottomNav'
+import { getActivities, getRelativeTime } from '../services/activityTracker'
 
 // Componente da Nova Página Inicial
 export function NewHomePage({ user }) {
+  const [activities, setActivities] = useState([])
+  
+  // Carregar atividades ao montar o componente
+  useEffect(() => {
+    const loadedActivities = getActivities()
+    setActivities(loadedActivities)
+  }, [])
+  
   // Função para obter saudação baseada no horário
   const getSaudacao = () => {
     const hora = new Date().getHours()
@@ -218,39 +227,37 @@ export function NewHomePage({ user }) {
       <section className="px-4 pb-6">
         <h2 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">Atividade Recente</h2>
         
-        <div className="space-y-3">
-          {/* Devocional lido hoje */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.7 }}
-          >
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-md">
-              <CardHeader className="p-4">
-                <CardTitle className="text-sm font-semibold text-gray-900 dark:text-white">Devocional lido hoje</CardTitle>
-                <CardDescription className="text-xs mt-1">
-                  "Confiança em Tempos Difíceis" - há 2 horas
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </motion.div>
-
-          {/* Leitura da Bíblia */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 }}
-          >
-            <Card className="bg-white dark:bg-gray-800 border-0 shadow-md">
-              <CardHeader className="p-4">
-                <CardTitle className="text-sm font-semibold text-gray-900 dark:text-white">Leitura da Bíblia</CardTitle>
-                <CardDescription className="text-xs mt-1">
-                  Salmos 23 - ontem às 19:30
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </motion.div>
-        </div>
+        {activities.length > 0 ? (
+          <div className="space-y-3">
+            {activities.map((activity, index) => (
+              <motion.div
+                key={activity.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 * index }}
+              >
+                <Card className="bg-white dark:bg-gray-800 border-0 shadow-md">
+                  <CardHeader className="p-4">
+                    <CardTitle className="text-sm font-semibold text-gray-900 dark:text-white">
+                      {activity.title}
+                    </CardTitle>
+                    <CardDescription className="text-xs mt-1">
+                      {activity.description} - {getRelativeTime(activity.timestamp)}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <Card className="bg-white dark:bg-gray-800 border-0 shadow-md">
+            <CardHeader className="p-4">
+              <CardDescription className="text-sm text-center text-gray-500 dark:text-gray-400">
+                Nenhuma atividade recente. Comece explorando o aplicativo! 🚀
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        )}
       </section>
 
       {/* Bottom Navigation */}

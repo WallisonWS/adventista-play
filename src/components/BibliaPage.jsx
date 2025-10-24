@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { addActivity, ActivityType } from '../services/activityTracker'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
@@ -137,6 +138,14 @@ export function BibliaPage() {
   useEffect(() => {
     if (livroSelecionado && capituloSelecionado) {
       carregarVersiculos()
+      
+      // Registrar atividade de leitura da Bíblia
+      addActivity(
+        ActivityType.BIBLIA,
+        'Leitura da Bíblia',
+        `${livroSelecionado.nome} ${capituloSelecionado}`,
+        { livro: livroSelecionado.id, capitulo: capituloSelecionado }
+      )
     }
   }, [livroSelecionado, capituloSelecionado, versao])
 

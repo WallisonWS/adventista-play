@@ -77,291 +77,291 @@ const classesDesbravadores = [
     ]
   },
   {
-	    id: 2,
-	    titulo: "Companheiro",
-cor: "bg-blue-500",
-		    requisitos: [
-		      {
-		        area: "Descoberta Espiritual",
-		        itens: [
-		          "Ler o livro do Clube do Livro Juvenil",
-		          "Participar de um projeto missionário da igreja",
-		          "Estudar a Bíblia diariamente por 2 semanas",
-		          "Memorizar um Salmo",
-		          "Participar de um culto JA"
-		        ]
-		      },
-		      {
-		        area: "Servindo aos Outros",
-		        itens: [
-		          "Participar de 2 projetos comunitários",
-		          "Ajudar alguém em necessidade",
-		          "Fazer uma boa ação diária por 1 semana"
-		        ]
-		      },
-		      {
-		        area: "Desenvolvendo Amizade",
-		        itens: [
-		          "Conhecer os hinos do clube",
-		          "Participar de uma atividade social",
-		          "Fazer 2 novos amigos"
-		        ]
-		      },
-		      {
-		        area: "Saúde e Aptidão Física",
-		        itens: [
-		          "Completar uma caminhada de 5 km",
-		          "Aprender sobre os 8 remédios naturais",
-		          "Praticar exercícios 3x por semana"
-		        ]
-		      },
-		      {
-		        area: "Organização e Liderança",
-		        itens: [
-		          "Liderar uma atividade do clube",
-		          "Participar do conselho de unidade",
-		          "Ensinar algo para outro desbravador"
-		        ]
-		      },
-		      {
-		        area: "Estudo da Natureza",
-		        itens: [
-		          "Completar 2 especialidades de Natureza",
-		          "Fazer uma coleção de folhas",
-		          "Observar estrelas por uma noite"
-		        ]
-		      }
-		    ]
-		  },
-	  {
-	    id: 3,
-	    titulo: "Pesquisador",
-	    cor: "bg-green-500",
-requisitos: [
-		      {
-		        area: "Descoberta Espiritual",
-		        itens: [
-		          "Ler o livro do Clube do Livro Juvenil",
-		          "Participar de um projeto missionário da igreja",
-		          "Estudar a Bíblia diariamente por 2 semanas",
-		          "Memorizar um Salmo",
-		          "Participar de um culto JA"
-		        ]
-		      },
-		      {
-		        area: "Servindo aos Outros",
-		        itens: [
-		          "Participar de 2 projetos comunitários",
-		          "Ajudar alguém em necessidade",
-		          "Fazer uma boa ação diária por 1 semana"
-		        ]
-		      },
-		      {
-		        area: "Desenvolvendo Amizade",
-		        itens: [
-		          "Conhecer os hinos do clube",
-		          "Participar de uma atividade social",
-		          "Fazer 2 novos amigos"
-		        ]
-		      },
-		      {
-		        area: "Saúde e Aptidão Física",
-		        itens: [
-		          "Completar uma caminhada de 5 km",
-		          "Aprender sobre os 8 remédios naturais",
-		          "Praticar exercícios 3x por semana"
-		        ]
-		      },
-		      {
-		        area: "Organização e Liderança",
-		        itens: [
-		          "Liderar uma atividade do clube",
-		          "Participar do conselho de unidade",
-		          "Ensinar algo para outro desbravador"
-		        ]
-		      },
-		      {
-		        area: "Estudo da Natureza",
-		        itens: [
-		          "Completar 2 especialidades de Natureza",
-		          "Fazer uma coleção de folhas",
-		          "Observar estrelas por uma noite"
-		        ]
-		      }
-		    ]
-	  },
-	  {
-	    id: 4,
-	    titulo: "Pioneiro",
-	    cor: "bg-yellow-500",
-	    requisitos: [
-	      {
-	        area: "Descoberta Espiritual",
-	        itens: [
-	          "Ler o livro do Clube do Livro Juvenil",
-	          "Participar de um projeto missionário da igreja",
-	          "Estudar a Bíblia diariamente por 4 semanas",
-	          "Fazer um estudo bíblico com um amigo",
-	          "Participar de uma semana de oração"
-	        ]
-	      },
-	      {
-	        area: "Servindo aos Outros",
-	        itens: [
-	          "Participar de 4 projetos comunitários",
-	          "Ajudar um necessitado por 10 horas",
-	          "Doar sangue ou participar de campanha"
-	        ]
-	      },
-	      {
-	        area: "Desenvolvendo Amizade",
-	        itens: [
-	          "Conhecer a história do uniforme dos Desbravadores",
-	          "Participar de um evento de união",
-	          "Fazer 4 novos amigos"
-	        ]
-	      },
-	      {
-	        area: "Saúde e Aptidão Física",
-	        itens: [
-	          "Completar uma caminhada de 10 km",
-	          "Aprender sobre nutrição avançada",
-	          "Praticar exercícios 5x por semana"
-	        ]
-	      },
-	      {
-	        area: "Organização e Liderança",
-	        itens: [
-	          "Liderar uma seção de uma reunião",
-	          "Participar do planejamento de um acampamento",
-	          "Mentorear um desbravador mais novo"
-	        ]
-	      },
-	      {
-	        area: "Estudo da Natureza",
-	        itens: [
-	          "Completar 4 especialidades de Natureza",
-	          "Fazer um álbum de fotos de natureza",
-	          "Identificar 10 tipos de árvores"
-	        ]
-	      }
-	    ]
-	  },
-	  {
-	    id: 5,
-	    titulo: "Excursionista",
-	    cor: "bg-purple-500",
-	    requisitos: [
-	      {
-	        area: "Descoberta Espiritual",
-	        itens: [
-	          "Ler o livro do Clube do Livro Juvenil",
-	          "Participar de um projeto missionário da igreja",
-	          "Estudar a Bíblia diariamente por 5 semanas",
-	          "Preparar e apresentar um estudo bíblico",
-	          "Participar de um congresso de jovens"
-	        ]
-	      },
-	      {
-	        area: "Servindo aos Outros",
-	        itens: [
-	          "Participar de 5 projetos comunitários",
-	          "Liderar um projeto de serviço",
-	          "Fazer um trabalho voluntário por 15 horas"
-	        ]
-	      },
-	      {
-	        area: "Desenvolvendo Amizade",
-	        itens: [
-	          "Conhecer a história do lenço dos Desbravadores",
-	          "Participar de um evento internacional",
-	          "Fazer 5 novos amigos"
-	        ]
-	      },
-	      {
-	        area: "Saúde e Aptidão Física",
-	        itens: [
-	          "Completar uma caminhada de 15 km",
-	          "Aprender sobre resgate aquático",
-	          "Praticar exercícios 6x por semana"
-	        ]
-	      },
-	      {
-	        area: "Organização e Liderança",
-	        itens: [
-	          "Liderar uma reunião completa",
-	          "Participar do planejamento de um evento regional",
-	          "Organizar uma atividade para a unidade"
-	        ]
-	      },
-	      {
-	        area: "Estudo da Natureza",
-	        itens: [
-	          "Completar 5 especialidades de Natureza",
-	          "Fazer um diário de campo",
-	          "Identificar 10 tipos de insetos"
-	        ]
-	      }
-	    ]
-	  },
-	  {
-	    id: 6,
-	    titulo: "Guia",
-	    cor: "bg-indigo-500",
-	    requisitos: [
-	      {
-	        area: "Descoberta Espiritual",
-	        itens: [
-	          "Ler o livro do Clube do Livro Juvenil",
-	          "Participar de um projeto missionário da igreja",
-	          "Estudar a Bíblia diariamente por 6 semanas",
-	          "Liderar um estudo bíblico em grupo",
-	          "Participar de um retiro espiritual"
-	        ]
-	      },
-	      {
-	        area: "Servindo aos Outros",
-	        itens: [
-	          "Participar de 6 projetos comunitários",
-	          "Liderar 2 projetos de serviço",
-	          "Fazer um trabalho voluntário por 20 horas"
-	        ]
-	      },
-	      {
-	        area: "Desenvolvendo Amizade",
-	        itens: [
-	          "Conhecer a história da bandeira dos Desbravadores",
-	          "Participar de um evento de divisão",
-	          "Fazer 6 novos amigos"
-	        ]
-	      },
-	      {
-	        area: "Saúde e Aptidão Física",
-	        itens: [
-	          "Completar uma caminhada de 20 km",
-	          "Aprender sobre sobrevivência na selva",
-	          "Manter um plano de exercícios por 3 meses"
-	        ]
-	      },
-	      {
-	        area: "Organização e Liderança",
-	        itens: [
-	          "Liderar a diretoria do clube em uma atividade",
-	          "Participar do planejamento de um evento de união",
-	          "Treinar um desbravador para uma classe"
-	        ]
-	      },
-	      {
-	        area: "Estudo da Natureza",
-	        itens: [
-	          "Completar 6 especialidades de Natureza",
-	          "Fazer um projeto de conservação",
-	          "Identificar 10 tipos de rochas"
-	        ]
-	      }
-	    ]
-	  }
-	]
+    id: 2,
+    titulo: "Companheiro",
+    cor: "bg-blue-500",
+    requisitos: [
+      {
+        area: "Descoberta Espiritual",
+        itens: [
+          "Ler o livro do Clube do Livro Juvenil",
+          "Participar de um projeto missionário da igreja",
+          "Estudar a Bíblia diariamente por 2 semanas",
+          "Memorizar um Salmo",
+          "Participar de um culto JA"
+        ]
+      },
+      {
+        area: "Servindo aos Outros",
+        itens: [
+          "Participar de 2 projetos comunitários",
+          "Ajudar alguém em necessidade",
+          "Fazer uma boa ação diária por 1 semana"
+        ]
+      },
+      {
+        area: "Desenvolvendo Amizade",
+        itens: [
+          "Conhecer os hinos do clube",
+          "Participar de uma atividade social",
+          "Fazer 2 novos amigos"
+        ]
+      },
+      {
+        area: "Saúde e Aptidão Física",
+        itens: [
+          "Completar uma caminhada de 5 km",
+          "Aprender sobre os 8 remédios naturais",
+          "Praticar exercícios 3x por semana"
+        ]
+      },
+      {
+        area: "Organização e Liderança",
+        itens: [
+          "Liderar uma atividade do clube",
+          "Participar do conselho de unidade",
+          "Ensinar algo para outro desbravador"
+        ]
+      },
+      {
+        area: "Estudo da Natureza",
+        itens: [
+          "Completar 2 especialidades de Natureza",
+          "Fazer uma coleção de folhas",
+          "Observar estrelas por uma noite"
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    titulo: "Pesquisador",
+    cor: "bg-green-500",
+    requisitos: [
+      {
+        area: "Descoberta Espiritual",
+        itens: [
+          "Ler o livro do Clube do Livro Juvenil",
+          "Participar de um projeto missionário da igreja",
+          "Estudar a Bíblia diariamente por 3 semanas",
+          "Memorizar um capítulo da Bíblia",
+          "Participar de um acampamento espiritual"
+        ]
+      },
+      {
+        area: "Servindo aos Outros",
+        itens: [
+          "Participar de 3 projetos comunitários",
+          "Ajudar um idoso ou deficiente",
+          "Fazer um trabalho voluntário por 5 horas"
+        ]
+      },
+      {
+        area: "Desenvolvendo Amizade",
+        itens: [
+          "Conhecer a história do Clube de Desbravadores",
+          "Participar de um evento regional",
+          "Fazer 3 novos amigos"
+        ]
+      },
+      {
+        area: "Saúde e Aptidão Física",
+        itens: [
+          "Completar uma caminhada de 8 km",
+          "Aprender sobre primeiros socorros básicos",
+          "Praticar exercícios 4x por semana"
+        ]
+      },
+      {
+        area: "Organização e Liderança",
+        itens: [
+          "Liderar uma unidade em uma atividade",
+          "Participar do planejamento de um evento",
+          "Apresentar um relatório para o clube"
+        ]
+      },
+      {
+        area: "Estudo da Natureza",
+        itens: [
+          "Completar 3 especialidades de Natureza",
+          "Montar um herbário",
+          "Identificar 10 tipos de pássaros"
+        ]
+      }
+    ]
+  },
+  {
+    id: 4,
+    titulo: "Pioneiro",
+    cor: "bg-yellow-500",
+    requisitos: [
+      {
+        area: "Descoberta Espiritual",
+        itens: [
+          "Ler o livro do Clube do Livro Juvenil",
+          "Participar de um projeto missionário da igreja",
+          "Estudar a Bíblia diariamente por 4 semanas",
+          "Fazer um estudo bíblico com um amigo",
+          "Participar de uma semana de oração"
+        ]
+      },
+      {
+        area: "Servindo aos Outros",
+        itens: [
+          "Participar de 4 projetos comunitários",
+          "Ajudar um necessitado por 10 horas",
+          "Doar sangue ou participar de campanha"
+        ]
+      },
+      {
+        area: "Desenvolvendo Amizade",
+        itens: [
+          "Conhecer a história do uniforme dos Desbravadores",
+          "Participar de um evento de união",
+          "Fazer 4 novos amigos"
+        ]
+      },
+      {
+        area: "Saúde e Aptidão Física",
+        itens: [
+          "Completar uma caminhada de 10 km",
+          "Aprender sobre nutrição avançada",
+          "Praticar exercícios 5x por semana"
+        ]
+      },
+      {
+        area: "Organização e Liderança",
+        itens: [
+          "Liderar uma seção de uma reunião",
+          "Participar do planejamento de um acampamento",
+          "Mentorear um desbravador mais novo"
+        ]
+      },
+      {
+        area: "Estudo da Natureza",
+        itens: [
+          "Completar 4 especialidades de Natureza",
+          "Fazer um álbum de fotos de natureza",
+          "Identificar 10 tipos de árvores"
+        ]
+      }
+    ]
+  },
+  {
+    id: 5,
+    titulo: "Excursionista",
+    cor: "bg-purple-500",
+    requisitos: [
+      {
+        area: "Descoberta Espiritual",
+        itens: [
+          "Ler o livro do Clube do Livro Juvenil",
+          "Participar de um projeto missionário da igreja",
+          "Estudar a Bíblia diariamente por 5 semanas",
+          "Preparar e apresentar um estudo bíblico",
+          "Participar de um congresso de jovens"
+        ]
+      },
+      {
+        area: "Servindo aos Outros",
+        itens: [
+          "Participar de 5 projetos comunitários",
+          "Liderar um projeto de serviço",
+          "Fazer um trabalho voluntário por 15 horas"
+        ]
+      },
+      {
+        area: "Desenvolvendo Amizade",
+        itens: [
+          "Conhecer a história do lenço dos Desbravadores",
+          "Participar de um evento internacional",
+          "Fazer 5 novos amigos"
+        ]
+      },
+      {
+        area: "Saúde e Aptidão Física",
+        itens: [
+          "Completar uma caminhada de 15 km",
+          "Aprender sobre resgate aquático",
+          "Praticar exercícios 6x por semana"
+        ]
+      },
+      {
+        area: "Organização e Liderança",
+        itens: [
+          "Liderar uma reunião completa",
+          "Participar do planejamento de um evento regional",
+          "Organizar uma atividade para a unidade"
+        ]
+      },
+      {
+        area: "Estudo da Natureza",
+        itens: [
+          "Completar 5 especialidades de Natureza",
+          "Fazer um diário de campo",
+          "Identificar 10 tipos de insetos"
+        ]
+      }
+    ]
+  },
+  {
+    id: 6,
+    titulo: "Guia",
+    cor: "bg-indigo-500",
+    requisitos: [
+      {
+        area: "Descoberta Espiritual",
+        itens: [
+          "Ler o livro do Clube do Livro Juvenil",
+          "Participar de um projeto missionário da igreja",
+          "Estudar a Bíblia diariamente por 6 semanas",
+          "Liderar um estudo bíblico em grupo",
+          "Participar de um retiro espiritual"
+        ]
+      },
+      {
+        area: "Servindo aos Outros",
+        itens: [
+          "Participar de 6 projetos comunitários",
+          "Liderar 2 projetos de serviço",
+          "Fazer um trabalho voluntário por 20 horas"
+        ]
+      },
+      {
+        area: "Desenvolvendo Amizade",
+        itens: [
+          "Conhecer a história da bandeira dos Desbravadores",
+          "Participar de um evento de divisão",
+          "Fazer 6 novos amigos"
+        ]
+      },
+      {
+        area: "Saúde e Aptidão Física",
+        itens: [
+          "Completar uma caminhada de 20 km",
+          "Aprender sobre sobrevivência na selva",
+          "Manter um plano de exercícios por 3 meses"
+        ]
+      },
+      {
+        area: "Organização e Liderança",
+        itens: [
+          "Liderar a diretoria do clube em uma atividade",
+          "Participar do planejamento de um evento de união",
+          "Treinar um desbravador para uma classe"
+        ]
+      },
+      {
+        area: "Estudo da Natureza",
+        itens: [
+          "Completar 6 especialidades de Natureza",
+          "Fazer um projeto de conservação",
+          "Identificar 10 tipos de rochas"
+        ]
+      }
+    ]
+  }
+]
 	
 	export function ProgressoDesbravador() {
 	  const [classeAtual, setClasseAtual] = useState(0)

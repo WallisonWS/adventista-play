@@ -16,7 +16,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
  */
 export async function criarPreferenciaPagamento(dadosDoacao) {
   try {
-    const response = await fetch(`${API_URL}/api/mercadopago/create-preference`, {
+    const response = await fetch(`${API_URL}/api/mercadopago`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

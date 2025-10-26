@@ -27,12 +27,14 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
   const utteranceRef = useRef(null)
   const voicesLoadedRef = useRef(false)
 
-  // Carregar vozes disponíveis
+  // Carregar vozes disponíveis (compatível com Chrome, Edge, Safari)
   useEffect(() => {
     const loadVoices = () => {
       if (voicesLoadedRef.current) return
       
       const availableVoices = window.speechSynthesis.getVoices()
+      
+      console.log(`🔊 Vozes disponíveis: ${availableVoices.length}`)
       
       // Se não há vozes ainda, aguardar
       if (availableVoices.length === 0) return
@@ -42,29 +44,66 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
         voice.lang.startsWith('pt')
       )
       
-      // Ordenar vozes por qualidade (priorizar vozes do Google e Microsoft)
+      console.log(`🇧🇷 Vozes em português: ${portugueseVoices.length}`)
+      
+      // Ordenar vozes por qualidade e navegador
       const sortedVoices = portugueseVoices.sort((a, b) => {
-        // Priorizar vozes do Google (mais naturais)
+        // CHROME/EDGE: Priorizar vozes do Google (mais naturais)
         if (a.name.includes('Google') && !b.name.includes('Google')) return -1
         if (!a.name.includes('Google') && b.name.includes('Google')) return 1
         
-        // Depois vozes da Microsoft
+        // EDGE: Priorizar vozes da Microsoft (Edge Natural Voices)
         if (a.name.includes('Microsoft') && !b.name.includes('Microsoft')) return -1
         if (!a.name.includes('Microsoft') && b.name.includes('Microsoft')) return 1
+        
+        // SAFARI: Priorizar vozes da Apple (Luciana, Joana)
+        if ((a.name.includes('Luciana') || a.name.includes('Joana')) && 
+            !(b.name.includes('Luciana') || b.name.includes('Joana'))) return -1
+        if (!(a.name.includes('Luciana') || a.name.includes('Joana')) && 
+            (b.name.includes('Luciana') || b.name.includes('Joana'))) return 1
         
         // Priorizar pt-BR sobre pt-PT
         if (a.lang === 'pt-BR' && b.lang !== 'pt-BR') return -1
         if (a.lang !== 'pt-BR' && b.lang === 'pt-BR') return 1
+        
+        // Priorizar vozes locais (local = true)
+        if (a.localService && !b.localService) return -1
+        if (!a.localService && b.localService) return 1
         
         return 0
       })
       
       setVoices(sortedVoices.length > 0 ? sortedVoices : availableVoices)
       
-      // Selecionar a melhor voz disponível
-      const defaultVoice = sortedVoices.find(voice => 
-        voice.lang === 'pt-BR' && (voice.name.includes('Google') || voice.name.includes('Microsoft'))
-      ) || sortedVoices.find(voice => voice.lang === 'pt-BR') || sortedVoices[0] || availableVoices[0]
+      // Selecionar a melhor voz disponível para cada navegador
+      let defaultVoice = null
+      
+      // Tentar vozes premium primeiro (Google, Microsoft, Apple)
+      defaultVoice = sortedVoices.find(voice => 
+        voice.lang === 'pt-BR' && (
+          voice.name.includes('Google') || 
+          voice.name.includes('Microsoft') ||
+          voice.name.includes('Luciana') ||
+          voice.name.includes('Joana')
+        )
+      )
+      
+      // Fallback: qualquer voz pt-BR
+      if (!defaultVoice) {
+        defaultVoice = sortedVoices.find(voice => voice.lang === 'pt-BR')
+      }
+      
+      // Fallback: qualquer voz em português
+      if (!defaultVoice) {
+        defaultVoice = sortedVoices[0]
+      }
+      
+      // Fallback final: primeira voz disponível
+      if (!defaultVoice) {
+        defaultVoice = availableVoices[0]
+      }
+      
+      console.log(`✅ Voz selecionada: ${defaultVoice?.name || 'Nenhuma'} (${defaultVoice?.lang || 'N/A'})`)
       
       setSelectedVoice(defaultVoice)
       voicesLoadedRef.current = true
@@ -73,24 +112,44 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
 
     setIsLoading(true)
     
-    // Tentar carregar imediatamente
+    // CHROME/EDGE: Vozes carregam imediatamente
     loadVoices()
     
-    // Fallback: se após 1 segundo não carregou, usar voz padrão do sistema
+    // SAFARI: Vozes demoram para carregar, precisa do evento
+    // Tentar múltiplas vezes para garantir compatibilidade
+    const retryIntervals = [100, 500, 1000, 2000]
+    const timers = retryIntervals.map(delay => 
+      setTimeout(() => {
+        if (!voicesLoadedRef.current) {
+          console.log(`🔄 Tentando carregar vozes novamente (${delay}ms)...`)
+          loadVoices()
+        }
+      }, delay)
+    )
+    
+    // Fallback final: se após 3 segundos não carregou, usar voz padrão do sistema
     const fallbackTimer = setTimeout(() => {
       if (!voicesLoadedRef.current) {
         console.log('⚠️ Usando voz padrão do sistema (fallback)')
+        const systemVoices = window.speechSynthesis.getVoices()
+        if (systemVoices.length > 0) {
+          setVoices(systemVoices)
+          setSelectedVoice(systemVoices[0])
+        }
         voicesLoadedRef.current = true
         setIsLoading(false)
       }
-    }, 1000)
+    }, 3000)
     
-    // Algumas vezes as vozes demoram para carregar
+    // Evento para quando as vozes mudarem (importante para Safari)
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
       window.speechSynthesis.onvoiceschanged = loadVoices
     }
     
-    return () => clearTimeout(fallbackTimer)
+    return () => {
+      timers.forEach(timer => clearTimeout(timer))
+      clearTimeout(fallbackTimer)
+    }
   }, [])
 
   // Auto play se solicitado

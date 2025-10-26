@@ -61,6 +61,8 @@ import { EspecialidadeTutorial } from './components/EspecialidadeTutorial.jsx'
 import { ProgressoDesbravador } from './components/ProgressoDesbravador.jsx'
 import { CertificadoCurso } from './components/CertificadoCurso.jsx'
 import { DoacaoPage } from './components/DoacaoPage.jsx'
+import { DoacaoPageDesktop } from './components/DoacaoPageDesktop.jsx'
+import { DoacaoSucesso, DoacaoFalha, DoacaoPendente } from './components/DoacaoResultado.jsx'
 import { ConnectionStatus } from './components/ConnectionStatus.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
@@ -437,6 +439,14 @@ function HomePage() {
               title="Projetos Missionários"
               description="Conheça e apoie missões ao redor do mundo"
               color="from-amber-500/10 to-orange-500/10"
+            />
+
+            <FeatureCard
+              to="/doacao"
+              icon={<Heart className="h-12 w-12 text-primary" />}
+              title="Apoie a Missão"
+              description="Contribua para manter e expandir este ministério digital"
+              color="from-green-500/10 to-emerald-500/10"
             />
 
             <motion.div variants={fadeInUp}>
@@ -1574,7 +1584,10 @@ function AppContent() {
             <Route path="/feliz7play" element={<Feliz7Play />} />
             <Route path="/perfil" element={<PerfilPage />} />
             <Route path="/conquistas" element={<ConquistasPage />} />
-            <Route path="/doacao" element={<DoacaoPage />} />
+            <Route path="/doacao" element={isMobile ? <DoacaoPage /> : <DoacaoPageDesktop />} />
+            <Route path="/doacao/sucesso" element={<DoacaoSucesso />} />
+            <Route path="/doacao/falha" element={<DoacaoFalha />} />
+            <Route path="/doacao/pendente" element={<DoacaoPendente />} />
           </Routes>
         </AnimatePresence>
         

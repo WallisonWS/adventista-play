@@ -106,16 +106,31 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
   }, [autoPlay, text, selectedVoice])
 
   const handlePlay = () => {
-    if (!text) return
+    if (!text) {
+      alert('Nenhum texto disponível para reproduzir.')
+      return
+    }
+    
+    // Verificar se o navegador suporta Web Speech API
+    if (!window.speechSynthesis) {
+      alert('Seu navegador não suporta reprodução de áudio. Tente usar Chrome, Edge ou Safari.')
+      return
+    }
     
     setIsLoading(true)
 
     // Se estava pausado, retomar
     if (isPaused) {
-      window.speechSynthesis.resume()
-      setIsPaused(false)
-      setIsPlaying(true)
-      setIsLoading(false)
+      try {
+        window.speechSynthesis.resume()
+        setIsPaused(false)
+        setIsPlaying(true)
+        setIsLoading(false)
+      } catch (error) {
+        console.error('Erro ao retomar:', error)
+        alert('Erro ao retomar áudio. Tente reproduzir novamente.')
+        setIsLoading(false)
+      }
       return
     }
 
@@ -163,7 +178,51 @@ export function TextToSpeech({ text, autoPlay = false, compact = false }) {
       setIsPlaying(false)
       setIsPaused(false)
       setIsLoading(false)
-      alert('Erro ao reproduzir áudio. Tente novamente.')
+      
+      let errorMessage = 'Erro ao reproduzir áudio.'
+      
+      switch(event.error) {
+        case 'canceled':
+          errorMessage = 'Reprodução cancelada.'
+          break
+        case 'interrupted':
+          errorMessage = 'Reprodução interrompida. Tente novamente.'
+          break
+        case 'audio-busy':
+          errorMessage = 'Áudio ocupado. Aguarde um momento e tente novamente.'
+          break
+        case 'audio-hardware':
+          errorMessage = 'Problema com o hardware de áudio. Verifique suas configurações.'
+          break
+        case 'network':
+          errorMessage = 'Erro de rede. Verifique sua conexão.'
+          break
+        case 'synthesis-unavailable':
+          errorMessage = 'Síntese de voz não disponível. Tente recarregar a página.'
+          break
+        case 'synthesis-failed':
+          errorMessage = 'Falha na síntese de voz. Tente um texto menor.'
+          break
+        case 'language-unavailable':
+          errorMessage = 'Idioma não disponível. Tente selecionar outra voz.'
+          break
+        case 'voice-unavailable':
+          errorMessage = 'Voz não disponível. Tente selecionar outra voz.'
+          break
+        case 'text-too-long':
+          errorMessage = 'Texto muito longo. Tente um texto menor.'
+          break
+        case 'invalid-argument':
+          errorMessage = 'Argumento inválido. Tente novamente.'
+          break
+        case 'not-allowed':
+          errorMessage = 'Reprodução não permitida. Tente clicar no botão novamente.'
+          break
+        default:
+          errorMessage = `Erro ao reproduzir áudio: ${event.error || 'desconhecido'}. Tente novamente.`
+      }
+      
+      alert(errorMessage)
     }
 
     utteranceRef.current = utterance

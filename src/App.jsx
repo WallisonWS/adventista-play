@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import { useReadingProgress } from './store/useReadingProgress'
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
+import { DestaquesCarousel } from './DestaquesCarousel.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Label } from '@/components/ui/label.jsx'
@@ -300,9 +302,20 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       {/* Hero Section */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+	      <section className="py-20 px-4 relative overflow-hidden">
+	        <div className="container mx-auto">
+	          {/* Seção de Destaques Dinâmicos - Sugestão Gemini 3 para UX Desktop */}
+	          <motion.div
+	            initial={{ opacity: 0, y: 50 }}
+	            animate={{ opacity: 1, y: 0 }}
+	            transition={{ delay: 0.2 }}
+	            className="mb-16"
+	          >
+	            <h2 className="text-3xl font-bold text-center mb-8 text-primary">Destaques da Semana</h2>
+	            <DestaquesCarousel />
+	          </motion.div>
+
+	          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
             {/* Progresso Bíblia em 1 Ano */}
             {bibliaProgress.totalDays > 0 && (
               <motion.div
@@ -1775,6 +1788,7 @@ function App() {
     <DarkModeProvider>
       <ThemeProvider>
         <AppContent />
+        <Toaster position="top-center" reverseOrder={false} />
       </ThemeProvider>
     </DarkModeProvider>
   )

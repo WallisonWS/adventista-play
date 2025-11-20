@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
 import { useReadingProgress } from '../store/useReadingProgress'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
@@ -51,6 +52,14 @@ export function PlanosLeituraPage({ planos }) {
           previousLicao ? previousLicao.dia : 0, 
           previousLicao ? `${previousLicao.leitura} - ${previousLicao.reflexao}` : 'Comece sua jornada'
         )
+        toast.error(`Dia ${licao.dia} desmarcado. Progresso revertido.`, {
+          icon: '🔙',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        })
       }
     } else if (currentProgress.completedDays === licao.dia - 1) {
       // Se for o próximo dia a ser lido, marca como concluído
@@ -59,6 +68,24 @@ export function PlanosLeituraPage({ planos }) {
         licao.dia, 
         `${licao.leitura} - ${licao.reflexao}`
       )
+      toast.success(`Dia ${licao.dia} concluído! Continue sua jornada.`, {
+        icon: '📖',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      })
+    } else if (currentProgress.completedDays < licao.dia - 1) {
+      // Se o usuário tentar pular dias
+      toast.error(`Você precisa concluir o Dia ${currentProgress.completedDays + 1} primeiro.`, {
+        icon: '⚠️',
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      })
     }
   }
 

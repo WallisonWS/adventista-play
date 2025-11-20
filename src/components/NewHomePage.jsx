@@ -328,8 +328,25 @@ export function NewHomePage({ user }) {
       </section>
 
       {/* Bottom Navigation */}
-      <BottomNav />
-    </div>
-  )
-}
+	      <BottomNav />
+
+      {/* Botão Flutuante de Acesso Rápido - Sugestão Gemini 3 para UX Mobile */}
+      {bibliaProgress.completedDays < bibliaProgress.totalDays && bibliaProgress.totalDays > 0 && (
+        <motion.div
+          className="fixed bottom-20 right-4 z-40"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        >
+          <Link to="/planos">
+            <Button className="rounded-full shadow-xl bg-blue-600 hover:bg-blue-700 text-white p-4 h-auto">
+              <BookText className="h-5 w-5 mr-2" />
+              <span className="text-sm font-semibold">Dia {bibliaProgress.completedDays + 1}</span>
+            </Button>
+          </Link>
+        </motion.div>
+      )}
+	    </div>
+	  )
+	}
 

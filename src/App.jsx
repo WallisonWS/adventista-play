@@ -1505,10 +1505,11 @@ function EstudosPage() {
             </CardContent>
           </Card>
         </motion.div>
+        {/* Footer */}
+        <footer className="bg-gray-100 dark:bg-gray-800 py-12 px-4">
+          {/* Conteúdo do Footer */}
+        </footer>
       </main>
-      <footer>
-        {/* Conteúdo do Footer */}
-      </footer>
     </div>
   )
 }

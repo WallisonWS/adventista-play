@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useReadingProgress } from '../store/useReadingProgress'
 import { Link } from 'react-router-dom'
 import { Heart, BookText, ChevronRight, Volume2, Music, GraduationCap, Gift } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card'
@@ -6,7 +7,10 @@ import { Button } from './ui/button'
 import { BottomNav } from './BottomNav'
 
 // Componente da Nova Página Inicial
+// O componente NewHomePage é usado para mobile (ver AppContent em App.jsx)
 export function NewHomePage({ user }) {
+  const bibliaProgress = useReadingProgress(state => state.getProgress('biblia-ano'))
+  const devocionalProgress = useReadingProgress(state => state.getProgress('devocional-diario'))
   // Função para obter saudação baseada no horário
   const getSaudacao = () => {
     const hora = new Date().getHours()
@@ -52,65 +56,73 @@ export function NewHomePage({ user }) {
       {/* Cards de Progresso */}
       <section className="px-4 -mt-10 relative z-10 mb-6">
         <div className="space-y-3">
-          {/* Card: Plano de Leitura da Bíblia */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <Link to="/planos">
-              <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
-                <CardHeader className="p-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
-                      <BookText className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <CardTitle className="text-sm font-semibold mb-1 text-gray-900 dark:text-white">A Bíblia em um ano</CardTitle>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-                        Lucas 9 a 11 - Continue sua jornada
-                      </p>
-                      {/* Barra de Progresso */}
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mb-1">
-                        <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: '81%' }}></div>
+          {// Card: Plano de Leitura da Bíblia
+          {/* Integração com o progresso real */}
+          {bibliaProgress.totalDays > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <Link to="/planos">
+                <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
+                  <CardHeader className="p-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+                        <BookText className="h-6 w-6 text-white" />
                       </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">81% concluído</p>
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-sm font-semibold mb-1 text-gray-900 dark:text-white">A Bíblia em um ano</CardTitle>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                          {bibliaProgress.lastRead} - Continue sua jornada
+                        </p>
+                        {/* Barra de Progresso */}
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mb-1">
+                          <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: `${bibliaProgress.progressPercent}%` }}></div>
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{bibliaProgress.progressPercent}% concluído</p>
+                      </div>
                     </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            </Link>
-          </motion.div>
+                  </CardHeader>
+                </Card>
+              </Link>
+            </motion.div>
+          )} */}
 
-          {/* Card: Devocional */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <Link to="/devocional">
-              <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
-                <CardHeader className="p-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-12 h-12 rounded-lg bg-red-500 flex items-center justify-center flex-shrink-0">
-                      <Heart className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <CardTitle className="text-sm font-semibold mb-1 text-gray-900 dark:text-white">Meu devocional</CardTitle>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-                        296 de 365 - Reflexão diária
-                      </p>
-                      {/* Barra de Progresso */}
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mb-1">
-                        <div className="bg-red-500 h-1.5 rounded-full" style={{ width: '81%' }}></div>
+
+          {// Card: Devocional
+          {/* Integração com o progresso real */}
+          {devocionalProgress.totalDays > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Link to="/devocional">
+                <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
+                  <CardHeader className="p-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-12 h-12 rounded-lg bg-red-500 flex items-center justify-center flex-shrink-0">
+                        <Heart className="h-6 w-6 text-white" />
                       </div>
-                      <p className="text-xs text-red-500">81% concluído</p>
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-sm font-semibold mb-1 text-gray-900 dark:text-white">Meu devocional</CardTitle>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                          {devocionalProgress.completedDays} de {devocionalProgress.totalDays} - {devocionalProgress.lastRead}
+                        </p>
+                        {/* Barra de Progresso */}
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mb-1">
+                          <div className="bg-red-500 h-1.5 rounded-full" style={{ width: `${devocionalProgress.progressPercent}%` }}></div>
+                        </div>
+                        <p className="text-xs text-red-500">{devocionalProgress.progressPercent}% concluído</p>
+                      </div>
                     </div>
-                  </div>
-                </CardHeader>
-              </Card>
-            </Link>
-          </motion.div>
+                  </CardHeader>
+                </Card>
+              </Link>
+            </motion.div>
+          )} */}
+
         </div>
       </section>
 
@@ -176,6 +188,28 @@ export function NewHomePage({ user }) {
                   <CardTitle className="text-xs font-semibold text-gray-900 dark:text-white">Estudos</CardTitle>
                   <CardDescription className="text-xs mt-1">
                     Cursos aprofundados
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          </motion.div>
+          
+          {/* Desbravadores - Novo Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Link to="/desbravadores">
+              <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
+                <CardHeader className="p-4 text-center">
+                  <div className="w-12 h-12 rounded-lg bg-yellow-500 flex items-center justify-center mx-auto mb-2">
+                    {/* Ícone Desbravadores - Assumindo que o ícone está em public/icons/desbravadores-icon.png */}
+                    <img src="/icons/desbravadores-icon.png" alt="Desbravadores" className="h-6 w-6" />
+                  </div>
+                  <CardTitle className="text-xs font-semibold text-gray-900 dark:text-white">Desbravadores</CardTitle>
+                  <CardDescription className="text-xs mt-1">
+                    Especialidades e classes
                   </CardDescription>
                 </CardHeader>
               </Card>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useReadingProgress } from './store/useReadingProgress'
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
@@ -32,6 +33,7 @@ import {
   Calendar,
   Newspaper
 } from 'lucide-react'
+import { useReadingProgress } from './store/useReadingProgress'
 import './App.css'
 import './styles/dark-mode.css'
 import './styles/themes.css'
@@ -293,10 +295,114 @@ function NavLink({ to, icon, children, isDarkMode }) {
 
 // Página Inicial
 function HomePage() {
+  const bibliaProgress = useReadingProgress(state => state.getProgress('biblia-ano'))
+  const devocionalProgress = useReadingProgress(state => state.getProgress('devocional-diario'))
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       {/* Hero Section */}
       <section className="py-20 px-4 relative overflow-hidden">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            {/* Progresso Bíblia em 1 Ano */}
+            {bibliaProgress.totalDays > 0 && (
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 }}
+              >
+                <Card className="shadow-xl hover:shadow-2xl transition-shadow duration-300 border-l-4 border-blue-600">
+                  <CardHeader>
+                    <CardTitle className="text-xl flex items-center space-x-2 text-blue-600">
+                      <BookText className="h-6 w-6" />
+                      <span>Bíblia em 1 Ano</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Continue sua jornada de leitura diária.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-lg font-semibold mb-2">{bibliaProgress.lastRead}</p>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                      <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${bibliaProgress.progressPercent}%` }}></div>
+                    </div>
+                    <p className="text-sm text-gray-600">{bibliaProgress.progressPercent}% concluído</p>
+                    <Link to="/planos">
+                      <Button variant="link" className="p-0 mt-2 text-blue-600">
+                        Ver Plano Completo <ChevronRight className="h-4 w-4 ml-1" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* Progresso Devocional Diário */}
+            {devocionalProgress.totalDays > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0 }}
+              >
+                <Card className="shadow-xl hover:shadow-2xl transition-shadow duration-300 border-l-4 border-red-500">
+                  <CardHeader>
+                    <CardTitle className="text-xl flex items-center space-x-2 text-red-500">
+                      <Heart className="h-6 w-6" />
+                      <span>Meu Devocional</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Reflexão diária para fortalecer sua fé.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-lg font-semibold mb-2">{devocionalProgress.completedDays} de {devocionalProgress.totalDays} - {devocionalProgress.lastRead}</p>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                      <div className="bg-red-500 h-2.5 rounded-full" style={{ width: `${devocionalProgress.progressPercent}%` }}></div>
+                    </div>
+                    <p className="text-sm text-gray-600">{devocionalProgress.progressPercent}% concluído</p>
+                    <Link to="/devocional">
+                      <Button variant="link" className="p-0 mt-2 text-red-500">
+                        Ir para o Devocional <ChevronRight className="h-4 w-4 ml-1" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* Card Desbravadores */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2 }}
+            >
+              <Card className="shadow-xl hover:shadow-2xl transition-shadow duration-300 border-l-4 border-yellow-500">
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-center space-x-2 text-yellow-500">
+                    <Star className="h-6 w-6" />
+                    <span>Clube de Desbravadores</span>
+                  </CardTitle>
+                  <CardDescription>
+                    Acompanhe seu progresso em classes e especialidades.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-lg font-semibold mb-2">Classe de Amigo</p>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                    <div className="bg-yellow-500 h-2.5 rounded-full" style={{ width: '65%' }}></div>
+                  </div>
+                  <p className="text-sm text-gray-600">65% concluído</p>
+                  <Link to="/progresso-desbravador">
+                    <Button variant="link" className="p-0 mt-2 text-yellow-500">
+                      Ver Progresso <ChevronRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Animações Cristãs no Background */}
         {/* Animações Cristãs no Background */}
         <ChristianAnimations />
         <DivineLightEffect />

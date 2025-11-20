@@ -180,6 +180,46 @@ export function NewHomePage({ user }) {
             transition={{ delay: 0.5 }}
           >
             <Link to="/estudos">
+              <Card className="h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
+                <CardHeader className="p-4 text-center">
+                  <div className="w-12 h-12 rounded-lg bg-orange-500 flex items-center justify-center mx-auto mb-2">
+                    <GraduationCap className="h-6 w-6 text-white" />
+                  </div>
+                  <CardTitle className="text-xs font-semibold text-gray-900 dark:text-white">Estudos</CardTitle>
+                  <CardDescription className="text-xs mt-1">
+                    Cursos aprofundados
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          </motion.div>
+          
+          {/* Feliz7 Play - Novo Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Link to="/feliz7play">
+              <Card className="h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
+                <CardHeader className="p-4 text-center">
+                  <div className="w-12 h-12 rounded-lg bg-red-600 flex items-center justify-center mx-auto mb-2">
+                    <Play className="h-6 w-6 text-white" />
+                  </div>
+                  <CardTitle className="text-xs font-semibold text-gray-900 dark:text-white">Feliz7 Play</CardTitle>
+                  <CardDescription className="text-xs mt-1">
+                    Séries e filmes cristãos
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <Link to="/estudos">
               <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
                 <CardHeader className="p-4 text-center">
                   <div className="w-12 h-12 rounded-lg bg-orange-500 flex items-center justify-center mx-auto mb-2">
@@ -198,10 +238,10 @@ export function NewHomePage({ user }) {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.7 }}
           >
             <Link to="/desbravadores">
-              <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
+              <Card className="h-full hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md">
                 <CardHeader className="p-4 text-center">
                   <div className="w-12 h-12 rounded-lg bg-yellow-500 flex items-center justify-center mx-auto mb-2">
                     {/* Ícone Desbravadores - Assumindo que o ícone está em public/icons/desbravadores-icon.png */}

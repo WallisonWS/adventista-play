@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { PlanosLeituraSkeleton, PlanoDetalheSkeleton } from './PlanosLeituraSkeleton'
 import toast from 'react-hot-toast'
 import { useReadingProgress } from '../store/useReadingProgress'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,6 +9,7 @@ import { Badge } from './ui/badge'
 import { BookOpen, Calendar, Clock, ChevronRight, X, Check } from 'lucide-react'
 
 export function PlanosLeituraPage({ planos }) {
+  const [isLoading, setIsLoading] = useState(true) // Estado para simular o carregamento
   const [selectedPlano, setSelectedPlano] = useState(null)
   const { getProgress, markDayAsCompleted, initializePlan } = useReadingProgress()
 
@@ -17,6 +19,12 @@ export function PlanosLeituraPage({ planos }) {
     if (bibliaAno) {
       initializePlan(bibliaAno.id, bibliaAno.licoes.length)
     }
+    // Simula o tempo de carregamento
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+
+    return () => clearTimeout(timer)
   }, [planos, initializePlan])
 
   // Função para lidar com a seleção do plano
@@ -99,6 +107,9 @@ export function PlanosLeituraPage({ planos }) {
 
   // Renderização do plano selecionado
   if (selectedPlano) {
+    if (isLoading) {
+      return <PlanoDetalheSkeleton />
+    }
     return (
       <div className="min-h-screen bg-background py-8 px-4">
         <div className="container mx-auto max-w-4xl">
@@ -195,6 +206,9 @@ export function PlanosLeituraPage({ planos }) {
   }
 
   // Renderização da lista de planos
+  if (isLoading) {
+    return <PlanosLeituraSkeleton />
+  }
   return (
     <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto max-w-6xl">

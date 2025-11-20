@@ -121,12 +121,42 @@ export function NewHomePage({ user }) {
                 </Card>
               </Link>
             </motion.div>
-          )} */}
+	          )} */}
 
-        </div>
-      </section>
+	        </div>
+	      </section>
 
-      {/* Recursos */}
+	      {/* Recomendação de Conteúdo Inteligente (Sugestão Gemini 3) */}
+	      <section className="px-4 mb-6">
+	        <h2 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">Para Você</h2>
+	        <motion.div
+	          initial={{ opacity: 0, y: 20 }}
+	          animate={{ opacity: 1, y: 0 }}
+	          transition={{ delay: 0.3 }}
+	        >
+	          <Link to="/planos">
+	            <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 border-0 shadow-md border-l-4 border-green-500">
+	              <CardHeader className="p-4">
+	                <div className="flex items-start space-x-3">
+	                  <div className="flex-1 min-w-0">
+	                    <CardTitle className="text-sm font-semibold mb-1 text-gray-900 dark:text-white">
+	                      Próximo Passo Sugerido
+	                    </CardTitle>
+	                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+	                      Você concluiu o Devocional Diário! Que tal começar o plano "7 Dias de Fé e Esperança"?
+	                    </p>
+	                    <Button variant="link" className="p-0 h-auto text-green-500 text-xs">
+	                      Começar Agora <ChevronRight className="h-3 w-3 ml-1" />
+	                    </Button>
+	                  </div>
+	                </div>
+	              </CardHeader>
+	            </Card>
+	          </Link>
+	        </motion.div>
+	      </section>
+
+	      {/* Recursos */}
       <section className="px-4 mb-6">
         <h2 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">Recursos</h2>
         

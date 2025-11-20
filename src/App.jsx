@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
 import { DestaquesCarousel } from './DestaquesCarousel.jsx'
+import { Sidebar } from './Sidebar.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Label } from '@/components/ui/label.jsx'
@@ -300,7 +301,9 @@ function HomePage() {
   const bibliaProgress = useReadingProgress(state => state.getProgress('biblia-ano'))
   const devocionalProgress = useReadingProgress(state => state.getProgress('devocional-diario'))
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+    <div className="flex min-h-screen bg-gradient-to-b from-background to-muted">
+      <Sidebar />
+      <main className="flex-1 overflow-y-auto">
       {/* Hero Section */}
 	      <section className="py-20 px-4 relative overflow-hidden">
 	        <div className="container mx-auto">
@@ -316,6 +319,34 @@ function HomePage() {
 	          </motion.div>
 
 	          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            {/* Recomendação de Conteúdo Inteligente (Sugestão Gemini 3) */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="lg:col-span-3"
+            >
+              <Link to="/planos">
+                <Card className="shadow-xl hover:shadow-2xl transition-shadow duration-300 border-l-4 border-green-500">
+                  <CardHeader>
+                    <CardTitle className="text-xl flex items-center space-x-2 text-green-500">
+                      <Sparkles className="h-6 w-6" />
+                      <span>Recomendação Personalizada</span>
+                    </CardTitle>
+                    <CardDescription>
+                      Com base no seu progresso, o Gemini 3 sugere o próximo passo para o seu crescimento espiritual.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex justify-between items-center">
+                    <p className="text-lg font-semibold">Você concluiu o Devocional Diário! Que tal começar o plano "7 Dias de Fé e Esperança"?</p>
+                    <Button variant="default" className="ml-4 bg-green-500 hover:bg-green-600">
+                      Começar Agora <ChevronRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
+            </motion.div>
+
             {/* Progresso Bíblia em 1 Ano */}
             {bibliaProgress.totalDays > 0 && (
               <motion.div
@@ -508,10 +539,10 @@ function HomePage() {
             />
           ))}
         </div>
-      </section>
+        </section>
 
-      {/* Features Grid */}
-      <section className="py-16 px-4">
+        {/* Features Grid */}
+        <section className="py-16 px-4">
         <motion.div 
           className="container mx-auto"
           variants={staggerContainer}
@@ -1475,13 +1506,11 @@ function EstudosPage() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
-      </div>
+        </motion.div>      </footer>
+      </main>
     </div>
   )
-}
-
-// Página de Projetos Missionários
+}// Página de Projetos Missionários
 function ProjetosPage() {
   const [selectedProjeto, setSelectedProjeto] = useState(null)
 

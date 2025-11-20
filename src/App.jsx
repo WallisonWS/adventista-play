@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-import { useReadingProgress } from './store/useReadingProgress'
+
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button.jsx'
@@ -36,7 +36,7 @@ import {
   Calendar,
   Newspaper
 } from 'lucide-react'
-import { useReadingProgress } from './store/useReadingProgress'
+
 import './App.css'
 import './styles/dark-mode.css'
 import './styles/themes.css'
@@ -1506,11 +1506,14 @@ function EstudosPage() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>      </footer>
+        </motion.div>
+      </footer>
       </main>
     </div>
   )
-}// Página de Projetos Missionários
+}
+
+// Página de Projetos Missionários
 function ProjetosPage() {
   const [selectedProjeto, setSelectedProjeto] = useState(null)
 

@@ -1003,13 +1003,11 @@ function DevocionalPage() {
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>
-      </div>
+      </footer>
+      </main>
     </div>
   )
-}
-
-// Continua na próxima parte...
+}// Continua na próxima parte...
 
 
 
@@ -1507,8 +1505,10 @@ function EstudosPage() {
             </CardContent>
           </Card>
         </motion.div>
-      </footer>
       </main>
+      <footer>
+        {/* Conteúdo do Footer */}
+      </footer>
     </div>
   )
 }

@@ -67,8 +67,8 @@ export function EnhancedWebHomePage({ user }) {
                   }}
                 >
                   <img 
-                    src="/logo-adventista-play-transparent.png" 
-                    alt="Adventista Play" 
+                    src="/logo-adventista-simbolo.png" 
+                    alt="Igreja Adventista do Sétimo Dia" 
                     className="h-24 md:h-28"
                   />
                 </motion.div>

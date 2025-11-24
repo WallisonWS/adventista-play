@@ -35,6 +35,7 @@ import {
 import './App.css'
 import './styles/dark-mode.css'
 import './styles/themes.css'
+import './styles/colors.css'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext.jsx'
 import { Toaster } from 'react-hot-toast'
@@ -69,6 +70,9 @@ import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './compon
 import { NewHomePage } from './components/NewHomePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
+import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
+import { ImprovedHomePageDesktop } from './components/ImprovedHomePageDesktop.jsx'
+import { PageTransition } from './components/PageTransition.jsx'
 import { CategoriaEstudosPage } from './components/CategoriaEstudosPage.jsx'
 import { DetalheCursoPage } from './components/DetalheCursoPage.jsx'
 import { useIsMobile } from './hooks/useIsMobile.js'
@@ -1574,7 +1578,7 @@ function AppContent() {
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={isMobile ? <NewHomePage user={user} /> : <HomePage />} />
+            <Route path="/" element={isMobile ? <NewHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />

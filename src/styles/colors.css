@@ -1,0 +1,197 @@
+/**
+ * Nova Paleta de Cores - Adventista Play
+ * Baseada na análise do Gemini 3
+ * Filosofia: Serenidade, Confiança, Crescimento, Inspiração
+ */
+
+:root {
+  /* Cores Primárias */
+  --color-primary: #2D4059;           /* Azul Marinho Sóbrio - Confiança, estabilidade */
+  --color-primary-light: #3A5270;
+  --color-primary-dark: #1F2D3D;
+  
+  /* Cores Secundárias */
+  --color-secondary: #507D6D;         /* Verde Floresta Suave - Esperança, renovação */
+  --color-secondary-light: #6B9A88;
+  --color-secondary-dark: #3D6052;
+  
+  /* Cores de Destaque */
+  --color-accent: #EBB060;            /* Dourado Quente - Luz, inspiração */
+  --color-accent-light: #F0C07D;
+  --color-accent-dark: #D99A45;
+  
+  /* Cores Neutras */
+  --color-background-base: #F8F9FA;   /* Cinza Claro - Limpeza, foco */
+  --color-background-soft: #E0E6EB;   /* Cinza Azulado Claro - Respiração */
+  --color-background-white: #FFFFFF;
+  
+  /* Cores de Texto */
+  --color-text-primary: #343A40;      /* Preto Carbono - Alta legibilidade */
+  --color-text-secondary: #6C757D;    /* Cinza Médio - Descrições */
+  --color-text-light: #ADB5BD;        /* Cinza Claro - Legendas */
+  
+  /* Cores de Estado */
+  --color-error: #DC3545;             /* Vermelho - Erros */
+  --color-success: #28A745;           /* Verde - Sucesso */
+  --color-warning: #FFC107;           /* Amarelo - Avisos */
+  --color-info: #17A2B8;              /* Azul Claro - Informações */
+  
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(45, 64, 89, 0.08);
+  --shadow-md: 0 4px 10px rgba(45, 64, 89, 0.12);
+  --shadow-lg: 0 8px 20px rgba(45, 64, 89, 0.16);
+  --shadow-xl: 0 12px 30px rgba(45, 64, 89, 0.20);
+  
+  /* Transições */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  
+  /* Bordas */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-full: 9999px;
+  
+  /* Espaçamentos */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+}
+
+/* Modo Escuro */
+[data-theme="dark"] {
+  --color-primary: #4A6FA5;
+  --color-secondary: #6B9A88;
+  --color-accent: #F0C07D;
+  
+  --color-background-base: #1A1D23;
+  --color-background-soft: #2A2F3A;
+  --color-background-white: #343A40;
+  
+  --color-text-primary: #E8EAED;
+  --color-text-secondary: #ADB5BD;
+  --color-text-light: #6C757D;
+  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Classes Utilitárias */
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-accent { color: var(--color-accent); }
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: 12px 24px;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Animações Suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* Delays para animações em sequência */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }

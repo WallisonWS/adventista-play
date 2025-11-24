@@ -38,6 +38,7 @@ export function Enhanced3DFooter() {
                 src="/logo-adventista-play-transparent.png" 
                 alt="Adventista Play" 
                 className="h-16 w-auto"
+                style={{ mixBlendMode: 'multiply' }}
                 whileHover={{ 
                   scale: 1.1, 
                   rotateY: 360,

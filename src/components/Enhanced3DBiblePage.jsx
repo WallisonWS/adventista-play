@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   BookOpen, Search, ChevronLeft, ChevronRight, 
   Bookmark, Heart, Share2, Volume2, TextCursor,
-  Moon, Sun, ZoomIn, ZoomOut, Menu, X
+  Moon, Sun, ZoomIn, ZoomOut, Menu, X, Book,
+  Scroll, Sparkles, Star, Crown, Shield, Flame,
+  Feather, Zap, Award, Target
 } from 'lucide-react';
 import { Input } from '@/components/ui/input.jsx';
 import { Button } from '@/components/ui/button.jsx';
 
 /**
  * Enhanced3DBiblePage
- * Página da Bíblia melhorada com design moderno, ícones bonitos e animações fluidas
+ * Página da Bíblia melhorada com design moderno e ícones SVG (SEM EMOJIS)
  */
 export function Enhanced3DBiblePage() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -20,59 +22,60 @@ export function Enhanced3DBiblePage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [activeTab, setActiveTab] = useState('antigo');
 
-  // Livros da Bíblia organizados
+  // Livros da Bíblia organizados com ícones Lucide
   const bibleBooks = {
     antigoTestamento: [
-      { name: 'Gênesis', chapters: 50, icon: '📜' },
-      { name: 'Êxodo', chapters: 40, icon: '🌊' },
-      { name: 'Levítico', chapters: 27, icon: '🕯️' },
-      { name: 'Números', chapters: 36, icon: '🔢' },
-      { name: 'Deuteronômio', chapters: 34, icon: '📖' },
-      { name: 'Josué', chapters: 24, icon: '⚔️' },
-      { name: 'Juízes', chapters: 21, icon: '⚖️' },
-      { name: 'Rute', chapters: 4, icon: '🌾' },
-      { name: '1 Samuel', chapters: 31, icon: '👑' },
-      { name: '2 Samuel', chapters: 24, icon: '👑' },
-      { name: '1 Reis', chapters: 22, icon: '🏰' },
-      { name: '2 Reis', chapters: 25, icon: '🏰' },
-      { name: '1 Crônicas', chapters: 29, icon: '📚' },
-      { name: '2 Crônicas', chapters: 36, icon: '📚' },
-      { name: 'Esdras', chapters: 10, icon: '🏛️' },
-      { name: 'Neemias', chapters: 13, icon: '🧱' },
-      { name: 'Ester', chapters: 10, icon: '👸' },
-      { name: 'Jó', chapters: 42, icon: '💭' },
-      { name: 'Salmos', chapters: 150, icon: '🎵' },
-      { name: 'Provérbios', chapters: 31, icon: '💡' },
+      { name: 'Gênesis', chapters: 50, icon: Scroll, color: '#8B4513' },
+      { name: 'Êxodo', chapters: 40, icon: Flame, color: '#FF6347' },
+      { name: 'Levítico', chapters: 27, icon: Sparkles, color: '#FFD700' },
+      { name: 'Números', chapters: 36, icon: Target, color: '#4169E1' },
+      { name: 'Deuteronômio', chapters: 34, icon: Book, color: '#2E8B57' },
+      { name: 'Josué', chapters: 24, icon: Shield, color: '#CD853F' },
+      { name: 'Juízes', chapters: 21, icon: Award, color: '#8B008B' },
+      { name: 'Rute', chapters: 4, icon: Heart, color: '#FF1493' },
+      { name: '1 Samuel', chapters: 31, icon: Crown, color: '#DAA520' },
+      { name: '2 Samuel', chapters: 24, icon: Crown, color: '#B8860B' },
+      { name: '1 Reis', chapters: 22, icon: Crown, color: '#FFD700' },
+      { name: '2 Reis', chapters: 25, icon: Crown, color: '#FFA500' },
+      { name: '1 Crônicas', chapters: 29, icon: BookOpen, color: '#8B4513' },
+      { name: '2 Crônicas', chapters: 36, icon: BookOpen, color: '#A0522D' },
+      { name: 'Esdras', chapters: 10, icon: Book, color: '#4682B4' },
+      { name: 'Neemias', chapters: 13, icon: Shield, color: '#5F9EA0' },
+      { name: 'Ester', chapters: 10, icon: Star, color: '#FF69B4' },
+      { name: 'Jó', chapters: 42, icon: Feather, color: '#696969' },
+      { name: 'Salmos', chapters: 150, icon: Sparkles, color: '#4169E1' },
+      { name: 'Provérbios', chapters: 31, icon: Zap, color: '#FF8C00' },
     ],
     novoTestamento: [
-      { name: 'Mateus', chapters: 28, icon: '✍️' },
-      { name: 'Marcos', chapters: 16, icon: '🦁' },
-      { name: 'Lucas', chapters: 24, icon: '👨‍⚕️' },
-      { name: 'João', chapters: 21, icon: '🦅' },
-      { name: 'Atos', chapters: 28, icon: '🔥' },
-      { name: 'Romanos', chapters: 16, icon: '💌' },
-      { name: '1 Coríntios', chapters: 16, icon: '⛪' },
-      { name: '2 Coríntios', chapters: 13, icon: '⛪' },
-      { name: 'Gálatas', chapters: 6, icon: '🕊️' },
-      { name: 'Efésios', chapters: 6, icon: '🛡️' },
-      { name: 'Filipenses', chapters: 4, icon: '😊' },
-      { name: 'Colossenses', chapters: 4, icon: '⭐' },
-      { name: '1 Tessalonicenses', chapters: 5, icon: '📯' },
-      { name: '2 Tessalonicenses', chapters: 3, icon: '📯' },
-      { name: '1 Timóteo', chapters: 6, icon: '👨‍🏫' },
-      { name: '2 Timóteo', chapters: 4, icon: '👨‍🏫' },
-      { name: 'Tito', chapters: 3, icon: '🌟' },
-      { name: 'Filemom', chapters: 1, icon: '💝' },
-      { name: 'Hebreus', chapters: 13, icon: '⚓' },
-      { name: 'Tiago', chapters: 5, icon: '🌱' },
-      { name: '1 Pedro', chapters: 5, icon: '🗝️' },
-      { name: '2 Pedro', chapters: 3, icon: '🗝️' },
-      { name: '1 João', chapters: 5, icon: '❤️' },
-      { name: '2 João', chapters: 1, icon: '💖' },
-      { name: '3 João', chapters: 1, icon: '💕' },
-      { name: 'Judas', chapters: 1, icon: '⚡' },
-      { name: 'Apocalipse', chapters: 22, icon: '🌅' },
+      { name: 'Mateus', chapters: 28, icon: Feather, color: '#4169E1' },
+      { name: 'Marcos', chapters: 16, icon: Zap, color: '#FF6347' },
+      { name: 'Lucas', chapters: 24, icon: Heart, color: '#32CD32' },
+      { name: 'João', chapters: 21, icon: Star, color: '#FFD700' },
+      { name: 'Atos', chapters: 28, icon: Flame, color: '#FF4500' },
+      { name: 'Romanos', chapters: 16, icon: Book, color: '#8B0000' },
+      { name: '1 Coríntios', chapters: 16, icon: BookOpen, color: '#4682B4' },
+      { name: '2 Coríntios', chapters: 13, icon: BookOpen, color: '#5F9EA0' },
+      { name: 'Gálatas', chapters: 6, icon: Sparkles, color: '#FF8C00' },
+      { name: 'Efésios', chapters: 6, icon: Shield, color: '#4169E1' },
+      { name: 'Filipenses', chapters: 4, icon: Heart, color: '#FF1493' },
+      { name: 'Colossenses', chapters: 4, icon: Star, color: '#DAA520' },
+      { name: '1 Tessalonicenses', chapters: 5, icon: Flame, color: '#FF6347' },
+      { name: '2 Tessalonicenses', chapters: 3, icon: Flame, color: '#FF4500' },
+      { name: '1 Timóteo', chapters: 6, icon: Crown, color: '#B8860B' },
+      { name: '2 Timóteo', chapters: 4, icon: Crown, color: '#DAA520' },
+      { name: 'Tito', chapters: 3, icon: Award, color: '#FFD700' },
+      { name: 'Filemom', chapters: 1, icon: Heart, color: '#FF69B4' },
+      { name: 'Hebreus', chapters: 13, icon: Shield, color: '#8B0000' },
+      { name: 'Tiago', chapters: 5, icon: Zap, color: '#32CD32' },
+      { name: '1 Pedro', chapters: 5, icon: Book, color: '#4682B4' },
+      { name: '2 Pedro', chapters: 3, icon: Book, color: '#5F9EA0' },
+      { name: '1 João', chapters: 5, icon: Heart, color: '#FF1493' },
+      { name: '2 João', chapters: 1, icon: Heart, color: '#FF69B4' },
+      { name: '3 João', chapters: 1, icon: Heart, color: '#FFB6C1' },
+      { name: 'Judas', chapters: 1, icon: Zap, color: '#FF8C00' },
+      { name: 'Apocalipse', chapters: 22, icon: Sparkles, color: '#8B008B' },
     ]
   };
 
@@ -99,348 +102,237 @@ export function Enhanced3DBiblePage() {
         transition={{ duration: 0.5 }}
       >
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-4">
-            {/* Logo e Título */}
+          <div className="flex items-center justify-between">
             <motion.div 
-              className="flex items-center gap-3"
+              className="flex items-center space-x-3"
               whileHover={{ scale: 1.05 }}
             >
-              <motion.div
-                animate={{
-                  rotate: [0, 10, -10, 0]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              >
-                <BookOpen size={32} className="text-[#5B7FDB]" />
-              </motion.div>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-[#2D4059] to-[#5B7FDB] bg-clip-text text-transparent">
-                  Bíblia Sagrada
-                </h1>
-                <p className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Escolha um livro para começar sua leitura
-                </p>
-              </div>
+              <BookOpen className="h-8 w-8 text-primary" />
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Bíblia Sagrada
+              </h1>
             </motion.div>
 
-            {/* Ferramentas */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center space-x-3">
               {/* Busca */}
-              <div className="hidden md:block relative">
-                <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <div className="relative hidden md:block">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type="text"
                   placeholder="Buscar versículo..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 w-64 rounded-full"
+                  className="pl-10 w-64"
                 />
               </div>
 
-              {/* Controles de Fonte */}
-              <div className="hidden lg:flex items-center gap-2 px-3 py-2 rounded-full bg-gray-100 dark:bg-gray-800">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setFontSize(prev => Math.max(12, prev - 2))}
-                  className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors"
-                >
-                  <ZoomOut size={18} />
-                </motion.button>
-                <span className="text-sm font-medium w-8 text-center">{fontSize}</span>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setFontSize(prev => Math.min(32, prev + 2))}
-                  className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors"
-                >
-                  <ZoomIn size={18} />
-                </motion.button>
-              </div>
-
-              {/* Modo Escuro */}
-              <motion.button
-                whileHover={{ scale: 1.1, rotate: 180 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </motion.button>
-
-              {/* Menu Mobile */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setShowMenu(!showMenu)}
-                className="md:hidden p-2 rounded-full bg-gray-100 dark:bg-gray-800"
-              >
-                {showMenu ? <X size={20} /> : <Menu size={20} />}
-              </motion.button>
+              {/* Controles */}
+              <Button variant="ghost" size="icon" onClick={() => setFontSize(f => Math.max(12, f - 2))}>
+                <ZoomOut className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="icon" onClick={() => setFontSize(f => Math.min(24, f + 2))}>
+                <ZoomIn className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="icon" onClick={() => setIsDarkMode(!isDarkMode)}>
+                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
             </div>
           </div>
         </div>
       </motion.header>
 
-      {/* Conteúdo Principal */}
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Lista de Livros */}
           <div className="lg:col-span-1">
-            {/* Antigo Testamento */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              className={`rounded-2xl p-6 ${
+                isDarkMode ? 'bg-gray-800' : 'bg-white'
+              } shadow-xl`}
+              initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-8"
             >
-              <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="text-2xl">📜</span>
-                Antigo Testamento
-              </h2>
-              <div className="grid grid-cols-2 gap-3">
-                {bibleBooks.antigoTestamento.map((book, index) => (
-                  <BookCard
-                    key={book.name}
-                    book={book}
-                    index={index}
-                    isSelected={selectedBook?.name === book.name}
-                    onClick={() => setSelectedBook(book)}
-                    isDarkMode={isDarkMode}
-                  />
-                ))}
+              {/* Tabs */}
+              <div className="flex space-x-2 mb-6">
+                <Button
+                  variant={activeTab === 'antigo' ? 'default' : 'outline'}
+                  onClick={() => setActiveTab('antigo')}
+                  className="flex-1"
+                >
+                  Antigo Testamento
+                </Button>
+                <Button
+                  variant={activeTab === 'novo' ? 'default' : 'outline'}
+                  onClick={() => setActiveTab('novo')}
+                  className="flex-1"
+                >
+                  Novo Testamento
+                </Button>
               </div>
-            </motion.div>
 
-            {/* Novo Testamento */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="text-2xl">✝️</span>
-                Novo Testamento
-              </h2>
-              <div className="grid grid-cols-2 gap-3">
-                {bibleBooks.novoTestamento.map((book, index) => (
-                  <BookCard
-                    key={book.name}
-                    book={book}
-                    index={index}
-                    isSelected={selectedBook?.name === book.name}
-                    onClick={() => setSelectedBook(book)}
-                    isDarkMode={isDarkMode}
-                  />
-                ))}
+              {/* Lista de livros */}
+              <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                {(activeTab === 'antigo' ? bibleBooks.antigoTestamento : bibleBooks.novoTestamento).map((book, index) => {
+                  const Icon = book.icon;
+                  return (
+                    <motion.button
+                      key={book.name}
+                      onClick={() => {
+                        setSelectedBook(book);
+                        setSelectedChapter(1);
+                      }}
+                      className={`w-full p-4 rounded-xl flex items-center space-x-3 transition-all ${
+                        selectedBook?.name === book.name
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105'
+                          : isDarkMode
+                          ? 'bg-gray-700 hover:bg-gray-600'
+                          : 'bg-gray-50 hover:bg-gray-100'
+                      }`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.02 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div 
+                        className="p-2 rounded-lg"
+                        style={{ 
+                          backgroundColor: selectedBook?.name === book.name ? 'rgba(255,255,255,0.2)' : `${book.color}20`
+                        }}
+                      >
+                        <Icon 
+                          className="h-5 w-5" 
+                          style={{ color: selectedBook?.name === book.name ? 'white' : book.color }}
+                        />
+                      </div>
+                      <div className="flex-1 text-left">
+                        <div className="font-semibold">{book.name}</div>
+                        <div className="text-xs opacity-70">{book.chapters} capítulos</div>
+                      </div>
+                    </motion.button>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
 
           {/* Área de Leitura */}
           <div className="lg:col-span-2">
-            <AnimatePresence mode="wait">
+            <motion.div
+              className={`rounded-2xl p-8 ${
+                isDarkMode ? 'bg-gray-800' : 'bg-white'
+              } shadow-xl min-h-[600px]`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               {selectedBook ? (
-                <ReadingArea
-                  book={selectedBook}
-                  chapter={selectedChapter}
-                  setChapter={setSelectedChapter}
-                  fontSize={fontSize}
-                  isDarkMode={isDarkMode}
-                  favorites={favorites}
-                  toggleFavorite={toggleFavorite}
-                />
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-3">
+                      {(() => {
+                        const Icon = selectedBook.icon;
+                        return (
+                          <div 
+                            className="p-3 rounded-xl"
+                            style={{ backgroundColor: `${selectedBook.color}20` }}
+                          >
+                            <Icon className="h-6 w-6" style={{ color: selectedBook.color }} />
+                          </div>
+                        );
+                      })()}
+                      <div>
+                        <h2 className="text-2xl font-bold">{selectedBook.name}</h2>
+                        <p className="text-sm opacity-70">Capítulo {selectedChapter}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => toggleFavorite(selectedBook.name, selectedChapter)}
+                      >
+                        <Heart 
+                          className={`h-5 w-5 ${
+                            favorites.includes(`${selectedBook.name}-${selectedChapter}`)
+                              ? 'fill-red-500 text-red-500'
+                              : ''
+                          }`}
+                        />
+                      </Button>
+                      <Button variant="ghost" size="icon">
+                        <Share2 className="h-5 w-5" />
+                      </Button>
+                      <Button variant="ghost" size="icon">
+                        <Volume2 className="h-5 w-5" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Navegação de capítulos */}
+                  <div className="flex items-center justify-between mb-8">
+                    <Button
+                      variant="outline"
+                      onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
+                      disabled={selectedChapter === 1}
+                    >
+                      <ChevronLeft className="h-4 w-4 mr-2" />
+                      Anterior
+                    </Button>
+
+                    <div className="flex items-center space-x-2">
+                      <span className="text-sm opacity-70">Capítulo</span>
+                      <Input
+                        type="number"
+                        value={selectedChapter}
+                        onChange={(e) => {
+                          const val = parseInt(e.target.value);
+                          if (val >= 1 && val <= selectedBook.chapters) {
+                            setSelectedChapter(val);
+                          }
+                        }}
+                        className="w-20 text-center"
+                        min={1}
+                        max={selectedBook.chapters}
+                      />
+                      <span className="text-sm opacity-70">de {selectedBook.chapters}</span>
+                    </div>
+
+                    <Button
+                      variant="outline"
+                      onClick={() => setSelectedChapter(c => Math.min(selectedBook.chapters, c + 1))}
+                      disabled={selectedChapter === selectedBook.chapters}
+                    >
+                      Próximo
+                      <ChevronRight className="h-4 w-4 ml-2" />
+                    </Button>
+                  </div>
+
+                  {/* Conteúdo do capítulo */}
+                  <div 
+                    className="prose prose-lg max-w-none"
+                    style={{ fontSize: `${fontSize}px` }}
+                  >
+                    <p className="text-center opacity-70 py-12">
+                      Carregando capítulo {selectedChapter} de {selectedBook.name}...
+                    </p>
+                  </div>
+                </div>
               ) : (
-                <EmptyState isDarkMode={isDarkMode} />
+                <div className="flex flex-col items-center justify-center h-full text-center">
+                  <BookOpen className="h-24 w-24 opacity-20 mb-6" />
+                  <h3 className="text-2xl font-bold mb-2">Selecione um livro para começar</h3>
+                  <p className="opacity-70">
+                    Escolha um livro da Bíblia na lista ao lado para iniciar sua leitura
+                  </p>
+                </div>
               )}
-            </AnimatePresence>
+            </motion.div>
           </div>
         </div>
       </div>
     </div>
-  );
-}
-
-// Componente de Card de Livro
-function BookCard({ book, index, isSelected, onClick, isDarkMode }) {
-  return (
-    <motion.button
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.02, duration: 0.3 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={onClick}
-      className={`p-4 rounded-xl text-left transition-all ${
-        isSelected
-          ? 'bg-gradient-to-br from-[#5B7FDB] to-[#507D6D] text-white shadow-lg'
-          : isDarkMode
-          ? 'bg-gray-800 hover:bg-gray-700'
-          : 'bg-white hover:bg-gray-50 shadow-md'
-      }`}
-    >
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-2xl">{book.icon}</span>
-        <span className="font-semibold text-sm">{book.name}</span>
-      </div>
-      <p className={`text-xs ${isSelected ? 'text-white/80' : isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-        {book.chapters} capítulos
-      </p>
-    </motion.button>
-  );
-}
-
-// Área de Leitura
-function ReadingArea({ book, chapter, setChapter, fontSize, isDarkMode, favorites, toggleFavorite }) {
-  const isFavorite = favorites.includes(`${book.name}-${chapter}`);
-
-  return (
-    <motion.div
-      key={`${book.name}-${chapter}`}
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      className={`rounded-2xl p-8 ${
-        isDarkMode ? 'bg-gray-800' : 'bg-white shadow-xl'
-      }`}
-    >
-      {/* Cabeçalho do Capítulo */}
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-3xl font-bold mb-2">
-            {book.name} {chapter}
-          </h2>
-          <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            {book.chapters} capítulos disponíveis
-          </p>
-        </div>
-
-        {/* Ações */}
-        <div className="flex items-center gap-2">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => toggleFavorite(book.name, chapter)}
-            className={`p-2 rounded-full transition-colors ${
-              isFavorite 
-                ? 'bg-red-100 text-red-600' 
-                : isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'
-            }`}
-          >
-            <Heart size={20} className={isFavorite ? 'fill-current' : ''} />
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className={`p-2 rounded-full ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`}
-          >
-            <Volume2 size={20} />
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className={`p-2 rounded-full ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition-colors`}
-          >
-            <Share2 size={20} />
-          </motion.button>
-        </div>
-      </div>
-
-      {/* Conteúdo do Capítulo (Placeholder) */}
-      <div 
-        className={`prose max-w-none mb-8 ${isDarkMode ? 'prose-invert' : ''}`}
-        style={{ fontSize: `${fontSize}px`, lineHeight: '1.8' }}
-      >
-        <p className="mb-4">
-          <span className="font-bold text-[#5B7FDB]">1</span> No princípio, criou Deus os céus e a terra.
-        </p>
-        <p className="mb-4">
-          <span className="font-bold text-[#5B7FDB]">2</span> A terra, porém, estava sem forma e vazia; havia trevas sobre a face do abismo, e o Espírito de Deus pairava por sobre as águas.
-        </p>
-        <p className="mb-4">
-          <span className="font-bold text-[#5B7FDB]">3</span> Disse Deus: Haja luz; e houve luz.
-        </p>
-      </div>
-
-      {/* Navegação de Capítulos */}
-      <div className="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
-        <motion.button
-          whileHover={{ scale: 1.05, x: -5 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setChapter(Math.max(1, chapter - 1))}
-          disabled={chapter === 1}
-          className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
-            chapter === 1
-              ? 'opacity-50 cursor-not-allowed'
-              : isDarkMode
-              ? 'bg-gray-700 hover:bg-gray-600'
-              : 'bg-gray-100 hover:bg-gray-200'
-          }`}
-        >
-          <ChevronLeft size={20} />
-          Anterior
-        </motion.button>
-
-        <span className={`font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-          Capítulo {chapter} de {book.chapters}
-        </span>
-
-        <motion.button
-          whileHover={{ scale: 1.05, x: 5 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setChapter(Math.min(book.chapters, chapter + 1))}
-          disabled={chapter === book.chapters}
-          className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
-            chapter === book.chapters
-              ? 'opacity-50 cursor-not-allowed'
-              : 'bg-gradient-to-r from-[#5B7FDB] to-[#507D6D] text-white hover:shadow-lg'
-          }`}
-        >
-          Próximo
-          <ChevronRight size={20} />
-        </motion.button>
-      </div>
-    </motion.div>
-  );
-}
-
-// Estado Vazio
-function EmptyState({ isDarkMode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className={`rounded-2xl p-16 text-center ${
-        isDarkMode ? 'bg-gray-800' : 'bg-white shadow-xl'
-      }`}
-    >
-      <motion.div
-        animate={{
-          y: [0, -10, 0]
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-        className="text-8xl mb-6"
-      >
-        📖
-      </motion.div>
-      <h3 className="text-2xl font-bold mb-4">
-        Selecione um livro para começar
-      </h3>
-      <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-        Escolha um livro da Bíblia na lista ao lado para iniciar sua leitura
-      </p>
-    </motion.div>
   );
 }

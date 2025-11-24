@@ -73,6 +73,11 @@ import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
 import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
 import { ImprovedHomePageDesktop } from './components/ImprovedHomePageDesktop.jsx'
 import { PageTransition } from './components/PageTransition.jsx'
+import { ChristianBackground3D, ChristianBackground3DMobile } from './components/ChristianBackground3D.jsx'
+import { Enhanced3DFooter } from './components/Enhanced3DFooter.jsx'
+import { Enhanced3DLogin } from './components/Enhanced3DLogin.jsx'
+import { Enhanced3DRegister } from './components/Enhanced3DRegister.jsx'
+import { Enhanced3DBiblePage } from './components/Enhanced3DBiblePage.jsx'
 import { CategoriaEstudosPage } from './components/CategoriaEstudosPage.jsx'
 import { DetalheCursoPage } from './components/DetalheCursoPage.jsx'
 import { useIsMobile } from './hooks/useIsMobile.js'
@@ -1573,17 +1578,21 @@ function AppContent() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background relative">
+        {/* Background 3D Cristão */}
+        {isMobile ? <ChristianBackground3DMobile /> : <ChristianBackground3D />}
+        
         <ConnectionStatus />
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={isMobile ? <NewHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
-            <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+            <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
+            <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />
-            <Route path="/biblia" element={<BibliaPage />} />
-            <Route path="/biblia/:livro/:capitulo" element={<BibliaPage />} />
+            <Route path="/biblia" element={<Enhanced3DBiblePage />} />
+            <Route path="/biblia/:livro/:capitulo" element={<Enhanced3DBiblePage />} />
             <Route path="/estudos" element={isMobile ? <NewEstudosPage /> : <EstudosPage />} />
             <Route path="/estudos/:categoria" element={<CategoriaEstudosPage />} />
             <Route path="/estudos/:categoria/:cursoId" element={<DetalheCursoPage />} />
@@ -1614,74 +1623,8 @@ function AppContent() {
           </Routes>
         </AnimatePresence>
         
-        {/* Footer */}
-        <motion.footer 
-          className="bg-primary text-primary-foreground py-12 mt-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              {/* Sobre com Logo */}
-              <div>
-                <Link to="/" className="flex items-center space-x-3 mb-4 group">
-                  <motion.img 
-                    src="/logo-adventista-simbolo.png" 
-                    alt="Igreja Adventista do Sétimo Dia" 
-                    className="h-16 w-16"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div>
-                    <span className="font-bold text-2xl block group-hover:text-yellow-300 transition-colors">Adventista Play</span>
-                    <span className="text-xs opacity-70">Portal Adventista</span>
-                  </div>
-                </Link>
-                <p className="text-sm opacity-80 mt-2">
-                  Fortalecendo a fé e conectando corações com a Palavra de Deus
-                </p>
-              </div>
-
-              {/* Links Rápidos */}
-              <div>
-                <h3 className="font-bold text-lg mb-4">Links Rápidos</h3>
-                <div className="space-y-2 text-sm opacity-80">
-                  <Link to="/devocional" className="block hover:opacity-100 transition-opacity">Devocional</Link>
-                  <Link to="/hinario" className="block hover:opacity-100 transition-opacity">Hinário</Link>
-                  <Link to="/biblia" className="block hover:opacity-100 transition-opacity">Bíblia</Link>
-                  <Link to="/estudos" className="block hover:opacity-100 transition-opacity">Estudos</Link>
-                  <Link to="/projetos" className="block hover:opacity-100 transition-opacity">Projetos</Link>
-                </div>
-              </div>
-
-              {/* Contato */}
-              <div>
-                <h3 className="font-bold text-lg mb-4">Contato</h3>
-                <div className="space-y-2 text-sm opacity-80">
-                  <a href="mailto:wallisonpereiradev@gmail.com" className="block hover:opacity-100 transition-opacity flex items-center space-x-2">
-                    <Mail className="h-4 w-4" />
-                    <span>wallisonpereiradev@gmail.com</span>
-                  </a>
-                  <a href="tel:+5562994791745" className="block hover:opacity-100 transition-opacity flex items-center space-x-2">
-                    <Phone className="h-4 w-4" />
-                    <span>(62) 99479-1745</span>
-                  </a>
-                  <Link to="/contato" className="block hover:opacity-100 transition-opacity flex items-center space-x-2">
-                    <MessageSquare className="h-4 w-4" />
-                    <span>Formulário de Contato</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-t border-primary-foreground/20 pt-6 text-center">
-              <p className="text-xs opacity-60">
-                © 2025 Portal Adventista. Todos os direitos reservados. | Desenvolvido por Wallison Pereira
-              </p>
-            </div>
-          </div>
-        </motion.footer>
+        {/* Footer Melhorado */}
+        <Enhanced3DFooter />
       </div>
     </Router>
   )

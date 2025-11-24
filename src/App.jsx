@@ -174,9 +174,9 @@ function Navigation({ user, onLogout }) {
           {/* Logo no cabeçalho - Fixo no canto esquerdo */}
           <Link to="/" className="absolute left-6 flex items-center">
             <motion.img 
-              src="/logo-adventista-simbolo.png" 
+              src="/logo-adventista-play-transparent.png" 
               alt="Adventista Play" 
-              className="h-12 w-12 cursor-pointer"
+              className="h-10 cursor-pointer"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}

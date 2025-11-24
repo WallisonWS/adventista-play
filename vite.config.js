@@ -26,7 +26,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: false,
-    allowedHosts: ['5173-idqes9gi2rhsggd841dp4-1f7b0d8e.manusvm.computer'],
+    allowedHosts: ['5173-iji3mefr88fr32g5dzc8i-a1d31d94.manusvm.computer', '.manusvm.computer'],
   },
 })
 

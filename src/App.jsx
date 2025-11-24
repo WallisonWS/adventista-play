@@ -37,6 +37,7 @@ import './styles/dark-mode.css'
 import './styles/themes.css'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext.jsx'
+import { Toaster } from 'react-hot-toast'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { FeedbackPage } from './components/FeedbackPage.jsx'
 import { NoticiasDesbravadores } from './components/NoticiasDesbravadores.jsx'
@@ -67,6 +68,7 @@ import { ConnectionStatus } from './components/ConnectionStatus.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
+import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
 import { CategoriaEstudosPage } from './components/CategoriaEstudosPage.jsx'
 import { DetalheCursoPage } from './components/DetalheCursoPage.jsx'
 import { useIsMobile } from './hooks/useIsMobile.js'
@@ -388,6 +390,23 @@ function HomePage() {
               }}
             />
           ))}
+        </div>
+      </section>
+
+      {/* Seção de Destaques Dinâmicos */}
+      <section className="py-8 px-4">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#2E3192' }}>
+              ✨ Destaques do Dia
+            </h2>
+            <DestaquesCarousel />
+          </motion.div>
         </div>
       </section>
 
@@ -1668,6 +1687,30 @@ function App() {
   return (
     <DarkModeProvider>
       <ThemeProvider>
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: '#363636',
+              color: '#fff',
+            },
+            success: {
+              duration: 3000,
+              iconTheme: {
+                primary: '#4ade80',
+                secondary: '#fff',
+              },
+            },
+            error: {
+              duration: 4000,
+              iconTheme: {
+                primary: '#ef4444',
+                secondary: '#fff',
+              },
+            },
+          }}
+        />
         <AppContent />
       </ThemeProvider>
     </DarkModeProvider>

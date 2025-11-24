@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Heart, BookText, ChevronRight, Volume2, Music, GraduationCap, Gift } from 'lucide-react'
+import { Heart, BookText, ChevronRight, Volume2, Music, GraduationCap, Gift, Calendar, ArrowRight } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card'
 import { Button } from './ui/button'
 import { BottomNav } from './BottomNav'
@@ -252,6 +253,25 @@ export function NewHomePage({ user }) {
           </motion.div>
         </div>
       </section>
+
+      {/* Botão Flutuante de Acesso Rápido ao Próximo Dia */}
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1, type: 'spring', stiffness: 200 }}
+        className="fixed bottom-24 right-6 z-40"
+      >
+        <Link to="/planos">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-2xl flex items-center justify-center hover:shadow-blue-500/50 transition-all"
+            aria-label="Acesso Rápido ao Próximo Dia"
+          >
+            <Calendar className="h-6 w-6" />
+          </motion.button>
+        </Link>
+      </motion.div>
 
       {/* Bottom Navigation */}
       <BottomNav />

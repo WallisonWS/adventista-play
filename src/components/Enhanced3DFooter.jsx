@@ -2,290 +2,226 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Mail, Phone, MapPin, Facebook, Instagram, 
-  Youtube, Twitter, Heart, ExternalLink
+  Youtube, Send, Heart, ExternalLink, BookOpen
 } from 'lucide-react';
 
 /**
  * Enhanced3DFooter
- * Rodapé moderno com animações 3D e melhor UX
+ * Rodapé redesenhado com design limpo e organizado (SEM EMOJIS)
  */
 export function Enhanced3DFooter() {
-  return (
-    <footer className="relative bg-gradient-to-br from-[#2D4059] via-[#1a2332] to-[#2D4059] text-white overflow-hidden">
-      {/* Padrão de fundo decorativo */}
-      <div className="absolute inset-0 opacity-5">
-        <svg width="100%" height="100%">
-          <pattern id="footerPattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M50 0 L50 100 M0 50 L100 50" stroke="white" strokeWidth="0.5"/>
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#footerPattern)"/>
-        </svg>
-      </div>
+  const currentYear = new Date().getFullYear();
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        {/* Seção Principal */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+  return (
+    <footer className="relative bg-gradient-to-b from-slate-800 to-slate-900 text-white overflow-hidden">
+      {/* Linha decorativa no topo */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          {/* Sobre */}
+          {/* Coluna 1: Logo e Descrição */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            className="space-y-4"
           >
-            <Link to="/" className="flex items-center space-x-3 mb-6 group">
-              <motion.img 
+            <Link to="/" className="flex items-center space-x-3 group">
+              <img 
                 src="/logo-adventista-play-transparent.png" 
                 alt="Adventista Play" 
-                className="h-16 w-auto"
-                style={{ mixBlendMode: 'multiply' }}
-                whileHover={{ 
-                  scale: 1.1, 
-                  rotateY: 360,
-                  filter: 'drop-shadow(0 0 20px rgba(235, 176, 96, 0.5))'
-                }}
-                transition={{ duration: 0.6 }}
-                style={{
-                  transformStyle: 'preserve-3d'
-                }}
+                className="h-12 w-auto"
+                style={{ mixBlendMode: 'screen' }}
               />
-              <div>
-                <span className="font-bold text-2xl block group-hover:text-[#EBB060] transition-colors">
-                  Adventista Play
-                </span>
-                <span className="text-xs opacity-70">Portal Adventista</span>
-              </div>
             </Link>
-            <p className="text-sm opacity-80 leading-relaxed">
+            <h3 className="text-xl font-bold">Adventista Play</h3>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Portal Adventista
+            </p>
+            <p className="text-sm text-gray-400 leading-relaxed">
               Fortalecendo a fé e conectando corações com a Palavra de Deus através de recursos digitais inspiradores.
             </p>
           </motion.div>
 
-          {/* Links Rápidos */}
+          {/* Coluna 2: Links Rápidos */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            className="space-y-4"
           >
-            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              >
-                📚
-              </motion.div>
-              Links Rápidos
-            </h3>
-            <ul className="space-y-3 text-sm">
+            <div className="flex items-center space-x-2 mb-4">
+              <BookOpen className="h-5 w-5 text-blue-400" />
+              <h4 className="text-lg font-semibold">Links Rápidos</h4>
+            </div>
+            <ul className="space-y-2">
               {[
                 { to: '/devocional', label: 'Devocional' },
                 { to: '/hinario', label: 'Hinário' },
                 { to: '/biblia', label: 'Bíblia' },
                 { to: '/estudos', label: 'Estudos' },
+                { to: '/ellen-white', label: 'Ellen White' },
+                { to: '/planos', label: 'Planos' },
                 { to: '/projetos', label: 'Projetos' },
                 { to: '/cursos', label: 'Cursos' }
-              ].map((link, index) => (
+              ].map((link) => (
                 <motion.li 
                   key={link.to}
-                  whileHover={{ x: 10, scale: 1.05 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <Link 
-                    to={link.to} 
-                    className="opacity-80 hover:opacity-100 hover:text-[#EBB060] transition-all flex items-center gap-2"
+                    to={link.to}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center space-x-2"
                   >
-                    <motion.span
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 2, delay: index * 0.2, repeat: Infinity }}
-                    >
-                      →
-                    </motion.span>
-                    {link.label}
+                    <span className="text-blue-400">→</span>
+                    <span>{link.label}</span>
                   </Link>
                 </motion.li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Contato */}
+          {/* Coluna 3: Contato */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-4"
           >
-            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                📞
-              </motion.div>
-              Contato
-            </h3>
-            <ul className="space-y-4 text-sm">
-              <motion.li 
-                className="flex items-start gap-3"
-                whileHover={{ x: 5 }}
-              >
-                <Mail size={18} className="mt-1 text-[#EBB060]" />
+            <div className="flex items-center space-x-2 mb-4">
+              <Phone className="h-5 w-5 text-blue-400" />
+              <h4 className="text-lg font-semibold">Contato</h4>
+            </div>
+            <ul className="space-y-3">
+              <li className="flex items-start space-x-3">
+                <Mail className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <a 
-                  href="mailto:wallisonpereirade@gmail.com" 
-                  className="opacity-80 hover:opacity-100 hover:text-[#EBB060] transition-colors"
+                  href="mailto:wallisonpereirade@gmail.com"
+                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm break-all"
                 >
                   wallisonpereirade@gmail.com
                 </a>
-              </motion.li>
-              <motion.li 
-                className="flex items-start gap-3"
-                whileHover={{ x: 5 }}
-              >
-                <Phone size={18} className="mt-1 text-[#EBB060]" />
+              </li>
+              <li className="flex items-start space-x-3">
+                <Phone className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <a 
-                  href="tel:+5562994251745" 
-                  className="opacity-80 hover:opacity-100 hover:text-[#EBB060] transition-colors"
+                  href="tel:+5562994251745"
+                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
                 >
                   (62) 99425-1745
                 </a>
-              </motion.li>
-              <motion.li 
-                className="flex items-start gap-3"
-                whileHover={{ x: 5 }}
-              >
-                <MapPin size={18} className="mt-1 text-[#EBB060]" />
-                <span className="opacity-80">
+              </li>
+              <li className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-300 text-sm">
                   Brasil
                 </span>
-              </motion.li>
+              </li>
             </ul>
           </motion.div>
 
-          {/* Redes Sociais */}
+          {/* Coluna 4: Redes Sociais e Newsletter */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            className="space-y-4"
           >
-            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
-              <motion.div
-                animate={{ rotate: [0, 15, -15, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
+            <h4 className="text-lg font-semibold mb-4">Redes Sociais</h4>
+            <div className="flex space-x-3">
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.1, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200"
               >
-                🌐
-              </motion.div>
-              Redes Sociais
-            </h3>
-            <div className="flex gap-4">
-              {[
-                { Icon: Facebook, href: '#', color: '#1877F2' },
-                { Icon: Instagram, href: '#', color: '#E4405F' },
-                { Icon: Youtube, href: '#', color: '#FF0000' },
-                { Icon: Twitter, href: '#', color: '#1DA1F2' }
-              ].map(({ Icon, href, color }, index) => (
-                <motion.a
-                  key={index}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ 
-                    scale: 1.2, 
-                    rotateY: 360,
-                    backgroundColor: color
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                  className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:shadow-lg"
-                  style={{
-                    transformStyle: 'preserve-3d'
-                  }}
-                >
-                  <Icon size={20} />
-                </motion.a>
-              ))}
+                <Facebook className="h-5 w-5" />
+              </motion.a>
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.1, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-3 bg-pink-600 rounded-lg hover:bg-pink-700 transition-colors duration-200"
+              >
+                <Instagram className="h-5 w-5" />
+              </motion.a>
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.1, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-3 bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200"
+              >
+                <Youtube className="h-5 w-5" />
+              </motion.a>
             </div>
 
-            {/* Newsletter */}
-            <div className="mt-8">
-              <h4 className="font-semibold mb-3 text-sm">📧 Newsletter</h4>
-              <p className="text-xs opacity-70 mb-3">
-                Receba devocionais e novidades
+            <div className="mt-6">
+              <h5 className="text-sm font-semibold mb-3">Newsletter</h5>
+              <p className="text-xs text-gray-400 mb-3">
+                Receba atualizações e conteúdos exclusivos
               </p>
-              <div className="flex gap-2">
+              <div className="flex">
                 <input
                   type="email"
                   placeholder="Seu e-mail"
-                  className="flex-1 px-3 py-2 rounded-md bg-white/10 backdrop-blur-sm border border-white/20 text-sm focus:outline-none focus:ring-2 focus:ring-[#EBB060] transition-all"
+                  className="flex-1 px-4 py-2 bg-slate-700 border border-slate-600 rounded-l-lg text-sm focus:outline-none focus:border-blue-500 transition-colors"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 rounded-md bg-[#EBB060] text-white font-semibold text-sm hover:bg-[#d99d4f] transition-colors"
+                  className="px-4 py-2 bg-blue-600 rounded-r-lg hover:bg-blue-700 transition-colors duration-200"
                 >
-                  Enviar
+                  <Send className="h-4 w-4" />
                 </motion.button>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Divisor animado */}
-        <motion.div 
-          className="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent mb-8"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        />
+        {/* Linha divisória */}
+        <div className="my-8 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
 
         {/* Copyright */}
-        <motion.div 
-          className="text-center text-sm opacity-70"
+        <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.7 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center space-y-2"
         >
-          <p className="flex items-center justify-center gap-2 flex-wrap">
-            © 2025 Portal Adventista. Todos os direitos reservados. 
-            <span className="flex items-center gap-1">
-              Desenvolvido com 
-              <motion.span
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              >
-                <Heart size={14} className="text-red-400 fill-current" />
-              </motion.span>
-              por Wallison Pereira
-            </span>
+          <p className="text-sm text-gray-400">
+            © {currentYear} Portal Adventista. Todos os direitos reservados.
           </p>
-          <div className="mt-2 flex items-center justify-center gap-4 text-xs">
-            <Link to="/contato" className="hover:text-[#EBB060] transition-colors flex items-center gap-1">
+          <p className="text-xs text-gray-500 flex items-center justify-center gap-2">
+            Desenvolvido com{' '}
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1, repeat: Infinity, repeatDelay: 1 }}
+              className="inline-block text-red-500"
+            >
+              <Heart className="h-3 w-3 inline fill-current" />
+            </motion.span>
+            {' '}por Wallison Pereira
+          </p>
+          <div className="flex justify-center space-x-4 text-xs text-gray-500">
+            <Link to="/contato" className="hover:text-white transition-colors flex items-center gap-1">
               Formulário de Contato
-              <ExternalLink size={12} />
+              <ExternalLink className="h-3 w-3" />
             </Link>
             <span>•</span>
-            <Link to="/feedback" className="hover:text-[#EBB060] transition-colors flex items-center gap-1">
+            <Link to="/feedback" className="hover:text-white transition-colors flex items-center gap-1">
               Feedback
-              <ExternalLink size={12} />
+              <ExternalLink className="h-3 w-3" />
             </Link>
           </div>
         </motion.div>
       </div>
-
-      {/* Efeito de brilho no rodapé */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#EBB060] to-transparent"
-        animate={{
-          x: ['-100%', '100%']
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: 'linear'
-        }}
-      />
     </footer>
   );
 }

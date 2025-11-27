@@ -68,6 +68,7 @@ import { DoacaoSucesso, DoacaoFalha, DoacaoPendente } from './components/DoacaoR
 import { ConnectionStatus } from './components/ConnectionStatus.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
+import ModernMobileHomePage from './components/ModernMobileHomePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
 import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
@@ -1586,7 +1587,7 @@ function AppContent() {
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={isMobile ? <NewHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
+            <Route path="/" element={isMobile ? <ModernMobileHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
             <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />

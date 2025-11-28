@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { BookOpen, Calendar, Clock, ChevronRight, X, Check } from 'lucide-react'
+import Timeline from './21st-dev/Timeline'
 
 export function PlanosLeituraPage({ planos }) {
   const [selectedPlano, setSelectedPlano] = useState(null)
@@ -171,6 +172,12 @@ export function PlanosLeituraPage({ planos }) {
               </Card>
             </motion.div>
           ))}
+        </div>
+
+        {/* Timeline de Progresso */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-center mb-8">Seu Progresso Anual</h2>
+          <Timeline />
         </div>
       </div>
     </div>

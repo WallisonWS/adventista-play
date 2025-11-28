@@ -14,6 +14,8 @@ import {
 } from './3DAnimations';
 import { ScrollReveal, StaggerChildren } from './ScrollReveal';
 import { DestaquesCarousel } from './DestaquesCarousel';
+import AuroraBackground from './21st-dev/AuroraBackground';
+import BentoGrid from './21st-dev/BentoGrid';
 
 /**
  * EnhancedWebHomePage
@@ -31,15 +33,8 @@ export function EnhancedWebHomePage({ user }) {
       {/* Partículas flutuantes 3D no fundo */}
       <FloatingParticles3D count={15} />
 
-      {/* Hero Section Melhorada */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        {/* Gradiente de fundo */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse at top, rgba(91, 127, 219, 0.1) 0%, transparent 50%)'
-          }}
-        />
+      {/* Hero Section com Aurora Background */}
+      <AuroraBackground className="py-20 px-4">
 
         <div className="container mx-auto relative z-10">
           <ScrollReveal animation="fade">
@@ -129,7 +124,7 @@ export function EnhancedWebHomePage({ user }) {
 
         {/* Onda decorativa */}
         <Wave3D />
-      </section>
+      </AuroraBackground>
 
       {/* Seção: Destaques do Dia */}
       <section className="py-16 px-4 relative z-10">
@@ -166,75 +161,8 @@ export function EnhancedWebHomePage({ user }) {
         </div>
       </section>
 
-      {/* Seção: Recursos Principais */}
-      <section className="py-16 px-4 relative z-10">
-        <div className="container mx-auto">
-          <ScrollReveal animation="slide-up">
-            <h2 
-              className="text-3xl md:text-4xl font-bold text-center mb-12"
-              style={{ color: 'var(--color-primary)' }}
-            >
-              Recursos Principais
-            </h2>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <ResourceCard3D
-              icon={Heart}
-              title="Devocional Diário"
-              description="Meditações e reflexões para fortalecer sua fé todos os dias"
-              link="/devocional"
-              color="#E57373"
-              delay={0}
-            />
-
-            <ResourceCard3D
-              icon={Music}
-              title="Hinário Adventista"
-              description="Acesse todos os hinos do hinário adventista com letras completas"
-              link="/hinario"
-              color="#4DB6AC"
-              delay={0.1}
-            />
-
-            <ResourceCard3D
-              icon={BookText}
-              title="Bíblia Sagrada"
-              description="Leia e estude a Palavra de Deus com ferramentas de busca"
-              link="/biblia"
-              color="#5B7FDB"
-              delay={0.2}
-            />
-
-            <ResourceCard3D
-              icon={GraduationCap}
-              title="Estudos Bíblicos"
-              description="Lições da Escola Sabatina e estudos temáticos aprofundados"
-              link="/estudos"
-              color="#FF8A65"
-              delay={0.3}
-            />
-
-            <ResourceCard3D
-              icon={Globe}
-              title="Projetos Missionários"
-              description="Conheça e apoie missões ao redor do mundo"
-              link="/projetos"
-              color="#FFB74D"
-              delay={0.4}
-            />
-
-            <ResourceCard3D
-              icon={Volume2}
-              title="Áudio Bíblia"
-              description="Ouça a Palavra de Deus narrada com qualidade profissional"
-              link="/biblia/audio"
-              color="#9575CD"
-              delay={0.5}
-            />
-          </div>
-        </div>
-      </section>
+      {/* Seção: Recursos Principais com BentoGrid */}
+      <BentoGrid />
 
       {/* Seção: Versículo do Dia com Card 3D */}
       <section className="py-16 px-4 relative z-10">

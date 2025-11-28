@@ -39,6 +39,7 @@ import './styles/colors.css'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext.jsx'
 import { Toaster } from 'react-hot-toast'
+import Dock from './components/21st-dev/Dock'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { FeedbackPage } from './components/FeedbackPage.jsx'
 import { NoticiasDesbravadores } from './components/NoticiasDesbravadores.jsx'
@@ -1625,6 +1626,16 @@ function AppContent() {
             <Route path="/doacao/pendente" element={<DoacaoPendente />} />
           </Routes>
         </AnimatePresence>
+        
+        {/* Dock Navigation */}
+        <Dock onItemClick={(id) => {
+          const navigate = window.location
+          if (id === 'home') navigate.href = '/'
+          else if (id === 'search') navigate.href = '/biblia'
+          else if (id === 'bible') navigate.href = '/biblia'
+          else if (id === 'favorites') navigate.href = '/perfil'
+          else if (id === 'profile') navigate.href = '/perfil'
+        }} />
         
         {/* Footer Melhorado */}
         <Enhanced3DFooter />

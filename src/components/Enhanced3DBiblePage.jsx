@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/input.jsx';
 import { Button } from '@/components/ui/button.jsx';
+import Sidebar from './21st-dev/Sidebar';
 
 /**
  * Enhanced3DBiblePage
@@ -23,6 +24,7 @@ export function Enhanced3DBiblePage() {
   const [showMenu, setShowMenu] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [activeTab, setActiveTab] = useState('antigo');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Livros da Bíblia organizados com ícones Lucide
   const bibleBooks = {
@@ -135,6 +137,9 @@ export function Enhanced3DBiblePage() {
               </Button>
               <Button variant="ghost" size="icon" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+              <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)}>
+                <Menu className="h-5 w-5" />
               </Button>
             </div>
           </div>
@@ -333,6 +338,17 @@ export function Enhanced3DBiblePage() {
           </div>
         </div>
       </div>
+      
+      {/* Sidebar de Navegação */}
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onClose={() => setSidebarOpen(false)}
+        onSelectBook={(book) => {
+          setSelectedBook(book);
+          setSelectedChapter(1);
+          setSidebarOpen(false);
+        }}
+      />
     </div>
   );
 }

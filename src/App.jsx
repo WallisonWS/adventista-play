@@ -48,6 +48,7 @@ import { PerfilPage } from './components/PerfilPage.jsx'
 import { VersiculoDoDia } from './components/VersiculoDoDia.jsx'
 import { ConquistasPage } from './components/ConquistasPage.jsx'
 import { LessonViewer } from './components/LessonViewer.jsx'
+import DemoPage from './components/21st-dev/DemoPage.jsx'
 import { PlanosLeituraPage } from './components/PlanosLeituraPage.jsx'
 import { QuizBiblico } from './components/QuizBiblico.jsx'
 import { EscolaSabatina } from './components/EscolaSabatina'
@@ -1588,6 +1589,7 @@ function AppContent() {
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={isMobile ? <ModernMobileHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
+            <Route path="/demo" element={<DemoPage />} />
             <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />

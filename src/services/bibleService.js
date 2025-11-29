@@ -59,6 +59,7 @@ function getFromCache(key) {
 
 /**
  * Busca capítulo da Bíblia com cache
+ * Usando bible-api.com (API confiável e gratuita)
  */
 export async function fetchChapter(book, chapter) {
   const cacheKey = `${book}_${chapter}`;
@@ -69,10 +70,10 @@ export async function fetchChapter(book, chapter) {
     return cached;
   }
   
-  // Busca da API
+  // Busca da API bible-api.com
   try {
     const response = await fetch(
-      `https://www.abibliadigital.com.br/api/verses/nvi/${book}/${chapter}`
+      `https://bible-api.com/${book}+${chapter}?translation=almeida`
     );
     
     if (!response.ok) {
@@ -81,10 +82,27 @@ export async function fetchChapter(book, chapter) {
     
     const data = await response.json();
     
-    // Salva no cache
-    saveToCache(cacheKey, data);
+    // Formata dados para compatibilidade com componentes
+    const formattedData = {
+      book: {
+        abbrev: book,
+        name: data.verses[0]?.book_name || book,
+        version: 'almeida'
+      },
+      chapter: {
+        number: chapter,
+        verses: data.verses.length
+      },
+      verses: data.verses.map(v => ({
+        number: v.verse,
+        text: v.text.trim()
+      }))
+    };
     
-    return data;
+    // Salva no cache
+    saveToCache(cacheKey, formattedData);
+    
+    return formattedData;
   } catch (error) {
     console.error('Erro ao buscar capítulo:', error);
     throw error;
@@ -116,74 +134,74 @@ export function prefetchAdjacentChapters(book, chapter, totalChapters) {
 export function getBibleBooks() {
   return {
     oldTestament: [
-      { abbrev: 'gn', name: 'Gênesis', chapters: 50 },
-      { abbrev: 'ex', name: 'Êxodo', chapters: 40 },
-      { abbrev: 'lv', name: 'Levítico', chapters: 27 },
-      { abbrev: 'nm', name: 'Números', chapters: 36 },
-      { abbrev: 'dt', name: 'Deuteronômio', chapters: 34 },
-      { abbrev: 'js', name: 'Josué', chapters: 24 },
-      { abbrev: 'jz', name: 'Juízes', chapters: 21 },
-      { abbrev: 'rt', name: 'Rute', chapters: 4 },
-      { abbrev: '1sm', name: '1 Samuel', chapters: 31 },
-      { abbrev: '2sm', name: '2 Samuel', chapters: 24 },
-      { abbrev: '1rs', name: '1 Reis', chapters: 22 },
-      { abbrev: '2rs', name: '2 Reis', chapters: 25 },
-      { abbrev: '1cr', name: '1 Crônicas', chapters: 29 },
-      { abbrev: '2cr', name: '2 Crônicas', chapters: 36 },
-      { abbrev: 'ed', name: 'Esdras', chapters: 10 },
-      { abbrev: 'ne', name: 'Neemias', chapters: 13 },
-      { abbrev: 'et', name: 'Ester', chapters: 10 },
+      { abbrev: 'genesis', name: 'Gênesis', chapters: 50 },
+      { abbrev: 'exodus', name: 'Êxodo', chapters: 40 },
+      { abbrev: 'leviticus', name: 'Levítico', chapters: 27 },
+      { abbrev: 'numbers', name: 'Números', chapters: 36 },
+      { abbrev: 'deuteronomy', name: 'Deuteronômio', chapters: 34 },
+      { abbrev: 'joshua', name: 'Josué', chapters: 24 },
+      { abbrev: 'judges', name: 'Juízes', chapters: 21 },
+      { abbrev: 'ruth', name: 'Rute', chapters: 4 },
+      { abbrev: '1samuel', name: '1 Samuel', chapters: 31 },
+      { abbrev: '2samuel', name: '2 Samuel', chapters: 24 },
+      { abbrev: '1kings', name: '1 Reis', chapters: 22 },
+      { abbrev: '2kings', name: '2 Reis', chapters: 25 },
+      { abbrev: '1chronicles', name: '1 Crônicas', chapters: 29 },
+      { abbrev: '2chronicles', name: '2 Crônicas', chapters: 36 },
+      { abbrev: 'ezra', name: 'Esdras', chapters: 10 },
+      { abbrev: 'nehemiah', name: 'Neemias', chapters: 13 },
+      { abbrev: 'esther', name: 'Ester', chapters: 10 },
       { abbrev: 'job', name: 'Jó', chapters: 42 },
-      { abbrev: 'sl', name: 'Salmos', chapters: 150 },
-      { abbrev: 'pv', name: 'Provérbios', chapters: 31 },
-      { abbrev: 'ec', name: 'Eclesiastes', chapters: 12 },
-      { abbrev: 'ct', name: 'Cânticos', chapters: 8 },
-      { abbrev: 'is', name: 'Isaías', chapters: 66 },
-      { abbrev: 'jr', name: 'Jeremias', chapters: 52 },
-      { abbrev: 'lm', name: 'Lamentações', chapters: 5 },
-      { abbrev: 'ez', name: 'Ezequiel', chapters: 48 },
-      { abbrev: 'dn', name: 'Daniel', chapters: 12 },
-      { abbrev: 'os', name: 'Oséias', chapters: 14 },
-      { abbrev: 'jl', name: 'Joel', chapters: 3 },
-      { abbrev: 'am', name: 'Amós', chapters: 9 },
-      { abbrev: 'ob', name: 'Obadias', chapters: 1 },
-      { abbrev: 'jn', name: 'Jonas', chapters: 4 },
-      { abbrev: 'mq', name: 'Miquéias', chapters: 7 },
-      { abbrev: 'na', name: 'Naum', chapters: 3 },
-      { abbrev: 'hc', name: 'Habacuque', chapters: 3 },
-      { abbrev: 'sf', name: 'Sofonias', chapters: 3 },
-      { abbrev: 'ag', name: 'Ageu', chapters: 2 },
-      { abbrev: 'zc', name: 'Zacarias', chapters: 14 },
-      { abbrev: 'ml', name: 'Malaquias', chapters: 4 }
+      { abbrev: 'psalms', name: 'Salmos', chapters: 150 },
+      { abbrev: 'proverbs', name: 'Provérbios', chapters: 31 },
+      { abbrev: 'ecclesiastes', name: 'Eclesiastes', chapters: 12 },
+      { abbrev: 'song', name: 'Cânticos', chapters: 8 },
+      { abbrev: 'isaiah', name: 'Isaías', chapters: 66 },
+      { abbrev: 'jeremiah', name: 'Jeremias', chapters: 52 },
+      { abbrev: 'lamentations', name: 'Lamentações', chapters: 5 },
+      { abbrev: 'ezekiel', name: 'Ezequiel', chapters: 48 },
+      { abbrev: 'daniel', name: 'Daniel', chapters: 12 },
+      { abbrev: 'hosea', name: 'Oséias', chapters: 14 },
+      { abbrev: 'joel', name: 'Joel', chapters: 3 },
+      { abbrev: 'amos', name: 'Amós', chapters: 9 },
+      { abbrev: 'obadiah', name: 'Obadias', chapters: 1 },
+      { abbrev: 'jonah', name: 'Jonas', chapters: 4 },
+      { abbrev: 'micah', name: 'Miquéias', chapters: 7 },
+      { abbrev: 'nahum', name: 'Naum', chapters: 3 },
+      { abbrev: 'habakkuk', name: 'Habacuque', chapters: 3 },
+      { abbrev: 'zephaniah', name: 'Sofonias', chapters: 3 },
+      { abbrev: 'haggai', name: 'Ageu', chapters: 2 },
+      { abbrev: 'zechariah', name: 'Zacarias', chapters: 14 },
+      { abbrev: 'malachi', name: 'Malaquias', chapters: 4 }
     ],
     newTestament: [
-      { abbrev: 'mt', name: 'Mateus', chapters: 28 },
-      { abbrev: 'mc', name: 'Marcos', chapters: 16 },
-      { abbrev: 'lc', name: 'Lucas', chapters: 24 },
-      { abbrev: 'jo', name: 'João', chapters: 21 },
-      { abbrev: 'at', name: 'Atos', chapters: 28 },
-      { abbrev: 'rm', name: 'Romanos', chapters: 16 },
-      { abbrev: '1co', name: '1 Coríntios', chapters: 16 },
-      { abbrev: '2co', name: '2 Coríntios', chapters: 13 },
-      { abbrev: 'gl', name: 'Gálatas', chapters: 6 },
-      { abbrev: 'ef', name: 'Efésios', chapters: 6 },
-      { abbrev: 'fp', name: 'Filipenses', chapters: 4 },
-      { abbrev: 'cl', name: 'Colossenses', chapters: 4 },
-      { abbrev: '1ts', name: '1 Tessalonicenses', chapters: 5 },
-      { abbrev: '2ts', name: '2 Tessalonicenses', chapters: 3 },
-      { abbrev: '1tm', name: '1 Timóteo', chapters: 6 },
-      { abbrev: '2tm', name: '2 Timóteo', chapters: 4 },
-      { abbrev: 'tt', name: 'Tito', chapters: 3 },
-      { abbrev: 'fm', name: 'Filemom', chapters: 1 },
-      { abbrev: 'hb', name: 'Hebreus', chapters: 13 },
-      { abbrev: 'tg', name: 'Tiago', chapters: 5 },
-      { abbrev: '1pe', name: '1 Pedro', chapters: 5 },
-      { abbrev: '2pe', name: '2 Pedro', chapters: 3 },
-      { abbrev: '1jo', name: '1 João', chapters: 5 },
-      { abbrev: '2jo', name: '2 João', chapters: 1 },
-      { abbrev: '3jo', name: '3 João', chapters: 1 },
-      { abbrev: 'jd', name: 'Judas', chapters: 1 },
-      { abbrev: 'ap', name: 'Apocalipse', chapters: 22 }
+      { abbrev: 'matthew', name: 'Mateus', chapters: 28 },
+      { abbrev: 'mark', name: 'Marcos', chapters: 16 },
+      { abbrev: 'luke', name: 'Lucas', chapters: 24 },
+      { abbrev: 'john', name: 'João', chapters: 21 },
+      { abbrev: 'acts', name: 'Atos', chapters: 28 },
+      { abbrev: 'romans', name: 'Romanos', chapters: 16 },
+      { abbrev: '1corinthians', name: '1 Coríntios', chapters: 16 },
+      { abbrev: '2corinthians', name: '2 Coríntios', chapters: 13 },
+      { abbrev: 'galatians', name: 'Gálatas', chapters: 6 },
+      { abbrev: 'ephesians', name: 'Efésios', chapters: 6 },
+      { abbrev: 'philippians', name: 'Filipenses', chapters: 4 },
+      { abbrev: 'colossians', name: 'Colossenses', chapters: 4 },
+      { abbrev: '1thessalonians', name: '1 Tessalonicenses', chapters: 5 },
+      { abbrev: '2thessalonians', name: '2 Tessalonicenses', chapters: 3 },
+      { abbrev: '1timothy', name: '1 Timóteo', chapters: 6 },
+      { abbrev: '2timothy', name: '2 Timóteo', chapters: 4 },
+      { abbrev: 'titus', name: 'Tito', chapters: 3 },
+      { abbrev: 'philemon', name: 'Filemom', chapters: 1 },
+      { abbrev: 'hebrews', name: 'Hebreus', chapters: 13 },
+      { abbrev: 'james', name: 'Tiago', chapters: 5 },
+      { abbrev: '1peter', name: '1 Pedro', chapters: 5 },
+      { abbrev: '2peter', name: '2 Pedro', chapters: 3 },
+      { abbrev: '1john', name: '1 João', chapters: 5 },
+      { abbrev: '2john', name: '2 João', chapters: 1 },
+      { abbrev: '3john', name: '3 João', chapters: 1 },
+      { abbrev: 'jude', name: 'Judas', chapters: 1 },
+      { abbrev: 'revelation', name: 'Apocalipse', chapters: 22 }
     ]
   };
 }

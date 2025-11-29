@@ -12,15 +12,33 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'es2015',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['framer-motion', 'lucide-react'],
+          'animation-vendor': ['framer-motion'],
+          'ui-vendor': ['lucide-react'],
         },
       },
     },
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'framer-motion',
+      'lucide-react'
+    ],
   },
   server: {
     host: '0.0.0.0',

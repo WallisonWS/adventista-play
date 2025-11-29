@@ -2,39 +2,32 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Book, Bookmark, History, Settings, ChevronRight } from 'lucide-react';
 
-const Sidebar = ({ isOpen, onClose, items = [] }) => {
+const Sidebar = ({ isOpen, onClose, books, onBookSelect }) => {
   const [activeSection, setActiveSection] = useState(null);
 
-  const defaultItems = [
+  // Se books não for fornecido, usa dados padrão
+  const defaultSections = [
     {
       title: "Antigo Testamento",
       icon: Book,
-      books: [
-        "Gênesis", "Êxodo", "Levítico", "Números", "Deuteronômio",
-        "Josué", "Juízes", "Rute", "1 Samuel", "2 Samuel",
-      ],
+      books: books?.oldTestament || [],
     },
     {
       title: "Novo Testamento",
       icon: Book,
-      books: [
-        "Mateus", "Marcos", "Lucas", "João", "Atos",
-        "Romanos", "1 Coríntios", "2 Coríntios", "Gálatas", "Efésios",
-      ],
+      books: books?.newTestament || [],
     },
     {
       title: "Favoritos",
       icon: Bookmark,
-      books: ["Salmos 23", "João 3:16", "Filipenses 4:13"],
+      books: [],
     },
     {
       title: "Histórico",
       icon: History,
-      books: ["Gênesis 1", "Mateus 5", "Apocalipse 21"],
+      books: [],
     },
   ];
-
-  const sidebarItems = items.length > 0 ? items : defaultItems;
 
   return (
     <AnimatePresence>
@@ -77,7 +70,7 @@ const Sidebar = ({ isOpen, onClose, items = [] }) => {
             {/* Content */}
             <div className="overflow-y-auto h-[calc(100vh-88px)] p-4">
               <div className="space-y-2">
-                {sidebarItems.map((section, index) => {
+                {defaultSections.map((section, index) => {
                   const Icon = section.icon;
                   const isActive = activeSection === index;
 
@@ -107,7 +100,7 @@ const Sidebar = ({ isOpen, onClose, items = [] }) => {
 
                       {/* Books List */}
                       <AnimatePresence>
-                        {isActive && (
+                        {isActive && section.books.length > 0 && (
                           <motion.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
@@ -115,17 +108,22 @@ const Sidebar = ({ isOpen, onClose, items = [] }) => {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            <div className="pl-4 pt-2 space-y-1">
+                            <div className="pl-4 pt-2 space-y-1 max-h-96 overflow-y-auto">
                               {section.books.map((book, bookIndex) => (
                                 <motion.button
-                                  key={bookIndex}
+                                  key={book.abbrev || bookIndex}
                                   initial={{ x: -20, opacity: 0 }}
                                   animate={{ x: 0, opacity: 1 }}
-                                  transition={{ delay: bookIndex * 0.05 }}
+                                  transition={{ delay: bookIndex * 0.02 }}
                                   whileHover={{ x: 4 }}
-                                  className="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                  onClick={() => {
+                                    if (onBookSelect) {
+                                      onBookSelect(book);
+                                    }
+                                  }}
+                                  className="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-sm"
                                 >
-                                  {book}
+                                  {book.name} {book.chapters && `(${book.chapters} cap.)`}
                                 </motion.button>
                               ))}
                             </div>

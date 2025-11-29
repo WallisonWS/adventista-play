@@ -70,7 +70,8 @@ import { DoacaoSucesso, DoacaoFalha, DoacaoPendente } from './components/DoacaoR
 import { ConnectionStatus } from './components/ConnectionStatus.jsx'
 import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './components/ChristianAnimations.jsx'
 import { NewHomePage } from './components/NewHomePage.jsx'
-import ModernMobileHomePage from './components/ModernMobileHomePage.jsx'
+import MobileHomePage from './components/21st-dev/MobileHomePage.jsx'
+import MobileBiblePage from './components/21st-dev/MobileBiblePage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
 import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
@@ -1589,14 +1590,14 @@ function AppContent() {
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={isMobile ? <ModernMobileHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
+            <Route path="/" element={isMobile ? <MobileHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
             <Route path="/demo" element={<DemoPage />} />
             <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
             <Route path="/devocional" element={<DevocionalPage />} />
             <Route path="/hinario" element={<HinarioPage />} />
-            <Route path="/biblia" element={<Enhanced3DBiblePage />} />
-            <Route path="/biblia/:livro/:capitulo" element={<Enhanced3DBiblePage />} />
+            <Route path="/biblia" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
+            <Route path="/biblia/:livro/:capitulo" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
             <Route path="/estudos" element={isMobile ? <NewEstudosPage /> : <EstudosPage />} />
             <Route path="/estudos/:categoria" element={<CategoriaEstudosPage />} />
             <Route path="/estudos/:categoria/:cursoId" element={<DetalheCursoPage />} />

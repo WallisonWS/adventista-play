@@ -72,6 +72,8 @@ import { ChristianAnimations, DivineLightEffect, TwinklingStars } from './compon
 import { NewHomePage } from './components/NewHomePage.jsx'
 import MobileHomePage from './components/21st-dev/MobileHomePage.jsx'
 import MobileBiblePage from './components/21st-dev/MobileBiblePage.jsx'
+import MobileDevotionalPage from './components/21st-dev/MobileDevotionalPage.jsx'
+import MobileHymnalPage from './components/21st-dev/MobileHymnalPage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
 import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
@@ -1594,8 +1596,8 @@ function AppContent() {
             <Route path="/demo" element={<DemoPage />} />
             <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
-            <Route path="/devocional" element={<DevocionalPage />} />
-            <Route path="/hinario" element={<HinarioPage />} />
+            <Route path="/devocional" element={isMobile ? <MobileDevotionalPage /> : <DevocionalPage />} />
+            <Route path="/hinario" element={isMobile ? <MobileHymnalPage /> : <HinarioPage />} />
             <Route path="/biblia" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
             <Route path="/biblia/:livro/:capitulo" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
             <Route path="/estudos" element={isMobile ? <NewEstudosPage /> : <EstudosPage />} />

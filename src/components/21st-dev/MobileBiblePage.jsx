@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Book, Search, Moon, Sun, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Heart, Share2, Bookmark } from 'lucide-react';
 import { fetchChapter, prefetchAdjacentChapters, getBibleBooks } from '../../services/bibleService';
 import Sidebar from './Sidebar';
-import Dock from './Dock';
+import EnhancedDock from './EnhancedDock';
 
 /**
  * Página da Bíblia Mobile com componentes 21st.dev e carregamento otimizado
@@ -230,8 +230,8 @@ export default function MobileBiblePage() {
         onBookSelect={handleBookSelect}
       />
 
-      {/* Dock */}
-      <Dock />
+      {/* Enhanced Dock for Bible */}
+      <EnhancedDock variant="bible" />
     </div>
   );
 }

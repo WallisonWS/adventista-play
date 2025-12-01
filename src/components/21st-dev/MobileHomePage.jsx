@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Book, Heart, Music, GraduationCap, Globe, Volume2 } from 'lucide-react';
 import AuroraBackground from './AuroraBackground';
 import BentoGrid from './BentoGrid';
-import Dock from './Dock';
+import EnhancedDock from './EnhancedDock';
 
 /**
  * HomePage Mobile com componentes 21st.dev
@@ -216,8 +216,8 @@ export default function MobileHomePage() {
         </motion.div>
       </div>
 
-      {/* Dock */}
-      <Dock />
+      {/* Enhanced Dock */}
+      <EnhancedDock variant="default" />
     </div>
   );
 }

@@ -9,6 +9,27 @@ import EnhancedDock from './EnhancedDock';
  * HomePage Mobile com componentes 21st.dev
  */
 export default function MobileHomePage() {
+  // Função para copiar versículo
+  const handleCopyVerse = () => {
+    const verse = 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. - Efésios 2:8';
+    navigator.clipboard.writeText(verse).then(() => {
+      alert('Versículo copiado!');
+    });
+  };
+
+  // Função para compartilhar versículo
+  const handleShareVerse = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Versículo do Dia',
+        text: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. - Efésios 2:8',
+        url: window.location.href
+      });
+    } else {
+      alert('Compartilhamento não suportado neste navegador');
+    }
+  };
+
   const resources = [
     {
       icon: Heart,
@@ -181,10 +202,16 @@ export default function MobileHomePage() {
           <p className="text-center text-gray-500 font-medium">Efésios 2:8</p>
 
           <div className="flex gap-3 justify-center mt-6">
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+            <button 
+              onClick={handleCopyVerse}
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
               Copiar
             </button>
-            <button className="px-6 py-2 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors">
+            <button 
+              onClick={handleShareVerse}
+              className="px-6 py-2 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
+            >
               Compartilhar
             </button>
           </div>
@@ -210,9 +237,12 @@ export default function MobileHomePage() {
             Compartilhe sua jornada de fé e cresça junto com a comunidade adventista
           </p>
 
-          <button className="px-8 py-3 bg-white text-rose-600 rounded-xl font-bold hover:bg-gray-50 transition-colors">
+          <a 
+            href="/cadastro"
+            className="inline-block px-8 py-3 bg-white text-rose-600 rounded-xl font-bold hover:bg-gray-50 transition-colors"
+          >
             Criar Conta Gratuita
-          </button>
+          </a>
         </motion.div>
       </div>
 

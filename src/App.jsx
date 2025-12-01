@@ -74,6 +74,7 @@ import MobileHomePage from './components/21st-dev/MobileHomePage.jsx'
 import MobileBiblePage from './components/21st-dev/MobileBiblePage.jsx'
 import MobileDevotionalPage from './components/21st-dev/MobileDevotionalPage.jsx'
 import MobileHymnalPage from './components/21st-dev/MobileHymnalPage.jsx'
+import MobilePathfindersPage from './components/21st-dev/MobilePathfindersPage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
 import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
@@ -1611,7 +1612,7 @@ function AppContent() {
             <Route path="/quiz" element={<QuizBiblico />} />
             <Route path="/projetos" element={<ProjetosPage />} />
             <Route path="/cursos" element={<CursosAdventistas />} />
-            <Route path="/desbravadores" element={<DesbravadoresPage />} />
+            <Route path="/desbravadores" element={isMobile ? <MobilePathfindersPage /> : <DesbravadoresPage />} />
             <Route path="/nos-desbravadores" element={<NosDesbravadores />} />
             <Route path="/desbravadores/especialidade/:id" element={<EspecialidadeTutorial />} />
             <Route path="/progresso-desbravador" element={<ProgressoDesbravador />} />

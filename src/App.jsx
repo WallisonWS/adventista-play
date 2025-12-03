@@ -75,6 +75,7 @@ import MobileBiblePage from './components/21st-dev/MobileBiblePage.jsx'
 import MobileDevotionalPage from './components/21st-dev/MobileDevotionalPage.jsx'
 import MobileHymnalPage from './components/21st-dev/MobileHymnalPage.jsx'
 import MobilePathfindersPage from './components/21st-dev/MobilePathfindersPage.jsx'
+import MobileStudiesPage from './components/21st-dev/MobileStudiesPage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
 import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
@@ -1601,7 +1602,7 @@ function AppContent() {
             <Route path="/hinario" element={isMobile ? <MobileHymnalPage /> : <HinarioPage />} />
             <Route path="/biblia" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
             <Route path="/biblia/:livro/:capitulo" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
-            <Route path="/estudos" element={isMobile ? <NewEstudosPage /> : <EstudosPage />} />
+            <Route path="/estudos" element={isMobile ? <MobileStudiesPage /> : <EstudosPage />} />
             <Route path="/estudos/:categoria" element={<CategoriaEstudosPage />} />
             <Route path="/estudos/:categoria/:cursoId" element={<DetalheCursoPage />} />
             <Route path="/escola-sabatina" element={<EscolaSabatinaCompleta />} />

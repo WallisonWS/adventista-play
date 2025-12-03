@@ -1,0 +1,10 @@
+{
+    "classes_progress": {
+        "Amigo": 100,
+        "Companheiro": 60,
+        "Pesquisador": 25,
+        "Pioneiro": 0
+    },
+    "specialties_completed": 17,
+    "total_specialties": 80
+}

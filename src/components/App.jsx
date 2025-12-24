@@ -808,6 +808,45 @@ function DevocionalPage() {
 
 // Página de Hinário
 function HinarioPage() {
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState(null);
+
+  const radioStreamUrl = 'https://stream.novotempo.com/radio/mp3'; // URL da Rádio Novo Tempo
+
+  const playPauseTrack = (hino) => {
+    // Se for o mini-player de rádio
+    if (hino.numero === 'radio') {
+      if (isPlaying && currentTrack?.numero === 'radio') {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.src = radioStreamUrl;
+        audioRef.current.play();
+        setCurrentTrack(hino);
+        setIsPlaying(true);
+      }
+      return;
+    }
+
+    // Lógica para hinos (simulada com a rádio)
+    if (currentTrack && currentTrack.numero === hino.numero) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } else {
+      // Como não temos URLs de áudio para cada hino, vamos usar a rádio para simular
+      audioRef.current.src = radioStreamUrl;
+      audioRef.current.play();
+      setCurrentTrack(hino);
+      setIsPlaying(true);
+    }
+  };
+
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const [selectedHino, setSelectedHino] = useState(null)

@@ -38,7 +38,7 @@ import './styles/themes.css'
 import './styles/colors.css'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext.jsx'
-import { Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'\nimport { I18nextProvider } from 'react-i18next'\nimport i18n from './i18n'
 import Dock from './components/21st-dev/Dock'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { FeedbackPage } from './components/FeedbackPage.jsx'
@@ -1649,7 +1649,7 @@ function AppContent() {
   )
 }
 
-function App() {
+function App() {\n  return (\n    <I18nextProvider i18n={i18n}>\n      <DarkModeProvider>\nider>\n      </DarkModeProvider>\n    </I18nextProvider>\n  )\n}
   return (
     <DarkModeProvider>
       <ThemeProvider>

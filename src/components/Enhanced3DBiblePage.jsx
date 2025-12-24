@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   BookOpen, Search, ChevronLeft, ChevronRight, 
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/input.jsx';
 import { Button } from '@/components/ui/button.jsx';
-import Sidebar from './21st-dev/Sidebar';
+import Sidebar from './21st-dev/Sidebar';\nimport { buscarCapitulo } from '../../services/bibliaService';
 
 /**
  * Enhanced3DBiblePage
@@ -24,7 +24,7 @@ export function Enhanced3DBiblePage() {
   const [showMenu, setShowMenu] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [activeTab, setActiveTab] = useState('antigo');
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);\n  const [chapterContent, setChapterContent] = useState(null);\n  const [isLoading, setIsLoading] = useState(false);\n\n  // Efeito para buscar o conteúdo do capítulo\n  useEffect(() => {\n    if (selectedBook) {\n      const fetchChapter = async () => {\n        setIsLoading(true);\n        setChapterContent(null);\n        // Por padrão, usaremos a versão ARC, que é a primeira na lista do serviço\n        const versao = 'arc'; \n        const data = await buscarCapitulo(versao, selectedBook.name, selectedChapter);\n        setChapterContent(data);\n        setIsLoading(false);\n      };\n      fetchChapter();\n    }\n  }, [selectedBook, selectedChapter]);
 
   // Livros da Bíblia organizados com ícones Lucide
   const bibleBooks = {
@@ -315,16 +315,7 @@ export function Enhanced3DBiblePage() {
                     </Button>
                   </div>
 
-                  {/* Conteúdo do capítulo */}
-                  <div 
-                    className="prose prose-lg max-w-none"
-                    style={{ fontSize: `${fontSize}px` }}
-                  >
-                    <p className="text-center opacity-70 py-12">
-                      Carregando capítulo {selectedChapter} de {selectedBook.name}...
-                    </p>
-                  </div>
-                </div>
+                 {/* Conteúdo do capítulo */}\n                  <div \n                    className="prose prose-lg max-w-none"\n                    style={{ fontSize: `${fontSize}px` }}\n                  >\n                    {isLoading ? (\n                      <p className="text-center opacity-70 py-12">\n                        Carregando capítulo {selectedChapter} de {selectedBook.name}...\n                      </p>\n                    ) : chapterContent && chapterContent.verses ? (\n                      chapterContent.verses.map((verse) => (\n                        <p key={verse.number} className="mb-4">\n                          <sup className="font-bold mr-1 text-blue-500">{verse.number}</sup>\n                          {verse.text}\n                        </p>\n                      ))\n                    ) : (\n                      <p className="text-center opacity-70 py-12">\n                        Não foi possível carregar o capítulo. Verifique sua conexão ou tente novamente.\n                      </p>\n                    )}\n                  </div>          </div>
               ) : (
                 <div className="flex flex-col items-center justify-center h-full text-center">
                   <BookOpen className="h-24 w-24 opacity-20 mb-6" />

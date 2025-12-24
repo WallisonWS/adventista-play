@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { 
   Mail, Phone, MapPin, Facebook, Instagram, 
@@ -10,6 +11,7 @@ import {
  * Rodapé redesenhado com design limpo e organizado (SEM EMOJIS)
  */
 export function Enhanced3DFooter() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -30,22 +32,22 @@ export function Enhanced3DFooter() {
           >
             <Link to="/" className="flex items-center space-x-3 group">
               <img 
-                src="/logo-adventista-play-transparent.png" 
-                alt="Adventista Play" 
-                className="h-12 w-auto"
-                style={{ mixBlendMode: 'screen' }}
+                src="/simbolo-adventista.png" 
+                alt="Símbolo Adventista" 
+                className="h-16 w-auto"
+                style={{ filter: 'invert(1) brightness(1.5)' }}
               />
             </Link>
             <h3 className="text-xl font-bold">Adventista Play</h3>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Portal Adventista
+              {t('portal_adventista')}
             </p>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Fortalecendo a fé e conectando corações com a Palavra de Deus através de recursos digitais inspiradores.
+              {t('footer_description')}
             </p>
           </motion.div>
 
-          {/* Coluna 2: Links Rápidos */}
+          {/* Coluna 2: {t('quick_links')} */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,18 +57,18 @@ export function Enhanced3DFooter() {
           >
             <div className="flex items-center space-x-2 mb-4">
               <BookOpen className="h-5 w-5 text-blue-400" />
-              <h4 className="text-lg font-semibold">Links Rápidos</h4>
+              <h4 className="text-lg font-semibold">{t('quick_links')}</h4>
             </div>
             <ul className="space-y-2">
               {[
-                { to: '/devocional', label: 'Devocional' },
-                { to: '/hinario', label: 'Hinário' },
-                { to: '/biblia', label: 'Bíblia' },
-                { to: '/estudos', label: 'Estudos' },
-                { to: '/ellen-white', label: 'Ellen White' },
-                { to: '/planos', label: 'Planos' },
-                { to: '/projetos', label: 'Projetos' },
-                { to: '/cursos', label: 'Cursos' }
+                { to: '/devocional', label: t('devotional') },
+                { to: '/hinario', label: t('hymnal') },
+                { to: '/biblia', label: t('bible') },
+                { to: '/estudos', label: t('studies') },
+                { to: '/ellen-white', label: t('ellen_white') },
+                { to: '/planos', label: t('plans') },
+                { to: '/projetos', label: t('projects') },
+                { to: '/cursos', label: t('courses') }
               ].map((link) => (
                 <motion.li 
                   key={link.to}
@@ -85,7 +87,7 @@ export function Enhanced3DFooter() {
             </ul>
           </motion.div>
 
-          {/* Coluna 3: Contato */}
+          {/* Coluna 3: {t('contact')} */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +97,7 @@ export function Enhanced3DFooter() {
           >
             <div className="flex items-center space-x-2 mb-4">
               <Phone className="h-5 w-5 text-blue-400" />
-              <h4 className="text-lg font-semibold">Contato</h4>
+              <h4 className="text-lg font-semibold">{t('contact')}</h4>
             </div>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
@@ -125,7 +127,7 @@ export function Enhanced3DFooter() {
             </ul>
           </motion.div>
 
-          {/* Coluna 4: Redes Sociais e Newsletter */}
+          {/* Coluna 4: {t('social_networks')} e {t('newsletter')} */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +135,7 @@ export function Enhanced3DFooter() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-semibold mb-4">Redes Sociais</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('social_networks')}</h4>
             <div className="flex space-x-3">
               <motion.a
                 href="#"
@@ -162,14 +164,14 @@ export function Enhanced3DFooter() {
             </div>
 
             <div className="mt-6">
-              <h5 className="text-sm font-semibold mb-3">Newsletter</h5>
+              <h5 className="text-sm font-semibold mb-3">{t('newsletter')}</h5>
               <p className="text-xs text-gray-400 mb-3">
-                Receba atualizações e conteúdos exclusivos
+                {t('newsletter_description')}
               </p>
               <div className="flex">
                 <input
                   type="email"
-                  placeholder="Seu e-mail"
+                  placeholder={t('your_email')}
                   className="flex-1 px-4 py-2 bg-slate-700 border border-slate-600 rounded-l-lg text-sm focus:outline-none focus:border-blue-500 transition-colors"
                 />
                 <motion.button
@@ -196,7 +198,7 @@ export function Enhanced3DFooter() {
           className="text-center space-y-2"
         >
           <p className="text-sm text-gray-400">
-            © {currentYear} Portal Adventista. Todos os direitos reservados.
+            {t('copyright', { year: currentYear })}
           </p>
           <p className="text-xs text-gray-500 flex items-center justify-center gap-2">
             Desenvolvido com{' '}
@@ -211,12 +213,12 @@ export function Enhanced3DFooter() {
           </p>
           <div className="flex justify-center space-x-4 text-xs text-gray-500">
             <Link to="/contato" className="hover:text-white transition-colors flex items-center gap-1">
-              Formulário de Contato
+              {t('contact_form')}
               <ExternalLink className="h-3 w-3" />
             </Link>
             <span>•</span>
             <Link to="/feedback" className="hover:text-white transition-colors flex items-center gap-1">
-              Feedback
+              {t('feedback')}
               <ExternalLink className="h-3 w-3" />
             </Link>
           </div>

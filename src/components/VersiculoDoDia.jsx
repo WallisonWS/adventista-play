@@ -1618,22 +1618,11 @@ const versiculos = [
   }
 ]
 
-export function VersiculoDoDia({ compact = false }) {
-  const [versiculo, setVersiculo] = useState(null)
+expornst [versiculo, setVersiculo] = useState(getDailyVerse())
   const [favorito, setFavorito] = useState(false)
   const [copiado, setCopiado] = useState(false)
 
-  useEffect(() => {
-    // Selecionar versículo baseado no dia do ano
-    const hoje = new Date()
-    const inicioDano = new Date(hoje.getFullYear(), 0, 0)
-    const diff = hoje - inicioDano
-    const umDia = 1000 * 60 * 60 * 24
-    const diaDoAno = Math.floor(diff / umDia)
-    const index = diaDoAno % versiculos.length
-    
-    setVersiculo(versiculos[index])
-  }, [])
+
 
   const handleCopiar = () => {
     if (versiculo) {

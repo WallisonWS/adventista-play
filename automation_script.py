@@ -12,15 +12,43 @@ PATHFINDERS_FILE = os.path.join(REPO_PATH, 'src', 'data', 'desbravadores_info.js
 # --- Funções de Busca de Dados (Simulação) ---
 
 def fetch_devotional():
-    """Simula a busca de um devocional diário."""
-    # Em um cenário real, isso faria uma chamada a uma API de devocionais
-    today = datetime.now().strftime('%d/%m/%Y')
+    """Busca o devocional diário da API Open Heavens (JSON)."""
+    API_URL = "https://micromab.com/wp-json/openheavens/v1/today"
+    
+    try:
+        response = requests.get(API_URL, timeout=10)
+        response.raise_for_status() # Levanta exceção para códigos de status HTTP de erro
+        data = response.json()
+        
+        # A API retorna uma lista, pegamos o primeiro item
+        if data and isinstance(data, list) and len(data) > 0:
+            devotional = data[0]
+            # Mapeamento dos campos da API para o formato esperado pelo frontend
+            return {
+                "date": devotional.get("date", datetime.now().strftime('%Y-%m-%d')),
+                "title": devotional.get("title", "Devocional Diário"),
+                "verse": devotional.get("memory_verse", "Versículo não encontrado."),
+                "reference": devotional.get("memory_verse_reference", "Referência não encontrada."),
+                "content": devotional.get("message", "Conteúdo do devocional não encontrado."),
+                "author": "Pastor E.A. Adeboye (via Open Heavens API)"
+            }
+        else:
+            print("Aviso: Resposta da API de devocional vazia ou inesperada.")
+            return fetch_simulated_devotional() # Retorna simulação em caso de falha
+            
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao buscar devocional da API: {e}")
+        return fetch_simulated_devotional() # Retorna simulação em caso de falha
+
+def fetch_simulated_devotional():
+    """Retorna um devocional simulado em caso de falha da API."""
+    today = datetime.now().strftime('%Y-%m-%d')
     return {
         "date": today,
-        "title": f"Devocional do Dia - {today}",
+        "title": f"Devocional do Dia (Simulado) - {today}",
         "verse": "O Senhor é o meu pastor; nada me faltará.",
         "reference": "Salmos 23:1",
-        "content": "Reflexão sobre a provisão e cuidado de Deus...",
+        "content": "Reflexão sobre a provisão e cuidado de Deus (Conteúdo Simulado).",
         "author": "Manuscrito 21st.dev"
     }
 

@@ -125,4 +125,53 @@ if __name__ == "__main__":
     # Garantir que as pastas de dados existem
     os.makedirs(os.path.join(REPO_PATH, 'src', 'data'), exist_ok=True)
 
+def run_devotional_automation():
+    # 1. Buscar e salvar Devocional
+    devotional_data = fetch_devotional()
+    with open(DEVOTIONAL_FILE, 'w', encoding='utf-8') as f:
+        json.dump(devotional_data, f, ensure_ascii=False, indent=4)
+    print(f"Devocional salvo em: {DEVOTIONAL_FILE}")
+
+def run_desbravadores_automation():
+    # 2. Buscar e salvar Notícias
+    news_data = fetch_news()
+    with open(NEWS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(news_data, f, ensure_ascii=False, indent=4)
+    print(f"Notícias salvas em: {NEWS_FILE}")
+
+    # 3. Buscar e salvar Info Desbravadores
+    pathfinders_data = fetch_pathfinders_info()
+    with open(PATHFINDERS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(pathfinders_data, f, ensure_ascii=False, indent=4)
+    print(f"Info Desbravadores salva em: {PATHFINDERS_FILE}")
+
+def run_automation():
+    print("Iniciando automação de conteúdo diário...")
+
+    run_devotional_automation()
+    run_desbravadores_automation()
+    
+    # Novo: Executa a automação da Escola Sabatina
+    try:
+        import automation_sabbath_school_md
+        automation_sabbath_school_md.run_sabbath_school_automation()
+    except Exception as e:
+        print(f"Erro ao executar automação da Escola Sabatina: {e}")
+
+    # 4. Commit e Push
+    os.chdir(REPO_PATH)
+    os.system('git add .')
+    os.system(f'git commit -m "chore: Automação de conteúdo diário - {datetime.now().strftime("%Y-%m-%d")}"')
+    os.system('git push origin main')
+    print("Commit e Push realizados com sucesso!")
+
+if __name__ == "__main__":
+    # Garantir que o repositório está clonado
+    if not os.path.exists(REPO_PATH):
+        print(f"Clonando repositório em {REPO_PATH}...")
+        os.system(f'git clone https://github.com/WallisonWS/adventista-play {REPO_PATH}')
+    
+    # Garantir que as pastas de dados existem
+    os.makedirs(os.path.join(REPO_PATH, 'src', 'data'), exist_ok=True)
+
     run_automation()

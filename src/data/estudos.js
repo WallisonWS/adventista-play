@@ -1,6 +1,25 @@
 import { licoesEscolaSabatina } from './escola-sabatina-licoes.js'
+import escolaSabatinaAuto from './escola-sabatina-licoes-auto.json'
 
 export const estudos = [
+  // Conteúdo da Escola Sabatina gerado automaticamente
+  {
+    id: escolaSabatinaAuto.id,
+    titulo: escolaSabatinaAuto.titulo,
+    trimestre: escolaSabatinaAuto.trimestre,
+    tipo: escolaSabatinaAuto.tipo,
+    descricao: escolaSabatinaAuto.descricao,
+    capa: escolaSabatinaAuto.capa,
+    licoes: escolaSabatinaAuto.licoes.map(licao => ({
+      numero: licao.numero,
+      titulo: licao.titulo,
+      texto: licao.texto,
+      conteudo: licao.conteudo,
+      versiculoChave: licao.versiculoChave,
+      perguntas: licao.licoes_detalhes.map(detalhe => detalhe.titulo) // Usando títulos dos dias como perguntas
+    }))
+  },
+  // Conteúdo da Escola Sabatina estático (antigo)
   ...licoesEscolaSabatina.map(licao => ({
     id: licao.id,
     titulo: licao.titulo,

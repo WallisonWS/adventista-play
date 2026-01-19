@@ -7,15 +7,15 @@ import { Input } from '@/components/ui/input.jsx'
 import { Label } from '@/components/ui/label.jsx'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
-import { 
-  BookOpen, 
-  Music, 
-  BookText, 
-  GraduationCap, 
-  Globe, 
-  Heart, 
-  Menu, 
-  X, 
+import {
+  BookOpen,
+  Music,
+  BookText,
+  GraduationCap,
+  Globe,
+  Heart,
+  Menu,
+  X,
   User,
   Search,
   ChevronRight,
@@ -38,7 +38,9 @@ import './styles/themes.css'
 import './styles/colors.css'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { DarkModeProvider, useDarkMode } from './contexts/DarkModeContext.jsx'
-import { Toaster } from 'react-hot-toast'\nimport { I18nextProvider } from 'react-i18next'\nimport i18n from './i18n'
+import { Toaster } from 'react-hot-toast'
+import { I18nextProvider } from 'react-i18next'
+import i18n from './i18n'
 import Dock from './components/21st-dev/Dock'
 import { ContatoPage } from './components/ContatoPage.jsx'
 import { FeedbackPage } from './components/FeedbackPage.jsx'
@@ -171,7 +173,7 @@ function Navigation({ user, onLogout }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode()
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'} shadow-lg sticky top-0 z-50 backdrop-blur-sm`}
@@ -181,9 +183,9 @@ function Navigation({ user, onLogout }) {
         <div className="flex items-center justify-center h-16">
           {/* Logo no cabeçalho - Fixo no canto esquerdo */}
           <Link to="/" className="absolute left-6 flex items-center">
-            <motion.img 
-              src="/logo-adventista-play-transparent.png" 
-              alt="Adventista Play" 
+            <motion.img
+              src="/logo-adventista-play-transparent.png"
+              alt="Adventista Play"
               className="h-10 cursor-pointer"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
@@ -210,7 +212,7 @@ function Navigation({ user, onLogout }) {
             <NavLink to="/noticias-desbravadores" icon={<Newspaper className="h-4 w-4" />} isDarkMode={isDarkMode}>Notícias</NavLink>
             <NavLink to="/feedback" icon={<MessageSquare className="h-4 w-4" />} isDarkMode={isDarkMode}>Feedback</NavLink>
             <NavLink to="/contato" icon={<Phone className="h-4 w-4" />} isDarkMode={isDarkMode}>Contato</NavLink>
-            
+
             {/* Toggle Modo Noturno */}
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -220,11 +222,11 @@ function Navigation({ user, onLogout }) {
             >
               {isDarkMode ? '☀️' : '🌙'}
             </motion.button>
-            
+
             {user ? (
               <div className="flex items-center space-x-4">
                 <Link to="/perfil">
-                  <motion.span 
+                  <motion.span
                     className={`flex items-center space-x-1 cursor-pointer ${isDarkMode ? 'text-gray-300 hover:text-primary' : 'text-gray-700 hover:text-primary'} transition-colors font-medium`}
                     whileHover={{ scale: 1.05 }}
                   >
@@ -247,7 +249,7 @@ function Navigation({ user, onLogout }) {
           </div>
 
           {/* Mobile Menu Button - Fixo no canto direito */}
-          <motion.button 
+          <motion.button
             className={`lg:hidden absolute right-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
@@ -259,7 +261,7 @@ function Navigation({ user, onLogout }) {
         {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -320,8 +322,8 @@ function HomePage() {
         <ChristianAnimations />
         <DivineLightEffect />
         <TwinklingStars count={30} />
-        
-        <motion.div 
+
+        <motion.div
           className="container mx-auto text-center relative z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -335,8 +337,8 @@ function HomePage() {
           >
             <img src={logo} alt="Adventista Play" className="h-32 md:h-40 mx-auto" />
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             className="text-5xl md:text-6xl font-bold mb-6"
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -345,8 +347,8 @@ function HomePage() {
           >
             Bem-vindo ao <span style={{ color: '#7CB342' }}>Adventista Play</span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -354,8 +356,8 @@ function HomePage() {
           >
             Seu espaço para crescimento espiritual com devocionais, hinário, bíblia, estudos e projetos missionários
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             className="flex flex-wrap justify-center gap-4"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -429,7 +431,7 @@ function HomePage() {
 
       {/* Features Grid */}
       <section className="py-16 px-4">
-        <motion.div 
+        <motion.div
           className="container mx-auto"
           variants={staggerContainer}
           initial="initial"
@@ -519,7 +521,7 @@ function HomePage() {
 
       {/* Call to Action */}
       <section className="py-16 px-4 bg-primary text-primary-foreground relative overflow-hidden">
-        <motion.div 
+        <motion.div
           className="container mx-auto text-center relative z-10"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -547,7 +549,7 @@ function HomePage() {
 function FeatureCard({ to, icon, title, description, color }) {
   return (
     <Link to={to}>
-      <motion.div 
+      <motion.div
         variants={fadeInUp}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
@@ -633,8 +635,8 @@ function LoginPage({ onLogin }) {
               {isLogin ? 'Entrar' : 'Criar Conta'}
             </CardTitle>
             <CardDescription>
-              {isLogin 
-                ? 'Acesse sua conta do Portal Adventista' 
+              {isLogin
+                ? 'Acesse sua conta do Portal Adventista'
                 : 'Cadastre-se gratuitamente no Portal Adventista'}
             </CardDescription>
           </CardHeader>
@@ -649,12 +651,12 @@ function LoginPage({ onLogin }) {
                     className="space-y-2"
                   >
                     <Label htmlFor="nome">Nome Completo</Label>
-                    <Input 
-                      id="nome" 
-                      type="text" 
+                    <Input
+                      id="nome"
+                      type="text"
                       placeholder="Seu nome"
                       value={formData.nome}
-                      onChange={(e) => setFormData({...formData, nome: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
                       required
                     />
                   </motion.div>
@@ -670,40 +672,40 @@ function LoginPage({ onLogin }) {
                     className="space-y-2"
                   >
                     <Label htmlFor="idade">Idade</Label>
-                    <Input 
-                      id="idade" 
-                      type="number" 
+                    <Input
+                      id="idade"
+                      type="number"
                       placeholder="Sua idade"
                       min="13"
                       max="120"
                       value={formData.idade}
-                      onChange={(e) => setFormData({...formData, idade: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, idade: e.target.value })}
                       required
                     />
                   </motion.div>
                 )}
               </AnimatePresence>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="email">E-mail</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
+                <Input
+                  id="email"
+                  type="email"
                   placeholder="seu@email.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="senha">Senha</Label>
-                <Input 
-                  id="senha" 
-                  type="password" 
+                <Input
+                  id="senha"
+                  type="password"
                   placeholder="••••••••"
                   value={formData.senha}
-                  onChange={(e) => setFormData({...formData, senha: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, senha: e.target.value })}
                   required
                 />
               </div>
@@ -717,12 +719,12 @@ function LoginPage({ onLogin }) {
                     className="space-y-2"
                   >
                     <Label htmlFor="confirmarSenha">Confirmar Senha</Label>
-                    <Input 
-                      id="confirmarSenha" 
-                      type="password" 
+                    <Input
+                      id="confirmarSenha"
+                      type="password"
                       placeholder="••••••••"
                       value={formData.confirmarSenha}
-                      onChange={(e) => setFormData({...formData, confirmarSenha: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, confirmarSenha: e.target.value })}
                       required
                     />
                   </motion.div>
@@ -739,8 +741,8 @@ function LoginPage({ onLogin }) {
                   onClick={() => setIsLogin(!isLogin)}
                   className="text-primary hover:underline"
                 >
-                  {isLogin 
-                    ? 'Não tem uma conta? Cadastre-se' 
+                  {isLogin
+                    ? 'Não tem uma conta? Cadastre-se'
                     : 'Já tem uma conta? Faça login'}
                 </button>
               </div>
@@ -759,7 +761,7 @@ function DevocionalPage() {
   const conteudoRef = useRef(null)
 
   const toggleFavorito = (id) => {
-    setFavoritos(prev => 
+    setFavoritos(prev =>
       prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
     )
   }
@@ -767,7 +769,7 @@ function DevocionalPage() {
   return (
     <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto max-w-6xl">
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -795,10 +797,9 @@ function DevocionalPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card 
-                  className={`cursor-pointer transition-all hover:shadow-lg ${
-                    selectedDevocional.id === dev.id ? 'ring-2 ring-primary' : ''
-                  }`}
+                <Card
+                  className={`cursor-pointer transition-all hover:shadow-lg ${selectedDevocional.id === dev.id ? 'ring-2 ring-primary' : ''
+                    }`}
                   onClick={() => {
                     setSelectedDevocional(dev)
                     // Scroll automático para o conteúdo do devocional
@@ -824,10 +825,9 @@ function DevocionalPage() {
                           toggleFavorito(dev.id)
                         }}
                       >
-                        <Star 
-                          className={`h-5 w-5 ${
-                            favoritos.includes(dev.id) ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'
-                          }`}
+                        <Star
+                          className={`h-5 w-5 ${favoritos.includes(dev.id) ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'
+                            }`}
                         />
                       </motion.button>
                     </div>
@@ -854,7 +854,7 @@ function DevocionalPage() {
                       <span>{selectedDevocional.data}</span>
                     </div>
                     <CardTitle className="text-3xl mb-4">{selectedDevocional.titulo}</CardTitle>
-                    <motion.div 
+                    <motion.div
                       className="bg-primary/10 p-4 rounded-lg border-l-4 border-primary"
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
@@ -866,7 +866,7 @@ function DevocionalPage() {
                   </CardHeader>
                   <CardContent>
                     <h3 className="font-semibold text-lg mb-3">Reflexão</h3>
-                    <motion.p 
+                    <motion.p
                       className="text-muted-foreground leading-relaxed"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -874,9 +874,9 @@ function DevocionalPage() {
                     >
                       {selectedDevocional.reflexao}
                     </motion.p>
-                    
+
                     <div className="mt-6 pt-6 border-t flex gap-3">
-                      <Button 
+                      <Button
                         className="flex-1 md:flex-initial"
                         onClick={() => toggleFavorito(selectedDevocional.id)}
                       >
@@ -906,10 +906,10 @@ function HinarioPage() {
   const [selectedHino, setSelectedHino] = useState(null)
 
   const categories = ['Todos', ...new Set(hinos.map(h => h.categoria))]
-  
+
   const filteredHinos = hinos.filter(hino => {
     const matchesSearch = hino.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         hino.numero.toString().includes(searchTerm)
+      hino.numero.toString().includes(searchTerm)
     const matchesCategory = selectedCategory === 'Todos' || hino.categoria === selectedCategory
     return matchesSearch && matchesCategory
   })
@@ -917,7 +917,7 @@ function HinarioPage() {
   return (
     <div className="min-h-screen bg-background pt-4 pb-8 px-4">
       <div className="container mx-auto max-w-6xl">
-        <motion.div 
+        <motion.div
           className="mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -940,25 +940,24 @@ function HinarioPage() {
             <div className="space-y-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input 
-                  placeholder="Buscar por número ou título..." 
+                <Input
+                  placeholder="Buscar por número ou título..."
                   className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              
+
               {/* Grid de categorias */}
               <div className="grid grid-cols-3 gap-2">
                 {categories.map(cat => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      selectedCategory === cat
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${selectedCategory === cat
                         ? 'bg-primary text-primary-foreground'
                         : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-                    }`}
+                      }`}
                   >
                     {cat}
                   </button>
@@ -969,7 +968,7 @@ function HinarioPage() {
         </Card>
 
         {/* Lista de Hinos */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           variants={staggerContainer}
           initial="initial"
@@ -982,7 +981,7 @@ function HinarioPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Card 
+              <Card
                 className="hover:shadow-lg transition-all cursor-pointer"
                 onClick={() => setSelectedHino(hino)}
               >
@@ -1009,24 +1008,24 @@ function HinarioPage() {
                   </div>
                 </CardHeader>
               </Card>
-</motion.div>
-	          ))}
-	        </motion.div>
-	
-	        <motion.div
-	          initial={{ opacity: 0, y: 20 }}
-	          animate={{ opacity: 1, y: 0 }}
-	          className="mt-8 text-center"
-	        >
-	          <a href="/hinario-completo.pdf" download="Hinario_Adventista_Completo.pdf">
-	            <Button size="lg" className="text-lg">
-	              <BookText className="mr-2 h-5 w-5" />
-	              Baixar Hinário Adventista Completo (PDF)
-	            </Button>
-	          </a>
-	        </motion.div>
-	
-	        {filteredHinos.length === 0 && (
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-8 text-center"
+        >
+          <a href="/hinario-completo.pdf" download="Hinario_Adventista_Completo.pdf">
+            <Button size="lg" className="text-lg">
+              <BookText className="mr-2 h-5 w-5" />
+              Baixar Hinário Adventista Completo (PDF)
+            </Button>
+          </a>
+        </motion.div>
+
+        {filteredHinos.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -1082,27 +1081,27 @@ function HinarioPage() {
                       <p className="text-muted-foreground italic">Letra em breve...</p>
                     )}
                   </CardContent>
-	                  <div className="p-6 pt-0 flex gap-3">
-	                    {selectedHino.url && (
-	                      <a href={selectedHino.url} target="_blank" rel="noopener noreferrer" className="w-full">
-	                        <Button className="w-full">
-	                          <Play className="mr-2 h-4 w-4" />
-	                          Ouvir Hino (YouTube)
-	                        </Button>
-	                      </a>
-	                    )}
-	                    <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`Hino ${selectedHino.numero}: ${selectedHino.titulo}\n\n${selectedHino.letra}`)}`} download={`hino-${selectedHino.numero}.txt`} className="w-full">
-	                      <Button variant="outline" className="w-full">
-	                        <BookText className="mr-2 h-4 w-4" />
-	                        Baixar Letra
-	                      </Button>
-	                    </a>
-	                  </div>
-	                </Card>
-	              </motion.div>
-	            </motion.div>
-	          )}
-	        </AnimatePresence>
+                  <div className="p-6 pt-0 flex gap-3">
+                    {selectedHino.url && (
+                      <a href={selectedHino.url} target="_blank" rel="noopener noreferrer" className="w-full">
+                        <Button className="w-full">
+                          <Play className="mr-2 h-4 w-4" />
+                          Ouvir Hino (YouTube)
+                        </Button>
+                      </a>
+                    )}
+                    <a href={`data:text/plain;charset=utf-8,${encodeURIComponent(`Hino ${selectedHino.numero}: ${selectedHino.titulo}\n\n${selectedHino.letra}`)}`} download={`hino-${selectedHino.numero}.txt`} className="w-full">
+                      <Button variant="outline" className="w-full">
+                        <BookText className="mr-2 h-4 w-4" />
+                        Baixar Letra
+                      </Button>
+                    </a>
+                  </div>
+                </Card>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )
@@ -1131,9 +1130,9 @@ function EstudosPage() {
   if (selectedEstudo) {
     return (
       <AnimatePresence>
-        <LessonViewer 
-          estudo={selectedEstudo} 
-          onClose={() => setSelectedEstudo(null)} 
+        <LessonViewer
+          estudo={selectedEstudo}
+          onClose={() => setSelectedEstudo(null)}
         />
       </AnimatePresence>
     )
@@ -1142,7 +1141,7 @@ function EstudosPage() {
   return (
     <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto max-w-6xl">
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -1168,7 +1167,7 @@ function EstudosPage() {
           </TabsList>
 
           <TabsContent value="escola-sabatina" className="mt-6">
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
               variants={staggerContainer}
               initial="initial"
@@ -1217,7 +1216,7 @@ function EstudosPage() {
           </TabsContent>
 
           <TabsContent value="estudos-tematicos" className="mt-6">
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
               variants={staggerContainer}
               initial="initial"
@@ -1270,7 +1269,7 @@ function EstudosPage() {
           </TabsContent>
 
           <TabsContent value="personagens" className="mt-6">
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               variants={staggerContainer}
               initial="initial"
@@ -1308,7 +1307,7 @@ function EstudosPage() {
           </TabsContent>
 
           <TabsContent value="livros" className="mt-6">
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
               variants={staggerContainer}
               initial="initial"
@@ -1359,7 +1358,7 @@ function EstudosPage() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <motion.div 
+                <motion.div
                   className="flex items-start space-x-3"
                   whileHover={{ x: 5 }}
                 >
@@ -1369,7 +1368,7 @@ function EstudosPage() {
                     <p className="text-sm text-muted-foreground">Análises detalhadas de cada livro</p>
                   </div>
                 </motion.div>
-                <motion.div 
+                <motion.div
                   className="flex items-start space-x-3"
                   whileHover={{ x: 5 }}
                 >
@@ -1379,7 +1378,7 @@ function EstudosPage() {
                     <p className="text-sm text-muted-foreground">Roteiros estruturados de aprendizado</p>
                   </div>
                 </motion.div>
-                <motion.div 
+                <motion.div
                   className="flex items-start space-x-3"
                   whileHover={{ x: 5 }}
                 >
@@ -1405,7 +1404,7 @@ function ProjetosPage() {
   return (
     <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto max-w-6xl">
-        <motion.div 
+        <motion.div
           className="mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -1423,7 +1422,7 @@ function ProjetosPage() {
         </motion.div>
 
         {/* Grid de Projetos */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
           variants={staggerContainer}
           initial="initial"
@@ -1435,13 +1434,13 @@ function ProjetosPage() {
               variants={fadeInUp}
               whileHover={{ y: -10 }}
             >
-              <Card 
+              <Card
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer h-full"
                 onClick={() => setSelectedProjeto(projeto)}
               >
                 <div className="aspect-video lg:aspect-auto overflow-hidden relative group">
-                  <motion.img 
-                    src={projeto.imagem} 
+                  <motion.img
+                    src={projeto.imagem}
                     alt={projeto.titulo}
                     className="w-full h-full object-cover"
                     whileHover={{ scale: 1.1 }}
@@ -1479,8 +1478,8 @@ function ProjetosPage() {
               <Card>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div className="aspect-video lg:aspect-auto overflow-hidden">
-                    <img 
-                      src={selectedProjeto.imagem} 
+                    <img
+                      src={selectedProjeto.imagem}
                       alt={selectedProjeto.titulo}
                       className="w-full h-full object-cover"
                     />
@@ -1492,17 +1491,17 @@ function ProjetosPage() {
                     </div>
                     <h2 className="text-3xl font-bold mb-4">{selectedProjeto.titulo}</h2>
                     <p className="text-muted-foreground mb-6">{selectedProjeto.descricao}</p>
-                    
+
                     <div className="space-y-4">
                       <div>
                         <h3 className="font-semibold mb-2">Sobre o Projeto</h3>
                         <p className="text-sm text-muted-foreground">
-                          Este projeto faz parte da Missão Global da Igreja Adventista do Sétimo Dia, 
-                          trabalhando para levar o evangelho a regiões não alcançadas e fortalecer 
+                          Este projeto faz parte da Missão Global da Igreja Adventista do Sétimo Dia,
+                          trabalhando para levar o evangelho a regiões não alcançadas e fortalecer
                           comunidades através do amor de Cristo.
                         </p>
                       </div>
-                      
+
                       <div className="flex gap-3">
                         <Button className="flex-1">
                           Saiba Mais
@@ -1529,7 +1528,7 @@ function ProjetosPage() {
             <CardHeader>
               <CardTitle className="text-2xl">Faça Parte da Missão</CardTitle>
               <CardDescription className="text-primary-foreground/80">
-                A Missão Global é o braço missionário da Igreja Adventista, trabalhando para alcançar 
+                A Missão Global é o braço missionário da Igreja Adventista, trabalhando para alcançar
                 grupos não evangelizados ao redor do mundo.
               </CardDescription>
             </CardHeader>
@@ -1589,7 +1588,7 @@ function AppContent() {
       <div className="min-h-screen bg-background relative">
         {/* Background 3D Cristão */}
         {isMobile ? <ChristianBackground3DMobile /> : <ChristianBackground3D />}
-        
+
         <ConnectionStatus />
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
@@ -1631,7 +1630,7 @@ function AppContent() {
             <Route path="/doacao/pendente" element={<DoacaoPendente />} />
           </Routes>
         </AnimatePresence>
-        
+
         {/* Dock Navigation */}
         <Dock onItemClick={(id) => {
           const navigate = window.location
@@ -1641,7 +1640,7 @@ function AppContent() {
           else if (id === 'favorites') navigate.href = '/perfil'
           else if (id === 'profile') navigate.href = '/perfil'
         }} />
-        
+
         {/* Footer Melhorado */}
         <Enhanced3DFooter />
       </div>
@@ -1654,7 +1653,7 @@ function App() {
     <I18nextProvider i18n={i18n}>
       <DarkModeProvider>
         <ThemeProvider>
-          <Toaster 
+          <Toaster
             position="top-center"
             toastOptions={{
               duration: 3000,

@@ -27,6 +27,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buscarCapitulo, versoesDisponiveis } from '../services/bibliaService';
 import { useDarkMode } from '../contexts/DarkModeContext';
@@ -622,11 +623,6 @@ export function Enhanced3DBiblePage() {
         </AnimatePresence>
       </TooltipProvider>
 
-      {function Badge({ variant = "default", className, ...props }) {
-        return (
-          <div className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${variant === 'outline' ? 'text-foreground' : 'border-transparent bg-primary text-primary-foreground hover:bg-primary/80'} ${className}`} {...props} />
-        )
-      }}
     </div>
   );
 }

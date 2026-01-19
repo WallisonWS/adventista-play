@@ -1618,7 +1618,8 @@ const versiculos = [
   }
 ]
 
-expornst [versiculo, setVersiculo] = useState(getDailyVerse())
+export const VersiculoDoDia = ({ compact = false }) => {
+  const [versiculo, setVersiculo] = useState(getDailyVerse())
   const [favorito, setFavorito] = useState(false)
   const [copiado, setCopiado] = useState(false)
 
@@ -1659,12 +1660,12 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
         // Buscar imagem de fundo cristã do Unsplash
         const temasBusca = ['jesus christ', 'christian cross', 'church', 'bible', 'prayer', 'faith'];
         const temaSelecionado = temasBusca[Math.floor(Math.random() * temasBusca.length)];
-        
+
         try {
           // Carregar imagem de fundo
           const img = new Image();
           img.crossOrigin = 'anonymous';
-          
+
           await new Promise((resolveImg, rejectImg) => {
             img.onload = () => resolveImg();
             img.onerror = () => rejectImg();
@@ -1699,7 +1700,7 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
         ctx.shadowBlur = 20;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 4;
-        
+
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 70px Arial, sans-serif';
         ctx.fillText('Versículo do Dia', 540, 250);
@@ -1732,7 +1733,7 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
         ctx.font = 'bold 100px Georgia, serif';
         ctx.fillStyle = '#7BB342';
         ctx.fillText('"', 540, y - 80);
-        
+
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 58px Arial, sans-serif';
 
@@ -1775,11 +1776,11 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
         // Logo/Marca d'água com fundo
         ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         ctx.fillRect(0, 1750, 1080, 170);
-        
+
         ctx.font = 'bold 45px Arial, sans-serif';
         ctx.fillStyle = '#ffffff';
         ctx.fillText('Adventista Play', 540, 1820);
-        
+
         ctx.font = '35px Arial, sans-serif';
         ctx.fillStyle = '#7BB342';
         ctx.fillText('www.adventistaplay.online', 540, 1870);
@@ -1799,7 +1800,7 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
 
   const handleCompartilharWhatsApp = async () => {
     if (!versiculo) return;
-    
+
     try {
       const blob = await generateVerseImage();
       const file = new File([blob], 'versiculo.jpg', { type: 'image/jpeg' });
@@ -1813,7 +1814,7 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
       } else {
         const texto = encodeURIComponent(`*Versículo do Dia* 📖\n\n"${versiculo.texto}"\n\n_${versiculo.referencia}_\n\nCompartilhado via Adventista Play`);
         window.open(`https://wa.me/?text=${texto}`, '_blank');
-        
+
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -1832,7 +1833,7 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
 
   const handleCompartilharInstagram = async () => {
     if (!versiculo) return;
-    
+
     try {
       const blob = await generateVerseImage();
       const file = new File([blob], 'versiculo.jpg', { type: 'image/jpeg' });
@@ -1907,16 +1908,15 @@ expornst [versiculo, setVersiculo] = useState(getDailyVerse())
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setFavorito(!favorito)}
-              className={`p-2 rounded-full transition-colors ${
-                favorito ? 'text-red-500' : 'text-muted-foreground hover:text-red-500'
-              }`}
+              className={`p-2 rounded-full transition-colors ${favorito ? 'text-red-500' : 'text-muted-foreground hover:text-red-500'
+                }`}
             >
               <Heart className={`h-5 w-5 ${favorito ? 'fill-current' : ''}`} />
             </motion.button>
           </div>
         </CardHeader>
         <CardContent>
-          <motion.p 
+          <motion.p
             key={versiculo.referencia}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

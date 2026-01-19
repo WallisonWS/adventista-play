@@ -1649,37 +1649,39 @@ function AppContent() {
   )
 }
 
-function App() {\n  return (\n    <I18nextProvider i18n={i18n}>\n      <DarkModeProvider>\nider>\n      </DarkModeProvider>\n    </I18nextProvider>\n  )\n}
+function App() {
   return (
-    <DarkModeProvider>
-      <ThemeProvider>
-        <Toaster 
-          position="top-center"
-          toastOptions={{
-            duration: 3000,
-            style: {
-              background: '#363636',
-              color: '#fff',
-            },
-            success: {
+    <I18nextProvider i18n={i18n}>
+      <DarkModeProvider>
+        <ThemeProvider>
+          <Toaster 
+            position="top-center"
+            toastOptions={{
               duration: 3000,
-              iconTheme: {
-                primary: '#4ade80',
-                secondary: '#fff',
+              style: {
+                background: '#363636',
+                color: '#fff',
               },
-            },
-            error: {
-              duration: 4000,
-              iconTheme: {
-                primary: '#ef4444',
-                secondary: '#fff',
+              success: {
+                duration: 3000,
+                iconTheme: {
+                  primary: '#4ade80',
+                  secondary: '#fff',
+                },
               },
-            },
-          }}
-        />
-        <AppContent />
-      </ThemeProvider>
-    </DarkModeProvider>
+              error: {
+                duration: 4000,
+                iconTheme: {
+                  primary: '#ef4444',
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
+          <AppContent />
+        </ThemeProvider>
+      </DarkModeProvider>
+    </I18nextProvider>
   )
 }
 

@@ -1,11 +1,11 @@
 // Serviço para acessar a API da Bíblia
-// Usando cache para melhor performance
+// Carrega a Bíblia completa e extrai capítulos localmente para melhor performance
 
-const BASE_URL = 'https://raw.githubusercontent.com/MaatheusGois/bible/main/versions/pt-br'
+const BASE_URL = 'https://raw.githubusercontent.com/maatheusgois/bible/main/versions'
 
 // Configurações de Cache
-const CACHE_KEY_PREFIX = 'biblia_v2_cache_';
-const CACHE_EXPIRY = 30 * 24 * 60 * 60 * 1000; // 30 dias (o texto bíblico não muda)
+const CACHE_KEY_PREFIX = 'biblia_v3_cache_';
+const CACHE_EXPIRY = 30 * 24 * 60 * 60 * 1000; // 30 dias
 const memoryCache = new Map();
 
 // Helper de Cache
@@ -47,7 +47,7 @@ export const versoesDisponiveis = [
   { id: 'acf', nome: 'Almeida Corrigida Fiel (ACF)', sigla: 'ACF' }
 ]
 
-// Mapeamento de abreviações dos livros
+// Mapeamento de abreviações dos livros (mantido para compatibilidade)
 export const abreviacoesLivros = {
   'Gênesis': 'gn',
   'Êxodo': 'ex',
@@ -117,107 +117,114 @@ export const abreviacoesLivros = {
   'Apocalipse': 'ap'
 }
 
-// Buscar capítulo completo
-export async function buscarCapitulo(versao, livro, capitulo) {
-  const cacheKey = `${versao}_${livro}_${capitulo}`;
+// Carregar Bíblia completa (uma vez por versão)
+async function carregarBibliaCompleta(versao) {
+  const cacheKey = `biblia_completa_${versao}`;
 
   // Tentar cache
   const cached = getFromCache(cacheKey);
   if (cached) return cached;
 
   try {
-    const abrev = abreviacoesLivros[livro]
-    if (!abrev) {
-      throw new Error('Livro não encontrado')
-    }
-
-    const url = `${BASE_URL}/${versao}/${abrev}/${capitulo}.json`
-    const response = await fetch(url)
+    const url = `${BASE_URL}/pt-br/${versao}.json`;
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error('Capítulo não encontrado')
+      throw new Error(`Versão ${versao} não encontrada`);
     }
 
-    const data = await response.json()
+    const data = await response.json();
     saveToCache(cacheKey, data);
-
-    // Pré-carregar próximo capítulo
-    prefetchProximoCapitulo(versao, livro, capitulo);
-
-    return data
+    return data;
   } catch (error) {
-    console.error('Erro ao buscar capítulo:', error)
-    // Fallback básico
+    console.error('Erro ao carregar Bíblia:', error);
+    throw error;
+  }
+}
+
+// Buscar capítulo completo
+export async function buscarCapitulo(versao, livro, capitulo) {
+  try {
+    const biblia = await carregarBibliaCompleta(versao);
+    const abrev = abreviacoesLivros[livro];
+
+    if (!abrev) {
+      throw new Error('Livro não encontrado');
+    }
+
+    // Encontrar o livro na Bíblia
+    const livroData = biblia.find(l => l.id === abrev);
+
+    if (!livroData) {
+      throw new Error('Livro não encontrado na Bíblia');
+    }
+
+    // Capítulos são arrays indexados a partir de 0
+    const capituloIndex = capitulo - 1;
+    const versiculos = livroData.chapters[capituloIndex];
+
+    if (!versiculos) {
+      throw new Error('Capítulo não encontrado');
+    }
+
+    // Converter para o formato esperado pelo componente
+    return {
+      book: livro,
+      chapter: capitulo,
+      verses: versiculos.map((text, index) => ({
+        number: index + 1,
+        text: text
+      }))
+    };
+  } catch (error) {
+    console.error('Erro ao buscar capítulo:', error);
+    // Fallback
     return {
       book: livro,
       chapter: capitulo,
       verses: [
         { number: 1, text: 'Erro ao carregar o texto bíblico. Verifique sua conexão.' }
       ]
-    }
-  }
-}
-
-// Prefetch simplificado
-function prefetchProximoCapitulo(versao, livro, capituloAtual) {
-  const proximo = capituloAtual + 1;
-  // Não verificamos o limite de capítulos aqui por simplicidade, 
-  // mas o browser vai apenas dar 404 se não existir, sem quebrar o app
-  const url = `${BASE_URL}/${versao}/${abreviacoesLivros[livro]}/${proximo}.json`;
-
-  // Apenas busca se não tiver no cache
-  const cacheKey = `${versao}_${livro}_${proximo}`;
-  if (!getFromCache(cacheKey)) {
-    setTimeout(() => {
-      fetch(url).then(res => {
-        if (res.ok) res.json().then(data => saveToCache(cacheKey, data));
-      }).catch(() => { });
-    }, 1000); // Delay para não competir com a renderização inicial
+    };
   }
 }
 
 // Buscar versículo específico
 export async function buscarVersiculo(versao, livro, capitulo, versiculo) {
   try {
-    const capituloData = await buscarCapitulo(versao, livro, capitulo)
-    const versiculoEncontrado = capituloData.verses?.find(v => v.number === versiculo)
-    return versiculoEncontrado || null
+    const capituloData = await buscarCapitulo(versao, livro, capitulo);
+    const versiculoEncontrado = capituloData.verses?.find(v => v.number === versiculo);
+    return versiculoEncontrado || null;
   } catch (error) {
-    console.error('Erro ao buscar versículo:', error)
-    return null
+    console.error('Erro ao buscar versículo:', error);
+    return null;
   }
 }
 
 // Buscar livro completo
 export async function buscarLivro(versao, livro) {
   try {
-    const abrev = abreviacoesLivros[livro]
+    const biblia = await carregarBibliaCompleta(versao);
+    const abrev = abreviacoesLivros[livro];
+
     if (!abrev) {
-      throw new Error('Livro não encontrado')
+      throw new Error('Livro não encontrado');
     }
 
-    const url = `${BASE_URL}/${versao}/${abrev}/${abrev}.json`
-    const response = await fetch(url)
-
-    if (!response.ok) {
-      throw new Error('Livro não encontrado')
-    }
-
-    const data = await response.json()
-    return data
+    const livroData = biblia.find(l => l.id === abrev);
+    return livroData || null;
   } catch (error) {
-    console.error('Erro ao buscar livro:', error)
-    return null
+    console.error('Erro ao buscar livro:', error);
+    return null;
   }
 }
 
 // Pesquisar texto na Bíblia (busca local simplificada)
 export function pesquisarTexto(texto, versiculos) {
-  if (!texto || !versiculos) return []
+  if (!texto || !versiculos) return [];
 
-  const termoLower = texto.toLowerCase()
+  const termoLower = texto.toLowerCase();
   return versiculos.filter(v =>
     v.text?.toLowerCase().includes(termoLower)
-  )
+  );
 }
-

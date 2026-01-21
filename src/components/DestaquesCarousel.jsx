@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, BookOpen, Music, GraduationCap, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 
 /**
@@ -80,7 +79,10 @@ export function DestaquesCarousel() {
   };
 
   const currentDestaque = destaques[currentIndex];
-  const IconComponent = currentDestaque.icon;
+  // Ensure we have a valid component before rendering
+  const IconComponent = currentDestaque?.icon || Star;
+
+  if (!currentDestaque) return null;
 
   return (
     <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-2xl">
@@ -133,7 +135,7 @@ export function DestaquesCarousel() {
       {/* Botões de navegação */}
       <button
         onClick={handlePrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white cursor-pointer z-10"
         aria-label="Anterior"
       >
         <ChevronLeft className="h-6 w-6" />
@@ -141,19 +143,19 @@ export function DestaquesCarousel() {
 
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white cursor-pointer z-10"
         aria-label="Próximo"
       >
         <ChevronRight className="h-6 w-6" />
       </button>
 
       {/* Indicadores (dots) */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
         {destaques.map((_, index) => (
           <button
             key={index}
             onClick={() => handleDotClick(index)}
-            className={`w-2 h-2 rounded-full transition-all ${index === currentIndex
+            className={`w-2 h-2 rounded-full transition-all cursor-pointer ${index === currentIndex
               ? 'bg-white w-8'
               : 'bg-white/50 hover:bg-white/70'
               }`}

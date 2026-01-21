@@ -19,7 +19,7 @@ export function DestaquesCarousel() {
       id: 1,
       titulo: 'Devocional do Dia',
       descricao: 'Comece seu dia com uma mensagem inspiradora',
-      imagem: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=800',
+      imagem: 'https://images.unsplash.com/photo-1470252649378-9c2974247fa8?q=80&w=1600&auto=format&fit=crop', // Morning light landscape premium
       link: '/devocional',
       icon: Heart,
       cor: 'from-red-500 to-pink-500'
@@ -28,7 +28,7 @@ export function DestaquesCarousel() {
       id: 2,
       titulo: 'Escola Sabatina',
       descricao: 'Estude a lição de hoje com comentários',
-      imagem: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800',
+      imagem: 'https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1600&auto=format&fit=crop', // Bible study warm light
       link: '/escola-sabatina',
       icon: BookOpen,
       cor: 'from-blue-500 to-indigo-500'
@@ -37,7 +37,7 @@ export function DestaquesCarousel() {
       id: 3,
       titulo: 'Hinário Adventista',
       descricao: 'Louve a Deus com os hinos tradicionais',
-      imagem: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800',
+      imagem: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1600&auto=format&fit=crop', // Piano/Music artistic
       link: '/hinario',
       icon: Music,
       cor: 'from-purple-500 to-pink-500'
@@ -46,7 +46,7 @@ export function DestaquesCarousel() {
       id: 4,
       titulo: 'Cursos Online',
       descricao: 'Aprenda mais sobre a Bíblia e doutrina',
-      imagem: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800',
+      imagem: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600&auto=format&fit=crop', // Library/Education premium
       link: '/cursos',
       icon: GraduationCap,
       cor: 'from-green-500 to-teal-500'
@@ -153,11 +153,10 @@ export function DestaquesCarousel() {
           <button
             key={index}
             onClick={() => handleDotClick(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              index === currentIndex
-                ? 'bg-white w-8'
-                : 'bg-white/50 hover:bg-white/70'
-            }`}
+            className={`w-2 h-2 rounded-full transition-all ${index === currentIndex
+              ? 'bg-white w-8'
+              : 'bg-white/50 hover:bg-white/70'
+              }`}
             aria-label={`Ir para destaque ${index + 1}`}
           />
         ))}

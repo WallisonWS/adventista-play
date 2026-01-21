@@ -16,7 +16,7 @@ const Dock = ({ items = [], onItemClick }) => {
   const dockItems = items.length > 0 ? items : defaultItems;
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 lg:hidden">
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -26,14 +26,14 @@ const Dock = ({ items = [], onItemClick }) => {
           const Icon = item.icon;
           const isHovered = hoveredIndex === index;
           const distance = hoveredIndex !== null ? Math.abs(hoveredIndex - index) : 0;
-          
+
           // Calculate scale based on distance from hovered item
           const scale = hoveredIndex !== null
             ? distance === 0
               ? 1.5
               : distance === 1
-              ? 1.2
-              : 1
+                ? 1.2
+                : 1
             : 1;
 
           return (

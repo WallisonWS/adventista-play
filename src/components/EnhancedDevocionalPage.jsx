@@ -32,7 +32,7 @@ export function EnhancedDevocionalPage() {
     if (!currentDevotional) return null;
 
     return (
-        <div className={`min-h-screen ${isDarkMode ? 'bg-[#0f1115] text-white' : 'bg-slate-50 text-slate-900'}`}>
+        <div className={`min-h-screen ${isDarkMode ? 'bg-transparent text-white' : 'bg-transparent text-slate-900'} font-sans`}>
 
             {/* Hero Section / Main Devotional */}
             <div className="relative pt-24 pb-12 px-4 overflow-hidden">
@@ -65,7 +65,7 @@ export function EnhancedDevocionalPage() {
                     </motion.div>
 
                     {/* Main Content Card */}
-                    <Card3D className="bg-card/80 backdrop-blur-md border-border/50 p-6 md:p-10">
+                    <Card3D className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-10 shadow-2xl">
                         <div className="mb-8 p-6 rounded-2xl bg-accent/10 border-l-4 border-primary">
                             <p className="text-xl md:text-2xl font-serif italic leading-relaxed opacity-90">
                                 "{currentDevotional.texto}"
@@ -119,7 +119,7 @@ export function EnhancedDevocionalPage() {
                                 transition={{ delay: index * 0.1 }}
                             >
                                 <Card3D
-                                    className="h-full cursor-pointer hover:border-primary/50"
+                                    className="h-full cursor-pointer hover:border-primary/50 bg-white/5 backdrop-blur-md border border-white/10"
                                     onClick={() => handleSelectDevocional(dev)}
                                 >
                                     <div className="p-6">

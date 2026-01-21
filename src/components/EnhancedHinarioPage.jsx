@@ -53,7 +53,7 @@ export function EnhancedHinarioPage() {
     };
 
     return (
-        <div className={`min-h-screen ${isDarkMode ? 'bg-[#0f1115] text-white' : 'bg-slate-50 text-slate-900'}`}>
+        <div className={`min-h-screen ${isDarkMode ? 'bg-transparent text-white' : 'bg-transparent text-slate-900'} font-sans`}>
 
             {/* Detail View */}
             <AnimatePresence mode="wait">
@@ -162,7 +162,7 @@ export function EnhancedHinarioPage() {
                                         placeholder="Buscar por número, título ou letra..."
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="w-full pl-12 pr-4 py-4 rounded-full border-2 border-transparent bg-card shadow-lg focus:border-primary focus:outline-none text-lg transition-all"
+                                        className="w-full pl-12 pr-4 py-4 rounded-full border border-white/10 bg-white/10 backdrop-blur-md shadow-2xl focus:border-primary focus:bg-white/20 focus:outline-none text-lg transition-all text-white placeholder:text-white/50"
                                     />
                                 </motion.div>
                             </div>
@@ -171,22 +171,23 @@ export function EnhancedHinarioPage() {
                         {/* List */}
                         <div className="container mx-auto px-4 max-w-5xl">
                             {filteredHinos.length === 0 ? (
-                                <div className="text-center py-20 opacity-50">
+                                <div className="text-center py-20 opacity-50 text-white">
                                     <p>Nenhum hino encontrado.</p>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {filteredHinos.map((hino) => (
                                         <motion.div
                                             key={hino.numero}
                                             layoutId={`hino-${hino.numero}`}
-                                            whileHover={{ y: -5 }}
+                                            whileHover={{ y: -10, scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
                                             onClick={() => setSelectedHino(hino)}
-                                            className="cursor-pointer group"
+                                            className="cursor-pointer group perspective-1000"
                                         >
                                             <div className={`
-                         bg-card border p-6 rounded-2xl hover:shadow-xl hover:border-primary/50 transition-all relative overflow-hidden
-                         ${favorites.includes(hino.numero) ? 'ring-1 ring-red-400/50' : ''}
+                         bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all relative overflow-hidden h-full
+                         ${favorites.includes(hino.numero) ? 'ring-1 ring-red-400/50 bg-red-500/5' : ''}
                       `}>
                                                 {favorites.includes(hino.numero) && (
                                                     <div className="absolute top-3 right-3 text-red-400">

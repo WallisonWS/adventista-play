@@ -39,7 +39,7 @@ export function EnhancedEstudosPage() {
     }, [searchQuery, selectedCategory]);
 
     return (
-        <div className={`min-h-screen ${isDarkMode ? 'bg-[#0f1115] text-white' : 'bg-slate-50 text-slate-900'}`}>
+        <div className={`min-h-screen ${isDarkMode ? 'bg-transparent text-white' : 'bg-transparent text-slate-900'} font-sans`}>
 
             {/* Hero Section */}
             <div className="relative pt-24 pb-12 px-4 overflow-hidden">
@@ -75,7 +75,7 @@ export function EnhancedEstudosPage() {
                                 placeholder="O que você quer aprender hoje?"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm shadow-lg focus:border-blue-500 focus:outline-none transition-all"
+                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/10 bg-white/10 backdrop-blur-md shadow-lg focus:border-blue-500 focus:bg-white/15 focus:outline-none transition-all text-white placeholder:text-white/50"
                             />
                         </div>
 
@@ -84,8 +84,8 @@ export function EnhancedEstudosPage() {
                             <button
                                 onClick={() => setSelectedCategory('Todos')}
                                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedCategory === 'Todos'
-                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
-                                        : 'bg-card hover:bg-accent border border-border/50'
+                                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
+                                    : 'bg-white/5 backdrop-blur-md hover:bg-white/10 border border-white/10 text-white'
                                     }`}
                             >
                                 Todos
@@ -95,8 +95,8 @@ export function EnhancedEstudosPage() {
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === cat
-                                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
-                                            : 'bg-card hover:bg-accent border border-border/50'
+                                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
+                                        : 'bg-white/5 backdrop-blur-md hover:bg-white/10 border border-white/10 text-white'
                                         }`}
                                 >
                                     {cat}
@@ -110,8 +110,8 @@ export function EnhancedEstudosPage() {
                         <button
                             onClick={() => setSelectedCategory('Todos')}
                             className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === 'Todos'
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-card border border-border/50'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-white/5 backdrop-blur-md border border-white/10 text-white'
                                 }`}
                         >
                             Todos
@@ -121,8 +121,8 @@ export function EnhancedEstudosPage() {
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
                                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === cat
-                                        ? 'bg-blue-600 text-white'
-                                        : 'bg-card border border-border/50'
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-white/5 backdrop-blur-md border border-white/10 text-white'
                                     }`}
                             >
                                 {cat}
@@ -145,7 +145,7 @@ export function EnhancedEstudosPage() {
                                 transition={{ delay: index * 0.05 }}
                             >
                                 <Card3D
-                                    className="h-full cursor-pointer group bg-card border-border/50"
+                                    className="h-full cursor-pointer group bg-white/5 backdrop-blur-md border border-white/10 hover:border-blue-500/50"
                                     onClick={() => navigate(`/estudos/detalhe/${estudo.id}`)} // Assuming this route exists or needs to be mapped
                                 >
                                     <div className="relative h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-[inherit]">

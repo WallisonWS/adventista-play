@@ -273,7 +273,7 @@ export function Enhanced3DBiblePage() {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-[#0f1115] text-gray-100' : 'bg-gray-50 text-gray-900'} transition-colors duration-300 font-sans`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-transparent text-gray-100' : 'bg-transparent text-gray-900'} transition-colors duration-300 font-sans`}>
       <TooltipProvider>
 
         {/* HEADER PRINCIPAL */}

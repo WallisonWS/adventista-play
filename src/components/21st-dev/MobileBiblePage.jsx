@@ -65,7 +65,7 @@ export default function MobileBiblePage() {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-transparent text-white' : 'bg-transparent text-gray-900'}`}>
       {/* Header */}
       <div className={`sticky top-0 z-20 ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-md`}>
         <div className="flex items-center justify-between px-4 py-3">

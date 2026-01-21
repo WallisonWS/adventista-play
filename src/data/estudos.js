@@ -44,9 +44,9 @@ export const estudos = [
     descricao: "Estudos sobre fé, coragem e conquista através da história de Josué e a entrada em Canaã.",
     capa: "https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=400",
     licoes: [
-      { 
-        numero: 1, 
-        titulo: "Preparação para a Conquista", 
+      {
+        numero: 1,
+        titulo: "Preparação para a Conquista",
         texto: "Josué 1:1-9",
         conteudo: "Após a morte de Moisés, Deus chama Josué para liderar o povo de Israel na conquista de Canaã. Esta lição nos ensina sobre preparação espiritual, coragem e confiança em Deus. Josué recebe três comandos importantes: ser forte, corajoso e meditar na lei dia e noite. A promessa de Deus é clara: 'Não te deixarei nem te desampararei'. Aplicação prática: Antes de enfrentar grandes desafios, precisamos nos preparar espiritualmente através da oração e estudo da Palavra.",
         versiculoChave: "Josué 1:9 - Não to mandei eu? Esforça-te, e tem bom ânimo; não temas, nem te espantes; porque o Senhor teu Deus é contigo, por onde quer que andares.",
@@ -56,9 +56,9 @@ export const estudos = [
           "Como podemos aplicar a coragem de Josué em nossa vida hoje?"
         ]
       },
-      { 
-        numero: 2, 
-        titulo: "Atravessando o Jordão", 
+      {
+        numero: 2,
+        titulo: "Atravessando o Jordão",
         texto: "Josué 3:1-17",
         conteudo: "O milagre da travessia do Jordão demonstra o poder de Deus e a importância da obediência. Os sacerdotes deveriam entrar no rio primeiro, demonstrando fé antes de ver o milagre. Somente quando seus pés tocaram as águas, o rio parou. Esta lição nos ensina que muitas vezes precisamos dar o primeiro passo de fé antes de ver a provisão de Deus. A arca da aliança (representando a presença de Deus) ia à frente do povo.",
         versiculoChave: "Josué 3:5 - Santificai-vos, porque amanhã fará o Senhor maravilhas no meio de vós.",
@@ -68,9 +68,9 @@ export const estudos = [
           "Qual 'Jordão' você precisa atravessar pela fé hoje?"
         ]
       },
-      { 
-        numero: 3, 
-        titulo: "A Queda de Jericó", 
+      {
+        numero: 3,
+        titulo: "A Queda de Jericó",
         texto: "Josué 6:1-27",
         conteudo: "A conquista de Jericó revela que as vitórias de Deus não dependem de métodos humanos, mas de obediência. O plano de Deus parecia estranho: marchar ao redor da cidade por sete dias. Não havia lógica militar nisso, apenas fé e obediência. No sétimo dia, ao som das trombetas e do grito do povo, os muros caíram. Lição: Os métodos de Deus podem parecer estranhos, mas sempre funcionam quando obedecemos.",
         versiculoChave: "Josué 6:20 - Gritou, pois, o povo, tocando os sacerdotes as buzinas; e sucedeu que, ouvindo o povo o sonido da buzina, gritou o povo com grande grita; e o muro caiu abaixo.",
@@ -80,9 +80,9 @@ export const estudos = [
           "Quais 'muros' em sua vida precisam cair?"
         ]
       },
-      { 
-        numero: 4, 
-        titulo: "O Pecado de Acã", 
+      {
+        numero: 4,
+        titulo: "O Pecado de Acã",
         texto: "Josué 7:1-26",
         conteudo: "Após a grande vitória em Jericó, Israel sofre uma derrota humilhante em Ai por causa do pecado oculto de Acã. Esta lição nos ensina que o pecado não confessado afeta não apenas o indivíduo, mas toda a comunidade. Acã tomou do anátema (coisas consagradas à destruição) e escondeu em sua tenda. Deus revelou o pecado e a justiça foi executada. Aplicação: Não podemos esconder nada de Deus, e o pecado sempre tem consequências.",
         versiculoChave: "Josué 7:13 - Levanta-te, santifica o povo, e dize: Santificai-vos para amanhã, porque assim diz o Senhor Deus de Israel: Anátema há no meio de ti, Israel.",
@@ -102,9 +102,9 @@ export const estudos = [
     descricao: "A libertação do povo de Israel e as lições sobre liberdade e obediência a Deus.",
     capa: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=400",
     licoes: [
-      { 
-        numero: 1, 
-        titulo: "A Escravidão no Egito", 
+      {
+        numero: 1,
+        titulo: "A Escravidão no Egito",
         texto: "Êxodo 1:1-22",
         conteudo: "Os descendentes de Jacó se multiplicaram no Egito, mas um novo faraó que não conhecia José os escravizou. A opressão aumentou, mas quanto mais eram afligidos, mais se multiplicavam. Esta lição nos ensina que Deus está no controle mesmo em meio à opressão. As parteiras hebreias temeram a Deus mais do que ao faraó, salvando os meninos. Aplicação: Devemos obedecer a Deus acima de qualquer autoridade humana quando há conflito.",
         versiculoChave: "Êxodo 1:12 - Mas quanto mais os afligiam, tanto mais se multiplicavam.",
@@ -114,9 +114,9 @@ export const estudos = [
           "Você já teve que escolher entre obedecer a Deus ou aos homens?"
         ]
       },
-      { 
-        numero: 2, 
-        titulo: "O Nascimento de Moisés", 
+      {
+        numero: 2,
+        titulo: "O Nascimento de Moisés",
         texto: "Êxodo 2:1-25",
         conteudo: "Moisés nasce em um tempo de perseguição. Sua mãe o esconde por três meses e depois o coloca em um cesto no rio Nilo. A filha de Faraó o encontra e o adota. Ironicamente, a mãe de Moisés é paga para amamentá-lo. Deus usa até mesmo os planos do inimigo para cumprir Seus propósitos. Moisés cresce no palácio, mas nunca esquece seu povo.",
         versiculoChave: "Êxodo 2:10 - E, quando o menino era já grande, ela o trouxe à filha de Faraó, a qual o adotou; e chamou o seu nome Moisés.",
@@ -126,9 +126,9 @@ export const estudos = [
           "Como Deus tem preparado você para Seus propósitos?"
         ]
       },
-      { 
-        numero: 3, 
-        titulo: "A Sarça Ardente", 
+      {
+        numero: 3,
+        titulo: "A Sarça Ardente",
         texto: "Êxodo 3:1-22",
         conteudo: "Após 40 anos no deserto, Moisés tem um encontro com Deus na sarça ardente. Deus se revela como 'EU SOU O QUE SOU' e comissiona Moisés para libertar Israel. Moisés apresenta desculpas, mas Deus promete estar com ele. Esta lição nos ensina que Deus chama pessoas imperfeitas e as capacita para Sua obra. O chamado de Deus vem com Sua presença e poder.",
         versiculoChave: "Êxodo 3:14 - E disse Deus a Moisés: EU SOU O QUE SOU.",
@@ -138,9 +138,9 @@ export const estudos = [
           "Deus está chamando você para algo? Quais são suas desculpas?"
         ]
       },
-      { 
-        numero: 4, 
-        titulo: "As Dez Pragas", 
+      {
+        numero: 4,
+        titulo: "As Dez Pragas",
         texto: "Êxodo 7-12",
         conteudo: "Deus envia dez pragas sobre o Egito para demonstrar Seu poder e libertar Israel. Cada praga era um julgamento sobre os deuses do Egito. Faraó endurece seu coração repetidamente. A décima praga (morte dos primogênitos) finalmente quebra a resistência de Faraó. A Páscoa é instituída como memorial da libertação. Esta lição nos ensina sobre a justiça de Deus, Seu poder sobre todas as coisas e o perigo de endurecer o coração.",
         versiculoChave: "Êxodo 12:13 - E aquele sangue vos será por sinal nas casas em que estiverdes; vendo eu sangue, passarei por cima de vós.",
@@ -415,6 +415,6 @@ export const tiposEstudo = [
 
 // Categorias disponíveis
 export const categoriasEstudo = [
-  ...new Set(estudos.filter(e => e.categoria).map(e => e.categoria))
-]
+  ...new Set(estudos.map(e => e.categoria || e.tipo))
+].filter(Boolean)
 

@@ -88,6 +88,9 @@ import { Enhanced3DFooter } from './components/Enhanced3DFooter.jsx'
 import { Enhanced3DLogin } from './components/Enhanced3DLogin.jsx'
 import { Enhanced3DRegister } from './components/Enhanced3DRegister.jsx'
 import { Enhanced3DBiblePage } from './components/Enhanced3DBiblePage.jsx'
+import { EnhancedHinarioPage } from './components/EnhancedHinarioPage.jsx'
+import { EnhancedEstudosPage } from './components/EnhancedEstudosPage.jsx'
+import { EnhancedDevocionalPage } from './components/EnhancedDevocionalPage.jsx'
 import { CategoriaEstudosPage } from './components/CategoriaEstudosPage.jsx'
 import { DetalheCursoPage } from './components/DetalheCursoPage.jsx'
 import { useIsMobile } from './hooks/useIsMobile.js'
@@ -1597,11 +1600,11 @@ function AppContent() {
             <Route path="/demo" element={<DemoPage />} />
             <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
-            <Route path="/devocional" element={isMobile ? <MobileDevotionalPage /> : <DevocionalPage />} />
-            <Route path="/hinario" element={isMobile ? <MobileHymnalPage /> : <HinarioPage />} />
+            <Route path="/devocional" element={<EnhancedDevocionalPage />} />
+            <Route path="/hinario" element={<EnhancedHinarioPage />} />
             <Route path="/biblia" element={<Enhanced3DBiblePage />} />
             <Route path="/biblia/:livro/:capitulo" element={<Enhanced3DBiblePage />} />
-            <Route path="/estudos" element={isMobile ? <MobileStudiesPage /> : <EstudosPage />} />
+            <Route path="/estudos" element={<EnhancedEstudosPage />} />
             <Route path="/estudos/:categoria" element={<CategoriaEstudosPage />} />
             <Route path="/estudos/:categoria/:cursoId" element={<DetalheCursoPage />} />
             <Route path="/escola-sabatina" element={<EscolaSabatinaCompleta />} />

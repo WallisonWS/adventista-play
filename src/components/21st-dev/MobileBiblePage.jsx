@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Book, Search, Moon, Sun, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Heart, Share2, Bookmark } from 'lucide-react';
-import { fetchChapter, prefetchAdjacentChapters, getBibleBooks } from '../../services/bibleService';
+import { bibliaApiService, getBibleBooks } from '../../services/bibliaApiService';
 import Sidebar from './Sidebar';
 import EnhancedDock from './EnhancedDock';
 
@@ -32,14 +32,12 @@ export default function MobileBiblePage() {
     setError(null);
 
     try {
-      const data = await fetchChapter(bookAbbrev, chapter);
-      setChapterData(data);
+      // Usando padrão NVI por enquanto, ou poderia vir de config
+      const data = await bibliaApiService.buscarCapitulo('nvi', bookAbbrev, chapter);
 
-      // Pré-carrega capítulos adjacentes
-      const book = [...books.oldTestament, ...books.newTestament].find(b => b.abbrev === bookAbbrev);
-      if (book) {
-        prefetchAdjacentChapters(bookAbbrev, chapter, book.chapters);
-      }
+      if (!data) throw new Error('Capítulo não encontrado');
+
+      setChapterData(data);
     } catch (err) {
       setError('Erro ao carregar capítulo. Tente novamente.');
       console.error(err);

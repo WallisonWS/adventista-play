@@ -8,10 +8,16 @@ const API_BASE_URL = 'https://raw.githubusercontent.com/MaatheusGois/bible/main/
 const cache = new Map()
 
 // Mapeamento de versões
+export const versoesDisponiveis = [
+  { id: 'arc', nome: 'Almeida Revista e Corrigida (ARC)', sigla: 'ARC' },
+  { id: 'acf', nome: 'Almeida Corrigida Fiel (ACF)', sigla: 'ACF' },
+  { id: 'nvi', nome: 'Nova Versão Internacional (NVI)', sigla: 'NVI' }
+]
+
 const versoesMap = {
-  'ARC': 'arc',  // Almeida Revista e Corrigida
-  'ACF': 'acf',  // Almeida Corrigida Fiel
-  'NVI': 'nvi'   // Nova Versão Internacional
+  'ARC': 'arc',
+  'ACF': 'acf',
+  'NVI': 'nvi'
 }
 
 // Mapeamento de IDs de livros (nosso formato -> formato da API)
@@ -34,6 +40,7 @@ const livrosMap = {
   'ed': 'ezr',     // Esdras
   'ne': 'ne',      // Neemias
   'et': 'et',      // Ester
+  'jb': 'job',     // Jó (compatibilidade)
   'job': 'job',    // Jó
   'sl': 'ps',      // Salmos
   'pv': 'prv',     // Provérbios
@@ -99,12 +106,12 @@ export const bibliaApiService = {
       // Converter versão e livro para o formato da API
       const versaoApi = versoesMap[versao] || 'arc'
       const livroApi = livrosMap[livro.toLowerCase()] || livro
-      
+
       // URL para buscar o livro completo
       const url = `${API_BASE_URL}/${versaoApi}/${livroApi}/${livroApi}.json`
-      
+
       console.log(`🔍 Buscando: ${url}`)
-      
+
       // Fazer requisição para a API
       const response = await fetch(url, {
         method: 'GET',
@@ -112,42 +119,42 @@ export const bibliaApiService = {
           'Accept': 'application/json'
         }
       })
-      
+
       if (!response.ok) {
         console.warn(`⚠️ API retornou status ${response.status}`)
         throw new Error(`Erro HTTP: ${response.status}`)
       }
-      
+
       const data = await response.json()
       console.log('📖 Dados recebidos da API')
-      
+
       // Verificar se os dados são válidos
       if (!data || !data.chapters || !Array.isArray(data.chapters) || data.chapters.length === 0) {
         console.warn('⚠️ API retornou dados vazios ou inválidos')
         throw new Error('Dados vazios da API')
       }
-      
+
       // Encontrar o capítulo específico (índice começa em 0, mas capítulo começa em 1)
       const capituloIndex = capitulo - 1
-      
+
       if (capituloIndex < 0 || capituloIndex >= data.chapters.length) {
         console.warn(`⚠️ Capítulo ${capitulo} não encontrado (índice ${capituloIndex})`)
         throw new Error(`Capítulo ${capitulo} não encontrado`)
       }
-      
+
       const versiculosArray = data.chapters[capituloIndex]
-      
+
       if (!Array.isArray(versiculosArray) || versiculosArray.length === 0) {
         console.warn(`⚠️ Capítulo ${capitulo} está vazio`)
         throw new Error(`Capítulo ${capitulo} está vazio`)
       }
-      
+
       // Transformar array de strings em array de objetos com número e texto
       const verses = versiculosArray.map((texto, index) => ({
         number: index + 1,
         text: texto.trim()
       }))
-      
+
       // Transformar dados para o formato esperado
       const resultado = {
         book: {
@@ -163,14 +170,14 @@ export const bibliaApiService = {
         },
         verses: verses
       }
-      
+
       cache.set(cacheKey, resultado)
       console.log(`✅ ${resultado.verses.length} versículos carregados com sucesso!`)
       return resultado
-      
+
     } catch (error) {
       console.error('❌ Erro ao buscar capítulo da API:', error.message)
-      
+
       // Retornar null para que o componente use o fallback local
       return null
     }
@@ -181,23 +188,23 @@ export const bibliaApiService = {
     try {
       // Buscar o capítulo completo e filtrar o versículo
       const capituloData = await this.buscarCapitulo(versao, livro, capitulo)
-      
+
       if (!capituloData || !capituloData.verses) {
         return null
       }
-      
+
       const versiculoData = capituloData.verses.find(v => v.number === versiculo)
-      
+
       if (!versiculoData) {
         return null
       }
-      
+
       return {
         book: capituloData.book,
         chapter: capituloData.chapter,
         verse: versiculoData
       }
-      
+
     } catch (error) {
       console.error('Erro ao buscar versículo:', error)
       return null
@@ -220,18 +227,18 @@ export const bibliaApiService = {
         { livro: 'js', capitulo: 1, versiculo: 9 },
         { livro: 'sl', capitulo: 46, versiculo: 1 }
       ]
-      
+
       const aleatorio = versiculosPopulares[Math.floor(Math.random() * versiculosPopulares.length)]
-      
+
       const data = await this.buscarVersiculo(
         versao,
         aleatorio.livro,
         aleatorio.capitulo,
         aleatorio.versiculo
       )
-      
+
       return data
-      
+
     } catch (error) {
       console.error('Erro ao buscar versículo aleatório:', error)
       return null
@@ -255,11 +262,11 @@ export const historicoService = {
       data: new Date().toISOString(),
       timestamp: Date.now()
     }
-    
+
     // Adicionar no início e limitar a 50 itens
     historico.unshift(novaLeitura)
     const historicoLimitado = historico.slice(0, 50)
-    
+
     localStorage.setItem('biblia_historico', JSON.stringify(historicoLimitado))
   },
 
@@ -285,7 +292,7 @@ export const marcadoresService = {
       texto,
       data: new Date().toISOString()
     }
-    
+
     // Verificar se já existe
     const existe = marcadores.find(m => m.id === novoMarcador.id)
     if (!existe) {
@@ -316,7 +323,7 @@ export const notasService = {
   salvarNota(livro, capitulo, versiculo, nota) {
     const notas = this.obterNotas()
     const id = `${livro}-${capitulo}-${versiculo}`
-    
+
     const novaNota = {
       id,
       livro,
@@ -325,7 +332,7 @@ export const notasService = {
       nota,
       data: new Date().toISOString()
     }
-    
+
     // Atualizar se já existe
     const index = notas.findIndex(n => n.id === id)
     if (index >= 0) {
@@ -333,7 +340,7 @@ export const notasService = {
     } else {
       notas.push(novaNota)
     }
-    
+
     localStorage.setItem('biblia_notas', JSON.stringify(notas))
   },
 

@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { buscarCapitulo, versoesDisponiveis } from '../services/bibliaService';
+import { bibliaApiService, versoesDisponiveis } from '../services/bibliaApiService';
 import { useDarkMode } from '../contexts/DarkModeContext';
 
 // Configuração dos livros para o menu lateral
@@ -147,7 +147,7 @@ export function Enhanced3DBiblePage() {
       setIsLoading(true);
       cancelSpeech(); // Parar áudio anterior se houver
       try {
-        const data = await buscarCapitulo(selectedVersion, selectedBook.name, selectedChapter);
+        const data = await bibliaApiService.buscarCapitulo(selectedVersion, selectedBook.abbrev, selectedChapter);
         setChapterContent(data);
       } catch (error) {
         console.error("Erro ao carregar:", error);

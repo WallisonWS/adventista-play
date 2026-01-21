@@ -80,6 +80,7 @@ import MobilePathfindersPage from './components/21st-dev/MobilePathfindersPage.j
 import MobileStudiesPage from './components/21st-dev/MobileStudiesPage.jsx'
 import { NewEstudosPage } from './components/NewEstudosPage.jsx'
 import { DestaquesCarousel } from './components/DestaquesCarousel.jsx'
+import { Ultra3DHomePage } from './components/Ultra3DHomePage.jsx'
 import { EnhancedWebHomePage } from './components/EnhancedWebHomePage.jsx'
 import { ImprovedHomePageDesktop } from './components/ImprovedHomePageDesktop.jsx'
 import { PageTransition } from './components/PageTransition.jsx'
@@ -91,6 +92,7 @@ import { Enhanced3DBiblePage } from './components/Enhanced3DBiblePage.jsx'
 import { EnhancedHinarioPage } from './components/EnhancedHinarioPage.jsx'
 import { EnhancedEstudosPage } from './components/EnhancedEstudosPage.jsx'
 import { EnhancedDevocionalPage } from './components/EnhancedDevocionalPage.jsx'
+import { EnhancedDesbravadoresPage } from './components/EnhancedDesbravadoresPage.jsx'
 import { CategoriaEstudosPage } from './components/CategoriaEstudosPage.jsx'
 import { DetalheCursoPage } from './components/DetalheCursoPage.jsx'
 import { useIsMobile } from './hooks/useIsMobile.js'
@@ -1596,7 +1598,7 @@ function AppContent() {
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<EnhancedWebHomePage user={user} />} />
+            <Route path="/" element={<Ultra3DHomePage user={user} />} />
             <Route path="/demo" element={<DemoPage />} />
             <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
@@ -1615,7 +1617,7 @@ function AppContent() {
             <Route path="/quiz" element={<QuizBiblico />} />
             <Route path="/projetos" element={<ProjetosPage />} />
             <Route path="/cursos" element={<CursosAdventistas />} />
-            <Route path="/desbravadores" element={isMobile ? <MobilePathfindersPage /> : <DesbravadoresPage />} />
+            <Route path="/desbravadores" element={<EnhancedDesbravadoresPage />} />
             <Route path="/nos-desbravadores" element={<NosDesbravadores />} />
             <Route path="/desbravadores/especialidade/:id" element={<EspecialidadeTutorial />} />
             <Route path="/progresso-desbravador" element={<ProgressoDesbravador />} />

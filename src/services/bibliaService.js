@@ -2,6 +2,8 @@
 // Carrega a Bíblia completa e extrai capítulos localmente para melhor performance
 
 const BASE_URL = 'https://raw.githubusercontent.com/maatheusgois/bible/main/versions'
+import { bibliaExemplo } from '../data/biblia-exemplo'
+import { bibliaVersoes } from '../data/biblia-versoes'
 
 // Configurações de Cache
 const CACHE_KEY_PREFIX = 'biblia_v3_cache_';
@@ -177,13 +179,56 @@ export async function buscarCapitulo(versao, livro, capitulo) {
       }))
     };
   } catch (error) {
-    console.error('Erro ao buscar capítulo:', error);
-    // Fallback
+    console.warn('⚠️ Falha na API/Cache, tentando dados locais:', error);
+
+    // TENTATIVA DE FALLBACK LOCAL
+    const abrev = abreviacoesLivros[livro];
+    const chave = `${abrev}-${capitulo}`;
+
+    // 1. Tentar na bibliaVersoes (ACF/NVI)
+    // A estrutura do arquivo bibliaVersoes.js é bibliaVersoes[VERSAO][chave]
+    if (bibliaVersoes && bibliaVersoes[versao] && bibliaVersoes[versao][chave]) {
+      console.log(`✅ Recuperado do fallback local (${versao}):`, chave);
+      const capituloData = bibliaVersoes[versao][chave];
+
+      return {
+        book: { name: livro, id: abrev },
+        chapter: { number: capitulo },
+        verses: capituloData.verses
+      };
+    }
+
+    // 2. Tentar bibliaVersoes em outra versão (ACF é a mais completa geralmente)
+    if (bibliaVersoes && bibliaVersoes['ACF'] && bibliaVersoes['ACF'][chave]) {
+      console.log(`✅ Recuperado do fallback local (ACF alternative):`, chave);
+      const capituloData = bibliaVersoes['ACF'][chave];
+
+      return {
+        book: { name: livro, id: abrev },
+        chapter: { number: capitulo },
+        verses: capituloData.verses
+      };
+    }
+
+    // 3. Tentar bibliaExemplo (último recurso)
+    if (bibliaExemplo && bibliaExemplo[chave]) {
+      console.log('✅ Recuperado de biblia-exemplo:', chave);
+      const capituloData = bibliaExemplo[chave];
+
+      return {
+        book: { name: livro, id: abrev },
+        chapter: { number: capitulo },
+        verses: capituloData.verses
+      };
+    }
+
+    // Se tudo falhar
+    console.error('❌ Falha total ao carregar capítulo');
     return {
-      book: livro,
-      chapter: capitulo,
+      book: { name: livro },
+      chapter: { number: capitulo },
       verses: [
-        { number: 1, text: 'Erro ao carregar o texto bíblico. Verifique sua conexão.' }
+        { number: 1, text: 'Não foi possível carregar este capítulo. Verifique sua conexão ou tente outro livro.' }
       ]
     };
   }

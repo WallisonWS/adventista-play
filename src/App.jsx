@@ -955,8 +955,8 @@ function HinarioPage() {
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${selectedCategory === cat
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
                       }`}
                   >
                     {cat}
@@ -1593,14 +1593,14 @@ function AppContent() {
         <Navigation user={user} onLogout={handleLogout} />
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={isMobile ? <MobileHomePage user={user} /> : <EnhancedWebHomePage user={user} />} />
+            <Route path="/" element={<EnhancedWebHomePage user={user} />} />
             <Route path="/demo" element={<DemoPage />} />
             <Route path="/login" element={<Enhanced3DLogin onLogin={handleLogin} />} />
             <Route path="/cadastro" element={<Enhanced3DRegister onLogin={handleLogin} />} />
             <Route path="/devocional" element={isMobile ? <MobileDevotionalPage /> : <DevocionalPage />} />
             <Route path="/hinario" element={isMobile ? <MobileHymnalPage /> : <HinarioPage />} />
-            <Route path="/biblia" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
-            <Route path="/biblia/:livro/:capitulo" element={isMobile ? <MobileBiblePage /> : <Enhanced3DBiblePage />} />
+            <Route path="/biblia" element={<Enhanced3DBiblePage />} />
+            <Route path="/biblia/:livro/:capitulo" element={<Enhanced3DBiblePage />} />
             <Route path="/estudos" element={isMobile ? <MobileStudiesPage /> : <EstudosPage />} />
             <Route path="/estudos/:categoria" element={<CategoriaEstudosPage />} />
             <Route path="/estudos/:categoria/:cursoId" element={<DetalheCursoPage />} />

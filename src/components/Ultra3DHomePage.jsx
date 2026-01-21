@@ -7,6 +7,7 @@ import {
     Shield, Flame, Anchor, Wind
 } from 'lucide-react';
 import AuroraBackground from './21st-dev/AuroraBackground';
+import { DestaquesCarousel } from './DestaquesCarousel';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Stars, Environment, PerspectiveCamera } from '@react-three/drei';
 
@@ -202,49 +203,18 @@ export function Ultra3DHomePage({ user }) {
                 </div>
             </section>
 
-            {/* Featured Section */}
-            <section className="relative z-10 py-20 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20 skew-y-3" />
-
+            {/* Featured Section (Carousel) */}
+            <section className="relative z-10 py-12">
                 <div className="container mx-auto px-4 relative">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="flex flex-col md:flex-row items-center gap-12"
                     >
-                        <div className="flex-1">
-                            <span className="text-blue-400 font-bold tracking-widest text-sm uppercase mb-2 block">Destaque da Semana</span>
-                            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                                O Grande Conflito <br />
-                                <span className="text-white/50">Série Exclusiva</span>
-                            </h2>
-                            <p className="text-lg text-white/70 mb-8 max-w-md">
-                                Uma jornada visual pelos eventos finais da história terrestre. Prepare-se para o que está por vir.
-                            </p>
-
-                            <Link to="/estudos">
-                                <button className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-white/90 transition-colors flex items-center gap-2 group">
-                                    <Play fill="currentColor" size={18} />
-                                    Assistir Agora
-                                    <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </Link>
-                        </div>
-
-                        <div className="flex-1 w-full max-w-lg aspect-video rounded-3xl bg-black/50 border border-white/10 backdrop-blur-xl relative overflow-hidden group">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
-                            <img
-                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80"
-                                alt="Space"
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform">
-                                    <Play fill="white" className="text-white ml-1" size={32} />
-                                </div>
-                            </div>
-                        </div>
+                        <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                            Destaques da Semana
+                        </h2>
+                        <DestaquesCarousel />
                     </motion.div>
                 </div>
             </section>

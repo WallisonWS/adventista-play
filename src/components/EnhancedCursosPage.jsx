@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Clock, BookOpen, Search, Filter } from 'lucide-react';
+import { Play, Clock, BookOpen, Search, Filter, X, PlayCircle, Minimize2, Maximize2 } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D } from './3DAnimations';
 import AuroraBackground from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
@@ -10,6 +10,7 @@ export function EnhancedCursosPage() {
     const { isDarkMode } = useDarkMode();
     const [selectedCategory, setSelectedCategory] = useState("Todos");
     const [searchQuery, setSearchQuery] = useState("");
+    const [selectedCourse, setSelectedCourse] = useState(null);
 
     const filteredCursos = cursos.filter(curso => {
         const matchesCategory = selectedCategory === "Todos" || curso.categoria === selectedCategory;
@@ -79,6 +80,7 @@ export function EnhancedCursosPage() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.2 }}
+                                onClick={() => setSelectedCourse(curso)}
                             >
                                 <Card3D className="h-full overflow-hidden group cursor-pointer border-white/10 hover:border-blue-500/30 bg-black/20">
                                     {/* Course Image */}
@@ -103,7 +105,7 @@ export function EnhancedCursosPage() {
                                             )}
                                         </div>
                                         <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm">
-                                            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                                            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 transform group-hover:scale-110 transition-transform">
                                                 <Play className="w-6 h-6 text-white ml-1" fill="currentColor" />
                                             </div>
                                         </div>
@@ -142,6 +144,84 @@ export function EnhancedCursosPage() {
                 )}
 
             </main>
+
+            {/* Video Player Modal */}
+            <AnimatePresence>
+                {selectedCourse && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.9, y: 20 }}
+                            className="bg-gray-900 w-full max-w-5xl rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col md:flex-row h-[80vh]"
+                        >
+                            {/* Left Side: Video Player */}
+                            <div className="flex-1 bg-black relative flex flex-col">
+                                <div className="absolute top-4 left-4 z-10 flex gap-2">
+                                    <button
+                                        onClick={() => setSelectedCourse(null)}
+                                        className="bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-sm transition-colors md:hidden"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+
+                                <div className="flex-1 flex items-center justify-center bg-black">
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src={selectedCourse.videoUrl}
+                                        title={selectedCourse.titulo}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        className="w-full h-full aspect-video"
+                                    ></iframe>
+                                </div>
+
+                                <div className="p-6 bg-gray-900 border-t border-white/10">
+                                    <h2 className="text-2xl font-bold text-white mb-2">{selectedCourse.titulo}</h2>
+                                    <p className="text-gray-400">Instrutor: {selectedCourse.instrutor}</p>
+                                </div>
+                            </div>
+
+                            {/* Right Side: Playlist */}
+                            <div className="w-full md:w-80 bg-gray-800/50 border-l border-white/10 overflow-y-auto">
+                                <div className="p-4 border-b border-white/10 flex justify-between items-center sticky top-0 bg-gray-800/95 backdrop-blur z-10">
+                                    <h3 className="font-bold text-white">Conteúdo do Curso</h3>
+                                    <button
+                                        onClick={() => setSelectedCourse(null)}
+                                        className="text-gray-400 hover:text-white transition-colors hidden md:block"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+                                <div className="p-2">
+                                    {selectedCourse.aulas.map((aula, index) => (
+                                        <div
+                                            key={aula.id}
+                                            className={`p-3 rounded-lg mb-2 flex items-center gap-3 cursor-pointer transition-colors ${index === 0 ? 'bg-blue-600/20 border border-blue-500/30' : 'hover:bg-white/5 border border-transparent'}`}
+                                        >
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${index === 0 ? 'bg-blue-500 text-white' : 'bg-white/10 text-gray-400'}`}>
+                                                {index === 0 ? <Play size={12} fill="currentColor" /> : <span className="text-xs font-bold">{index + 1}</span>}
+                                            </div>
+                                            <div>
+                                                <p className={`text-sm font-medium ${index === 0 ? 'text-blue-400' : 'text-gray-300'}`}>{aula.titulo}</p>
+                                                <p className="text-xs text-gray-500">{aula.duracao}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

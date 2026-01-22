@@ -12,6 +12,7 @@ import { getCurrentUser, logoutUser } from './services/authService.js';
 import { ChristianBackground3D, ChristianBackground3DMobile } from './components/ChristianBackground3D.jsx';
 import Dock from './components/21st-dev/Dock';
 import { Enhanced3DFooter } from './components/Enhanced3DFooter.jsx';
+import { FloatingNavigation } from './components/FloatingNavigation.jsx';
 
 // Import Pages
 import { Ultra3DHomePage } from './components/Ultra3DHomePage.jsx';
@@ -26,6 +27,8 @@ import { EnhancedAventureirosPage } from './components/EnhancedAventureirosPage.
 import { EnhancedJovensPage } from './components/EnhancedJovensPage.jsx';
 import { EnhancedEscolaSabatinaPage } from './components/EnhancedEscolaSabatinaPage.jsx';
 import { EnhancedCursosPage } from './components/EnhancedCursosPage.jsx';
+import { EnhancedContactPage } from './components/EnhancedContactPage.jsx';
+import { EnhancedResourcesPage } from './components/EnhancedResourcesPage.jsx';
 
 // ... (other code)
 
@@ -181,6 +184,20 @@ function AppContent() {
               </Suspense>
             </ErrorBoundary>
           } />
+          <Route path="/contato" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedContactPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/recursos" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedResourcesPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
           <Route path="*" element={
             <div className="h-screen flex items-center justify-center text-white">
               <div className="text-center">
@@ -200,6 +217,8 @@ function AppContent() {
           else if (id === 'profile') window.location.href = '/perfil';
         }} />
       </ErrorBoundary>
+
+      <FloatingNavigation />
 
       {/* Footer */}
       <ErrorBoundary>

@@ -9,6 +9,7 @@ import { licaoSemana } from '../data/escola_sabatina_data';
 export function EnhancedEscolaSabatinaPage() {
     const { isDarkMode } = useDarkMode();
     const [selectedDayId, setSelectedDayId] = useState('sab');
+    const [fontSize, setFontSize] = useState(18);
 
     const selectedDay = licaoSemana.dias.find(d => d.id === selectedDayId) || licaoSemana.dias[0];
 
@@ -73,28 +74,54 @@ export function EnhancedEscolaSabatinaPage() {
                                 transition={{ duration: 0.3 }}
                             >
                                 <Card3D className="bg-gradient-to-br from-blue-600/5 to-indigo-600/5 border-blue-500/20 p-8 min-h-[500px]">
-                                    <div className="flex justify-between items-start mb-6 border-b border-white/10 pb-4">
+                                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-white/10 pb-4 gap-4">
                                         <div>
                                             <span className="text-blue-400 font-bold tracking-widest text-xs uppercase">{selectedDay.nome}, {selectedDay.data}</span>
                                             <h2 className={`text-3xl font-bold mt-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                                                 {selectedDay.titulo}
                                             </h2>
                                         </div>
-                                        <Button3D className="bg-blue-600 hover:bg-blue-500 hidden md:flex items-center gap-2">
-                                            <PlayCircle size={18} /> Ouvir
-                                        </Button3D>
+
+                                        <div className="flex items-center gap-3">
+                                            {/* Font Size Controls */}
+                                            <div className="flex bg-black/20 rounded-lg p-1 mr-2">
+                                                <button
+                                                    onClick={() => setFontSize(prev => Math.max(14, prev - 2))}
+                                                    className="p-2 text-gray-400 hover:text-white transition-colors"
+                                                    title="Diminuir fonte"
+                                                >
+                                                    <span className="text-xs font-bold">A-</span>
+                                                </button>
+                                                <button
+                                                    onClick={() => setFontSize(prev => Math.min(24, prev + 2))}
+                                                    className="p-2 text-gray-400 hover:text-white transition-colors"
+                                                    title="Aumentar fonte"
+                                                >
+                                                    <span className="text-lg font-bold">A+</span>
+                                                </button>
+                                            </div>
+
+                                            <Button3D className="bg-blue-600 hover:bg-blue-500 flex items-center gap-2 px-4 py-2 text-sm">
+                                                <PlayCircle size={18} /> <span className="hidden sm:inline">Ouvir</span>
+                                            </Button3D>
+                                        </div>
                                     </div>
 
-                                    <div className={`prose prose-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} max-w-none`}>
+                                    <div
+                                        className={`prose prose-lg ${isDarkMode ? 'text-slate-300' : 'text-slate-600'} max-w-none transition-all duration-300 font-serif`}
+                                        style={{ fontSize: `${fontSize}px`, lineHeight: '1.8' }}
+                                    >
                                         {selectedDay.conteudo.map((paragrafo, idx) => (
-                                            <p key={idx} className="mb-4 leading-relaxed">
+                                            <p key={idx} className="mb-6 leading-relaxed">
                                                 {paragrafo}
                                             </p>
                                         ))}
 
-                                        <div className="mt-8 p-4 bg-yellow-500/10 border-l-4 border-yellow-500 rounded-r-lg">
-                                            <h4 className="font-bold text-yellow-500 mb-2">Leitura Adicional</h4>
-                                            <p className="italic text-sm opacity-80">{selectedDay.leituraAdicional}</p>
+                                        <div className="mt-8 p-6 bg-yellow-500/10 border-l-4 border-yellow-500 rounded-r-xl">
+                                            <h4 className="font-bold text-yellow-500 mb-2 flex items-center gap-2">
+                                                <BookOpen size={18} /> Leitura Adicional
+                                            </h4>
+                                            <p className="italic opacity-80 font-sans text-base">{selectedDay.leituraAdicional}</p>
                                         </div>
                                     </div>
                                 </Card3D>

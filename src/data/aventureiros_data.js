@@ -5,12 +5,32 @@ export const classesAventureiros = [
         idade: 6,
         cor: 'bg-yellow-400',
         logo: 'https://mda.wiki.br/wp-content/uploads/2016/08/Abelhinha-Laboriosa-300x300.png',
-        requisitos: [
-            "Ter 6 anos de idade.",
-            "Dizer o Voto e a Lei do Aventureiro.",
-            "Ler o livro do Clube de Leitura.",
-            "Saber o nome de 5 flores.",
-            "Ajudar em casa por uma semana."
+        secoes: [
+            {
+                titulo: "I. Gerais",
+                itens: [
+                    "Ter 6 anos de idade.",
+                    "Dizer o Voto e a Lei do Aventureiro de cor.",
+                    "Ter um certificado de leitura do Clube de Leitura.",
+                    "Ajudar a limpar a sala ou quarto."
+                ]
+            },
+            {
+                titulo: "II. Meu Deus",
+                itens: [
+                    "Criar uma história sobre o nascimento de Jesus.",
+                    "Fazer um desenho de Jesus cuidando de você.",
+                    "Orar antes de dormir por uma semana."
+                ]
+            },
+            {
+                titulo: "III. Meu Eu",
+                itens: [
+                    "Fazer um autorretrato.",
+                    "Saber seu nome completo e endereço.",
+                    "Conhecer as partes do corpo."
+                ]
+            }
         ]
     },
     {
@@ -19,12 +39,31 @@ export const classesAventureiros = [
         idade: 7,
         cor: 'bg-orange-400',
         logo: 'https://mda.wiki.br/wp-content/uploads/2016/08/Luminares-300x300.png',
-        requisitos: [
-            "Ter 7 anos de idade.",
-            "Memorizar o Pai Nosso.",
-            "Aprender a amarrar o cadarço.",
-            "Fazer um desenho da sua família.",
-            "Participar de uma atividade da igreja."
+        secoes: [
+            {
+                titulo: "I. Gerais",
+                itens: [
+                    "Ter 7 anos de idade.",
+                    "Decorar o Pai Nosso.",
+                    "Ler um livro sobre heróis da Bíblia."
+                ]
+            },
+            {
+                titulo: "II. Minha Família",
+                itens: [
+                    "Ajudar a preparar uma refeição.",
+                    "Fazer um cartão para os pais.",
+                    "Saber o que fazer em caso de incêndio."
+                ]
+            },
+            {
+                titulo: "III. Meu Mundo",
+                itens: [
+                    "Aprender a reciclar lixo.",
+                    "Observar o céu à noite e desenhar.",
+                    "Conhecer 3 vizinhos."
+                ]
+            }
         ]
     },
     {
@@ -33,12 +72,30 @@ export const classesAventureiros = [
         idade: 8,
         cor: 'bg-blue-400',
         logo: 'https://mda.wiki.br/wp-content/uploads/2016/08/Edificadores-300x300.png',
-        requisitos: [
-            "Ter 8 anos de idade.",
-            "Ler uma história bíblica.",
-            "Saber o nome dos planetas.",
-            "Fazer um brinquedo reciclável.",
-            "Visitar um asilo ou orfanato."
+        secoes: [
+            {
+                titulo: "I. Gerais",
+                itens: [
+                    "Ter 8 anos.",
+                    "Faça um marcador de página bíblico.",
+                    "Memorize os Dez Mandamentos (versão resumida)."
+                ]
+            },
+            {
+                titulo: "II. Meu Deus",
+                itens: [
+                    "Encenar uma parábola de Jesus.",
+                    "Ler o Salmo 23."
+                ]
+            },
+            {
+                titulo: "III. Minha Saúde",
+                itens: [
+                    "Fazer exercícios físicos por 1 semana.",
+                    "Experimentar 3 frutas novas.",
+                    "Não assistir TV por 1 dia."
+                ]
+            }
         ]
     },
     {
@@ -47,12 +104,31 @@ export const classesAventureiros = [
         idade: 9,
         cor: 'bg-green-400',
         logo: 'https://mda.wiki.br/wp-content/uploads/2016/08/Maos-Ajudadoras-300x300.png',
-        requisitos: [
-            "Ter 9 anos de idade.",
-            "Saber os livros do Novo Testamento.",
-            "Planejar um culto familiar.",
-            "Ajudar a limpar o quintal.",
-            "Preparar um lanche saudável."
+        secoes: [
+            {
+                titulo: "I. Gerais",
+                itens: [
+                    "Ter 9 anos.",
+                    "Ler o livro de Ester ou Rute.",
+                    "Saber o Hino dos Aventureiros."
+                ]
+            },
+            {
+                titulo: "II. Meu Mundo",
+                itens: [
+                    "Visitar uma delegacia ou bombeiros.",
+                    "Aprender sobre o ciclo da água.",
+                    "Plantar uma árvore ou flor."
+                ]
+            },
+            {
+                titulo: "III. Habilidades",
+                itens: [
+                    "Aprender a costurar um botão.",
+                    "Fazer um nó direito e um nó cego.",
+                    "Preparar um lanche para o clube."
+                ]
+            }
         ]
     }
 ];

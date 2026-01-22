@@ -45,7 +45,7 @@ export function EnhancedContactPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
                     {/* Contact Form */}
                     <motion.div variants={containerVariants} initial="hidden" animate="visible">
-                        <Card3D className="p-8 bg-white/10 backdrop-blur-xl border-white/20">
+                        <Card3D className="p-8 bg-black/40 backdrop-blur-xl border-white/10 shadow-2xl">
                             <h2 className="text-3xl font-bold text-white mb-6">Envie uma Mensagem</h2>
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div>
@@ -53,7 +53,7 @@ export function EnhancedContactPage() {
                                     <input
                                         type="text"
                                         required
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors"
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors placeholder-gray-500"
                                         placeholder="Seu nome completo"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -64,7 +64,7 @@ export function EnhancedContactPage() {
                                     <input
                                         type="email"
                                         required
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors"
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors placeholder-gray-500"
                                         placeholder="seu@email.com"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -73,7 +73,7 @@ export function EnhancedContactPage() {
                                 <div>
                                     <label className="block text-white mb-2">Assunto</label>
                                     <select
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors [&>option]:text-black"
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors [&>option]:text-black"
                                         value={formData.subject}
                                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                                     >
@@ -89,7 +89,7 @@ export function EnhancedContactPage() {
                                     <textarea
                                         required
                                         rows="4"
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors resize-none"
+                                        className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-green-400 transition-colors resize-none placeholder-gray-500"
                                         placeholder="Escreva sua mensagem aqui..."
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -98,7 +98,7 @@ export function EnhancedContactPage() {
                                 <Button3D
                                     type="submit"
                                     disabled={isSending}
-                                    className="w-full bg-green-600 hover:bg-green-500 text-white py-4 text-lg font-bold flex items-center justify-center gap-2"
+                                    className="w-full bg-green-600 hover:bg-green-500 text-white py-4 text-lg font-bold flex items-center justify-center gap-2 shadow-lg"
                                 >
                                     {isSending ? (
                                         <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -119,7 +119,7 @@ export function EnhancedContactPage() {
                         animate="visible"
                         className="space-y-6"
                     >
-                        <Card3D className="p-6 bg-blue-900/40 border-blue-500/30">
+                        <Card3D className="p-6 bg-blue-900/20 border-blue-500/20 backdrop-blur-md shadow-xl">
                             <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
                                 <MessageCircle className="text-blue-400" /> Canais de Atendimento
                             </h3>
@@ -137,7 +137,7 @@ export function EnhancedContactPage() {
                             <SocialCard icon={MessageCircle} label="Telegram" color="hover:text-blue-400" link="https://telegram.org" />
                         </div>
 
-                        <Card3D className="p-6 bg-purple-900/40 border-purple-500/30 mt-6">
+                        <Card3D className="p-6 bg-purple-900/20 border-purple-500/20 mt-6 backdrop-blur-md shadow-xl">
                             <h3 className="text-xl font-bold text-white mb-2">Horário de Atendimento</h3>
                             <p className="text-gray-300">Segunda à Quinta: 08h às 18h</p>
                             <p className="text-gray-300">Sexta: 08h às 12h</p>
@@ -151,8 +151,8 @@ export function EnhancedContactPage() {
 }
 
 const ContactItem = ({ icon: Icon, title, value }) => (
-    <div className="flex items-center gap-4 p-3 bg-white/5 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
-        <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center shrink-0">
+    <div className="flex items-center gap-4 p-3 bg-black/20 rounded-lg border border-white/5 hover:bg-black/40 transition-colors">
+        <div className="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center shrink-0 border border-blue-500/20">
             <Icon className="text-blue-400" size={20} />
         </div>
         <div>
@@ -164,9 +164,9 @@ const ContactItem = ({ icon: Icon, title, value }) => (
 
 const SocialCard = ({ icon: Icon, label, color, link }) => (
     <a href={link} target="_blank" rel="noopener noreferrer">
-        <Card3D className="p-4 flex flex-col items-center justify-center gap-2 bg-white/5 border-white/10 hover:bg-white/10 cursor-pointer group h-32">
-            <Icon className={`w-8 h-8 text-gray-300 transition-colors duration-300 ${color} group-hover:scale-110`} />
-            <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{label}</span>
+        <Card3D className="p-4 flex flex-col items-center justify-center gap-2 bg-black/20 border-white/10 hover:bg-black/40 cursor-pointer group h-32 shadow-lg transition-all hover:border-white/20">
+            <Icon className={`w-8 h-8 text-gray-400 transition-colors duration-300 ${color} group-hover:scale-110`} />
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{label}</span>
         </Card3D>
     </a>
 );

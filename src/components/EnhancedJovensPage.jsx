@@ -88,7 +88,7 @@ export function EnhancedJovensPage() {
 
                         <div className="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-thin scrollbar-thumb-white/10">
                             {playlistJovem.map((music, idx) => (
-                                <div key={music.id} className="flex items-center gap-3 bg-white/5 p-3 rounded-lg hover:bg-white/10 cursor-pointer group transition-all">
+                                <div key={music.id} className="flex items-center gap-3 bg-black/20 p-3 rounded-lg hover:bg-black/40 cursor-pointer group transition-all">
                                     <div className="w-12 h-12 rounded-lg bg-gray-800 overflow-hidden relative shrink-0">
                                         <img src={music.capa} alt={music.titulo} className="w-full h-full object-cover opacity-80 group-hover:opacity-100" />
                                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
@@ -109,7 +109,7 @@ export function EnhancedJovensPage() {
                 {/* Second Row: Pequenos Grupos & Culto */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                     {/* Pequenos Grupos Widget */}
-                    <Card3D className="p-6 bg-white/5 border-white/10">
+                    <Card3D className="p-6 bg-black/20 border-white/10">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="p-3 bg-orange-500/20 rounded-xl">
                                 <Users className="w-6 h-6 text-orange-400" />
@@ -122,7 +122,7 @@ export function EnhancedJovensPage() {
 
                         <div className="grid gap-4">
                             {pequenosGrupos.map((pg) => (
-                                <div key={pg.id} className="flex items-center justify-between bg-white/5 p-4 rounded-xl border border-white/5 hover:border-orange-500/30 transition-colors">
+                                <div key={pg.id} className="flex items-center justify-between bg-black/20 p-4 rounded-xl border border-white/5 hover:border-orange-500/30 transition-colors">
                                     <div>
                                         <h4 className="font-bold text-white">{pg.nome}</h4>
                                         <p className="text-sm text-gray-400 flex items-center gap-2 mt-1">
@@ -140,7 +140,7 @@ export function EnhancedJovensPage() {
                     </Card3D>
 
                     {/* Culto Jovem Widget */}
-                    <Card3D className="p-6 bg-white/5 border-white/10 relative overflow-hidden">
+                    <Card3D className="p-6 bg-black/20 border-white/10 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-3 bg-red-600 rounded-bl-xl text-xs font-bold text-white shadow-lg">
                             AO VIVO SÁBADO
                         </div>
@@ -174,13 +174,13 @@ export function EnhancedJovensPage() {
 }
 
 const Badge3D = ({ children }) => (
-    <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold text-white border border-white/20 shadow-lg">
+    <span className="px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-xs font-bold text-white border border-white/20 shadow-lg">
         {children}
     </span>
 );
 
 const SocialButton = ({ icon: Icon, label, color }) => (
-    <Card3D className="p-4 flex flex-col items-center justify-center gap-2 bg-white/5 border-white/10 hover:bg-white/10 cursor-pointer group">
+    <Card3D className="p-4 flex flex-col items-center justify-center gap-2 bg-black/20 border-white/10 hover:bg-black/40 cursor-pointer group">
         <Icon className={`w-8 h-8 text-white transition-colors duration-300 ${color}`} />
         <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{label}</span>
     </Card3D>

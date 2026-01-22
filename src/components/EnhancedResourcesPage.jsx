@@ -32,19 +32,19 @@ export function EnhancedResourcesPage() {
                 <div className="flex justify-center mb-10 gap-4">
                     <button
                         onClick={() => setActiveTab('iasd')}
-                        className={`px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center gap-2 ${activeTab === 'iasd' ? 'bg-blue-600 text-white shadow-lg scale-105' : 'bg-white/10 text-gray-500 hover:bg-white/20'}`}
+                        className={`px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center gap-2 ${activeTab === 'iasd' ? 'bg-blue-600 text-white shadow-lg scale-105' : 'bg-black/40 text-gray-500 hover:bg-white/20'}`}
                     >
                         <Church size={20} /> IASD
                     </button>
                     <button
                         onClick={() => setActiveTab('abc')}
-                        className={`px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center gap-2 ${activeTab === 'abc' ? 'bg-indigo-600 text-white shadow-lg scale-105' : 'bg-white/10 text-gray-500 hover:bg-white/20'}`}
+                        className={`px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center gap-2 ${activeTab === 'abc' ? 'bg-indigo-600 text-white shadow-lg scale-105' : 'bg-black/40 text-gray-500 hover:bg-white/20'}`}
                     >
                         <ShoppingBag size={20} /> ABC / CPB
                     </button>
                     <button
                         onClick={() => setActiveTab('novotempo')}
-                        className={`px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center gap-2 ${activeTab === 'novotempo' ? 'bg-orange-600 text-white shadow-lg scale-105' : 'bg-white/10 text-gray-500 hover:bg-white/20'}`}
+                        className={`px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center gap-2 ${activeTab === 'novotempo' ? 'bg-orange-600 text-white shadow-lg scale-105' : 'bg-black/40 text-gray-500 hover:bg-white/20'}`}
                     >
                         <Radio size={20} /> Novo Tempo
                     </button>
@@ -146,7 +146,7 @@ export function EnhancedResourcesPage() {
 function ResourceCard({ icon: Icon, title, desc, link, color }) {
     return (
         <a href={link} target="_blank" rel="noopener noreferrer" className="block h-full">
-            <Card3D className="h-full p-6 hover:bg-white/5 border-white/10 group transition-colors">
+            <Card3D className="h-full p-6 hover:bg-black/20 border-white/10 group transition-colors">
                 <div className={`w-14 h-14 rounded-2xl ${color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
                     <Icon className="text-white w-8 h-8" />
                 </div>

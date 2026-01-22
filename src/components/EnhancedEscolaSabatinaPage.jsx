@@ -53,7 +53,7 @@ export function EnhancedEscolaSabatinaPage() {
                         flex flex-col items-center justify-center min-w-[70px] h-[70px] rounded-2xl transition-all duration-300 border
                         ${selectedDayId === day.id
                                     ? 'bg-blue-600 text-white border-blue-500 shadow-lg scale-110 z-10'
-                                    : 'bg-white/10 text-gray-500 border-white/5 hover:bg-white/20'}
+                                    : 'bg-black/40 text-gray-500 border-white/5 hover:bg-white/20'}
                     `}
                         >
                             <span className="text-xs font-bold uppercase">{day.id}</span>
@@ -131,11 +131,11 @@ export function EnhancedEscolaSabatinaPage() {
 
                     {/* Sidebar Resources */}
                     <div className="space-y-6">
-                        <Card3D className="p-6 bg-white/5 border-white/10">
+                        <Card3D className="p-6 bg-black/20 border-white/10">
                             <h3 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Recursos da Lição</h3>
 
                             <div className="space-y-3">
-                                <button className="w-full flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
+                                <button className="w-full flex items-center justify-between p-3 rounded-lg bg-black/20 hover:bg-black/40 transition-colors group">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 bg-red-500/20 text-red-500 rounded group-hover:bg-red-500 group-hover:text-white transition-colors">
                                             <Video size={18} />
@@ -148,7 +148,7 @@ export function EnhancedEscolaSabatinaPage() {
                                     <ChevronRight size={16} className="text-gray-500" />
                                 </button>
 
-                                <button className="w-full flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors group">
+                                <button className="w-full flex items-center justify-between p-3 rounded-lg bg-black/20 hover:bg-black/40 transition-colors group">
                                     <div className="flex items-center gap-3">
                                         <div className="p-2 bg-blue-500/20 text-blue-500 rounded group-hover:bg-blue-500 group-hover:text-white transition-colors">
                                             <FileText size={18} />
@@ -164,7 +164,7 @@ export function EnhancedEscolaSabatinaPage() {
                         </Card3D>
 
                         {/* Progress Widget */}
-                        <Card3D className="p-6 bg-white/5 border-white/10">
+                        <Card3D className="p-6 bg-black/20 border-white/10">
                             <div className="flex justify-between items-end mb-2">
                                 <span className="text-sm font-bold text-gray-400">Progresso Semanal</span>
                                 <span className="text-2xl font-bold text-blue-500">42%</span>

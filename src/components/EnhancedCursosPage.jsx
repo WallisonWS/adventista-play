@@ -46,7 +46,7 @@ export function EnhancedCursosPage() {
                             placeholder="Buscar curso..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500 focus:bg-white/10 outline-none transition-all text-white placeholder:text-gray-500"
+                            className="w-full pl-12 pr-4 py-3 rounded-xl bg-black/20 border border-white/10 focus:border-blue-500 focus:bg-black/40 outline-none transition-all text-white placeholder:text-gray-500"
                         />
                     </div>
                 </div>
@@ -61,7 +61,7 @@ export function EnhancedCursosPage() {
                         px-6 py-2 rounded-full font-medium whitespace-nowrap transition-all border
                         ${selectedCategory === cat
                                     ? 'bg-blue-600 text-white border-blue-500 shadow-lg'
-                                    : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10'}
+                                    : 'bg-black/20 text-gray-400 border-white/10 hover:bg-black/40'}
                     `}
                         >
                             {cat}
@@ -205,9 +205,9 @@ export function EnhancedCursosPage() {
                                     {selectedCourse.aulas.map((aula, index) => (
                                         <div
                                             key={aula.id}
-                                            className={`p-3 rounded-lg mb-2 flex items-center gap-3 cursor-pointer transition-colors ${index === 0 ? 'bg-blue-600/20 border border-blue-500/30' : 'hover:bg-white/5 border border-transparent'}`}
+                                            className={`p-3 rounded-lg mb-2 flex items-center gap-3 cursor-pointer transition-colors ${index === 0 ? 'bg-blue-600/20 border border-blue-500/30' : 'hover:bg-black/20 border border-transparent'}`}
                                         >
-                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${index === 0 ? 'bg-blue-500 text-white' : 'bg-white/10 text-gray-400'}`}>
+                                            <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${index === 0 ? 'bg-blue-500 text-white' : 'bg-black/40 text-gray-400'}`}>
                                                 {index === 0 ? <Play size={12} fill="currentColor" /> : <span className="text-xs font-bold">{index + 1}</span>}
                                             </div>
                                             <div>

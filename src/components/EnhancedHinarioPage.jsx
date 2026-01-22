@@ -162,7 +162,7 @@ export function EnhancedHinarioPage() {
                                         placeholder="Buscar por número, título ou letra..."
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="w-full pl-12 pr-4 py-4 rounded-full border border-white/10 bg-white/10 backdrop-blur-md shadow-2xl focus:border-primary focus:bg-white/20 focus:outline-none text-lg transition-all text-white placeholder:text-white/50"
+                                        className="w-full pl-12 pr-4 py-4 rounded-full border border-white/10 bg-black/40 backdrop-blur-md shadow-2xl focus:border-primary focus:bg-white/20 focus:outline-none text-lg transition-all text-white placeholder:text-white/50"
                                     />
                                 </motion.div>
                             </div>
@@ -186,7 +186,7 @@ export function EnhancedHinarioPage() {
                                             className="cursor-pointer group perspective-1000"
                                         >
                                             <div className={`
-                         bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all relative overflow-hidden h-full
+                         bg-black/20 backdrop-blur-md border border-white/10 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:bg-black/40 transition-all relative overflow-hidden h-full
                          ${favorites.includes(hino.numero) ? 'ring-1 ring-red-400/50 bg-red-500/5' : ''}
                       `}>
                                                 {favorites.includes(hino.numero) && (

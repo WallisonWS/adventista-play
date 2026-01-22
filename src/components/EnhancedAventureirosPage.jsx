@@ -71,7 +71,7 @@ export function EnhancedAventureirosPage() {
 
                             <div className="p-6 pt-12 text-center flex flex-col h-[calc(100%-6rem)]">
                                 <h2 className="text-2xl font-black text-white mb-1">{classe.nome}</h2>
-                                <span className="inline-block bg-white/10 px-3 py-1 rounded-full text-xs font-bold text-white mb-4">
+                                <span className="inline-block bg-black/40 px-3 py-1 rounded-full text-xs font-bold text-white mb-4">
                                     {classe.idade} Anos
                                 </span>
 
@@ -97,14 +97,14 @@ export function EnhancedAventureirosPage() {
 
                 {/* Ideais Section */}
                 <Card3D className="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 md:p-12 relative overflow-hidden border-none shadow-2xl">
-                    <div className="absolute top-0 right-0 p-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl" />
+                    <div className="absolute top-0 right-0 p-32 bg-black/40 rounded-full -mr-16 -mt-16 blur-3xl" />
 
                     <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-4xl font-black text-white mb-6 flex items-center gap-3">
                                 <Heart className="text-pink-400 fill-pink-400 w-10 h-10 animate-pulse" /> NOSSOS IDEAIS
                             </h2>
-                            <div className="bg-white/10 p-6 rounded-2xl border border-white/10 mb-6">
+                            <div className="bg-black/40 p-6 rounded-2xl border border-white/10 mb-6">
                                 <h3 className="text-yellow-300 font-bold mb-2 uppercase tracking-widest text-sm">Voto</h3>
                                 <p className="text-2xl font-bold text-white leading-tight">"{ideaisAventureiros.voto}"</p>
                             </div>

@@ -97,7 +97,7 @@ export function EnhancedDesbravadoresPage() {
                         px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 border
                         ${activeTab === tab
                                     ? 'bg-yellow-500 text-black border-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.4)] scale-105'
-                                    : 'bg-black/20 text-white/70 border-white/10 hover:bg-white/10'}
+                                    : 'bg-black/20 text-white/70 border-white/10 hover:bg-black/40'}
                     `}
                         >
                             {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -128,7 +128,7 @@ export function EnhancedDesbravadoresPage() {
                                             <div className="p-6 flex-1 flex flex-col justify-between relative z-10">
                                                 <div>
                                                     <div className="flex items-center gap-4 mb-4">
-                                                        <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center p-2 backdrop-blur-md shadow-lg">
+                                                        <div className="w-16 h-16 rounded-full bg-black/40 flex items-center justify-center p-2 backdrop-blur-md shadow-lg">
                                                             <img src={classe.logo} alt={classe.nome} className="w-full h-full object-contain drop-shadow-lg" onError={(e) => { e.target.onerror = null; e.target.src = 'https://cdn-icons-png.flaticon.com/512/1045/1045258.png' }} />
                                                         </div>
                                                         <div>
@@ -139,12 +139,12 @@ export function EnhancedDesbravadoresPage() {
 
                                                     <div className="flex flex-wrap gap-2 mb-6">
                                                         {classe.secoes?.slice(0, 3).map((sec, idx) => (
-                                                            <span key={idx} className="px-2 py-1 bg-white/5 rounded text-[10px] text-gray-300 border border-white/5 truncate max-w-[100px]">
+                                                            <span key={idx} className="px-2 py-1 bg-black/20 rounded text-[10px] text-gray-300 border border-white/5 truncate max-w-[100px]">
                                                                 {sec.titulo}
                                                             </span>
                                                         ))}
                                                         {classe.secoes?.length > 3 && (
-                                                            <span className="px-2 py-1 bg-white/5 rounded text-[10px] text-gray-300 border border-white/5">
+                                                            <span className="px-2 py-1 bg-black/20 rounded text-[10px] text-gray-300 border border-white/5">
                                                                 +{classe.secoes.length - 3}
                                                             </span>
                                                         )}
@@ -174,10 +174,10 @@ export function EnhancedDesbravadoresPage() {
                                     return (
                                         <Card3D
                                             key={esp.id}
-                                            className="p-4 flex flex-col items-center justify-center text-center gap-3 hover:bg-white/10 cursor-pointer group transition-all"
+                                            className="p-4 flex flex-col items-center justify-center text-center gap-3 hover:bg-black/40 cursor-pointer group transition-all"
                                             onClick={() => setSelectedSpecialty(esp)}
                                         >
-                                            <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center ${esp.cor} group-hover:scale-110 transition-transform shadow-lg border border-white/10`}>
+                                            <div className={`w-14 h-14 rounded-2xl bg-black/20 flex items-center justify-center ${esp.cor} group-hover:scale-110 transition-transform shadow-lg border border-white/10`}>
                                                 <IconComp size={28} className="text-current drop-shadow-md" />
                                             </div>
                                             <span className="font-bold text-white text-sm group-hover:text-blue-300 transition-colors uppercase tracking-tight">{esp.nome}</span>
@@ -248,7 +248,7 @@ export function EnhancedDesbravadoresPage() {
                             {/* Modal Body - Scrollable */}
                             <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8 bg-gradient-to-b from-[#1a1c2e] to-[#0f111a]">
                                 {selectedClass.secoes.map((secao, idx) => (
-                                    <div key={idx} className="bg-white/5 rounded-xl border border-white/5 p-6 hover:bg-white/[0.07] transition-colors">
+                                    <div key={idx} className="bg-black/20 rounded-xl border border-white/5 p-6 hover:bg-white/[0.07] transition-colors">
                                         <h3 className="text-xl font-bold text-blue-300 mb-6 pb-2 border-b border-white/10 flex items-center gap-2">
                                             <BookOpen size={20} />
                                             {secao.titulo}
@@ -289,7 +289,7 @@ export function EnhancedDesbravadoresPage() {
                         >
                             <div className="p-6 border-b border-white/10 bg-gradient-to-r from-blue-900/30 to-purple-900/30 flex justify-between items-center">
                                 <div className="flex items-center gap-3">
-                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-white/10 ${selectedSpecialty.cor}`}>
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-black/40 ${selectedSpecialty.cor}`}>
                                         <div className="w-5 h-5 bg-current rounded-full" />
                                     </div>
                                     <div>
@@ -297,7 +297,7 @@ export function EnhancedDesbravadoresPage() {
                                         <p className="text-xs text-blue-300 uppercase tracking-widest font-bold">Conteúdo de Ensino</p>
                                     </div>
                                 </div>
-                                <button onClick={() => setSelectedSpecialty(null)} className="p-2 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition-colors">
+                                <button onClick={() => setSelectedSpecialty(null)} className="p-2 hover:bg-black/40 rounded-full text-gray-400 hover:text-white transition-colors">
                                     <X size={24} />
                                 </button>
                             </div>
@@ -312,7 +312,7 @@ export function EnhancedDesbravadoresPage() {
 
                                         <div className="space-y-4">
                                             {selectedSpecialty.conteudoEnsino.itens.map((item, idx) => (
-                                                <div key={idx} className="bg-white/5 border border-white/5 rounded-xl p-5 hover:border-white/10 transition-all">
+                                                <div key={idx} className="bg-black/20 border border-white/5 rounded-xl p-5 hover:border-white/10 transition-all">
                                                     <p className="font-bold text-white mb-3 text-lg">{item.pergunta}</p>
                                                     <div className="pl-4 border-l-2 border-green-500/50">
                                                         <p className="text-gray-300 leading-relaxed bg-black/20 p-3 rounded-r-lg">{item.resposta}</p>
@@ -323,7 +323,7 @@ export function EnhancedDesbravadoresPage() {
                                     </>
                                 ) : (
                                     <div className="text-center py-12">
-                                        <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-500">
+                                        <div className="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-500">
                                             <BookOpen size={30} />
                                         </div>
                                         <h3 className="text-xl font-bold text-white mb-2">Em Desenvolvimento</h3>
@@ -333,7 +333,7 @@ export function EnhancedDesbravadoresPage() {
                             </div>
 
                             <div className="p-5 border-t border-white/10 bg-black/20 flex justify-end">
-                                <Button3D onClick={() => setSelectedSpecialty(null)} className="bg-white/10 hover:bg-white/20 text-white">
+                                <Button3D onClick={() => setSelectedSpecialty(null)} className="bg-black/40 hover:bg-white/20 text-white">
                                     Fechar Estudo
                                 </Button3D>
                             </div>

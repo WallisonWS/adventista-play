@@ -29,41 +29,7 @@ import { EnhancedCursosPage } from './components/EnhancedCursosPage.jsx';
 
 // ... (other code)
 
-          <Route path="/estudos" element={
-            <ErrorBoundary>
-              <Suspense fallback={<LoadingFallback />}>
-                <EnhancedEstudosPage />
-              </Suspense>
-            </ErrorBoundary>
-          } />
-          <Route path="/desbravadores" element={
-            <ErrorBoundary>
-              <Suspense fallback={<LoadingFallback />}>
-                <EnhancedDesbravadoresPage />
-              </Suspense>
-            </ErrorBoundary>
-          } />
-          <Route path="/aventureiros" element={
-            <ErrorBoundary>
-              <Suspense fallback={<LoadingFallback />}>
-                <EnhancedAventureirosPage />
-              </Suspense>
-            </ErrorBoundary>
-          } />
-          <Route path="/jovens" element={
-            <ErrorBoundary>
-              <Suspense fallback={<LoadingFallback />}>
-                <EnhancedJovensPage />
-              </Suspense>
-            </ErrorBoundary>
-          } />
-          <Route path="/escola-sabatina" element={
-            <ErrorBoundary>
-              <Suspense fallback={<LoadingFallback />}>
-                <EnhancedEscolaSabatinaPage />
-              </Suspense>
-            </ErrorBoundary>
-          } />
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -177,6 +143,41 @@ function AppContent() {
             <ErrorBoundary>
               <Suspense fallback={<LoadingFallback />}>
                 <EnhancedEstudosPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/desbravadores" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedDesbravadoresPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/aventureiros" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedAventureirosPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/jovens" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedJovensPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/escola-sabatina" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedEscolaSabatinaPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/cursos" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedCursosPage />
               </Suspense>
             </ErrorBoundary>
           } />

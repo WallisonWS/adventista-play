@@ -21,8 +21,48 @@ import { Enhanced3DBiblePage } from './components/Enhanced3DBiblePage.jsx';
 import { EnhancedHinarioPage } from './components/EnhancedHinarioPage.jsx';
 import { EnhancedDevocionalPage } from './components/EnhancedDevocionalPage.jsx';
 import { EnhancedEstudosPage } from './components/EnhancedEstudosPage.jsx';
+import { EnhancedDesbravadoresPage } from './components/EnhancedDesbravadoresPage.jsx';
+import { EnhancedAventureirosPage } from './components/EnhancedAventureirosPage.jsx';
+import { EnhancedJovensPage } from './components/EnhancedJovensPage.jsx';
+import { EnhancedEscolaSabatinaPage } from './components/EnhancedEscolaSabatinaPage.jsx';
 
-// Error Boundary
+// ... (other code)
+
+          <Route path="/estudos" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedEstudosPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/desbravadores" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedDesbravadoresPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/aventureiros" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedAventureirosPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/jovens" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedJovensPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
+          <Route path="/escola-sabatina" element={
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingFallback />}>
+                <EnhancedEscolaSabatinaPage />
+              </Suspense>
+            </ErrorBoundary>
+          } />
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);

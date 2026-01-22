@@ -118,7 +118,7 @@ export function Ultra3DHomePage({ user }) {
             </section>
 
             {/* Features Grid - Stacks nicely on mobile */}
-            <section className="relative py-12 px-4 pb-32">
+            <section className="relative py-12 px-4">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 px-2">Recursos</h2>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
@@ -153,6 +153,47 @@ export function Ultra3DHomePage({ user }) {
                             subtitle="Aprofunde-se"
                             color="from-emerald-500 to-teal-600"
                             delay={0.3}
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* Departamentos Section */}
+            <section className="relative py-4 px-4 pb-32">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 px-2">Departamentos</h2>
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+                        <FeatureCard3D
+                            to="/desbravadores"
+                            icon={Globe}
+                            title="Desbravadores"
+                            subtitle="Serviço e Aventura"
+                            color="from-yellow-600 to-green-700"
+                            delay={0.4}
+                        />
+                        <FeatureCard3D
+                            to="/aventureiros"
+                            icon={Heart}
+                            title="Aventureiros"
+                            subtitle="Por Jesus Semper"
+                            color="from-orange-500 to-blue-500"
+                            delay={0.5}
+                        />
+                        <FeatureCard3D
+                            to="/jovens"
+                            icon={Music}
+                            title="Jovens"
+                            subtitle="Energia e Fé"
+                            color="from-indigo-600 to-purple-600"
+                            delay={0.6}
+                        />
+                        <FeatureCard3D
+                            to="/escola-sabatina"
+                            icon={BookOpen}
+                            title="Escola Sabatina"
+                            subtitle="Estudo Diário"
+                            color="from-slate-600 to-slate-800"
+                            delay={0.7}
                         />
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Heart, Sun, Cloud, Music, BookHeart } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D, Wave3D } from './3DAnimations';
-import { AuroraBackground } from './21st-dev/AuroraBackground';
+import AuroraBackground from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { classesAventureiros, ideaisAventureiros } from '../data/aventureiros_data';
 

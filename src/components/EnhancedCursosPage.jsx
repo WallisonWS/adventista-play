@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Clock, BookOpen, Search, Filter } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D } from './3DAnimations';
-import { AuroraBackground } from './21st-dev/AuroraBackground';
+import AuroraBackground from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { cursos, categoriasCursos } from '../data/cursos_data';
 

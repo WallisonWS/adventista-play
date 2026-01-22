@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Award, Tent, Map, Calendar, Music, BookOpen, Star, Heart } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D, Wave3D } from './3DAnimations';
-import { AuroraBackground } from './21st-dev/AuroraBackground';
+import AuroraBackground from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { classesDesbravadores, especialidades, ideais } from '../data/desbravadores_data';
 

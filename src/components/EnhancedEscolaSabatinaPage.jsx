@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Calendar, Video, FileText, Download, ChevronRight, PlayCircle } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D } from './3DAnimations';
-import { AuroraBackground } from './21st-dev/AuroraBackground';
+import AuroraBackground from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { licaoSemana } from '../data/escola_sabatina_data';
 

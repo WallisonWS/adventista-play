@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Music, Calendar, Users, Instagram, Youtube, MessageCircle } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D } from './3DAnimations';
-import { AuroraBackground } from './21st-dev/AuroraBackground';
+import AuroraBackground from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
 
 export function EnhancedJovensPage() {

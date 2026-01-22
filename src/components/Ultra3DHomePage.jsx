@@ -1,225 +1,181 @@
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
     Heart, Music, BookOpen, GraduationCap,
-    Globe, Play, Star, Sparkles, ChevronRight,
-    Shield, Flame, Anchor, Wind
+    Globe, Play, Star, Sparkles, ChevronRight
 } from 'lucide-react';
-import AuroraBackground from './21st-dev/AuroraBackground';
 import { DestaquesCarousel } from './DestaquesCarousel';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Stars, Environment, PerspectiveCamera } from '@react-three/drei';
 
-// Componente de Cartão Tilting 3D
-const TiltCard = ({ to, icon: Icon, title, subtitle, color, delay }) => {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const rotateX = useTransform(y, [-100, 100], [30, -30]);
-    const rotateY = useTransform(x, [-100, 100], [-30, 30]);
+// Simplified 3D Homepage without react-three/fiber
+export function Ultra3DHomePage({ user }) {
+    return (
+        <div className="min-h-screen relative overflow-hidden">
+            {/* Hero Section with 3D Effects */}
+            <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
+                {/* Animated Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900">
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItMnptMC00djJ6bTAtNHYyem0wLTR2MnptMC00djJ6bTAtNHYyem0wLTR2MnptMC00djJ6bTAtNHYyem0wLTR2MnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+                </div>
 
+                {/* Content */}
+                <div className="relative z-10 max-w-6xl mx-auto text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <motion.h1
+                            className="text-6xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+                            animate={{
+                                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                            }}
+                            transition={{ duration: 5, repeat: Infinity }}
+                        >
+                            Adventista Play
+                        </motion.h1>
+
+                        <motion.p
+                            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                        >
+                            Seu espaço para crescimento espiritual com devocionais, hinário, bíblia e estudos
+                        </motion.p>
+
+                        <motion.div
+                            className="flex flex-wrap gap-4 justify-center"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                        >
+                            <Link to="/devocional">
+                                <motion.button
+                                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold shadow-2xl hover:shadow-blue-500/50 transition-all"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    Devocional do Dia
+                                    <ChevronRight className="inline ml-2" />
+                                </motion.button>
+                            </Link>
+                            <Link to="/biblia">
+                                <motion.button
+                                    className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white font-semibold hover:bg-white/20 transition-all"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    Ler a Bíblia
+                                </motion.button>
+                            </Link>
+                        </motion.div>
+                    </motion.div>
+                </div>
+
+                {/* Floating Elements */}
+                {[...Array(6)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute w-32 h-32 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl"
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            y: [0, -30, 0],
+                            x: [0, 20, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 5 + i,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    />
+                ))}
+            </section>
+
+            {/* Destaques Section */}
+            <section className="relative py-16 px-4 bg-slate-900/50 backdrop-blur-sm">
+                <div className="max-w-7xl mx-auto">
+                    <motion.h2
+                        className="text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                    >
+                        ✨ Destaques do Dia
+                    </motion.h2>
+                    <DestaquesCarousel />
+                </div>
+            </section>
+
+            {/* Features Grid */}
+            <section className="relative py-20 px-4">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <FeatureCard3D
+                            to="/devocional"
+                            icon={Heart}
+                            title="Devocional"
+                            color="from-red-500 to-pink-500"
+                            delay={0}
+                        />
+                        <FeatureCard3D
+                            to="/hinario"
+                            icon={Music}
+                            title="Hinário"
+                            color="from-purple-500 to-indigo-500"
+                            delay={0.1}
+                        />
+                        <FeatureCard3D
+                            to="/biblia"
+                            icon={BookOpen}
+                            title="Bíblia"
+                            color="from-blue-500 to-cyan-500"
+                            delay={0.2}
+                        />
+                        <FeatureCard3D
+                            to="/estudos"
+                            icon={GraduationCap}
+                            title="Estudos"
+                            color="from-green-500 to-emerald-500"
+                            delay={0.3}
+                        />
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// 3D Feature Card Component
+function FeatureCard3D({ to, icon: Icon, title, color, delay }) {
     return (
         <Link to={to}>
             <motion.div
+                className="relative group h-48 perspective-1000"
                 initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay, duration: 0.8, type: "spring" }}
-                style={{ x, y, rotateX, rotateY, z: 100 }}
-                onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    x.set(e.clientX - rect.left - rect.width / 2);
-                    y.set(e.clientY - rect.top - rect.height / 2);
-                }}
-                onMouseLeave={() => {
-                    x.set(0);
-                    y.set(0);
-                }}
-                className="relative group w-full h-64 perspective-1000 cursor-pointer"
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay, duration: 0.6 }}
+                whileHover={{ y: -10 }}
             >
-                <div
-                    className={`
-            absolute inset-0 rounded-3xl bg-gradient-to-br ${color} 
-            opacity-20 group-hover:opacity-30 transition-opacity duration-500 blur-xl
-          `}
-                />
-                <div
-                    className="
-            relative h-full w-full rounded-3xl bg-white/5 border border-white/10 
-            backdrop-blur-md p-8 flex flex-col justify-between overflow-hidden
-            shadow-2xl transition-transform duration-200 ease-out group-hover:scale-[1.02]
-          "
-                >
-                    {/* Shine Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none transform translate-x-[-100%] group-hover:translate-x-[100%] duration-1000" />
+                {/* Glow Effect */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-20 blur-2xl group-hover:opacity-40 transition-opacity rounded-3xl`} />
 
-                    {/* Icon */}
-                    <div className="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                        <Icon size={32} className="text-white" />
-                    </div>
-
-                    {/* Text */}
-                    <div>
-                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:translate-x-2 transition-transform">
-                            {title}
-                        </h3>
-                        <p className="text-white/60 text-sm group-hover:text-white/80 transition-colors">
-                            {subtitle}
-                        </p>
-                    </div>
-
-                    {/* Arrow */}
-                    <div className="absolute bottom-8 right-8 text-white/40 group-hover:text-white transition-colors">
-                        <ChevronRight size={24} />
-                    </div>
+                {/* Card */}
+                <div className="relative h-full bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 flex flex-col items-center justify-center transform-gpu transition-transform duration-300 group-hover:scale-105">
+                    <motion.div
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                    >
+                        <Icon className="w-16 h-16 text-white mb-4" />
+                    </motion.div>
+                    <h3 className="text-2xl font-bold text-white">{title}</h3>
                 </div>
             </motion.div>
         </Link>
-    );
-};
-
-// Scene 3D para o Background
-const BackgroundScene = () => {
-    return (
-        <div className="absolute inset-0 z-0 pointer-events-none">
-            <Canvas>
-                <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-                <ambientLight intensity={0.5} />
-                <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-                    {/* Elementos flutuantes abstratos podem ser adicionados aqui */}
-                </Float>
-            </Canvas>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0f1115]/80 via-[#0f1115]/50 to-[#0f1115] z-10" />
-        </div>
-    );
-};
-
-export function Ultra3DHomePage({ user }) {
-    const { scrollYProgress } = useScroll();
-    const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
-    return (
-        <div className="min-h-screen bg-[#0f1115] text-white overflow-hidden relative selection:bg-purple-500/30">
-
-            {/* 3D Background */}
-            <BackgroundScene />
-            <AuroraBackground absolute className="opacity-40" />
-
-            {/* Hero Section */}
-            <section className="relative z-10 min-h-[90vh] flex flex-col items-center justify-center overflow-hidden px-4">
-
-                {/* Floating Title */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-center relative"
-                >
-                    <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
-                        <Sparkles size={16} className="text-yellow-400" />
-                        <span className="text-sm font-medium tracking-wider uppercase text-white/80">Experiência Imersiva</span>
-                    </div>
-
-                    <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-4 transparent-text bg-clip-text bg-gradient-to-b from-white to-white/60 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                        ADVENTISTA
-                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                            PLAY 3D
-                        </span>
-                    </h1>
-
-                    <p className="max-w-xl mx-auto text-lg md:text-xl text-white/60 leading-relaxed mix-blend-plus-lighter">
-                        Explore o universo do conhecimento bíblico em uma nova dimensão.
-                    </p>
-                </motion.div>
-
-                {/* Scroll Indicator */}
-                <motion.div
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                >
-                    <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/50 to-transparent" />
-                </motion.div>
-            </section>
-
-            {/* Main Navigation Grid */}
-            <section className="relative z-20 container mx-auto px-4 pb-32 -mt-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-
-                    <TiltCard
-                        to="/biblia"
-                        icon={BookOpen}
-                        title="Bíblia Imersiva"
-                        subtitle="Explore as escrituras com áudio e leitura offline."
-                        color="from-blue-500 to-cyan-500"
-                        delay={0.1}
-                    />
-
-                    <TiltCard
-                        to="/hinario"
-                        icon={Music}
-                        title="Hinário 3D"
-                        subtitle="600+ hinos com player de voz e visualizações."
-                        color="from-purple-500 to-pink-500"
-                        delay={0.2}
-                    />
-
-                    <TiltCard
-                        to="/estudos"
-                        icon={GraduationCap}
-                        title="Estudos Profundos"
-                        subtitle="Profecias, Doutrinas e Guias Práticos."
-                        color="from-orange-500 to-red-500"
-                        delay={0.3}
-                    />
-
-                    <TiltCard
-                        to="/devocional"
-                        icon={Heart}
-                        title="Devocional Diário"
-                        subtitle="Conexão espiritual renovada a cada manhã."
-                        color="from-green-500 to-emerald-500"
-                        delay={0.4}
-                    />
-
-                    <TiltCard
-                        to="/desbravadores"
-                        icon={Shield}
-                        title="Desbravadores"
-                        subtitle="Classes, Especialidades e Vida ao Ar Livre."
-                        color="from-yellow-500 to-amber-500"
-                        delay={0.5}
-                    />
-
-                    <TiltCard
-                        to="/projetos"
-                        icon={Globe}
-                        title="Missão Global"
-                        subtitle="Conheça os projetos que transformam o mundo."
-                        color="from-indigo-500 to-blue-600"
-                        delay={0.6}
-                    />
-
-                </div>
-            </section>
-
-            {/* Featured Section (Carousel) */}
-            <section className="relative z-10 py-12">
-                <div className="container mx-auto px-4 relative">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                            Destaques da Semana
-                        </h2>
-                        <DestaquesCarousel />
-                    </motion.div>
-                </div>
-            </section>
-
-            <div className="h-20" />
-        </div>
     );
 }

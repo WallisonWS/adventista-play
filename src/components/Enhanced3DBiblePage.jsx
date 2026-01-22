@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import {
   BookOpen, Search, ChevronLeft, ChevronRight,
   Heart, Share2, Menu, ZoomIn, ZoomOut,
-  X, Copy, PlayCircle, PauseCircle, Volume2,
-  Bookmark, Settings
+  X, Copy, PlayCircle, PauseCircle,
+  Bookmark, ArrowLeft, ArrowRight
 } from 'lucide-react';
 import { Input } from '@/components/ui/input.jsx';
 import { Button } from '@/components/ui/button.jsx';
@@ -15,11 +15,6 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Tooltip,
@@ -31,6 +26,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { bibliaApiService, versoesDisponiveis } from '../services/bibliaApiService';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { BibleNavigationModal } from './BibleNavigationModal'; // Importando o novo modal
 
 // Configuração dos livros para o menu lateral
 const bibleStructure = {
@@ -119,9 +115,9 @@ export function Enhanced3DBiblePage() {
   const [chapterContent, setChapterContent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Estados de Interface e Funcionalidades
+  // Estados de Interface
   const [fontSize, setFontSize] = useState(18);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isNavModalOpen, setIsNavModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedVerses, setSelectedVerses] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -132,6 +128,7 @@ export function Enhanced3DBiblePage() {
   });
 
   const speechRef = useRef(null);
+  const containerRef = useRef(null);
 
   // Persistência
   useEffect(() => {
@@ -145,7 +142,7 @@ export function Enhanced3DBiblePage() {
   useEffect(() => {
     async function loadContent() {
       setIsLoading(true);
-      cancelSpeech(); // Parar áudio anterior se houver
+      cancelSpeech();
       try {
         const data = await bibliaApiService.buscarCapitulo(selectedVersion, selectedBook.abbrev, selectedChapter);
         setChapterContent(data);
@@ -159,45 +156,13 @@ export function Enhanced3DBiblePage() {
     loadContent();
   }, [selectedBook, selectedChapter, selectedVersion]);
 
-  // Audio TTS Logic
-  const toggleSpeech = () => {
-    if (isPlaying) {
-      cancelSpeech();
-    } else {
-      startSpeech();
-    }
+  // Funções de Navegação
+  const handleNavigate = (book, chapter, verse = 1) => {
+    setSelectedBook(book);
+    setSelectedChapter(chapter);
+    // Future: Scroll to verse logic could be added here
   };
 
-  const startSpeech = () => {
-    if (!chapterContent) return;
-
-    // Concatenar texto
-    const text = `${chapterContent.book.name}, Capítulo ${chapterContent.chapter.number}. ` +
-      chapterContent.verses.map(v => v.text).join(' ');
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'pt-BR';
-    utterance.rate = 1.0;
-
-    utterance.onend = () => setIsPlaying(false);
-    utterance.onerror = () => setIsPlaying(false);
-
-    speechRef.current = utterance;
-    window.speechSynthesis.speak(utterance);
-    setIsPlaying(true);
-  };
-
-  const cancelSpeech = () => {
-    window.speechSynthesis.cancel();
-    setIsPlaying(false);
-  };
-
-  // Cleanup audio on unmount
-  useEffect(() => {
-    return () => cancelSpeech();
-  }, []);
-
-  // Handlers
   const handleNextChapter = () => {
     if (selectedChapter < selectedBook.chapters) {
       setSelectedChapter(c => c + 1);
@@ -210,11 +175,41 @@ export function Enhanced3DBiblePage() {
     }
   };
 
+  // Funções Swipe
+  const onDragEnd = (event, info) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      handleNextChapter();
+    } else if (info.offset.x > swipeThreshold) {
+      handlePrevChapter();
+    }
+  };
+
+  // Funções de Leitura/Audio (Mantidas igual)
+  const toggleSpeech = () => isPlaying ? cancelSpeech() : startSpeech();
+
+  const startSpeech = () => {
+    if (!chapterContent) return;
+    const text = `${chapterContent.book.name}, Capítulo ${chapterContent.chapter.number}. ` +
+      chapterContent.verses.map(v => v.text).join(' ');
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'pt-BR';
+    utterance.onend = () => setIsPlaying(false);
+    speechRef.current = utterance;
+    window.speechSynthesis.speak(utterance);
+    setIsPlaying(true);
+  };
+
+  const cancelSpeech = () => {
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+  };
+
+  useEffect(() => () => cancelSpeech(), []);
+
   const toggleVerseSelection = (verseNum) => {
     setSelectedVerses(prev =>
-      prev.includes(verseNum)
-        ? prev.filter(v => v !== verseNum)
-        : [...prev, verseNum]
+      prev.includes(verseNum) ? prev.filter(v => v !== verseNum) : [...prev, verseNum]
     );
   };
 
@@ -224,204 +219,43 @@ export function Enhanced3DBiblePage() {
       .filter(v => selectedVerses.includes(v.number))
       .map(v => `${v.number}. ${v.text}`)
       .join('\n');
-
     const citation = `\n\n${selectedBook.name} ${selectedChapter} (${selectedVersion.toUpperCase()})`;
     navigator.clipboard.writeText(textToCopy + citation);
-    // Idealmente Toast success
     alert("Copiado!");
     setSelectedVerses([]);
   };
 
-  const toggleBookmark = () => {
-    if (selectedVerses.length === 0) return;
-
-    const newBookmarks = selectedVerses.map(vNum => {
-      const verseText = chapterContent.verses.find(v => v.number === vNum)?.text;
-      return {
-        id: `${selectedBook.abbrev}-${selectedChapter}-${vNum}-${Date.now()}`,
-        ref: `${selectedBook.name} ${selectedChapter}:${vNum}`,
-        text: verseText,
-        date: new Date().toLocaleDateString()
-      };
-    });
-
-    setBookmarks(prev => [...newBookmarks, ...prev]);
-    setSelectedVerses([]);
-    alert("Versículos salvos nos favoritos!");
-  };
-
-  const shareVerses = async () => {
-    if (!chapterContent) return;
-    const textToShare = chapterContent.verses
-      .filter(v => selectedVerses.includes(v.number))
-      .map(v => `${v.number}. ${v.text}`)
-      .join('\n');
-    const citation = `\n${selectedBook.name} ${selectedChapter} - Adventista Play`;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Versículo Bíblico',
-          text: textToShare + citation,
-        });
-      } catch (err) {
-        console.log('Erro ao compartilhar', err);
-      }
-    } else {
-      copySelectedVerses();
-    }
-  };
-
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-transparent text-gray-100' : 'bg-transparent text-gray-900'} transition-colors duration-300 font-sans`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-transparent text-gray-100' : 'bg-transparent text-gray-900'} transition-colors duration-300 font-sans pb-20`}>
       <TooltipProvider>
-
-        {/* HEADER PRINCIPAL */}
-        <header className={`sticky top-0 z-40 backdrop-blur-xl border-b ${isDarkMode ? 'bg-[#0f1115]/90 border-gray-800' : 'bg-white/90 border-gray-200'} transition-all shadow-sm`}>
+        {/* HEADER FLUTUANTE MODERNO */}
+        <header className={`sticky top-0 z-40 backdrop-blur-xl border-b ${isDarkMode ? 'bg-[#0f1115]/80 border-gray-800' : 'bg-white/80 border-gray-200'} transition-all shadow-sm`}>
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
 
-            <div className="flex items-center gap-2 md:gap-4">
-              <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="hover:bg-primary/10 transition-colors">
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className={`w-[320px] p-0 border-r ${isDarkMode ? 'bg-[#151921] border-gray-800 text-white' : 'bg-white border-gray-200'}`}>
-                  <div className={`p-4 border-b ${isDarkMode ? 'border-gray-800' : 'border-gray-100'}`}>
-                    <h2 className="text-xl font-bold flex items-center gap-2 mb-4">
-                      <BookOpen className="h-6 w-6 text-primary" />
-                      Navegação
-                    </h2>
-                    <div className="relative">
-                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        placeholder="Buscar livro..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className={`pl-9 ${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-gray-100'}`}
-                      />
-                    </div>
-                  </div>
-
-                  <ScrollArea className="h-[calc(100vh-140px)]">
-                    <div className="p-4 space-y-6">
-                      {/* Favoritos Rápidos na Sidebar */}
-                      {bookmarks.length > 0 && (
-                        <div className="mb-6">
-                          <h3 className="text-xs font-semibold text-primary uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <Bookmark className="h-3 w-3" /> Favoritos Recentes
-                          </h3>
-                          <div className="space-y-2">
-                            {bookmarks.slice(0, 3).map(bm => (
-                              <div key={bm.id} className={`p-2 rounded text-xs truncate border ${isDarkMode ? 'bg-gray-900 border-gray-800' : 'bg-gray-50 border-gray-100'}`}>
-                                {bm.ref}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      <div>
-                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Antigo Testamento</h3>
-                        <div className="grid grid-cols-2 gap-2">
-                          {bibleStructure.antigoTestamento
-                            .filter(b => b.name.toLowerCase().includes(searchTerm.toLowerCase()))
-                            .map(book => (
-                              <Button
-                                key={book.name}
-                                variant={selectedBook.name === book.name ? "secondary" : "ghost"}
-                                size="sm"
-                                className="justify-start font-medium h-9"
-                                onClick={() => {
-                                  setSelectedBook(book);
-                                  setSelectedChapter(1);
-                                  setIsSidebarOpen(false);
-                                }}
-                              >
-                                {book.name}
-                              </Button>
-                            ))}
-                        </div>
-                      </div>
-
-                      <Separator className={isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} />
-
-                      <div>
-                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Novo Testamento</h3>
-                        <div className="grid grid-cols-2 gap-2">
-                          {bibleStructure.novoTestamento
-                            .filter(b => b.name.toLowerCase().includes(searchTerm.toLowerCase()))
-                            .map(book => (
-                              <Button
-                                key={book.name}
-                                variant={selectedBook.name === book.name ? "secondary" : "ghost"}
-                                size="sm"
-                                className="justify-start font-medium h-9"
-                                onClick={() => {
-                                  setSelectedBook(book);
-                                  setSelectedChapter(1);
-                                  setIsSidebarOpen(false);
-                                }}
-                              >
-                                {book.name}
-                              </Button>
-                            ))}
-                        </div>
-                      </div>
-                    </div>
-                  </ScrollArea>
-                </SheetContent>
-              </Sheet>
-
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <h1 className="text-lg md:text-xl font-bold leading-none tracking-tight">
-                    {selectedBook.name}
-                  </h1>
-                  <Badge variant="outline" className={`text-base px-2 py-0 h-6 ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-                    {selectedChapter}
-                  </Badge>
-                </div>
+            {/* Botão de Navegação Principal */}
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 hover:bg-primary/20 transition-all group"
+              onClick={() => setIsNavModalOpen(true)}
+            >
+              <BookOpen className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+              <div className="text-left">
+                <span className="block text-xs text-muted-foreground uppercase tracking-wider font-semibold">Leitura Atual</span>
+                <span className="text-lg font-bold leading-none flex items-center gap-1">
+                  {selectedBook.name} {selectedChapter}
+                  <Badge variant="secondary" className="ml-2 text-[10px] hidden sm:inline-flex">Toque para mudar</Badge>
+                </span>
               </div>
-            </div>
+            </Button>
 
-            <div className="flex items-center gap-2 md:gap-4">
-
-              {/* Controles Desktop */}
-              <div className="hidden md:flex items-center gap-2 bg-secondary/50 p-1 rounded-lg">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setFontSize(s => Math.max(14, s - 1))}>
-                      <ZoomOut className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Diminuir fonte</TooltipContent>
-                </Tooltip>
-
-                <span className="text-xs w-8 text-center font-mono">{fontSize}px</span>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setFontSize(s => Math.min(32, s + 1))}>
-                      <ZoomIn className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Aumentar fonte</TooltipContent>
-                </Tooltip>
-              </div>
-
-              <Separator orientation="vertical" className={`hidden md:block h-6 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`} />
-
+            <div className="flex items-center gap-2">
               <Select value={selectedVersion} onValueChange={setSelectedVersion}>
-                <SelectTrigger className="w-[85px] md:w-[130px] h-9 text-xs md:text-sm font-medium bg-transparent">
+                <SelectTrigger className="w-[85px] h-9 text-xs font-medium bg-transparent border-none">
                   <SelectValue placeholder="Versão" />
                 </SelectTrigger>
                 <SelectContent>
                   {versoesDisponiveis.map(v => (
-                    <SelectItem key={v.id} value={v.id}>
-                      <span className="font-bold">{v.sigla}</span> <span className="hidden md:inline text-muted-foreground">- {v.nome.split('(')[0]}</span>
-                    </SelectItem>
+                    <SelectItem key={v.id} value={v.id}>{v.sigla}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -429,7 +263,7 @@ export function Enhanced3DBiblePage() {
               <Button
                 variant={isPlaying ? "destructive" : "default"}
                 size="icon"
-                className="h-9 w-9 shadow-sm transition-all hover:scale-105"
+                className="h-9 w-9 rounded-full"
                 onClick={toggleSpeech}
               >
                 {isPlaying ? <PauseCircle className="h-5 w-5" /> : <PlayCircle className="h-5 w-5" />}
@@ -438,191 +272,127 @@ export function Enhanced3DBiblePage() {
           </div>
         </header>
 
-        {/* CONTEÚDO PRINCIPAL (LAYOUT DESKTOP OTIMIZADO) */}
-        <main className="container mx-auto px-4 py-8 flex justify-center min-h-[85vh]">
-          <div className="w-full max-w-4xl relative">
+        {/* MODAL DE NAVEGAÇÃO GRID */}
+        <BibleNavigationModal
+          isOpen={isNavModalOpen}
+          onClose={() => setIsNavModalOpen(false)}
+          bibleStructure={bibleStructure}
+          currentBook={selectedBook}
+          currentChapter={selectedChapter}
+          onNavigate={handleNavigate}
+        />
 
-            {/* Navegação Flutuante Lateral (Desktop) */}
-            <div className="hidden lg:block absolute -left-24 top-1/2 -translate-y-1/2 space-y-4">
-              <Button
-                variant="outline"
-                size="icon"
+        {/* ÁREA DE LEITURA COM GESTOS */}
+        <main className="container mx-auto px-0 md:px-4 py-4 flex justify-center min-h-[85vh] overflow-hidden">
+          <motion.div
+            className="w-full max-w-4xl relative touch-pan-y"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={onDragEnd}
+          >
+            {/* Navegação Lateral Desktop (Botões Discretos) */}
+            <div className="hidden lg:block absolute -left-20 top-1/2 -translate-y-1/2">
+              <motion.button
+                whileHover={{ scale: 1.1, x: -5 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={handlePrevChapter}
                 disabled={selectedChapter <= 1}
-                className="h-12 w-12 rounded-full shadow-lg border-2 hover:border-primary hover:text-primary transition-all bg-background"
+                className="p-4 rounded-full bg-slate-800/50 hover:bg-slate-700 text-white disabled:opacity-30 backdrop-blur-sm"
               >
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
+                <ChevronLeft size={24} />
+              </motion.button>
             </div>
-            <div className="hidden lg:block absolute -right-24 top-1/2 -translate-y-1/2 space-y-4">
-              <Button
-                variant="outline"
-                size="icon"
+            <div className="hidden lg:block absolute -right-20 top-1/2 -translate-y-1/2">
+              <motion.button
+                whileHover={{ scale: 1.1, x: 5 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={handleNextChapter}
                 disabled={selectedChapter >= selectedBook.chapters}
-                className="h-12 w-12 rounded-full shadow-lg border-2 hover:border-primary hover:text-primary transition-all bg-background"
+                className="p-4 rounded-full bg-slate-800/50 hover:bg-slate-700 text-white disabled:opacity-30 backdrop-blur-sm"
               >
-                <ChevronRight className="h-6 w-6" />
-              </Button>
+                <ChevronRight size={24} />
+              </motion.button>
             </div>
 
-            {/* Área de Leitura (Papel) */}
-            <motion.div
-              layout
-              className={`
-              relative p-6 md:p-12 rounded-2xl shadow-xl transition-all duration-300
-              ${isDarkMode ? 'bg-[#151921] shadow-black/20' : 'bg-white shadow-xl shadow-slate-200/50'}
-            `}
-            >
-              {/* Loading Skeleton */}
-              <AnimatePresence mode="wait">
-                {isLoading ? (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="space-y-8"
-                  >
-                    <div className="space-y-4">
-                      {[...Array(3)].map((_, i) => (
-                        <div key={i} className={`h-4 w-full rounded animate-pulse ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`} />
-                      ))}
-                    </div>
-                    <div className="space-y-4">
-                      {[...Array(8)].map((_, i) => (
-                        <div key={i} className={`h-4 w-full rounded animate-pulse ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`} style={{ width: `${Math.random() * 40 + 60}%` }} />
-                      ))}
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key={`${selectedBook.name}-${selectedChapter}-${selectedVersion}`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center font-serif tracking-tight">
-                      {chapterContent?.book.name} {chapterContent?.chapter.number}
+            {/* Conteúdo do Texto */}
+            <AnimatePresence mode="wait">
+              {isLoading ? (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="p-6 md:p-12 space-y-8"
+                >
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className={`h-4 w-full rounded animate-pulse ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`} style={{ width: `${Math.random() * 40 + 60}%` }} />
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={`${selectedBook.name}-${selectedChapter}`}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className={`
+                      relative p-6 md:p-12 md:rounded-3xl shadow-2xl min-h-[70vh]
+                      ${isDarkMode ? 'bg-[#151921]/90 shadow-black/20' : 'bg-white/90 shadow-slate-200/50'}
+                      backdrop-blur-md border border-white/5
+                    `}
+                >
+                  <div className="flex justify-between items-baseline mb-8 border-b border-gray-200/10 pb-4">
+                    <h2 className="text-3xl md:text-5xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                      {chapterContent?.chapter.number}
                     </h2>
+                    <span className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+                      {chapterContent?.book.name}
+                    </span>
+                  </div>
 
-                    <div
-                      style={{
-                        fontSize: `${fontSize}px`,
-                        lineHeight: '1.8',
-                        fontFamily: '"Merriweather", "Georgia", serif'
-                      }}
-                      className={`space-y-6 text-justify ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`}
-                    >
-                      {chapterContent?.verses.map((verse) => {
-                        const isSelected = selectedVerses.includes(verse.number);
-                        return (
-                          <span
-                            key={verse.number}
-                            onClick={() => toggleVerseSelection(verse.number)}
-                            className={`
-                            relative inline decoration-clone box-decoration-clone px-1 rounded transition-colors cursor-pointer
+                  <div
+                    style={{
+                      fontSize: `${fontSize}px`,
+                      lineHeight: '1.8',
+                      fontFamily: '"Merriweather", "Georgia", serif'
+                    }}
+                    className={`space-y-6 text-justify ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`}
+                  >
+                    {chapterContent?.verses.map((verse) => {
+                      const isSelected = selectedVerses.includes(verse.number);
+                      return (
+                        <span
+                          key={verse.number}
+                          onClick={() => toggleVerseSelection(verse.number)}
+                          className={`
+                            relative inline-block decoration-clone p-1 rounded-lg transition-colors cursor-pointer select-none
                             ${isSelected
-                                ? 'bg-primary/20 text-primary-foreground font-medium'
-                                : 'hover:bg-primary/5'
-                              }
+                              ? 'bg-blue-500/20 text-blue-200 ring-1 ring-blue-500/50'
+                              : 'hover:bg-gray-500/10'
+                            }
                           `}
-                          >
-                            <sup className="text-[0.6em] font-bold text-primary mr-1 select-none opacity-50 align-super font-sans">
-                              {verse.number}
-                            </sup>
-                            <span>
-                              {verse.text}
-                            </span>
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+                        >
+                          <sup className="text-[0.6em] font-bold text-blue-500 mr-2 opacity-70 select-none">
+                            {verse.number}
+                          </sup>
+                          {verse.text}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-            {/* Navegação Mobile (Abaixo do texto) */}
-            <div className="flex lg:hidden justify-between items-center mt-8 gap-4">
-              <Button
-                variant="outline"
-                onClick={handlePrevChapter}
-                disabled={selectedChapter <= 1}
-                className="flex-1"
-              >
-                <ChevronLeft className="h-4 w-4 mr-2" />
-                Anterior
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleNextChapter}
-                disabled={selectedChapter >= selectedBook.chapters}
-                className="flex-1"
-              >
-                Próximo
-                <ChevronRight className="h-4 w-4 ml-2" />
-              </Button>
+            {/* Dica de Gesto Mobile */}
+            <div className="lg:hidden mt-8 flex justify-center text-xs text-muted-foreground opacity-50">
+              <ArrowLeft className="w-3 h-3 mr-1" /> Deslize para mudar <ArrowRight className="w-3 h-3 ml-1" />
             </div>
 
-          </div>
+          </motion.div>
         </main>
-
-        {/* TOOLBAR FLUTUANTE DE AÇÃO */}
-        <AnimatePresence>
-          {selectedVerses.length > 0 && (
-            <motion.div
-              initial={{ y: 100, opacity: 0, scale: 0.9 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: 100, opacity: 0, scale: 0.9 }}
-              className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
-            >
-              <div className={`
-              flex items-center gap-2 p-2 rounded-full shadow-2xl border backdrop-blur-md
-              ${isDarkMode ? 'bg-gray-900/90 border-gray-700 text-white' : 'bg-white/90 border-gray-200 text-gray-900'}
-            `}>
-                <span className="text-sm font-bold px-4 border-r border-gray-500/30">
-                  {selectedVerses.length}
-                </span>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/20" onClick={copySelectedVerses}>
-                      <Copy className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Copiar</TooltipContent>
-                </Tooltip>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/20" onClick={toggleBookmark}>
-                      <Bookmark className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Favoritar</TooltipContent>
-                </Tooltip>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/20" onClick={shareVerses}>
-                      <Share2 className="h-4 w-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Compartilhar</TooltipContent>
-                </Tooltip>
-
-                <Separator orientation="vertical" className="h-6 mx-1" />
-
-                <Button variant="ghost" size="icon" className="rounded-full hover:bg-red-500/20 text-red-500" onClick={() => setSelectedVerses([])}>
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </TooltipProvider>
-
     </div>
   );
 }

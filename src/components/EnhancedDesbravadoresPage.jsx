@@ -1,10 +1,39 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Award, Tent, Map, Calendar, Music, BookOpen, Star, Heart, X, ChevronRight, CheckCircle } from 'lucide-react';
+import { Shield, Award, Tent, Map, Calendar, Music, BookOpen, Star, Heart, X, ChevronRight, CheckCircle, Cloud, Sun } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D, Wave3D } from './3DAnimations';
 import AuroraBackground from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { classesDesbravadores, especialidades, ideais } from '../data/desbravadores_data';
+
+const iconMap = {
+    'hand-heart': Heart,
+    'cat': Award,
+    'medkit': Heart,
+    'palette': Music,
+    'sprout': Cloud,
+    'cross': Star,
+    'briefcase': Map,
+    'flask': Tent,
+    'home': Tent,
+    'bike': Award
+};
+
+const getIcon = (iconName) => {
+    switch (iconName) {
+        case 'hand-heart': return Heart;
+        case 'cat': return Star;
+        case 'medkit': return Heart;
+        case 'palette': return Music;
+        case 'sprout': return Cloud;
+        case 'cross': return BookOpen;
+        case 'briefcase': return Map;
+        case 'flask': return Shield;
+        case 'home': return Tent;
+        case 'bike': return Sun;
+        default: return Star;
+    }
+};
 
 export function EnhancedDesbravadoresPage() {
     const { isDarkMode } = useDarkMode();
@@ -140,41 +169,44 @@ export function EnhancedDesbravadoresPage() {
                                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                                 className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
                             >
-                                {especialidades.map((esp) => (
-                                    <Card3D
-                                        key={esp.id}
-                                        className="p-4 flex flex-col items-center justify-center text-center gap-3 hover:bg-white/10 cursor-pointer group transition-all"
-                                        onClick={() => setSelectedSpecialty(esp)}
-                                    >
-                                        <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center ${esp.cor} group-hover:scale-110 transition-transform shadow-lg border border-white/10`}>
-                                            <div className="w-6 h-6 bg-current rounded-full opacity-80" />
-                                        </div>
-                                        <span className="font-bold text-white text-sm group-hover:text-blue-300 transition-colors">{esp.nome}</span>
-                                    </Card3D>
-                                ))}
+                                {especialidades.map((esp) => {
+                                    const IconComp = getIcon(esp.icon);
+                                    return (
+                                        <Card3D
+                                            key={esp.id}
+                                            className="p-4 flex flex-col items-center justify-center text-center gap-3 hover:bg-white/10 cursor-pointer group transition-all"
+                                            onClick={() => setSelectedSpecialty(esp)}
+                                        >
+                                            <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center ${esp.cor} group-hover:scale-110 transition-transform shadow-lg border border-white/10`}>
+                                                <IconComp size={28} className="text-current drop-shadow-md" />
+                                            </div>
+                                            <span className="font-bold text-white text-sm group-hover:text-blue-300 transition-colors uppercase tracking-tight">{esp.nome}</span>
+                                        </Card3D>
+                                    );
+                                })}
                             </motion.div>
                         )}
 
                         {activeTab === 'ideais' && (
-                            <Card3D className="max-w-4xl mx-auto p-8 md:p-12 text-center bg-gradient-to-b from-blue-900/40 to-black/40 border-blue-500/30">
-                                <h2 className="text-3xl font-bold text-yellow-500 mb-8 border-b border-white/10 pb-4 inline-block px-12">Ideais do Desbravador</h2>
+                            <Card3D className="max-w-4xl mx-auto p-8 md:p-12 text-center bg-zinc-900/90 border-blue-500/30 shadow-2xl backdrop-blur-xl">
+                                <h2 className="text-3xl font-black text-yellow-500 mb-8 border-b border-white/10 pb-4 inline-block px-12 tracking-wide">IDEAIS DO DESBRAVADOR</h2>
 
                                 <div className="grid md:grid-cols-2 gap-12 text-left">
                                     <div>
-                                        <h3 className="text-xl font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                        <h3 className="text-2xl font-black text-blue-400 mb-4 flex items-center gap-2 uppercase tracking-wider">
                                             <span className="w-2 h-8 bg-blue-500 rounded-full" /> Voto
                                         </h3>
-                                        <p className="text-xl text-white italic leading-relaxed font-serif">"{ideais.voto}"</p>
+                                        <p className="text-2xl text-white font-serif leading-relaxed drop-shadow-md">"{ideais.voto}"</p>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
+                                        <h3 className="text-2xl font-black text-red-400 mb-4 flex items-center gap-2 uppercase tracking-wider">
                                             <span className="w-2 h-8 bg-red-500 rounded-full" /> Lei
                                         </h3>
-                                        <ul className="space-y-2">
+                                        <ul className="space-y-3">
                                             {ideais.lei.map((item, i) => (
-                                                <li key={i} className="flex items-center gap-3 text-gray-300">
-                                                    <span className="w-6 h-6 rounded-full bg-white/10 text-xs flex items-center justify-center font-bold text-white/50">{i + 1}</span>
-                                                    {item}
+                                                <li key={i} className="flex items-start gap-3 text-white font-medium text-lg text-left">
+                                                    <span className="shrink-0 w-6 h-6 rounded-full bg-white text-black text-xs flex items-center justify-center font-bold mt-1 shadow-lg">{i + 1}</span>
+                                                    <span className="drop-shadow-sm">{item}</span>
                                                 </li>
                                             ))}
                                         </ul>

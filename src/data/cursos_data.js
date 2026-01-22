@@ -9,7 +9,7 @@ export const cursos = [
         progresso: 45,
         totalAulas: 12,
         duracao: "6h 30m",
-        videoUrl: "https://www.youtube.com/embed/M7lc1UVf-VE",
+        videoUrl: "https://www.youtube.com/embed/zR72G64YdOo", // Apocalipse Revelado Intro
         aulas: [
             { id: 1, titulo: "O Início do Fim", duracao: "45 min" },
             { id: 2, titulo: "As 7 Igrejas", duracao: "50 min" },
@@ -26,7 +26,7 @@ export const cursos = [
         progresso: 10,
         totalAulas: 8,
         duracao: "4h 15m",
-        videoUrl: "https://www.youtube.com/embed/tlwwp1iLbIU",
+        videoUrl: "https://www.youtube.com/embed/2_LgR_4iKVE", // Familia Novo Tempo
         aulas: [
             { id: 1, titulo: "Comunicação no Lar", duracao: "35 min" },
             { id: 2, titulo: "Educando Filhos", duracao: "40 min" }
@@ -42,7 +42,7 @@ export const cursos = [
         progresso: 0,
         totalAulas: 15,
         duracao: "8h 00m",
-        videoUrl: "https://www.youtube.com/embed/3a-2D5H8FzU",
+        videoUrl: "https://www.youtube.com/embed/3a-2D5H8FzU", // Check if works, otherwise substitute
         aulas: [
             { id: 1, titulo: "Os 8 Remédios", duracao: "20 min" },
             { id: 2, titulo: "Alimentação Viva", duracao: "25 min" }
@@ -58,7 +58,7 @@ export const cursos = [
         progresso: 80,
         totalAulas: 20,
         duracao: "12h 45m",
-        videoUrl: "https://www.youtube.com/embed/1y88q6f_0vQ",
+        videoUrl: "https://www.youtube.com/embed/IryRzZlZkjs", // Bullon Sermon
         aulas: [
             { id: 1, titulo: "A Inspiração da Bíblia", duracao: "55 min" },
             { id: 2, titulo: "A Divindade", duracao: "60 min" }

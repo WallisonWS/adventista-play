@@ -168,6 +168,14 @@ export const classesDesbravadores = [
     }
 ];
 
+const commonTeachingContent = {
+    titulo: "Conteúdo Prático",
+    itens: [
+        { pergunta: "Requisito 1: O que é necessário?", resposta: "Completar a parte teórica e prática com o instrutor." },
+        { pergunta: "Requisito 2: Atividade Prática", resposta: "Demonstrar habilidade na área específica." }
+    ]
+};
+
 export const especialidades = [
     {
         id: 'adra',
@@ -177,18 +185,9 @@ export const especialidades = [
         conteudoEnsino: {
             titulo: "Avaliação e Ajuda Comunitária",
             itens: [
-                {
-                    pergunta: "1. O que significa a sigla ADRA?",
-                    resposta: "Agência Adventista de Desenvolvimento e Recursos Assistenciais."
-                },
-                {
-                    pergunta: "2. Qual o propósito da ADRA?",
-                    resposta: "O propósito da ADRA é servir a humanidade para que todos vivam como Deus planejou. Ela trabalha em áreas de desenvolvimento comunitário, gestão de desastres e promoção de justiça social."
-                },
-                {
-                    pergunta: "3. Cite 3 tipos de projetos que a ADRA desenvolve.",
-                    resposta: "Segurança Alimentar, Desenvolvimento Econômico, Educação Básica, Saúde Primária, e Resposta a Emergências."
-                }
+                { pergunta: "1. O que significa a sigla ADRA?", resposta: "Agência Adventista de Desenvolvimento e Recursos Assistenciais." },
+                { pergunta: "2. Qual o propósito da ADRA?", resposta: "Servir a humanidade para que todos vivam como Deus planejou." },
+                { pergunta: "3. Cite 3 tipos de projetos.", resposta: "Segurança Alimentar, Educação Básica e Saúde Primária." }
             ]
         }
     },
@@ -200,22 +199,9 @@ export const especialidades = [
         conteudoEnsino: {
             titulo: "Estudo da Natureza: Felinos",
             itens: [
-                {
-                    pergunta: "1. Qual é o nome científico da família dos gatos?",
-                    resposta: "Felidae."
-                },
-                {
-                    pergunta: "2. Como a estrutura da pata dos felinos é diferente para cães?",
-                    resposta: "As garras dos felinos são retráteis (exceto a do guepardo), o que as mantém afiadas. Cães têm garras não retráteis."
-                },
-                {
-                    pergunta: "3. Qual é o principal alimento da família dos gatos?",
-                    resposta: "São carnívoros, alimentando-se principalmente de carne de outros animais."
-                },
-                {
-                    pergunta: "4. Cite 4 grandes felinos selvagens.",
-                    resposta: "Leão, Tigre, Onça-pintada e Leopardo."
-                }
+                { pergunta: "1. Família dos gatos?", resposta: "Felidae." },
+                { pergunta: "2. Diferença de patas cães/gatos?", resposta: "Gatos têm garras retráteis." },
+                { pergunta: "3. 4 Grandes Felinos?", resposta: "Leão, Tigre, Onça, Leopardo." }
             ]
         }
     },
@@ -227,28 +213,110 @@ export const especialidades = [
         conteudoEnsino: {
             titulo: "Saúde e Segurança",
             itens: [
-                {
-                    pergunta: "1. O que são Primeiros Socorros?",
-                    resposta: "São os cuidados imediatos prestados a uma pessoa ferida ou repentinamente doente antes da chegada de ajuda médica profissional."
-                },
-                {
-                    pergunta: "2. Qual é a regra ABC da vida?",
-                    resposta: "A (Airway) - Vias Aéreas, B (Breathing) - Respiração, C (Circulation) - Circulação. (Atualmente atualizado para CAB em ressuscitação)."
-                },
-                {
-                    pergunta: "3. Como tratar um sangramento nasal?",
-                    resposta: "Sentar a vítima, inclinar levemente a cabeça para frente (não para trás!) e pressionar as narinas por 10 minutos."
-                }
+                { pergunta: "1. Definição?", resposta: "Cuidados imediatos antes da ajuda médica." },
+                { pergunta: "2. Regra ABC?", resposta: "Airway, Breathing, Circulation." },
+                { pergunta: "3. Sangramento Nasal?", resposta: "Inclinar frente, pressionar narinas." }
             ]
         }
     },
-    { id: 'artes', nome: 'Artes e Habilidades Manuais', icon: 'palette', cor: 'text-purple-500', conteudoEnsino: { titulo: "Artes", itens: [{ pergunta: "Requisito prático", resposta: "Desenvolver item artesanal." }] } },
-    { id: 'agric', nome: 'Atividades Agrícolas', icon: 'sprout', cor: 'text-green-600', conteudoEnsino: { titulo: "Agricultura", itens: [{ pergunta: "Requisito prático", resposta: "Plantar e colher." }] } },
-    { id: 'missi', nome: 'Atividades Missionárias', icon: 'cross', cor: 'text-red-500', conteudoEnsino: { titulo: "Missão", itens: [{ pergunta: "Requisito prático", resposta: "Participar de campanha missionária." }] } },
-    { id: 'prof', nome: 'Atividades Profissionais', icon: 'briefcase', cor: 'text-gray-500', conteudoEnsino: { titulo: "Profissões", itens: [{ pergunta: "Requisito prático", resposta: "Entrevistar um profissional." }] } },
-    { id: 'cienc', nome: 'Ciência e Saúde', icon: 'flask', cor: 'text-teal-500', conteudoEnsino: { titulo: "Ciência", itens: [{ pergunta: "Requisito prático", resposta: "Realizar experimento." }] } },
-    { id: 'domes', nome: 'Habilidades Domésticas', icon: 'home', cor: 'text-orange-500', conteudoEnsino: { titulo: "Lar", itens: [{ pergunta: "Requisito prático", resposta: "Ajudar nas tarefas domésticas." }] } },
-    { id: 'recre', nome: 'Recreação', icon: 'bike', cor: 'text-yellow-500', conteudoEnsino: { titulo: "Recreação", itens: [{ pergunta: "Requisito prático", resposta: "Planejar atividade recreativa." }] } }
+    {
+        id: 'artes',
+        nome: 'Artes Manuais',
+        icon: 'palette',
+        cor: 'text-purple-500',
+        conteudoEnsino: {
+            titulo: "Habilidades Manuais",
+            itens: [
+                { pergunta: "1. Segurança", resposta: "Sempre usar ferramentas corretas e proteção." },
+                { pergunta: "2. Materiais", resposta: "Conhecer tipos de tintas, papéis ou tecidos." },
+                { pergunta: "3. Prática", resposta: "Fazer um item artesanal completo." }
+            ]
+        }
+    },
+    {
+        id: 'agric',
+        nome: 'Agricultura',
+        icon: 'sprout',
+        cor: 'text-green-600',
+        conteudoEnsino: {
+            titulo: "Cultivo e Terra",
+            itens: [
+                { pergunta: "1. Solo", resposta: "Diferenciar terra preta de argilosa." },
+                { pergunta: "2. Plantio", resposta: "Saber plantar uma hortaliça e cuidar até a colheita." },
+                { pergunta: "3. Ferramentas", resposta: "Uso correto de enxada e rastelo." }
+            ]
+        }
+    },
+    {
+        id: 'missi',
+        nome: 'Missionárias',
+        icon: 'cross',
+        cor: 'text-red-600',
+        conteudoEnsino: {
+            titulo: "Evangelismo",
+            itens: [
+                { pergunta: "1. Grande Comissão", resposta: "Ide por todo mundo (Mateus 28)." },
+                { pergunta: "2. Testemunho", resposta: "Contar sua história pessoal com Jesus." },
+                { pergunta: "3. Ação", resposta: "Participar de um projeto comunitário ou distribuição de livros." }
+            ]
+        }
+    },
+    {
+        id: 'prof',
+        nome: 'Profissões',
+        icon: 'briefcase',
+        cor: 'text-gray-500',
+        conteudoEnsino: {
+            titulo: "Vocação",
+            itens: [
+                { pergunta: "1. Ética", resposta: "Honestidade e pontualidade no trabalho." },
+                { pergunta: "2. Entrevista", resposta: "Conversar com um profissional da área desejada." },
+                { pergunta: "3. Educação", resposta: "Saber qual formação é necessária." }
+            ]
+        }
+    },
+    {
+        id: 'cienc',
+        nome: 'Ciência',
+        icon: 'flask',
+        cor: 'text-teal-500',
+        conteudoEnsino: {
+            titulo: "Descoberta",
+            itens: [
+                { pergunta: "1. Método Científico", resposta: "Observação, Hipótese, Experimento, Conclusão." },
+                { pergunta: "2. Criação", resposta: "Relacionar ciência com o Criador." },
+                { pergunta: "3. Experimento", resposta: "Demonstrar um princípio físico ou químico." }
+            ]
+        }
+    },
+    {
+        id: 'domes',
+        nome: 'Domésticas',
+        icon: 'home',
+        cor: 'text-orange-500',
+        conteudoEnsino: {
+            titulo: "Lar e Família",
+            itens: [
+                { pergunta: "1. Organização", resposta: "Manter quarto e armários arrumados." },
+                { pergunta: "2. Culinária", resposta: "Preparar um prato simples e saudável." },
+                { pergunta: "3. Limpeza", resposta: "Ajudar na limpeza geral da casa por 1 semana." }
+            ]
+        }
+    },
+    {
+        id: 'recre',
+        nome: 'Recreação',
+        icon: 'bike',
+        cor: 'text-yellow-500',
+        conteudoEnsino: {
+            titulo: "Físico",
+            itens: [
+                { pergunta: "1. Fair Play", resposta: "Respeitar regras e adversários." },
+                { pergunta: "2. Exercício", resposta: "Praticar atividade física 3x na semana." },
+                { pergunta: "3. Liderança", resposta: "Organizar um jogo para a unidade." }
+            ]
+        }
+    }
 ];
 
 export const ideais = {

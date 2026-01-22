@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
     Heart, Music, BookOpen, GraduationCap,
-    Globe, ChevronRight
+    Globe, ChevronRight, Play
 } from 'lucide-react';
 import { DestaquesCarousel } from './DestaquesCarousel';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -153,6 +153,14 @@ export function Ultra3DHomePage({ user }) {
                             subtitle="Aprofunde-se"
                             color="from-emerald-500 to-teal-600"
                             delay={0.3}
+                        />
+                        <FeatureCard3D
+                            to="/cursos"
+                            icon={Play}
+                            title="Cursos VIP"
+                            subtitle="Vídeo Aulas"
+                            color="from-red-600 to-rose-700"
+                            delay={0.35}
                         />
                     </div>
                 </div>

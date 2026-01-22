@@ -1,29 +1,23 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Shield, Award, Tent, Map, Calendar, Music } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Shield, Award, Tent, Map, Calendar, Music, BookOpen, Star, Heart } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D, Wave3D } from './3DAnimations';
 import { AuroraBackground } from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { classesDesbravadores, especialidades, ideais } from '../data/desbravadores_data';
 
 export function EnhancedDesbravadoresPage() {
     const { isDarkMode } = useDarkMode();
+    const [activeTab, setActiveTab] = useState('classes');
 
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
+        visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
     };
 
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1
-        }
+        visible: { y: 0, opacity: 1 }
     };
 
     return (
@@ -33,7 +27,6 @@ export function EnhancedDesbravadoresPage() {
                 speed={0.5}
             />
 
-            {/* Floating Elements Specific to Pathfinders (Khaki/Green vibe) */}
             <FloatingParticles3D count={15} color={isDarkMode ? "#FFD700" : "#8F895E"} />
 
             <main className="relative z-10 container mx-auto px-4 py-8">
@@ -43,7 +36,7 @@ export function EnhancedDesbravadoresPage() {
                     initial={{ opacity: 0, y: -50, rotateX: 20 }}
                     animate={{ opacity: 1, y: 0, rotateX: 0 }}
                     transition={{ duration: 0.8, type: "spring" }}
-                    className="text-center mb-16 perspective-1000"
+                    className="text-center mb-10 perspective-1000"
                 >
                     <div className="inline-block relative">
                         <motion.div
@@ -63,103 +56,117 @@ export function EnhancedDesbravadoresPage() {
                     </div>
                 </motion.div>
 
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    {/* Cartões 3D de Recursos */}
-                    <motion.div variants={itemVariants}>
-                        <Card3D className="h-full bg-gradient-to-br from-yellow-500/10 to-green-500/10 border-yellow-500/20">
-                            <div className="flex flex-col items-center text-center p-6 space-y-4">
-                                <div className="p-4 rounded-full bg-yellow-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(234,179,8,0.3)]">
-                                    <Award className="w-8 h-8 text-yellow-500" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-yellow-500">Classes</h3>
-                                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                    Materiais completos para Amigo, Companheiro, Pesquisador, Pioneiro, Excursionista e Guia.
-                                </p>
-                                <Button3D className="w-full bg-yellow-600/80 hover:bg-yellow-600 border-yellow-400/30">
-                                    Acessar Classes
-                                </Button3D>
+                {/* Custom Tab Navigation */}
+                <div className="flex justify-center mb-12 flex-wrap gap-4">
+                    {['classes', 'especialidades', 'ideais'].map((tab) => (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`
+                        px-8 py-3 rounded-full font-bold text-lg transition-all duration-300 border
+                        ${activeTab === tab
+                                    ? 'bg-yellow-500 text-black border-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.4)] scale-105'
+                                    : 'bg-black/20 text-white/70 border-white/10 hover:bg-white/10'}
+                    `}
+                        >
+                            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                        </button>
+                    ))}
+                </div>
+
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {activeTab === 'classes' && (
+                            <motion.div
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate="visible"
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                            >
+                                {classesDesbravadores.map((classe) => (
+                                    <motion.div variants={itemVariants} key={classe.id}>
+                                        <Card3D className="h-full overflow-hidden border-white/10 group">
+                                            <div className={`h-2 ${classe.cor}`} />
+                                            <div className="p-6">
+                                                <div className="flex items-center gap-4 mb-4">
+                                                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                                        <img src={classe.logo} alt={classe.nome} className="w-10 h-10 object-contain drop-shadow-lg" onError={(e) => { e.target.onerror = null; e.target.src = 'https://cdn-icons-png.flaticon.com/512/1045/1045258.png' }} />
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="text-xl font-bold text-white">{classe.nome}</h3>
+                                                        <span className="text-xs text-gray-400">{classe.idade} Anos</span>
+                                                    </div>
+                                                </div>
+
+                                                <ul className="space-y-2 mb-6">
+                                                    {classe.requisitos.map((req, i) => (
+                                                        <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                                                            <span className="text-yellow-500 mt-1">•</span>
+                                                            {req}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+
+                                                <Button3D className="w-full bg-white/10 hover:bg-white/20 border-white/5">
+                                                    Ver Caderno Completo
+                                                </Button3D>
+                                            </div>
+                                        </Card3D>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        )}
+
+                        {activeTab === 'especialidades' && (
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {especialidades.map((esp) => (
+                                    <Card3D key={esp.id} className="p-6 flex flex-col items-center justify-center text-center hover:bg-white/5 cursor-pointer border-white/10">
+                                        <div className={`mb-3 p-4 rounded-full bg-white/5 ${esp.cor}`}>
+                                            <Award className="w-8 h-8" />
+                                        </div>
+                                        <h3 className="font-bold text-white">{esp.nome}</h3>
+                                        <p className="text-xs text-gray-400 mt-1">Ver Requisitos</p>
+                                    </Card3D>
+                                ))}
                             </div>
-                        </Card3D>
-                    </motion.div>
+                        )}
 
-                    <motion.div variants={itemVariants}>
-                        <Card3D className="h-full bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/20">
-                            <div className="flex flex-col items-center text-center p-6 space-y-4">
-                                <div className="p-4 rounded-full bg-green-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-                                    <Map className="w-8 h-8 text-green-500" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-green-500">Especialidades</h3>
-                                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                    Guia de requisitos para todas as áreas: Natureza, Habilidades Domésticas, Artes e mais.
-                                </p>
-                                <Button3D className="w-full bg-green-600/80 hover:bg-green-600 border-green-400/30">
-                                    Ver Especialidades
-                                </Button3D>
+                        {activeTab === 'ideais' && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                                <Card3D className="p-8 bg-gradient-to-br from-yellow-900/40 to-black/40 border-yellow-500/30">
+                                    <h2 className="text-2xl font-bold text-yellow-500 mb-6 flex items-center gap-2">
+                                        <Heart className="w-6 h-6" /> Voto
+                                    </h2>
+                                    <p className="text-xl leading-relaxed text-gray-200 italic">
+                                        "{ideais.voto}"
+                                    </p>
+                                </Card3D>
+
+                                <Card3D className="p-8 bg-gradient-to-br from-green-900/40 to-black/40 border-green-500/30">
+                                    <h2 className="text-2xl font-bold text-green-500 mb-6 flex items-center gap-2">
+                                        <Star className="w-6 h-6" /> Lei
+                                    </h2>
+                                    <ul className="space-y-3">
+                                        {ideais.lei.map((item, idx) => (
+                                            <li key={idx} className="flex items-center gap-3 text-lg text-gray-300">
+                                                <div className="w-6 h-6 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center text-xs font-bold">
+                                                    {idx + 1}
+                                                </div>
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </Card3D>
                             </div>
-                        </Card3D>
+                        )}
                     </motion.div>
-
-                    <motion.div variants={itemVariants}>
-                        <Card3D className="h-full bg-gradient-to-br from-orange-500/10 to-red-500/10 border-orange-500/20">
-                            <div className="flex flex-col items-center text-center p-6 space-y-4">
-                                <div className="p-4 rounded-full bg-orange-500/20 backdrop-blur-md shadow-[0_0_20px_rgba(249,115,22,0.3)]">
-                                    <Tent className="w-8 h-8 text-orange-500" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-orange-500">Camporis</h3>
-                                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                    História, fotos e informações sobre os próximos grandes eventos e acampamentos.
-                                </p>
-                                <Button3D className="w-full bg-orange-600/80 hover:bg-orange-600 border-orange-400/30">
-                                    Explorar Eventos
-                                </Button3D>
-                            </div>
-                        </Card3D>
-                    </motion.div>
-
-                </motion.div>
-
-                {/* Seção Ideais */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="mt-20"
-                >
-                    <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-green-600">
-                        Nossos Ideais
-                    </h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <Card3D className="p-8 bg-black/20 border-white/5">
-                            <h3 className="text-xl font-bold text-yellow-500 mb-4">Voto</h3>
-                            <p className="italic text-lg text-gray-300">
-                                "Pela graça de Deus,\n
-                                serei puro, bondoso e leal.\n
-                                Guardarei a lei dos Desbravadores,\n
-                                serei servo de Deus e amigo de todos."
-                            </p>
-                        </Card3D>
-                        <Card3D className="p-8 bg-black/20 border-white/5">
-                            <h3 className="text-xl font-bold text-green-500 mb-4">Lei</h3>
-                            <ul className="text-left space-y-2 text-gray-300">
-                                <li>1. Observar a devoção matinal.</li>
-                                <li>2. Cumprir fielmente a parte que me corresponde.</li>
-                                <li>3. Cuidar de meu corpo.</li>
-                                <li>4. Manter a consciência limpa.</li>
-                                <li>5. Ser cortês e obediente.</li>
-                                <li>6. Andar com reverência na casa de Deus.</li>
-                                <li>7. Ter sempre um cântico no coração.</li>
-                                <li>8. Ir aonde Deus mandar.</li>
-                            </ul>
-                        </Card3D>
-                    </div>
-                </motion.div>
+                </AnimatePresence>
 
             </main>
 

@@ -25,6 +25,7 @@ import { EnhancedDesbravadoresPage } from './components/EnhancedDesbravadoresPag
 import { EnhancedAventureirosPage } from './components/EnhancedAventureirosPage.jsx';
 import { EnhancedJovensPage } from './components/EnhancedJovensPage.jsx';
 import { EnhancedEscolaSabatinaPage } from './components/EnhancedEscolaSabatinaPage.jsx';
+import { EnhancedCursosPage } from './components/EnhancedCursosPage.jsx';
 
 // ... (other code)
 

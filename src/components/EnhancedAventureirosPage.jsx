@@ -4,6 +4,7 @@ import { Star, Heart, Sun, Cloud, Music, BookHeart } from 'lucide-react';
 import { Card3D, Button3D, FloatingParticles3D, Wave3D } from './3DAnimations';
 import { AuroraBackground } from './21st-dev/AuroraBackground';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import { classesAventureiros, ideaisAventureiros } from '../data/aventureiros_data';
 
 export function EnhancedAventureirosPage() {
     const { isDarkMode } = useDarkMode();
@@ -70,20 +71,26 @@ export function EnhancedAventureirosPage() {
                     animate="visible"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                 >
-                    {/* Classes Cards - Coloring specific for kids */}
-                    {[
-                        { title: 'Abelhinha', color: 'bg-yellow-400', icon: '🐝' },
-                        { title: 'Luminares', color: 'bg-orange-400', icon: '☀️' },
-                        { title: 'Edificadores', color: 'bg-blue-400', icon: '🏗️' },
-                        { title: 'Mãos Ajudadoras', color: 'bg-green-400', icon: '🤝' },
-                    ].map((classe, idx) => (
-                        <motion.div variants={itemVariants} key={idx}>
+                    {/* Classes Cards - Dynamic Content */}
+                    {classesAventureiros.map((classe) => (
+                        <motion.div variants={itemVariants} key={classe.id}>
                             <Card3D className={`h-full border-none shadow-lg overflow-hidden group hover:scale-105 transition-transform`}>
-                                <div className={`h-24 ${classe.color} flex items-center justify-center text-5xl`}>
-                                    {classe.icon}
+                                <div className={`h-24 ${classe.cor} flex items-center justify-center p-4`}>
+                                    <img src={classe.logo} alt={classe.nome} className="h-full object-contain filter drop-shadow-md" onError={(e) => { e.target.onerror = null; e.target.src = 'https://cdn-icons-png.flaticon.com/512/1045/1045258.png' }} />
                                 </div>
-                                <div className="p-6 text-center bg-white/10 backdrop-blur-md">
-                                    <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{classe.title}</h3>
+                                <div className="p-6 bg-white/10 backdrop-blur-md">
+                                    <h3 className={`text-xl font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{classe.nome}</h3>
+                                    <p className="text-xs font-semibold opacity-70 mb-4">{classe.idade} Anos</p>
+
+                                    <ul className="text-left text-sm space-y-2 mb-4">
+                                        {classe.requisitos.slice(0, 3).map((req, i) => (
+                                            <li key={i} className="flex items-start gap-2">
+                                                <span className="text-orange-500">•</span>
+                                                <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>{req}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
                                     <Button3D className="w-full text-sm bg-white/20 hover:bg-white/30 border-white/10">
                                         Ver Caderno
                                     </Button3D>
@@ -107,7 +114,7 @@ export function EnhancedAventureirosPage() {
                             <h2 className="text-2xl font-bold text-blue-400">Voto</h2>
                         </div>
                         <p className="text-xl font-medium text-center italic text-white/90">
-                            "Por amor a Jesus,<br />farei sempre o meu melhor."
+                            "{ideaisAventureiros.voto}"
                         </p>
                     </Card3D>
 
@@ -116,11 +123,16 @@ export function EnhancedAventureirosPage() {
                             <Star className="w-8 h-8 text-orange-400" />
                             <h2 className="text-2xl font-bold text-orange-400">Lei</h2>
                         </div>
-                        <p className="text-lg font-medium text-white/90 leading-relaxed">
-                            Jesus me ajuda a ser:<br />
-                            Obediente, Puro, Reverente,<br />
-                            Bondoso e Colaborador.
-                        </p>
+                        <div className="text-lg font-medium text-white/90 leading-relaxed text-center">
+                            <p className="mb-2">{ideaisAventureiros.lei[0]}</p>
+                            <div className="grid grid-cols-2 gap-2">
+                                {ideaisAventureiros.lei.slice(1).map((item, i) => (
+                                    <span key={i} className="bg-white/10 rounded-full py-1 px-3 text-sm">
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     </Card3D>
                 </motion.div>
 
